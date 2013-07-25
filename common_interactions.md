@@ -25,6 +25,7 @@ Note: There are various locator strategies you can use to find an element. See o
 ```ruby
 driver.find_element(id: 'gbqfq').clear
 driver.find_element(id: 'gbqfq').send_keys 'elemental selenium tips'
+```
 
 Inputs text into the element specified. In some cases, you may need to clear the element before inputting text.  
 
