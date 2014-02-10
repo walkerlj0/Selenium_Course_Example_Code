@@ -1,0 +1,113 @@
+As the Selenium project continues to evolve, Selenium RC is moving closer to end-of-life. This is especially true with the upcoming release of Selenium 3 where minimal support will be offered for RC (details of which you can learn more about from [a recent Selenium Hangout](http://seleniumhq.wordpress.com/2013/10/09/selenium-hangout-2-recap/)).
+
+But how do you approach an upgrade like this? Especially if you have an enormous amount of tests that you rely on?
+
+## A Solution
+
+Take Jason Leyba's advice. He works at Google and oversaw their transition from Selenium RC to WebDriver. And he posits that it can be done by following 4 simple steps:  
+
++ Clean up your tests  
++ Swap in WebDriver-backed Selenium  
++ Use WebDriver for all new features  
++ Replace RC usage as tests break  
+
+To give you some context, Google's Selenium tests spawn something on the order of _3 million unique browser sessions per day_. And they were able to make this transition happen with minimal disruption to this. If they were able to make this happen at such a scale, then hopefully this serves as inspiration for you to do the same at your organization.
+
+__NOTE: Jason discussed this in detail in his keynote at Selenium Conf 2013. His talking points and code examples are recapped below. You can view his full talk [here](http://www.youtube.com/watch?v=cSLmfegT36A).__
+
+## 4 Simple Steps
+
+### 1. Clean Up Your Tests
+
+> "Turns out that tests that are easy to maintain are tests that are easy to migrate." -- Jason Leyba
+
+The best thing you can do to keep your tests clean is to practice good abstractions. In the simplest form this means not referencing Selenium commands directly in your tests -- pulling these out into something like page objects instead.
+
+__NOTE: You can read more about how to accomplish this with a Base Page Object in a previous write-up [here](http://elementalselenium.com/tips/9-use-a-base-page-object).__
+
+### 2. Swap in WebDriver-backed Selenium
+
+With WebDriver-backed Selenium you get two driver instances to use in your tests -- one for Selenium RC and another for WebDriver. This enables you to keep your Selenium RC tests running while simultaneously building out WebDriver functionality as you transition things over.
+
+You can see an example of what this looks like [here](https://code.google.com/p/selenium/wiki/RubyBindings#-backed_Selenium).
+
+### 3. & 4. Improve Things Incrementally
+
+For every new feature you write tests for, use WebDriver. And as your Selenium RC tests break go back and replace the broken bits with WebDriver.
+
+Chip away at this over time and before you know it you'll be upgraded!
+
+## Common Pitfalls
+
+There are a handfull of pitfalls to be cognizant of when stepping through this upgrade.
+
+### Alert Handling
+
+WebDriver handles JavaScript alerts in a fundamentally different and incompatible way between Selenium RC and WebDriver that won't jive in WebDriver-backed Selenium.
+
+The best way to address this is to port your alert handling from Selenium RC to WebDriver -- which is pretty straightforward and should be easy to accomplish assuming you have things abstracted (re: Step #1 above).
+
+Here is an example of the difference:
+
+```java
+// Selenium RC
+selenium.chooseCancelOnNextConfirmation();
+selenium.click("id=foo");
+
+// WebDriver
+webdriver.findElement(By.id("foo")).click();
+webdriver.switchTo().alert().dismiss();
+```
+
+### Waiting For The Page To Load
+
+There's no need to explicitly wait for the page to load anymore since WebDriver is implicitly doing this. Save your tests some time and remove it. It's also not a bad idea to explicitly wait for the element you wan to interact with.
+
+Here's an example:
+
+```java
+// Selenium RC
+selenium.open("http://www.google.com");
+selenium.waitForPageToLoad();
+selenium.typeKeys("name=q", "bears");
+
+// WebDriver
+selenium.open("http://www.google.com");
+selenium.typeKeys("name=q", "bears");
+```
+
+### Getting Text From The Page
+
+It's an expensive operation (and overkill) to get ALL of the text from the page to make a verification. And it takes longer to execute this in WebDriver.
+
+A better approach is to find the element that has the text you want and check it's text instead. Alternatively, if you want to search the entire page, it's better to get the page's source and parse that.
+
+```java
+String text = selenium.getBodyText();
+assertTrue(text.contains("hello"));
+
+WebElement body = webdriver.findElement(
+     By.tagName("body"));
+String text = body.getText();
+assertTrue(text.contains("hello"));
+```
+
+### Be careful with JavaScript
+
+WebDriver-backed Selenium is not built for performance, it's meant to be a transitional tool. So things will run slower in it. The worst offender being issuing JavaScript commands directly to the Selenium Core API. So do your best to avoid things like this.
+
+```java
+selenium.getEval(
+     "selenium.isElementPresent('id=foo') && " +
+     "selenium.isVisible('id=foo')");
+```
+
+### Inertia
+
+It's worth noting that the hardest part of Google's transition wasn't technical -- it was inertia. Teams were really slow to adopt WebDriver -- even when the tools were readily available, well documented, and easy to use. Jason and his team were able to perservere and succeed through various means (e.g carrot, stick, elbow grease, etc.), but this really slowed their progress.
+
+If you find yourself in a similar situation at your organization, it's worth giving [Jason's talk](http://www.youtube.com/watch?v=cSLmfegT36A) a watch for inspiration.
+
+## Free Weekly Tips On Selenium
+
+I don't want your Selenium education to end here, so I put together a free weekly tip newsletter called __Elemental Selenium__. It walks through the strategy, tactics, and code examples necessary to use Selenium like a Pro. You can learn more about it and sign-up [here](http://elementalselenium.com/).

@@ -1,0 +1,2 @@
+Copyright (c) 2013 by Dave Haeffner <dhaeffner@gmail.com>
+All rights reserved
