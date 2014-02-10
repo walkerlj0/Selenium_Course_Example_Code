@@ -163,15 +163,15 @@ def vacuum
 end
 
 def cover
-  @renderer_no_frills.render( vacuum { File.read('cover.md') })
+  @renderer_no_frills.render( vacuum { File.read('content/cover.md') })
 end
 
 def acknowledgements
-  @renderer_no_frills.render( vacuum { File.read('acknowledgements.md') })
+  @renderer_no_frills.render( vacuum { File.read('content/acknowledgements.md') })
 end
 
 def preface
-  @renderer_no_frills.render( vacuum { File.read('preface.md') })
+  @renderer_no_frills.render( vacuum { File.read('content/preface.md') })
 end
 
 def toc
@@ -181,15 +181,15 @@ end
 def raw_content
   tmp = ""
   appendix_chapter.times do |chapter_number|
-    tmp << File.read("chapters/#{chapter_number + 1}.md")
+    tmp << File.read("content/chapters/#{chapter_number + 1}.md")
     tmp << "\n\n"
   end
-  Dir.glob('chapters/appendix/*.md').each do |appendix|
+  Dir.glob('content/chapters/appendix/*.md').each do |appendix|
     tmp << File.read(appendix)
     tmp << "\n\n"
   end
   (number_of_chapters - appendix_chapter).times do |chapter_number|
-    tmp << File.read("chapters/#{appendix_chapter + chapter_number + 1}.md")
+    tmp << File.read("content/chapters/#{appendix_chapter + chapter_number + 1}.md")
   end
   tmp
 end
@@ -200,9 +200,9 @@ end
 
 def raw_sample_content
   tmp = ""
-  tmp << File.read('chapters/5.md')
+  tmp << File.read('content/chapters/5.md')
   tmp << "\n\n"
-  tmp << File.read('chapters/6.md')
+  tmp << File.read('content/chapters/6.md')
   tmp << "\n\n"
   tmp
 end
@@ -212,11 +212,11 @@ def sample_content
 end
 
 def number_of_chapters
-  Dir.glob('chapters/*.md').count
+  Dir.glob('content/chapters/*.md').count
 end
 
 def number_of_appendix_chapters
-  Dir.glob('chapters/appendix/*.md').count
+  Dir.glob('content/chapters/appendix/*.md').count
 end
 
 def appendix_chapter
