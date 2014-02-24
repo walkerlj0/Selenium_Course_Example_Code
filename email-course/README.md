@@ -14,16 +14,17 @@
 4) How To Reuse Your Test Code (day 9)
 
 - Page Objects
-- Base Page Object
+X Base Page Object
 
 5) How To Write Resilient Tests (day 14)
 
-6) How To Scale Your Tests (day 20)
+6) Packaging For Use (day 20)
+
+7) How To Scale Your Tests (day 24)
 
 - Cloud
 - Parallelization
-- Automation
-
-7) How Mobile Fits In To Your Selenium Tests (day 24)
+- CLI
+- CI
 
 8) Finding Information On Your Own (day 29)
