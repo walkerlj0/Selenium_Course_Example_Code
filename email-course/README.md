@@ -24,7 +24,7 @@ X Base Page Object
 
 - Cloud
 - Parallelization
-- CLI
-- CI
+X CLI
+X CI
 
 8) Finding Information On Your Own (day 29)
