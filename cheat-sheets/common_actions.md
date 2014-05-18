@@ -4,7 +4,7 @@
 
 ```ruby
 # the first one Selenium finds
-driver.find_element(locator)`
+driver.find_element(locator)
 
 # grab all instances of the element
 driver.find_elements(locator)
