@@ -27,6 +27,7 @@ For brevity, the latter option will be used for reference.
 ## Perform an action
 ```ruby
 element.click
+element.submit      # submits a form
 element.clear       # clearing an input field of its text
 element.send_keys   # typing into an input field
 ```
@@ -39,11 +40,17 @@ element.selected?`  # is it selected?
 ```
 
 ## Retrieve information
-`element.attribute(attribute_type)`  
-`element.text`  
+```ruby
+element.attribute(attribute_name)
+
+# Get the text of an element
+element.text
+```
+
+For more info:
++ [the `attribute` documentation](http://selenium.googlecode.com/git/docs/api/rb/Selenium/WebDriver/Element.html#attribute-instance_method)
 
 ## Work with a collection of elements
-
 ```ruby
 collection = driver.find_elements(locator)
 
