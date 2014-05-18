@@ -17,8 +17,10 @@ For more info:
 
 
 ## Firefox
+```ruby
 require 'selenium-webdriver'
-`driver = Selenium::WebDriver.for :firefox`
+driver = Selenium::WebDriver.for :firefox
+```
 
 For more info:
 + [the Selenium wiki page for FirefoxDriver](https://sites.google.com/a/chromium.org/chromedriver/home)
@@ -29,8 +31,10 @@ For more info:
 2. Add the downloaded file location to your [path](http://www.computerhope.com/issues/ch000549.htm)
 3. Create an instance of Internet Explorer
 
+```ruby
 require 'selenium-webdriver'
-`driver = Selenium::WebDriver.for :internet_explorer`
+driver = Selenium::WebDriver.for :internet_explorer
+```
 
 For more info:
 + [the Selenium wiki page for InternetExplorerDriver](https://code.google.com/p/selenium/wiki/InternetExplorerDriver)
@@ -56,8 +60,10 @@ For more info:
 
 
 ## Safari
+```ruby
 require 'selenium-webdriver'
-`driver = Selenium::WebDriver.for :firefox`
+driver = Selenium::WebDriver.for :firefox
+```
 
 For more info:
 + [the Selenium wiki page for SafariDriver](https://code.google.com/p/selenium/wiki/SafariDriver)
