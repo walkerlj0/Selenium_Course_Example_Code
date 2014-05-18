@@ -3,8 +3,8 @@
 ## Sauce Labs
 
 1. Store your Sauce Labs Username and Access Key in environment variables
-2. Specify the browser and operating system you want through "capabilities"
-3. Create an instance of Selenium using the Sauce Labs end-point, passing in the browser/OS configuration
+2. Specify the browser and operating system you want through Selenium's Capabilities
+3. Create an instance of Selenium using the Sauce Labs end-point, passing in the Capabilities
 
 ```ruby
 ENV['SAUCE_USERNAME'] = 'your username goes here'
