@@ -16,8 +16,8 @@ For brevity, the latter option will be used for reference.
 
 ## Perform an action
 `element.click`  
-`element.clear`       # clearing an input field of its text  
-`element.send_keys`   # typing into an input field  
+`element.clear       # clearing an input field of its text`  
+`element.send_keys   # typing into an input field`  
 
 ## Ask a question
 `element.displayed?`  # is it visible?  
