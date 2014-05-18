@@ -6,6 +6,7 @@
 3. Create an instance of Chrome
 
 ```ruby
+require 'selenium-webdriver'
 Selenium::WebDriver::Chrome::Service.executable_path = './chromedriver'
 driver = Selenium::WebDriver.for :chrome
 ```
@@ -16,6 +17,7 @@ For more info:
 
 
 ## Firefox
+require 'selenium-webdriver'
 `driver = Selenium::WebDriver.for :firefox`
 
 For more info:
@@ -27,6 +29,7 @@ For more info:
 2. Add the downloaded file location to your [path](http://www.computerhope.com/issues/ch000549.htm)
 3. Create an instance of Internet Explorer
 
+require 'selenium-webdriver'
 `driver = Selenium::WebDriver.for :internet_explorer`
 
 For more info:
@@ -41,6 +44,7 @@ __NOTE: Only works for version 12.16 or earlier. For newer versions of Opera, te
 3. Create an instance of Opera
 
 ```ruby
+require 'selenium-webdriver'
 ENV['SELENIUM_SERVER_JAR'] = './selenium-server-standalone.jar'
 driver = Selenium::WebDriver.for :opera
 driver.get 'http://www.google.com'
@@ -52,6 +56,7 @@ For more info:
 
 
 ## Safari
+require 'selenium-webdriver'
 `driver = Selenium::WebDriver.for :firefox`
 
 For more info:

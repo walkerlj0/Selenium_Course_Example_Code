@@ -3,7 +3,7 @@
 ## Find an element
 
 ```ruby
-# the first one found 
+# the first one found
 driver.find_element(locator)
 
 # all instances of the element

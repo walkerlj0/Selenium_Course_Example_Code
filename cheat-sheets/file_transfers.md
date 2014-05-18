@@ -7,6 +7,7 @@
 3. Submit the form
 
 ```ruby
+driver.get 'http://the-internet.herokuapp.com/upload'
 uploader = driver.find_element(id: 'file-upload')
 uploader.send_keys 'path of file you want to upload'
 uploader.submit
@@ -19,7 +20,11 @@ uploader.submit
 3. Query the headers to look at the content type and content length
 
 ```ruby
+require 'selenium-webdriver'
+require 'rspec-expectations'
 require 'rest-client'
+
+driver.get 'http://the-internet.herokuapp.com/download'
 link = driver.find_element(css: 'a').attribute('href')
 response = RestClient.head link
 response.headers[:content_type].should == 'image/jpeg'
@@ -34,7 +39,11 @@ response.headers[:content_length].to_i.should > 0
 3. Query the headers to look at the content type and content length
 
 ```ruby
+require 'selenium-webdriver'
+require 'rspec-expectations'
 require 'rest-client'
+
+driver.get 'http://admin:admin@the-internet.herokuapp.com/download_secure'
 link = driver.find_element(css: 'a').attribute('href')
 driver.manage.cookie_named 'rack.session'
 response = RestClient.head link, cookie: "#{cookie[:name]}=#{cookie[:value]};"
