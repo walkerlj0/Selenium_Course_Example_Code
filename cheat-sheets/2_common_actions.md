@@ -1,12 +1,12 @@
 # Common Actions
 
-## Lookup an element
+## Find an element
 
 ```ruby
-# the first one Selenium finds
+# the first one found 
 driver.find_element(locator)
 
-# grab all instances of the element
+# all instances of the element
 driver.find_elements(locator)
 # returns an Array
 ```
@@ -22,7 +22,6 @@ element = driver.find_element(locator)
 element.click
 ```
 
-For brevity, the latter option will be used for reference.
 
 ## Perform an action
 ```ruby
@@ -34,16 +33,18 @@ element.send_keys   # typing into an input field
 
 ## Ask a question
 ```ruby
-element.displayed?` # is it visible?
-element.enabled?`   # can it be selected?
-element.selected?`  # is it selected?
+element.displayed? # is it visible?
+element.enabled?   # can it be selected?
+element.selected?  # is it selected?
 ```
 
 ## Retrieve information
-```ruby
-element.attribute(attribute_name)
 
-# Get the text of an element
+```ruby
+# by attribute name
+element.attribute('href')
+
+# directly from an element
 element.text
 ```
 
