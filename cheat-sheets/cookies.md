@@ -8,6 +8,10 @@
 
 ## Delete
 ```ruby
+# one cookie
 driver.manage.delete_cookie('CookieName')
+
+# all cookies
 driver.manage.delete_all_cookies
+# does not delete third-party cookies, just the ones for the domain Selenium is visiting
 ```

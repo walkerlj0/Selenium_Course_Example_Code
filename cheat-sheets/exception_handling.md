@@ -1,6 +1,6 @@
 # Exception Handling
 
-1. Rescue the relevant exceptions in a helper method, returning false for each
+1. Rescue the relevant exceptions in a helper method, returning `false` for each
 2. Create a convenience method to see if an element is displayed
 
 ```ruby
@@ -14,11 +14,11 @@ def rescue_exceptions
   end
 end
 
-def is_displayed?
-  rescue_exceptions { yield }
+def is_displayed?(locator)
+  rescue_exceptions { driver.find_element(locator).displayed? }
 end
 
-is_displayed? { driver.find_element(locator).displayed? }
+is_displayed? locator
 # will return false if the element is not displayed
 # otherwise, it will return true
 ```

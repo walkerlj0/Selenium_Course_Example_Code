@@ -7,6 +7,10 @@
 3. Submit the form
 
 ```ruby
+require 'selenium-webdriver'
+require 'rspec-expectations'
+require 'rest-client'
+
 driver.get 'http://the-internet.herokuapp.com/upload'
 uploader = driver.find_element(id: 'file-upload')
 uploader.send_keys 'path of file you want to upload'
