@@ -13,11 +13,11 @@ driver.find_elements(locator)
 
 ## Working with found elements
 
-### Chain actions together
-`driver.find_element(locator).click`
-
-### Store the element
 ```ruby
+# Chain actions together
+driver.find_element(locator).click
+
+# Store the element
 element = driver.find_element(locator)
 element.click
 ```
