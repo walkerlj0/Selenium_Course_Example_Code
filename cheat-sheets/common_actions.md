@@ -2,11 +2,11 @@
 
 ## Lookup an element
 
-### the first one it finds
-`driver.find_element(locator)`
-
-### all instances of
 ```ruby
+# the first one Selenium finds
+driver.find_element(locator)`
+
+# grab all instances of the element
 driver.find_elements(locator)
 # returns an Array
 ```
