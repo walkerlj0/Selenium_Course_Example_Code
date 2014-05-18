@@ -1,10 +1,14 @@
 # Cookies
 
 ## Retrieve Individual Cookie
-`cookie = driver.manage.cookie_named 'CookieName'`
+```ruby
+cookie = driver.manage.cookie_named 'CookieName'
+```
 
 ## Add
-`driver.manage.add_cookie(name: 'key', value: 'value')`
+```ruby
+driver.manage.add_cookie(name: 'key', value: 'value')
+```
 
 ## Delete
 ```ruby

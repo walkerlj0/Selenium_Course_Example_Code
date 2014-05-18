@@ -1,6 +1,6 @@
-## Multiple Windows
+# Multiple Windows
 
-### A simple way
+## A simple way
 
 ```ruby
 driver.switch_to.window(driver.window_handles.first)
@@ -9,7 +9,7 @@ driver.switch_to.window(driver.window_handles.last)
 
 Caveat: The order of the window handles is not consistent across all browsers. Some return in the order opened, others alphabetically.
 
-### A more robust way
+## A solid way
 
 ```ruby
 main_window = @driver.window_handle

@@ -2,11 +2,16 @@
 
 ## Simple screenshot
 
-`driver.save_screenshot "screenshot.png"`
+```ruby
+driver.save_screenshot "screenshot.png"
+```
 
 ## Uniquely named screenshot by timestamp
 
-`driver.save_screenshot "./#{Time.now.strftime("failshot__%d_%m_%Y__%H_%M_%S")}.png"`
+```ruby
+driver.save_screenshot "./#{Time.now.strftime("failshot__%d_%m_%Y__%H_%M_%S")}.png"
+```
 
 For more info:
+
 + [strftime reference and sandbox](http://strfti.me/)

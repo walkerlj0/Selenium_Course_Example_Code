@@ -11,4 +11,5 @@ driver.action.move_to(element).perform
 ```
 
 For more info:
+
 + [the Selenium Action Builder `move_to` documentation](https://selenium.googlecode.com/git/docs/api/rb/Selenium/WebDriver/ActionBuilder.html#move_to-instance_method)

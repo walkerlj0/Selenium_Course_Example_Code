@@ -12,6 +12,7 @@ driver = Selenium::WebDriver.for :chrome
 ```
 
 For more info:
+
 + [the Selenium wiki page for ChromeDriver](https://code.google.com/p/selenium/wiki/ChromeDriver)
 + [the official user documentation](https://sites.google.com/a/chromium.org/chromedriver/home)
 
@@ -26,6 +27,7 @@ driver = Selenium::WebDriver.for :firefox
 ```
 
 For more info:
+
 + [the Selenium wiki page for FirefoxDriver](https://sites.google.com/a/chromium.org/chromedriver/home)
 
 
@@ -43,6 +45,7 @@ driver = Selenium::WebDriver.for :internet_explorer
 ```
 
 For more info:
+
 + [the Selenium wiki page for InternetExplorerDriver](https://code.google.com/p/selenium/wiki/InternetExplorerDriver)
 
 
@@ -62,6 +65,7 @@ driver.quit
 ```
 
 For more info:
+
 + [The Selenium wiki page for OperaDriver](https://code.google.com/p/selenium/wiki/OperaDriver)
 
 
@@ -75,4 +79,5 @@ driver = Selenium::WebDriver.for :firefox
 ```
 
 For more info:
+
 + [the Selenium wiki page for SafariDriver](https://code.google.com/p/selenium/wiki/SafariDriver)

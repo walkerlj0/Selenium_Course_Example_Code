@@ -1,9 +1,11 @@
 # JavaScript
 
-# Execution
-`driver.execute_script('your javascript goes here')`
+## Execution
+```ruby
+driver.execute_script('your javascript goes here')
+```
 
-# Alerts
+## Alerts
 ```ruby
 popup = driver.switch_to.alert
 popup.accept

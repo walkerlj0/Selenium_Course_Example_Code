@@ -6,7 +6,9 @@
 + Tells Selenium to wait for a specified amount of time before raising a `NoSuchElementError` exception
 + Can be overridden with an explicit wait
 
-`driver.manage.timeouts.implicit_wait = 3`
+```ruby
+driver.manage.timeouts.implicit_wait = 3
+```
 
 For more info:
 

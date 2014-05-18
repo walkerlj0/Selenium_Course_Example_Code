@@ -20,4 +20,5 @@ driver = Selenium::WebDriver.for(
 ```
 
 For more info:
+
 + [Sauce Labs Available Platforms page](https://saucelabs.com/platforms)
