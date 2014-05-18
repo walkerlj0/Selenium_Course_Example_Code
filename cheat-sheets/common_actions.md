@@ -22,7 +22,7 @@ element = driver.find_element(locator)
 element.click
 ```
 
-## Work with a collection of elements
+## Work with a collection of found elements
 ```ruby
 collection = driver.find_elements(locator)
 
