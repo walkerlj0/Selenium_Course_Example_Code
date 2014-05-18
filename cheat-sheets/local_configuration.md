@@ -1,0 +1,58 @@
+# Local Configuration
+
+## Chrome
+1. Download the latest ChromeDriver binary from [here](http://chromedriver.storage.googleapis.com/index.html)
+2. Add it to your path, or tell Selenium where to find it
+3. Create an instance of Chrome
+
+```ruby
+Selenium::WebDriver::Chrome::Service.executable_path = './chromedriver'
+driver = Selenium::WebDriver.for :chrome
+```
+
+For more info:
++ [the Selenium wiki page for ChromeDriver](https://code.google.com/p/selenium/wiki/ChromeDriver)
++ [the official user documentation](https://sites.google.com/a/chromium.org/chromedriver/home)
+
+
+## Firefox
+`driver = Selenium::WebDriver.for :firefox`
+
+For more info:
++ [the Selenium wiki page for FirefoxDriver](https://sites.google.com/a/chromium.org/chromedriver/home)
+
+
+## Internet Explorer
+1. Download the latest IEDriverServer from [here](http://selenium-release.storage.googleapis.com/index.html)
+2. Add the downloaded file location to your [path](http://www.computerhope.com/issues/ch000549.htm)
+3. Create an instance of Internet Explorer
+
+`driver = Selenium::WebDriver.for :internet_explorer`
+
+For more info:
++ [the Selenium wiki page for InternetExplorerDriver](https://code.google.com/p/selenium/wiki/InternetExplorerDriver)
+
+
+## Opera
+__NOTE: Only works for version 12.16 or earlier. For newer versions of Opera, test using Chrome (since it uses the same back-end).__
+
+1. Download the latest Selenium Standalone Server from [here](http://selenium-release.storage.googleapis.com/index.html)
+2. Create an environment variable pointing to the server file
+3. Create an instance of Opera
+
+```ruby
+ENV['SELENIUM_SERVER_JAR'] = './selenium-server-standalone.jar'
+driver = Selenium::WebDriver.for :opera
+driver.get 'http://www.google.com'
+driver.quit
+```
+
+For more info:
++ [The Selenium wiki page for OperaDriver](https://code.google.com/p/selenium/wiki/OperaDriver)
+
+
+## Safari
+`driver = Selenium::WebDriver.for :firefox`
+
+For more info:
++ [the Selenium wiki page for SafariDriver](https://code.google.com/p/selenium/wiki/SafariDriver)
