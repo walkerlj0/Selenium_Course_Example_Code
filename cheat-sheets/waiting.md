@@ -15,7 +15,7 @@ For more info:
 ## Explicit Waits
 
 + Specify an amount of time and an action
-+ Selenium will try the action repeatedly until either
++ Selenium will try the action repeatedly until either:
   + the action can be accomplished
   + The amount of time has been reached (and throw a timeout exception)
 
