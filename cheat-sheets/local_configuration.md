@@ -17,6 +17,9 @@ For more info:
 
 
 ## Firefox
+
+Available out of the box
+
 ```ruby
 require 'selenium-webdriver'
 driver = Selenium::WebDriver.for :firefox
@@ -27,6 +30,9 @@ For more info:
 
 
 ## Internet Explorer
+
+Only available on Microsoft Windows
+
 1. Download the latest IEDriverServer from [here](http://selenium-release.storage.googleapis.com/index.html)
 2. Add the downloaded file location to your [path](http://www.computerhope.com/issues/ch000549.htm)
 3. Create an instance of Internet Explorer
@@ -60,6 +66,9 @@ For more info:
 
 
 ## Safari
+
+Available out of the box as of version 2.21 of Selenium
+
 ```ruby
 require 'selenium-webdriver'
 driver = Selenium::WebDriver.for :firefox
