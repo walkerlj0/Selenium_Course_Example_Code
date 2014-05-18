@@ -2,12 +2,20 @@
 
 ## Lookup an element
 
-+ __the first one it finds__ `driver.find_element(locator)`
-+ __all instances (returns an Array)__ `driver.find_elements(locator)`
+### the first one it finds
+`driver.find_element(locator)`
 
-You can store the element in a variable, or chain actions onto it
-`element = driver.find_element(locator).click`
+### all instances of
+`driver.find_elements(locator)`
 
+Returns an Array
+
+## Working with found elements
+
+### Chain actions together
+`driver.find_element(locator).click`
+
+### Store the element
 ```ruby
 element = driver.find_element(locator)
 element.click
