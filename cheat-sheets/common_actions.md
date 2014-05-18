@@ -3,7 +3,7 @@
 ## Find an element
 
 ```ruby
-# the first one found
+# just one, the first one
 driver.find_element(locator)
 
 # all instances of the element
@@ -11,7 +11,7 @@ driver.find_elements(locator)
 # returns an Array
 ```
 
-## Work with found elements
+## Work with a found element
 
 ```ruby
 # Chain actions together
@@ -22,6 +22,18 @@ element = driver.find_element(locator)
 element.click
 ```
 
+## Work with a collection of elements
+```ruby
+collection = driver.find_elements(locator)
+
+# by name
+collection.first.click
+collection.last.click
+
+# by index
+collection[0].click
+collection[-1].click
+```
 
 ## Perform an action
 ```ruby
@@ -50,16 +62,3 @@ element.text
 
 For more info:
 + [the `attribute` documentation](http://selenium.googlecode.com/git/docs/api/rb/Selenium/WebDriver/Element.html#attribute-instance_method)
-
-## Work with a collection of elements
-```ruby
-collection = driver.find_elements(locator)
-
-# by name
-collection.first.click
-collection.last.click
-
-# by index
-collection[0].click
-collection[-1].click
-```
