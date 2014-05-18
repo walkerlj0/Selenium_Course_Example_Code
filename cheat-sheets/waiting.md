@@ -17,7 +17,7 @@ For more info:
 + Specify an amount of time and an action
 + Selenium will try the action repeatedly until either:
   + the action can be accomplished
-  + The amount of time has been reached (and throw a timeout exception)
+  + the amount of time has been reached (and throw a timeout exception)
 
 ```ruby
 wait = Selenium::WebDriver::Wait.new(timeout: seconds)
