@@ -11,7 +11,7 @@ driver.find_elements(locator)
 # returns an Array
 ```
 
-## Working with found elements
+## Work with found elements
 
 ```ruby
 # Chain actions together
@@ -42,7 +42,7 @@ element.selected?`  # is it selected?
 `element.attribute(attribute_type)`  
 `element.text`  
 
-## Working with a collection of elements
+## Work with a collection of elements
 
 ```ruby
 collection = driver.find_elements(locator)
