@@ -1,8 +1,9 @@
 # Common Actions
 
 ## Lookup an element
-`driver.find_element(locator)` # single  
-`driver.find_elements(locator)` # all instances, returns an Array
+
++ _the first one it finds_ `driver.find_element(locator)`
++ _all instances (returns an Array)_ `driver.find_elements(locator)`
 
 You can store the element in a variable, or chain actions onto it
 `element = driver.find_element(locator).click`
