@@ -1,12 +1,19 @@
 # Common Actions
 
+## Visit a page
+
+```ruby
+driver.get 'url'
+# e.g., driver.get 'http://the-internet.herokuapp.com'
+```
+
 ## Find an element
 
 ```ruby
-# just one, the first one
+# just one, the first Selenium finds
 driver.find_element(locator)
 
-# all instances of the element
+# all instances of the element on the page
 driver.find_elements(locator)
 # returns an Array
 ```

@@ -61,7 +61,14 @@ HERE
 class HighlightedCopyWithChapterNumbering < Redcarpet::Render::HTML
 
   def header(text, header_level)
-    "<h#{header_level}>#{text}</h#{header_level}>\n"
+    case header_level
+    when 1
+      @counter ||= 0
+      @counter += 1
+      "<h#{header_level} id=\'chapter#{@counter}'>#{text}</h#{header_level}>\n"
+    else
+      "<h#{header_level}>#{text}</h#{header_level}>\n"
+    end
   end
 
   def block_code(code, language)
@@ -123,7 +130,7 @@ def vacuum
 end
 
 def cover
-#  @renderer_no_frills.render( vacuum { File.read('content/cover.md') })
+  @renderer_no_frills.render(File.read('assets/cover.md'))
 end
 
 def preface
@@ -154,7 +161,7 @@ end
 namespace :gen do
   desc 'Generate HTML'
   task :html do
-    @content =  toc + content
+    @content =  cover + toc + content
     html = ERB.new(@template).result(binding)
     `rm -rf output/html`
     `mkdir output/html`
@@ -164,7 +171,7 @@ namespace :gen do
 
   desc 'Generate PDF'
   task :pdf do
-    @content =  toc + content
+    @content =  cover + toc + content
     html = ERB.new(@template).result(binding)
 
     File.open('output/SeleniumCheatSheets.pdf', 'w+') do |f|
