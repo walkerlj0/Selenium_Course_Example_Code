@@ -69,4 +69,5 @@ element.text
 
 For more info:
 
-+ [the `attribute` documentation](http://selenium.googlecode.com/git/docs/api/rb/Selenium/WebDriver/Element.html#attribute-instance_method)
++ [the Element API documentation](http://selenium.googlecode.com/git/docs/api/rb/Selenium/WebDriver/Element.html)
++ [the `attribute` Element API documentation](http://selenium.googlecode.com/git/docs/api/rb/Selenium/WebDriver/Element.html#attribute-instance_method)

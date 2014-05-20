@@ -1,0 +1,4 @@
+# Headless Configuration
+
+## PhantomJS
+## Xvfb
