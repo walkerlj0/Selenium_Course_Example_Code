@@ -19,14 +19,77 @@ Be sure to:
 ## CSS
 
 ### ID
+
+```html
+```
+
+```ruby
+```
+
 ### Class
+
+```html
+```
+
+```ruby
+```
+
 ### Direct Child
+
+```html
+```
+
+```ruby
+```
+
 ### Child (or subchild)
+
+```html
+```
+
+```ruby
+```
+
 ### Next sibling
+
+```html
+```
+
+```ruby
+```
+
 ### Attribute values
+
+```html
+```
+
+```ruby
+```
+
 ### Dynamic matches
+
+```html
+```
+
+```ruby
+```
+
 ### Sub-string matches
+
+```html
+```
+
+```ruby
+```
+
 ### Inner text matches
+
+```html
+```
+
+```ruby
+```
+
 
 For more info:
 
