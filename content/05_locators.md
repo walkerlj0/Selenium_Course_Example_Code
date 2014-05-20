@@ -12,7 +12,9 @@ Be sure to:
 
 1. Start with IDs and Classes
 2. Use CSS selectors or XPath when you need to traverse
-3. Talk with a developer on your team when the app is hard to automate (they can help by adding more semantic markup to write your tests against)
+3. Talk with a developer on your team when the app is hard to automate
+  + tell them what you're trying to automate
+  + work with them to get more semantic markup added to the page
 
 ## CSS
 
