@@ -38,23 +38,23 @@ driver.find_element(css: '#example')
 
 #### Locators
 
-| Approach            | Locator                                | Description                                               |
-| ------------------: | :-------------                         | :--------------                                           |
+| Approach            | Locator                                  | Description                                               |
+| ------------------: | :-------------                           | :--------------                                           |
 | ID                  | `#example`                               | # denotes an ID                                           |
 | Class               | `.example`                               | . denotes a Class                                         |
-| Classes             | .flash.success                         | place a . in front of each class when there are multiple  |
-| Direct Child        | div > a                                | will find the element within the next child element       |
-| Child or subschild  | div a                                  | will find the element within a child element (or one if it's children) |
-| Next Sibling        | input.username + input                 | will find the next adjacent element                       |
-| Attribute values    | form input[name='username']            |                                                           |
-| Attribute values    | input[name='continue'][type='button']  | can chain multiple attribute filters together             |
-| Dynamic matches     | ul#example li:nth-of-type(4)           | will find the 4th li in a list                            |
-| Dynamic matches     | ul#example li:nth-child(4)             | will get the 4th element only if it is an li element      |
-| Dynamic matches     | ul#example *:nth-child(4)              | will get the 4th element regardless of type               |
-| Sub-string matches  | a[id^='beginning_']                    | starts with (prefix)                                      |
-| Sub-string matches  | a[id$='_end']                          | ends with (suffix)                                        |
-| Sub-string matches  | a[id*='gooey_center']                  | contains (substring)                                      |
-| Inner text matches  | a:contains('Log Out')                  | an alternative to substring matching                      |
+| Classes             | `.flash.success`                         | place a . in front of each class when there are multiple  |
+| Direct Child        | `div > a`                                | will find the element within the next child element       |
+| Child or subschild  | `div a`                                  | will find the element within a child element (or one if it's children) |
+| Next Sibling        | `input.username + input`                 | will find the next adjacent element                       |
+| Attribute values    | `form input[name='username']`            | a great alternative to id and class matches               |
+| Attribute values    | `input[name='continue'][type='button']`  | can chain multiple attribute filters together             |
+| Dynamic matches     | `ul#example li:nth-of-type(4)`           | will find the 4th li in a list                            |
+| Dynamic matches     | `ul#example li:nth-child(4)`             | will get the 4th element only if it is an li element      |
+| Dynamic matches     | `ul#example *:nth-child(4)`              | will get the 4th element regardless of type               |
+| Sub-string matches  | `a[id^='beginning_']`                    | starts with (prefix)                                      |
+| Sub-string matches  | `a[id$='_end']`                          | ends with (suffix)                                        |
+| Sub-string matches  | `a[id*='gooey_center']`                  | contains (substring)                                      |
+| Inner text matches  | `a:contains('Log Out')`                  | an alternative to substring matching                      |
 
 __NOTE: In older browser (e.g., Internet Explorer 8) some of these locator approaches will not function (e.g., Dynamic Matches)__
 
