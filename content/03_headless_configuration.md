@@ -51,9 +51,11 @@ This approach will keep Xvfb running in the background until it is manually stop
 xvfb-run rspec example_spec.rb
 ```
 
+This will start Xvfb and stop it after the test run completes.
+
 ### Option 3
 
-Use [the headless gem](https://github.com/leonid-shevtsov/headless)
+Use [the headless gem](https://github.com/leonid-shevtsov/headless) to start and stop Xvfb in your test code.
 
 ```ruby
 require 'headless'
