@@ -38,7 +38,6 @@ driver.find_element(css: '#example')
 
 #### Locators
 
-L
 | Approach            | Locator                               | Description                                 |
 | -------------------: | :-------------                       | :--------------                             |
 | ID                  | #example                              |                                             |
