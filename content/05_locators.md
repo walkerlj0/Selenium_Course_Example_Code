@@ -16,10 +16,11 @@ Be sure to:
   + tell them what you're trying to automate
   + work with them to get more semantic markup added to the page
 
-## ID
+| Approach | CSS            | XPath          | Description |
+| -------- | :-------------:| --------------:|------------:|
+| asfd     | asdf           | asdf           | asdf        |
 
-| Approach  | CSS | XPath |
-| ID  | '#' | '//' |
+## ID
 
 ```html
 <input id="username">
