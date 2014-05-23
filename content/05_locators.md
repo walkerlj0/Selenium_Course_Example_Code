@@ -16,58 +16,46 @@ Be sure to:
   + tell them what you're trying to automate
   + work with them to get more semantic markup added to the page
 
-| Approach    | CSS            | Example                                     |
-| ----------- | :-------------:| -------------------------------------------:|
-| ID          | #              | `driver.find_element(css: '#example')`      |
-| Class       | .              | `driver.find_element(css: '.example')`      |
-| Classes     | .              | asdf           |
-
-## ID
-
-```html
-<input id="username">
-```
+### ID 
 
 ```ruby
 driver.find_element(id: 'username')
 ```
 
-## Class
-
-```html
-<div>
-  <span class="dues">
-</div>
-```
-
-```ruby
-driver.find_element(class: 'dues')
-```
-
-## CSS Selectors
-
-### ID
-
 ### Class
 
-### Classes
+```ruby
+driver.find_elements(class: 'dues')
+```
 
-### Direct Child
+### CSS Selectors
 
-### Child (or subchild)
+| Approach            | Locator                               | Description                                 |
+| ------------------- | :-------------:                       | --------------:                             |
+| ID                  | #example                              |                                             |
+| Class               | .example                              |                                             |
+| Classes             | .flash.success                        |                                             |
+| Direct Child        | div > a                               | > denotes direct chidl relationship         |
+| Child or subschild  | div a                                 | Space denotes child/subchild relationship   |
+| Next Sibling        | input.username + input                |                                             |
+| Attribute values    | form input[name='username']           |                                             |
+| Attribute values    | input[name='continue'][type='button'] |                                             |
+| Dynamic matches     |                                       |                                             |
+| Dynamic matches     |                                       |                                             |
+| Dynamic matches     |                                       |                                             |
+| Sub-string matches  |                                       |                                             |
+| Inner text matches  |                                       |                                             |
 
-### Next sibling
+#### Example Usage
 
-### Attribute values
-
-### Dynamic matches
-
-### Sub-string matches
-
-### Inner text matches
+```ruby
+driver.find_element(css: '#example')
+```
 
 For more info:
 
++ [w3schools CSS Selectors Reference](http://www.w3schools.com/cssref/css_selectors.asp)
++ [w3schools XPath Syntax Reference](http://www.w3schools.com/xpath/xpath_syntax.asp)
 + [CSS vs XPath benchmarks](http://bit.ly/seleniumbenchmarks)
 + [CSS and XPath Examples](http://bit.ly/cssxpathexamples)
 + [CSS selector game](http://bit.ly/locatorgame)
