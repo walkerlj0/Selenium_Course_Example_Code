@@ -31,7 +31,7 @@ driver.find_elements(class: 'dues')
 ### CSS Selectors
 
 | Approach            | Locator                               | Description                                 |
-| ------------------- | :-------------:                       | --------------:                             |
+| ------------------- | :-------------                       | :--------------                             |
 | ID                  | #example                              |                                             |
 | Class               | .example                              |                                             |
 | Classes             | .flash.success                        |                                             |
