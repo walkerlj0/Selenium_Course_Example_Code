@@ -30,6 +30,12 @@ driver.find_elements(class: 'dues')
 
 ### CSS Selectors
 
+Example Usage:
+
+```ruby
+driver.find_element(css: '#example')
+```
+
 | Approach            | Locator                               | Description                                 |
 | -------------------: | :-------------                       | :--------------                             |
 | ID                  | #example                              |                                             |
@@ -45,12 +51,6 @@ driver.find_elements(class: 'dues')
 | Dynamic matches     |                                       |                                             |
 | Sub-string matches  |                                       |                                             |
 | Inner text matches  |                                       |                                             |
-
-#### Example Usage
-
-```ruby
-driver.find_element(css: '#example')
-```
 
 For more info:
 
