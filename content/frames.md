@@ -15,7 +15,7 @@ driver.switch_to.frame('frame-middle')
 driver.find_element(id: 'content').text.should =~ /MIDDLE/
 ```
 
-## IFrames
+## Iframes
 
 ```ruby
 require 'selenium-webdriver'

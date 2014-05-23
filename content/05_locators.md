@@ -60,9 +60,9 @@ __NOTE: Older browser (e.g., Internet Explorer 8) don't support CSS Pseudo-class
 
 For more info:
 
-+ [CSS vs XPath benchmarks](http://bit.ly/seleniumbenchmarks)
 + [CSS and XPath Examples](http://bit.ly/cssxpathexamples)
 + [CSS selector game](http://bit.ly/locatorgame)
 + [How to verify your locators](http://bit.ly/verifyinglocators)
 + [w3schools CSS Selectors Reference](http://www.w3schools.com/cssref/css_selectors.asp)
 + [w3schools XPath Syntax Reference](http://www.w3schools.com/xpath/xpath_syntax.asp)
++ [CSS vs XPath benchmarks](http://bit.ly/seleniumbenchmarks)
