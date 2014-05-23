@@ -30,12 +30,15 @@ driver.find_elements(class: 'dues')
 
 ### CSS Selectors
 
-Example Usage:
+#### Example Usage:
 
 ```ruby
 driver.find_element(css: '#example')
 ```
 
+#### Locators
+
+L
 | Approach            | Locator                               | Description                                 |
 | -------------------: | :-------------                       | :--------------                             |
 | ID                  | #example                              |                                             |
