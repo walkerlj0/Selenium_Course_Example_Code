@@ -18,6 +18,9 @@ Be sure to:
 
 ## ID
 
+| Approach  | CSS | XPath |
+| ID  | '#' | '//' |
+
 ```html
 <input id="username">
 ```
