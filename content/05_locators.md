@@ -38,25 +38,25 @@ driver.find_element(css: '#example')
 
 #### Locators
 
-| Approach            | Locator                                  | Description                                               |
-| ------------------: | :-------------                           | :--------------                                           |
-| ID                  | `#example`                               | `#` denotes an ID                                           |
-| Class               | `.example`                               | `.` denotes a Class                                         |
-| Classes             | `.flash.success`                         | place a `.` in front of each class when there are multiple  |
-| Direct Child        | `div > a`                                | will find the element within the next child element          |
-| Child/subschild     | `div a`                                  | will find the element within a child or one if it's children |
-| Next Sibling        | `input.username + input`                 | will find the next adjacent element                       |
-| Attribute values    | `form input[name='username']`            | a great alternative to id and class matches               |
-| Attribute values    | `input[name='continue'][type='button']`  | can chain multiple attribute filters together             |
-| Dynamic             | `ul#example li:nth-of-type(4)`           | will find the 4th li in a list                            |
-| Dynamic             | `ul#example li:nth-child(4)`             | will get the 4th element only if it is an li element      |
-| Dynamic             | `ul#example *:nth-child(4)`              | will get the 4th element regardless of type               |
-| Sub-string          | `a[id^='beginning_']`                    | starts with (prefix)                                      |
-| Sub-string          | `a[id$='_end']`                          | ends with (suffix)                                        |
-| Sub-string          | `a[id*='gooey_center']`                  | contains (substring)                                      |
-| Inner text          | `a:contains('Log Out')`                  | an alternative to substring matching                      |
+| Approach          | Locator                                  | Description                                                  |
+| -----------------:| :-------------                           | :--------------                                              |
+| ID                | `#example`                               | `#` denotes an ID                                            |
+| Class             | `.example`                               | `.` denotes a Class                                          |
+| Classes           | `.flash.success`                         | place a `.` in front of each class when there are multiple   |
+| Direct child      | `div > a`                                | will find the element within the next child element          |
+| Child/subschild   | `div a`                                  | will find the element within a child or one if it's children |
+| Next sibling      | `input.username + input`                 | will find the next adjacent element                          |
+| Attribute values  | `form input[name='username']`            | a great alternative to id and class matches                  |
+| Attribute values  | `input[name='continue'][type='button']`  | can chain multiple attribute filters together                |
+| Location          | `li:nth-of-type(4)`                      | will find the 4th li in a list                               |
+| Location          | `li:nth-child(4)`                        | will get the 4th element only if it is an li element         |
+| Location          | `*:nth-child(4)`                         | will get the 4th element regardless of type                  |
+| Sub-string        | `a[id^='beginning_']`                    | starts with (prefix)                                         |
+| Sub-string        | `a[id$='_end']`                          | ends with (suffix)                                           |
+| Sub-string        | `a[id*='gooey_center']`                  | contains (substring)                                         |
+| Inner text        | `a:contains('Log Out')`                  | an alternative to substring matching                         |
 
-__NOTE: In older browser (e.g., Internet Explorer 8) some of these locator approaches will not function (e.g., dynamic matches)__
+__NOTE: Older browser (e.g., Internet Explorer 8) don't support CSS Pseudo-classes, so some of these locator approaches won't work (e.g., Specific atches and Inner text matches)__
 
 For more info:
 
