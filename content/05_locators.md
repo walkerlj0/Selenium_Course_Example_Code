@@ -16,9 +16,11 @@ Be sure to:
   + tell them what you're trying to automate
   + work with them to get more semantic markup added to the page
 
-| Approach | CSS            | XPath          | Description |
-| -------- | :-------------:| --------------:|------------:|
-| asfd     | asdf           | asdf           | asdf        |
+| Approach    | CSS            | Example                                     |
+| ----------- | :-------------:| -------------------------------------------:|
+| ID          | #              | `driver.find_element(css: '#example')`      |
+| Class       | .              | `driver.find_element(css: '.example')`      |
+| Classes     | .              | asdf           |
 
 ## ID
 
