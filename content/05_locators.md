@@ -40,8 +40,8 @@ driver.find_element(css: '#example')
 
 | Approach            | Locator                                | Description                                               |
 | ------------------: | :-------------                         | :--------------                                           |
-| ID                  | #example                               | # denotes an ID                                           |
-| Class               | .example                               | . denotes a Class                                         |
+| ID                  | `#example`                               | # denotes an ID                                           |
+| Class               | `.example`                               | . denotes a Class                                         |
 | Classes             | .flash.success                         | place a . in front of each class when there are multiple  |
 | Direct Child        | div > a                                | will find the element within the next child element       |
 | Child or subschild  | div a                                  | will find the element within a child element (or one if it's children) |
