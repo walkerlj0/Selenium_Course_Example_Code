@@ -75,7 +75,7 @@ Available out of the box as of version 2.21 of Selenium.
 
 ```ruby
 require 'selenium-webdriver'
-driver = Selenium::WebDriver.for :firefox
+driver = Selenium::WebDriver.for :safari
 ```
 
 For more info:
