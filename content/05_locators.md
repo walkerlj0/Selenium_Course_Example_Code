@@ -56,7 +56,7 @@ driver.find_element(css: '#example')
 | Sub-string        | `a[id*='gooey_center']`                  | contains (substring)                                         |
 | Inner text        | `a:contains('Log Out')`                  | an alternative to substring matching                         |
 
-__NOTE: Older browser (e.g., Internet Explorer 8) don't support CSS Pseudo-classes, so some of these locator approaches won't work (e.g., Specific atches and Inner text matches)__
+__NOTE: Older browser (e.g., Internet Explorer 8) don't support CSS Pseudo-classes, so some of these locator approaches won't work (e.g., Location matches and Inner text matches).__
 
 For more info:
 
