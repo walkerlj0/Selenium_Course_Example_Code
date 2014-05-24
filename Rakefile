@@ -49,6 +49,33 @@ require 'zip/zipfilesystem'
       img {
         width: 600px;
       }
+      table {
+        page-break-inside: avoid;
+        orphans: 0;
+        widows: 0;
+        font-size: 12px;
+        border-collapse:collapse;
+        margin:20px 0 0;
+        padding:0;
+      }
+      table tr {
+        border-top:1px solid #ccc;
+        background-color:#fff;
+        margin:0;
+        padding:0;
+      }
+      table tr:nth-child(2n) {
+        background-color:#f8f8f8;
+      }
+      table tr th[align="center"], table tr td[align="center"] {
+        text-align:center;
+      }
+      table tr th, table tr td {
+        border:1px solid #ccc;
+        text-align:left;
+        margin:0;
+        padding:6px 13px;
+      }
       <%= Pygments.css %>
     </style>
   </head>
@@ -119,7 +146,7 @@ HERE
 end
 
 @renderer_toc         = Redcarpet::Markdown.new(TOCwithChapterNumbering, :fenced_code_blocks => true)
-@renderer_content     = Redcarpet::Markdown.new(HighlightedCopyWithChapterNumbering, :fenced_code_blocks => true)
+@renderer_content     = Redcarpet::Markdown.new(HighlightedCopyWithChapterNumbering, :fenced_code_blocks => true, :tables => true)
 @renderer_no_frills   = Redcarpet::Markdown.new(CopyWithNoFrills, :fenced_code_blocks => true)
 
 def vacuum
