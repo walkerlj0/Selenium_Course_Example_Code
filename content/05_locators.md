@@ -61,10 +61,10 @@ __NOTE: Older browser (e.g., Internet Explorer 8) don't support CSS Pseudo-class
 
 For more info:
 
++ [CSS vs XPath benchmarks](http://bit.ly/seleniumbenchmarks)
 + [CSS and XPath Examples](http://bit.ly/cssxpathexamples)
 + [CSS selector game](http://bit.ly/locatorgame)
-+ [How to verify your locators](http://bit.ly/verifyinglocators)
++ [The difference between nth-child and nth-of-type](http://css-tricks.com/the-difference-between-nth-child-and-nth-of-type/)
 + [w3schools CSS Selectors Reference](http://www.w3schools.com/cssref/css_selectors.asp)
 + [w3schools XPath Syntax Reference](http://www.w3schools.com/xpath/xpath_syntax.asp)
-+ [CSS vs XPath benchmarks](http://bit.ly/seleniumbenchmarks)
-+ [The difference between nth-child and nth-of-type](http://css-tricks.com/the-difference-between-nth-child-and-nth-of-type/)
++ [How to verify your locators](http://bit.ly/verifyinglocators)
