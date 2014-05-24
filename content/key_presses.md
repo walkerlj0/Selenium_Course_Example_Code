@@ -1,8 +1,8 @@
 # Key Presses
 
 ```ruby
-driver.action.send_keys(key)
-# e.g., driver.action.send_keys(:tab)
+driver.action.send_keys(key).perform
+# e.g., driver.action.send_keys(:tab).perform
 ```
 
 For more info:

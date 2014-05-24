@@ -18,8 +18,8 @@ uploader.submit
 ## Download with Firefox
 
 1. Create a Selenium profile configuration object
-2. Specify the folder list strategy that enables specifying a path
-3. Specify a download folder path
+2. Specify the download method that enables specifying a path
+3. Specify a folder path to download files to
 4. Specify the MIME type of the files you want to download
 5. Disable the Firefox PDF viewer (if downloading PDF files)
 6. Load the profile configuration object when creating an instance of Selenium

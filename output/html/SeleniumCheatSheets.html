@@ -111,18 +111,20 @@
 <h1>Table of Contents</h1><ol>
 <li><a href="#chapter1">Local Configuration</a></li>
 <li><a href="#chapter2">Cloud Configuration</a></li>
-<li><a href="#chapter3">Common Actions</a></li>
-<li><a href="#chapter4">Locators</a></li>
-<li><a href="#chapter5">Cookies</a></li>
-<li><a href="#chapter6">Dropdown Lists</a></li>
-<li><a href="#chapter7">Exception Handling</a></li>
-<li><a href="#chapter8">File Transfers</a></li>
-<li><a href="#chapter9">Frames</a></li>
-<li><a href="#chapter10">JavaScript</a></li>
-<li><a href="#chapter11">Key Presses</a></li>
-<li><a href="#chapter12">Multiple Windows</a></li>
-<li><a href="#chapter13">Screenshots</a></li>
-<li><a href="#chapter14">Waiting</a></li>
+<li><a href="#chapter3">Headless Configuration</a></li>
+<li><a href="#chapter4">Common Actions</a></li>
+<li><a href="#chapter5">Locators</a></li>
+<li><a href="#chapter6">Cookies</a></li>
+<li><a href="#chapter7">Dropdown Lists</a></li>
+<li><a href="#chapter8">Exception Handling</a></li>
+<li><a href="#chapter9">File Transfers</a></li>
+<li><a href="#chapter10">Frames</a></li>
+<li><a href="#chapter11">Hovers</a></li>
+<li><a href="#chapter12">JavaScript</a></li>
+<li><a href="#chapter13">Key Presses</a></li>
+<li><a href="#chapter14">Multiple Windows</a></li>
+<li><a href="#chapter15">Screenshots</a></li>
+<li><a href="#chapter16">Waiting</a></li>
 </ol>
 <h1 id='chapter1'>Local Configuration</h1>
 <h2>Chrome</h2>
@@ -194,7 +196,7 @@
 
 <p>Available out of the box as of version 2.21 of Selenium.</p>
 <div class="highlight"><pre><span class="nb">require</span> <span class="s1">'selenium-webdriver'</span>
-<span class="n">driver</span> <span class="o">=</span> <span class="no">Selenium</span><span class="o">::</span><span class="no">WebDriver</span><span class="o">.</span><span class="n">for</span> <span class="ss">:firefox</span>
+<span class="n">driver</span> <span class="o">=</span> <span class="no">Selenium</span><span class="o">::</span><span class="no">WebDriver</span><span class="o">.</span><span class="n">for</span> <span class="ss">:safari</span>
 </pre></div>
 <p>For more info:</p>
 
@@ -225,12 +227,66 @@
 <ul>
 <li><a href="https://saucelabs.com/platforms">Sauce Labs Available Platforms page</a></li>
 </ul>
-<h1 id='chapter3'>Common Actions</h1>
-<h2>Find an element</h2>
-<div class="highlight"><pre><span class="c1"># just one, the first one</span>
+<h1 id='chapter3'>Headless Configuration</h1>
+<h2>GhostDriver via PhantomJS</h2>
+
+<ol>
+<li>Download PhantomJS from <a href="http://phantomjs.org/download.html">here</a></li>
+<li>Start up PhantomJS with WebDriver support (specifying a port to run on)</li>
+<li>Point your tests at PhantomJS</li>
+<li>Run your tests</li>
+</ol>
+<div class="highlight"><pre>phantomjs --webdriver<span class="o">=</span>8001
+PhantomJS is launching GhostDriver...
+<span class="o">[</span>INFO  - 2014-04-16T02:07:51.015Z<span class="o">]</span> GhostDriver - Main - running on port 8001
+</pre></div><div class="highlight"><pre><span class="vi">@driver</span> <span class="o">=</span> <span class="no">Selenium</span><span class="o">::</span><span class="no">WebDriver</span><span class="o">.</span><span class="n">for</span> <span class="ss">:remote</span><span class="p">,</span> <span class="ss">url</span><span class="p">:</span> <span class="s1">'http://localhost:8001'</span>
+</pre></div><h2>Xvfb</h2>
+
+<p>X virtual framebuffer (Xvfb) is an in-memory display server for UNIX-like operating systems (e.g., Linux).</p>
+<h3>Install</h3>
+
+<p>For Debian based systems</p>
+<div class="highlight"><pre>apt-get install xvfb firefox
+</pre></div>
+<p>For RedHat systems</p>
+<div class="highlight"><pre>yum install Xvfb firefox
+</pre></div><h3>Option 1</h3>
+<div class="highlight"><pre>Xvfb :99 <span class="p">&amp;</span>
+<span class="nb">export </span><span class="nv">DISPLAY</span><span class="o">=</span>:99
+rspec example_spec.rb
+</pre></div>
+<p>This approach will keep Xvfb running in the background until it is manually stopped.</p>
+<h3>Option 2</h3>
+<div class="highlight"><pre>xvfb-run rspec example_spec.rb
+</pre></div>
+<p>This will start Xvfb and stop it after the test run completes.</p>
+<h3>Option 3</h3>
+
+<p>Use <a href="https://github.com/leonid-shevtsov/headless">the headless gem</a> to start and stop Xvfb in your test code.</p>
+<div class="highlight"><pre><span class="nb">require</span> <span class="s1">'headless'</span>
+
+<span class="c1"># before your browser setup</span>
+<span class="vi">@headless</span> <span class="o">=</span> <span class="no">Headless</span><span class="o">.</span><span class="n">new</span>
+<span class="vi">@headless</span><span class="o">.</span><span class="n">start</span>
+
+<span class="c1"># after your browser teardown</span>
+<span class="vi">@headless</span><span class="o">.</span><span class="n">destroy</span>
+</pre></div>
+<p>For more info:</p>
+
+<ul>
+<li><a href="http://en.wikipedia.org/wiki/Xvfb">Wikipedia write-up on Xvfb</a></li>
+<li><a href="http://elementalselenium.com/tips/38-headless">Element Selenium write-up on approaches with Xvfb</a></li>
+</ul>
+<h1 id='chapter4'>Common Actions</h1>
+<h2>Visit a page</h2>
+<div class="highlight"><pre><span class="n">driver</span><span class="o">.</span><span class="n">get</span> <span class="s1">'url'</span>
+<span class="c1"># e.g., driver.get 'http://the-internet.herokuapp.com'</span>
+</pre></div><h2>Find an element</h2>
+<div class="highlight"><pre><span class="c1"># just one, the first Selenium finds</span>
 <span class="n">driver</span><span class="o">.</span><span class="n">find_element</span><span class="p">(</span><span class="n">locator</span><span class="p">)</span>
 
-<span class="c1"># all instances of the element</span>
+<span class="c1"># all instances of the element on the page</span>
 <span class="n">driver</span><span class="o">.</span><span class="n">find_elements</span><span class="p">(</span><span class="n">locator</span><span class="p">)</span>
 <span class="c1"># returns an Array</span>
 </pre></div><h2>Work with a found element</h2>
@@ -269,10 +325,74 @@
 <p>For more info:</p>
 
 <ul>
-<li><a href="http://selenium.googlecode.com/git/docs/api/rb/Selenium/WebDriver/Element.html#attribute-instance_method">the <code>attribute</code> documentation</a></li>
+<li><a href="http://selenium.googlecode.com/git/docs/api/rb/Selenium/WebDriver/Element.html">the Element API documentation</a></li>
+<li><a href="http://selenium.googlecode.com/git/docs/api/rb/Selenium/WebDriver/Element.html#attribute-instance_method">the <code>attribute</code> Element API documentation</a></li>
 </ul>
-<h1 id='chapter4'>Locators</h1>
-<h1 id='chapter5'>Cookies</h1>
+<h1 id='chapter5'>Locators</h1>
+<h2>Guiding principles</h2>
+
+<p>Good Locators are:</p>
+
+<ul>
+<li>unique</li>
+<li>descriptive</li>
+<li>unlikely to change</li>
+</ul>
+
+<p>Be sure to:</p>
+
+<ol>
+<li>Start with ID and Class</li>
+<li>Use CSS selectors (or XPath) when you need to traverse</li>
+<li>Talk with a developer on your team when the app is hard to automate
+
+<ul>
+<li>tell them what you're trying to automate</li>
+<li>work with them to get more semantic markup added to the page</li>
+</ul></li>
+</ol>
+<h3>ID</h3>
+<div class="highlight"><pre><span class="n">driver</span><span class="o">.</span><span class="n">find_element</span><span class="p">(</span><span class="nb">id</span><span class="p">:</span> <span class="s1">'username'</span><span class="p">)</span>
+</pre></div><h3>Class</h3>
+<div class="highlight"><pre><span class="n">driver</span><span class="o">.</span><span class="n">find_elements</span><span class="p">(</span><span class="ss">class</span><span class="p">:</span> <span class="s1">'dues'</span><span class="p">)</span>
+</pre></div><h3>CSS Selectors</h3>
+<h4>Example Usage:</h4>
+<div class="highlight"><pre><span class="n">driver</span><span class="o">.</span><span class="n">find_element</span><span class="p">(</span><span class="ss">css</span><span class="p">:</span> <span class="s1">'#example'</span><span class="p">)</span>
+</pre></div><h4>Locators</h4>
+
+<p>Approach           Locator                                  Description</p>
+
+<hr>
+
+<p>ID                   <code>#example</code>                               <code>#</code> denotes an ID
+Class                <code>.example</code>                               <code>.</code> denotes a Class
+Classes              <code>.flash.success</code>                         place a <code>.</code> in front of each class when there are multiple
+Direct child         <code>div &gt; a</code>                                will find the element within the next child element
+Child/subschild      <code>div a</code>                                  will find the element within a child or one if it's children
+Next sibling         <code>input.username + input</code>                 will find the next adjacent element
+Attribute values     <code>form input[name='username']</code>            a great alternative to id and class matches
+Attribute values     <code>input[name='continue'][type='button']</code>  can chain multiple attribute filters together
+Location             <code>li:nth-of-type(4)</code>                      will find the 4th li in a list
+Location             <code>li:nth-child(4)</code>                        will get the 4th element only if it is an li element
+Location             <code>*:nth-child(4)</code>                         will get the 4th element regardless of type
+Sub-string           <code>a[id^='beginning_']</code>                    starts with (prefix)
+Sub-string           <code>a[id$='_end']</code>                          ends with (suffix)
+Sub-string           <code>a[id*='gooey_center']</code>                  contains (substring)
+Inner text           <code>a:contains('Log Out')</code>                  an alternative to substring matching</p>
+
+<p><strong>NOTE: Older browser (e.g., Internet Explorer 8) don't support CSS Pseudo-classes, so some of these locator approaches won't work (e.g., Location matches and Inner text matches).</strong></p>
+
+<p>For more info:</p>
+
+<ul>
+<li><a href="http://bit.ly/cssxpathexamples">CSS and XPath Examples</a></li>
+<li><a href="http://bit.ly/locatorgame">CSS selector game</a></li>
+<li><a href="http://bit.ly/verifyinglocators">How to verify your locators</a></li>
+<li><a href="http://www.w3schools.com/cssref/css_selectors.asp">w3schools CSS Selectors Reference</a></li>
+<li><a href="http://www.w3schools.com/xpath/xpath_syntax.asp">w3schools XPath Syntax Reference</a></li>
+<li><a href="http://bit.ly/seleniumbenchmarks">CSS vs XPath benchmarks</a></li>
+</ul>
+<h1 id='chapter6'>Cookies</h1>
 <h2>Retrieve Individual Cookie</h2>
 <div class="highlight"><pre><span class="n">cookie</span> <span class="o">=</span> <span class="n">driver</span><span class="o">.</span><span class="n">manage</span><span class="o">.</span><span class="n">cookie_named</span> <span class="s1">'CookieName'</span>
 </pre></div><h2>Add</h2>
@@ -284,7 +404,7 @@
 <span class="c1"># all cookies</span>
 <span class="n">driver</span><span class="o">.</span><span class="n">manage</span><span class="o">.</span><span class="n">delete_all_cookies</span>
 <span class="c1"># does not delete third-party cookies, just the ones for the domain Selenium is visiting</span>
-</pre></div><h1 id='chapter6'>Dropdown Lists</h1>
+</pre></div><h1 id='chapter7'>Dropdown Lists</h1>
 
 <ol>
 <li>Find the dropdown list</li>
@@ -298,7 +418,7 @@
 <span class="n">select_list</span> <span class="o">=</span> <span class="no">Selenium</span><span class="o">::</span><span class="no">WebDriver</span><span class="o">::</span><span class="no">Support</span><span class="o">::</span><span class="no">Select</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">dropdown</span><span class="p">)</span>
 <span class="n">select_list</span><span class="o">.</span><span class="n">select_by</span><span class="p">(</span><span class="ss">:text</span><span class="p">,</span> <span class="s2">&quot;Option 1&quot;</span><span class="p">)</span>
 <span class="c1"># select_list.select_by(:value, &quot;1&quot;)</span>
-</pre></div><h1 id='chapter7'>Exception Handling</h1>
+</pre></div><h1 id='chapter8'>Exception Handling</h1>
 
 <ol>
 <li>Rescue the relevant exceptions in a helper method, returning <code>false</code> for each</li>
@@ -327,7 +447,7 @@
 <ul>
 <li><a href="https://selenium.googlecode.com/git/docs/api/rb/Selenium/WebDriver/Error.html">a full list of Selenium exceptions</a></li>
 </ul>
-<h1 id='chapter8'>File Transfers</h1>
+<h1 id='chapter9'>File Transfers</h1>
 <h2>Upload</h2>
 
 <ol>
@@ -341,7 +461,31 @@
 <span class="n">uploader</span> <span class="o">=</span> <span class="n">driver</span><span class="o">.</span><span class="n">find_element</span><span class="p">(</span><span class="nb">id</span><span class="p">:</span> <span class="s1">'file-upload'</span><span class="p">)</span>
 <span class="n">uploader</span><span class="o">.</span><span class="n">send_keys</span> <span class="s1">'path of file you want to upload'</span>
 <span class="n">uploader</span><span class="o">.</span><span class="n">submit</span>
-</pre></div><h2>Download</h2>
+</pre></div><h2>Download with Firefox</h2>
+
+<ol>
+<li>Create a Selenium profile configuration object</li>
+<li>Specify the download method that enables specifying a path</li>
+<li>Specify a folder path to download files to</li>
+<li>Specify the MIME type of the files you want to download</li>
+<li>Disable the Firefox PDF viewer (if downloading PDF files)</li>
+<li>Load the profile configuration object when creating an instance of Selenium</li>
+</ol>
+<div class="highlight"><pre><span class="n">profile</span> <span class="o">=</span> <span class="no">Selenium</span><span class="o">::</span><span class="no">WebDriver</span><span class="o">::</span><span class="no">Firefox</span><span class="o">::</span><span class="no">Profile</span><span class="o">.</span><span class="n">new</span>
+<span class="n">profile</span><span class="o">[</span><span class="s1">'browser.download.folderList'</span><span class="o">]</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">profile</span><span class="o">[</span><span class="s1">'browser.download.dir'</span><span class="o">]</span> <span class="o">=</span> <span class="s1">'path to download dir'</span> 
+<span class="n">profile</span><span class="o">[</span><span class="s1">'browser.helperApps.neverAsk.saveToDisk'</span><span class="o">]</span> <span class="o">=</span> <span class="s1">'image/jpeg, application/pdf'</span>
+<span class="n">profile</span><span class="o">[</span><span class="s1">'pdfjs.disabled'</span><span class="o">]</span> <span class="o">=</span> <span class="kp">true</span>
+
+<span class="vi">@driver</span> <span class="o">=</span> <span class="no">Selenium</span><span class="o">::</span><span class="no">WebDriver</span><span class="o">.</span><span class="n">for</span> <span class="ss">:firefox</span><span class="p">,</span> <span class="ss">:profile</span> <span class="o">=&gt;</span> <span class="n">profile</span>
+</pre></div>
+<p>For more info:</p>
+
+<ul>
+<li><a href="http://www.webmaster-toolkit.com/mime-types.shtml">A list of MIME types</a></li>
+<li><a href="http://preferential.mozdev.org/preferences.html">A list of all of Firefox's available preferences</a></li>
+</ul>
+<h2>Download with an HTTP Library</h2>
 
 <ol>
 <li>Get the download link from Selenium</li>
@@ -357,7 +501,7 @@
 <span class="n">response</span> <span class="o">=</span> <span class="no">RestClient</span><span class="o">.</span><span class="n">head</span> <span class="n">link</span>
 <span class="n">response</span><span class="o">.</span><span class="n">headers</span><span class="o">[</span><span class="ss">:content_type</span><span class="o">].</span><span class="n">should</span> <span class="o">==</span> <span class="s1">'image/jpeg'</span>
 <span class="n">response</span><span class="o">.</span><span class="n">headers</span><span class="o">[</span><span class="ss">:content_length</span><span class="o">].</span><span class="n">to_i</span><span class="o">.</span><span class="n">should</span> <span class="o">&gt;</span> <span class="mi">0</span>
-</pre></div><h2>Download Secure Files</h2>
+</pre></div><h2>Download Secure Files with an HTTP Library</h2>
 
 <ol>
 <li>Get the download link from Selenium</li>
@@ -375,7 +519,7 @@
 <span class="n">response</span> <span class="o">=</span> <span class="no">RestClient</span><span class="o">.</span><span class="n">head</span> <span class="n">link</span><span class="p">,</span> <span class="ss">cookie</span><span class="p">:</span> <span class="s2">&quot;</span><span class="si">#{</span><span class="n">cookie</span><span class="o">[</span><span class="ss">:name</span><span class="o">]</span><span class="si">}</span><span class="s2">=</span><span class="si">#{</span><span class="n">cookie</span><span class="o">[</span><span class="ss">:value</span><span class="o">]</span><span class="si">}</span><span class="s2">;&quot;</span>
 <span class="n">response</span><span class="o">.</span><span class="n">headers</span><span class="o">[</span><span class="ss">:content_type</span><span class="o">].</span><span class="n">should</span> <span class="o">==</span> <span class="s1">'application/pdf'</span>
 <span class="n">response</span><span class="o">.</span><span class="n">headers</span><span class="o">[</span><span class="ss">:content_length</span><span class="o">].</span><span class="n">to_i</span><span class="o">.</span><span class="n">should</span> <span class="o">&gt;</span> <span class="mi">0</span>
-</pre></div><h1 id='chapter9'>Frames</h1>
+</pre></div><h1 id='chapter10'>Frames</h1>
 
 <ol>
 <li>Switch into the frame</li>
@@ -389,7 +533,7 @@
 <span class="n">driver</span><span class="o">.</span><span class="n">switch_to</span><span class="o">.</span><span class="n">frame</span><span class="p">(</span><span class="s1">'frame-top'</span><span class="p">)</span>
 <span class="n">driver</span><span class="o">.</span><span class="n">switch_to</span><span class="o">.</span><span class="n">frame</span><span class="p">(</span><span class="s1">'frame-middle'</span><span class="p">)</span>
 <span class="n">driver</span><span class="o">.</span><span class="n">find_element</span><span class="p">(</span><span class="nb">id</span><span class="p">:</span> <span class="s1">'content'</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">should</span> <span class="o">=~</span> <span class="sr">/MIDDLE/</span>
-</pre></div><h2>IFrames</h2>
+</pre></div><h2>Iframes</h2>
 <div class="highlight"><pre><span class="nb">require</span> <span class="s1">'selenium-webdriver'</span>
 <span class="nb">require</span> <span class="s1">'rspec-expectations'</span>
 
@@ -401,34 +545,32 @@
   <span class="n">editor</span><span class="o">.</span><span class="n">send_keys</span> <span class="s1">'Hello World!'</span>
   <span class="n">after_text</span> <span class="o">=</span> <span class="n">editor</span><span class="o">.</span><span class="n">text</span>
 <span class="n">after_text</span><span class="o">.</span><span class="n">should_not</span> <span class="o">==</span> <span class="n">before_text</span>
+</pre></div><h1 id='chapter11'>Hovers</h1>
 
-
-<span class="c1"># Hovers</span>
-
-<span class="mi">1</span><span class="o">.</span> <span class="no">Find</span> <span class="n">the</span> <span class="n">element</span>
-<span class="mi">2</span><span class="o">.</span> <span class="no">Create</span> <span class="n">an</span> <span class="n">action</span> <span class="n">with</span> <span class="n">the</span> <span class="no">Selenium</span> <span class="no">Action</span> <span class="n">builder</span>
-<span class="mi">3</span><span class="o">.</span> <span class="no">Pass</span> <span class="k">in</span> <span class="n">the</span> <span class="n">found</span> <span class="n">element</span> <span class="k">when</span> <span class="n">calling</span> <span class="n">the</span> <span class="sb">`move_to`</span> <span class="n">action</span>
-<span class="mi">4</span><span class="o">.</span> <span class="no">Perform</span> <span class="n">the</span> <span class="n">action</span>
-
-<span class="sb">```ruby</span>
-<span class="sb">element = driver.find_element(locator)</span>
-<span class="sb">driver.action.move_to(element).perform</span>
+<ol>
+<li>Find the element</li>
+<li>Create an action with the Selenium Action builder</li>
+<li>Pass in the found element when calling the <code>move_to</code> action</li>
+<li>Perform the action</li>
+</ol>
+<div class="highlight"><pre><span class="n">element</span> <span class="o">=</span> <span class="n">driver</span><span class="o">.</span><span class="n">find_element</span><span class="p">(</span><span class="n">locator</span><span class="p">)</span>
+<span class="n">driver</span><span class="o">.</span><span class="n">action</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">element</span><span class="p">)</span><span class="o">.</span><span class="n">perform</span>
 </pre></div>
 <p>For more info:</p>
 
 <ul>
 <li><a href="https://selenium.googlecode.com/git/docs/api/rb/Selenium/WebDriver/ActionBuilder.html#move_to-instance_method">the Selenium Action Builder <code>move_to</code> documentation</a></li>
 </ul>
-<h1 id='chapter10'>JavaScript</h1>
+<h1 id='chapter12'>JavaScript</h1>
 <h2>Execution</h2>
 <div class="highlight"><pre><span class="n">driver</span><span class="o">.</span><span class="n">execute_script</span><span class="p">(</span><span class="s1">'your javascript goes here'</span><span class="p">)</span>
 </pre></div><h2>Alerts</h2>
 <div class="highlight"><pre><span class="n">popup</span> <span class="o">=</span> <span class="n">driver</span><span class="o">.</span><span class="n">switch_to</span><span class="o">.</span><span class="n">alert</span>
 <span class="n">popup</span><span class="o">.</span><span class="n">accept</span>
 <span class="c1"># or popup.dismiss</span>
-</pre></div><h1 id='chapter11'>Key Presses</h1>
-<div class="highlight"><pre><span class="n">driver</span><span class="o">.</span><span class="n">action</span><span class="o">.</span><span class="n">send_keys</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
-<span class="c1"># e.g., driver.action.send_keys(:tab)</span>
+</pre></div><h1 id='chapter13'>Key Presses</h1>
+<div class="highlight"><pre><span class="n">driver</span><span class="o">.</span><span class="n">action</span><span class="o">.</span><span class="n">send_keys</span><span class="p">(</span><span class="n">key</span><span class="p">)</span><span class="o">.</span><span class="n">perform</span>
+<span class="c1"># e.g., driver.action.send_keys(:tab).perform</span>
 </pre></div>
 <p>For more info:</p>
 
@@ -436,13 +578,13 @@
 <li><a href="https://selenium.googlecode.com/git/docs/api/rb/Selenium/WebDriver/ActionBuilder.html#send_keys-instance_method">the Selenium Action Builder <code>send_keys</code> documentation</a></li>
 <li><a href="http://selenium.googlecode.com/svn/trunk/docs/api/rb/Selenium/WebDriver/Keys.html">a list of available keyboard keys and their trigger values</a></li>
 </ul>
-<h1 id='chapter12'>Multiple Windows</h1>
+<h1 id='chapter14'>Multiple Windows</h1>
 <h2>A simple way</h2>
 <div class="highlight"><pre><span class="n">driver</span><span class="o">.</span><span class="n">switch_to</span><span class="o">.</span><span class="n">window</span><span class="p">(</span><span class="n">driver</span><span class="o">.</span><span class="n">window_handles</span><span class="o">.</span><span class="n">first</span><span class="p">)</span>
 <span class="n">driver</span><span class="o">.</span><span class="n">switch_to</span><span class="o">.</span><span class="n">window</span><span class="p">(</span><span class="n">driver</span><span class="o">.</span><span class="n">window_handles</span><span class="o">.</span><span class="n">last</span><span class="p">)</span>
 </pre></div>
-<p>Caveat: The order of the window handles is not consistent across all browsers. Some return in the order opened, others alphabetically.</p>
-<h2>A solid way</h2>
+<p><strong>NOTE: The order of the window handles is not consistent across all browsers. Some return in the order opened, others alphabetically.</strong></p>
+<h2>A browser agnostic way</h2>
 <div class="highlight"><pre><span class="n">main_window</span> <span class="o">=</span> <span class="vi">@driver</span><span class="o">.</span><span class="n">window_handle</span>
 <span class="c1"># action that triggers a new window</span>
 <span class="n">windows</span> <span class="o">=</span> <span class="vi">@driver</span><span class="o">.</span><span class="n">window_handles</span>
@@ -451,7 +593,7 @@
     <span class="vi">@new_window</span> <span class="o">=</span> <span class="n">window</span>
   <span class="k">end</span>
 <span class="k">end</span>
-</pre></div><h1 id='chapter13'>Screenshots</h1>
+</pre></div><h1 id='chapter15'>Screenshots</h1>
 <h2>Simple screenshot</h2>
 <div class="highlight"><pre><span class="n">driver</span><span class="o">.</span><span class="n">save_screenshot</span> <span class="s2">&quot;screenshot.png&quot;</span>
 </pre></div><h2>Uniquely named screenshot by timestamp</h2>
@@ -462,7 +604,7 @@
 <ul>
 <li><a href="http://strfti.me/">strftime reference and sandbox</a></li>
 </ul>
-<h1 id='chapter14'>Waiting</h1>
+<h1 id='chapter16'>Waiting</h1>
 <h2>Implicit Wait</h2>
 
 <ul>

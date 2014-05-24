@@ -29,3 +29,4 @@ driver.switch_to.frame('mce_0_ifr')
   editor.send_keys 'Hello World!'
   after_text = editor.text
 after_text.should_not == before_text
+```

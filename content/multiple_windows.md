@@ -7,9 +7,9 @@ driver.switch_to.window(driver.window_handles.first)
 driver.switch_to.window(driver.window_handles.last)
 ```
 
-Caveat: The order of the window handles is not consistent across all browsers. Some return in the order opened, others alphabetically.
+__NOTE: The order of the window handles is not consistent across all browsers. Some return in the order opened, others alphabetically.__
 
-## A solid way
+## A browser agnostic way
 
 ```ruby
 main_window = @driver.window_handle
