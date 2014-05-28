@@ -2,6 +2,8 @@
 
 ## Sauce Labs
 
+### Initial Setup
+
 1. Store your Sauce Labs Username and Access Key in environment variables
 2. Specify the browser and operating system you want through Selenium's Capabilities
 3. Create an instance of Selenium using the Sauce Labs end-point, passing in the Capabilities
@@ -22,3 +24,32 @@ driver = Selenium::WebDriver.for(
 For more info:
 
 + [Sauce Labs Available Platforms page](https://saucelabs.com/platforms)
+
+### Setting the Job Status
+
+1. Install [the `sauce_whisk` gem](https://github.com/saucelabs/sauce_whisk)
+2. `require 'sauce_whisk'`
+2. Use `sauce_whisk` to mark the Sauce job as passed or failed by using Selenium's `session_id`
+
+```ruby
+# an RSpec example
+require 'sauce_whisk'
+
+if example.exception.nil?
+  SauceWhisk::Jobs.pass_job @driver.session_id
+else
+  SauceWhisk::Jobs.fail_job @driver.session_id
+end
+```
+
+### Using Sauce Connect for Private Apps
+
+1. Install [the `sauce_connect` gem](https://github.com/saucelabs/sauce_ruby)
+2. `require 'sauce'`
+3. Start the Sauce Connect tunnel
+4. Run your tests
+
+```ruby
+require 'sauce'
+Sauce::Utilities::Connect.start
+```

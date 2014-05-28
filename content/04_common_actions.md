@@ -9,6 +9,8 @@ driver.get 'url'
 
 ## Find an element
 
+Works using locators, which are covered in [the next section](#chapter5).
+
 ```ruby
 # just one, the first Selenium finds
 driver.find_element(locator)
