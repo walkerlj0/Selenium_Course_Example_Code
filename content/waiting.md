@@ -10,10 +10,6 @@
 driver.manage.timeouts.implicit_wait = 3
 ```
 
-For more info:
-
-+ [Explicit vs Implicit Waits](http://elementalselenium.com/tips/47-waiting)
-
 ## Explicit Waits
 
 + Specify an amount of time and an action

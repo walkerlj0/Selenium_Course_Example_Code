@@ -28,7 +28,7 @@ For more info:
 ### Setting the Job Status
 
 1. Install [the `sauce_whisk` gem](https://github.com/saucelabs/sauce_whisk)
-2. `require 'sauce_whisk'`
+2. Add `require 'sauce_whisk'` to your test harness configuration
 2. Use `sauce_whisk` to mark the Sauce job as passed or failed by using Selenium's `session_id`
 
 ```ruby
@@ -45,7 +45,7 @@ end
 ### Using Sauce Connect for Private Apps
 
 1. Install [the `sauce_connect` gem](https://github.com/saucelabs/sauce_ruby)
-2. `require 'sauce'`
+2. Add `require 'sauce'` to your test harness configuration
 3. Start the Sauce Connect tunnel
 4. Run your tests
 
