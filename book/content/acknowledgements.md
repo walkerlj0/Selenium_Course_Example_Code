@@ -23,3 +23,4 @@ Jason Riley
 Matt Allen
 Sergey Franchuk
 Matthew Pickle
+Kent O'Driscoll
