@@ -24,3 +24,6 @@ Matt Allen
 Sergey Franchuk
 Matthew Pickle
 Kent O'Driscoll
+Jimi Odeyemi
+Donal Bialer
+Dmytro Shpakovskyi

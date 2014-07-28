@@ -22,7 +22,11 @@ The examples in this book are written in Ruby. This is partly because that is th
 
 The web functionality used to write tests against is from an open source project called the-internet -- available on [GitHub](https://github.com/tourdedave/the-internet) and viewable through [a Heroku site](http://the-internet.herokuapp.com/).
 
-And the test examples are written to run against the [RSpec](http://rspec.info/) test runner, with [Bundler](http://bundler.io/) managing the third party libraries (a.k.a. gems).
+The tests are written for version 2.14 of [RSpec](http://rspec.info/) (a popular Ruby testing framework).
+
+All third-party libraries (a.k.a. "gems") are specified in a `Gemfile` and installed using [Bundler](http://bundler.io/).
+
+This book is accompanied by a zipfile of all code examples referenced in the text. If you get stuck or want a quick reference on how something is supposed to look -- take a look there. There are a number of issues you may run into, and this is sure to help save you some time and headache.
 
 ## How To Read This Book
 
@@ -36,4 +40,4 @@ All of the code used is available in the `code_examples` folder provided within 
 
 If you find a glitch in the book (e.g., grammar issue, code issue, etc.) or have questions/feedback -- please feel free to e-mail me at <dhaeffner@gmail.com>.
 
-If you submit something and I end up using it in future versions of the book, I'll give you a shout-out in the acknowledgements.
+If you submit something and I end up using it in a future version of the book, I'll give you a shout-out in the acknowledgements.
