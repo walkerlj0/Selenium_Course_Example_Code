@@ -15,3 +15,11 @@ Katy, I somehow convinced you that doing one-on-one sessions with me over Google
 Brian, Ken, Jonathan, and Mary Ann -- your feedback was thorough and challenging. You asked tough questions and provided great suggestions for improvements. A good deal of the book has been rewritten based on your feedback. Examples have been refined. Concepts have been made more concise. And generally, there is a better build-up and flow throughout the book.
 
 THANK YOU!
+
+redux names
+
+Ilkka Urtti
+Jason Riley
+Matt Allen
+Sergey Franchuk
+Matthew Pickle
