@@ -34,7 +34,7 @@ Chapters 1 through 5 are focused on priming you with knowledge and questions to 
 
 Chapter 17 is an accumulation of 13 sub-chapters which outline things you will likely see and how to address them. They do not build upon each other or other parts of the book, and are each meant to stand alone.
 
-All of the code used is available in the `code_examples` folder provided within your zip file. Chapters with multiple parts will have multiple folders. Each part (as noted in the chapter) will correspond to a numbered folder (e.g., code examples referenced in Part 2 of Chapter 9 can be found in `code_examples/09_base_page_object/02/`).
+Code examples will correspond to each chapter number. For chapters with multiple parts, code examples will be broken up into numbered sub-folders (e.g., code examples referenced in Part 2 of Chapter 9 can be found in `code_examples/09_base_page_object/02/`).
 
 ## Feedback
 
