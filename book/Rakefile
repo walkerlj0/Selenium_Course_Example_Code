@@ -198,19 +198,6 @@ def content
   @renderer_content.render(raw_content)
 end
 
-def raw_sample_content
-  tmp = ""
-  tmp << File.read('content/chapters/5.md')
-  tmp << "\n\n"
-  tmp << File.read('content/chapters/6.md')
-  tmp << "\n\n"
-  tmp
-end
-
-def sample_content
-  @renderer_no_frills.render(raw_sample_content)
-end
-
 def number_of_chapters
   Dir.glob('content/chapters/*.md').count
 end
@@ -223,7 +210,7 @@ def appendix_chapter
   17
 end
 
-namespace :generate do
+namespace :gen do
   desc 'Generate HTML'
   task :html do
     @content =  cover + preface + acknowledgements + toc + content
@@ -250,23 +237,6 @@ namespace :generate do
       end)
     end
   end
-
-#  desc 'Generate PDF Sample Chapter'
-#  task :preview do
-#    @content =  cover + toc + sample_content
-#    html = ERB.new(@template).result(binding)
-#
-#    File.open('output/The Selenium Guidebook Sample.pdf', 'w+') do |f|
-#      f.write(Docverter::Conversion.run do |c|
-#        c.from    = 'html'
-#        c.to      = 'pdf'
-#        c.content = html
-#        Dir.glob('assets/*') do |asset|
-#          c.add_other_file asset
-#        end
-#      end)
-#    end
-#  end
 
   desc 'Generate MOBI'
   task :mobi do
@@ -306,98 +276,4 @@ namespace :generate do
     end
   end
 
-#  desc 'Generate everything'
-#  task :all => ['generate:html', 'generate:pdf', 'generate:preview', 'generate:mobi', 'generate:epub']
 end
-
-def make_zip_file(name, files)
-  Zip::ZipFile.open(name, Zip::ZipFile::CREATE) do |zf|
-    files.each do |file|
-      if file =~ /\/$/
-        zf.dir.mkdir(file)
-        next
-      end
-
-      zf.file.open(file, "w") { |f| f.write File.read(file) }
-    end
-  end
-end
-
-def pull_in_code_examples
-  `rm output/code_examples.zip`
-  `zip -r output/code_examples.zip code_examples/`
-end
-
-namespace :package do
-
-  task :common do
-    `cp *.txt output`
-  end
-
-  desc 'Package up zip of book with code for individuals'
-  task :individual => :common do
-    pull_in_code_examples
-    Dir.chdir('output') do
-      `rm selenium_guidebook_individual.zip`
-      make_zip_file('selenium_guidebook_individual.zip', [
-          'The Selenium Guidebook.pdf',
-          'The Selenium Guidebook.mobi',
-          'The Selenium Guidebook.epub',
-          'html/',
-          'html/The Selenium Guidebook.html',
-          'html/droid_sans.ttf',
-          'html/bookcover.png',
-          'copyright.txt',
-          'individual_license.txt',
-          'code_examples.zip'
-      ])
-    end
-  end
-
-  namespace :team do
-
-    desc 'Package up zip of book with code for small teams'
-    task :small => :common do
-      Dir.chdir('output') do
-        `rm selenium_guidebook_small_team.zip`
-        make_zip_file('selenium_guidebook_small_team.zip', [
-            'The Selenium Guidebook.pdf',
-            'The Selenium Guidebook.mobi',
-            'The Selenium Guidebook.epub',
-            'html/',
-            'html/The Selenium Guidebook.html',
-            'html/droid_sans.ttf',
-            'html/bookcover.png',
-            'copyright.txt',
-            'small_team_license.txt',
-            'code_examples.zip'
-        ])
-      end
-    end
-
-    desc 'Package up zip of book with code for big teams'
-    task :big => :common do
-      Dir.chdir('output') do
-        `rm selenium_guidebook_big_team.zip`
-        make_zip_file('selenium_guidebook_big_team.zip', [
-            'The Selenium Guidebook.pdf',
-            'The Selenium Guidebook.mobi',
-            'The Selenium Guidebook.epub',
-            'html/',
-            'html/The Selenium Guidebook.html',
-            'html/droid_sans.ttf',
-            'html/bookcover.png',
-            'copyright.txt',
-            'big_team_license.txt',
-            'code_examples.zip'
-        ])
-      end
-    end
-  end
-
-#  desc 'Package everything'
-#  task :all => ['package:book', 'package:book_with_code', 'package:team']
-end
-
-#desc "z'Big Red Button"
-#task :z_big_red_button => ['generate:all', 'package:all']
