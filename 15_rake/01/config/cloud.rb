@@ -11,5 +11,6 @@ ENV['tunnel']           ||= ''
 
 unless ENV['tunnel'].empty?
   require 'sauce'
+  Sauce::Utilities::Connect.start
   ENV['base_url']       = 'http://the-internet-local:4567'
 end
