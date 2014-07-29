@@ -2904,13 +2904,13 @@ With .selected?
 
 <p>While this works, there is a simpler, built-in way to do this within Selenium. Let's give that a go.</p>
 <h2>A Far Better Example</h2>
-<div class="highlight"><pre><span class="n">run</span> <span class="p">{</span>
+<div class="highlight"><pre><span class="n">run</span> <span class="k">do</span>
   <span class="vi">@driver</span><span class="o">.</span><span class="n">get</span> <span class="s1">'http://the-internet.herokuapp.com/dropdown'</span>
 
   <span class="n">dropdown</span> <span class="o">=</span> <span class="vi">@driver</span><span class="o">.</span><span class="n">find_element</span><span class="p">(</span><span class="nb">id</span><span class="p">:</span> <span class="s1">'dropdown'</span><span class="p">)</span>
   <span class="n">select_list</span> <span class="o">=</span> <span class="no">Selenium</span><span class="o">::</span><span class="no">WebDriver</span><span class="o">::</span><span class="no">Support</span><span class="o">::</span><span class="no">Select</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">dropdown</span><span class="p">)</span>
   <span class="n">select_list</span><span class="o">.</span><span class="n">select_by</span><span class="p">(</span><span class="ss">:text</span><span class="p">,</span> <span class="s2">&quot;Option 1&quot;</span><span class="p">)</span>
-<span class="p">}</span>
+<span class="k">end</span>
 </pre></div>
 <p>Similar to the first example, we are finding the dropdown list by ID. But instead of iterating over it and clicking based on a conditional, we are leveraging a built-in helper function of Selenium, <a href="http://selenium.googlecode.com/svn-history/r15117/trunk/docs/api/rb/Selenium/WebDriver/Support/Select.html">Select</a>, and its <a href="http://selenium.googlecode.com/svn-history/r15117/trunk/docs/api/rb/Selenium/WebDriver/Support/Select.html#select_by-instance_method">select_by</a> action.</p>
 
@@ -2964,13 +2964,13 @@ With .selected?
 <p>We then use the <code>rest-client</code> gem to initiate the download and store its response into a variable called <code>response</code>.</p>
 
 <p>From this object we are able to access the headers and perform checks against it. Primarily focusing on the <code>content_type</code> and <code>content_length</code> portions. For this example we are confirming that the file to be downloaded is an <code>image/jpeg</code> and that its contents are not empty.</p>
-<div class="highlight"><pre><span class="n">run</span> <span class="p">{</span>
+<div class="highlight"><pre><span class="n">run</span> <span class="k">do</span>
   <span class="vi">@driver</span><span class="o">.</span><span class="n">get</span> <span class="s1">'http://the-internet.herokuapp.com/download'</span>
   <span class="n">link</span> <span class="o">=</span> <span class="vi">@driver</span><span class="o">.</span><span class="n">find_element</span><span class="p">(</span><span class="ss">css</span><span class="p">:</span> <span class="s1">'a'</span><span class="p">)</span><span class="o">.</span><span class="n">attribute</span><span class="p">(</span><span class="s1">'href'</span><span class="p">)</span>
   <span class="n">response</span> <span class="o">=</span> <span class="no">RestClient</span><span class="o">.</span><span class="n">get</span> <span class="n">link</span>
   <span class="n">response</span><span class="o">.</span><span class="n">headers</span><span class="o">[</span><span class="ss">:content_type</span><span class="o">].</span><span class="n">should</span> <span class="o">==</span> <span class="s1">'image/jpeg'</span>
   <span class="n">response</span><span class="o">.</span><span class="n">headers</span><span class="o">[</span><span class="ss">:content_length</span><span class="o">].</span><span class="n">to_i</span><span class="o">.</span><span class="n">should</span> <span class="o">&gt;</span> <span class="mi">0</span>
-<span class="p">}</span>
+<span class="k">end</span>
 </pre></div><h2>Expected Behavior</h2>
 
 <ul>
@@ -3039,7 +3039,7 @@ With .selected?
 <p>Our teardown and run methods are pretty straightforward. Teardown quits the Selenium object when done and cleans up the temp directory with a system call. And we wrap everything up neatly into a single run method that we can pass a block of commands to.</p>
 
 <p>Now that we have setup Firefox appropriately we move on to our Selenium and assertion actions.</p>
-<div class="highlight"><pre><span class="n">run</span> <span class="p">{</span>
+<div class="highlight"><pre><span class="n">run</span> <span class="k">do</span>
   <span class="vi">@driver</span><span class="o">.</span><span class="n">get</span> <span class="s1">'http://the-internet.herokuapp.com/download'</span>
   <span class="n">download_link</span> <span class="o">=</span> <span class="vi">@driver</span><span class="o">.</span><span class="n">find_element</span><span class="p">(</span><span class="ss">css</span><span class="p">:</span> <span class="s1">'a'</span><span class="p">)</span>
   <span class="n">download_link</span><span class="o">.</span><span class="n">click</span>
@@ -3047,7 +3047,7 @@ With .selected?
   <span class="n">downloaded_files</span> <span class="o">=</span> <span class="no">Dir</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">#{</span><span class="vi">@download_dir</span><span class="si">}</span><span class="s2">/**/*&quot;</span><span class="p">)</span>
   <span class="n">sorted_downloads</span> <span class="o">=</span> <span class="n">downloaded_files</span><span class="o">.</span><span class="n">sort_by</span> <span class="p">{</span> <span class="o">|</span><span class="n">file</span><span class="o">|</span> <span class="no">File</span><span class="o">.</span><span class="n">mtime</span><span class="p">(</span><span class="n">file</span><span class="p">)</span> <span class="p">}</span>
   <span class="no">File</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="n">sorted_downloads</span><span class="o">.</span><span class="n">last</span><span class="p">)</span><span class="o">.</span><span class="n">should</span> <span class="o">&gt;</span> <span class="mi">0</span>
-<span class="p">}</span>
+<span class="k">end</span>
 </pre></div>
 <p>After loading the page we find the first link available and click it. Alternatively, we could have clicked the second link</p>
 <div class="highlight"><pre>  <span class="vi">@driver</span><span class="o">.</span><span class="n">find_elements</span><span class="p">(</span><span class="ss">css</span><span class="p">:</span> <span class="s1">'a'</span><span class="p">)</span><span class="o">[</span><span class="mi">1</span><span class="o">].</span><span class="n">click</span>
@@ -3088,9 +3088,10 @@ With .selected?
 
 <p>You can see the application we are running against <a href="http://the-internet.herokuapp.com/upload">here</a>.</p>
 
-<p>For our test script, first we'll include the requisite libraries and wire-up our setup and teardown actions in helper methods.</p>
+<p>For our test script, we'll first need to include our requisite libraries (<code>selenium-webdriver</code> to drive the browser, and <code>rspec-expectations</code> for our assertion) and wire-up some simple <code>setup</code>, <code>teardown</code>, and <code>run</code> actions.</p>
 <div class="highlight"><pre><span class="nb">require</span> <span class="s1">'selenium-webdriver'</span>
 <span class="nb">require</span> <span class="s1">'rspec-expectations'</span>
+<span class="kp">include</span> <span class="no">RSpec</span><span class="o">::</span><span class="no">Matchers</span>
 
 <span class="k">def</span> <span class="nf">setup</span>
   <span class="vi">@driver</span> <span class="o">=</span> <span class="no">Selenium</span><span class="o">::</span><span class="no">WebDriver</span><span class="o">.</span><span class="n">for</span> <span class="ss">:firefox</span>
@@ -3099,38 +3100,33 @@ With .selected?
 <span class="k">def</span> <span class="nf">teardown</span>
   <span class="vi">@driver</span><span class="o">.</span><span class="n">quit</span>
 <span class="k">end</span>
-</pre></div>
-<p>We are using the selenium-webdriver gem to drive the browser, and rspec-expectations for our assertion action (which is a subset of the RSpec library).</p>
-<div class="highlight"><pre><span class="k">def</span> <span class="nf">run</span>
+
+<span class="k">def</span> <span class="nf">run</span>
   <span class="n">setup</span>
   <span class="k">yield</span>
   <span class="n">teardown</span>
 <span class="k">end</span>
-
-<span class="n">run</span> <span class="k">do</span>
-  <span class="vi">@driver</span><span class="o">.</span><span class="n">get</span> <span class="s1">'http://the-internet.herokuapp.com/upload'</span>
-  <span class="n">uploader</span> <span class="o">=</span> <span class="vi">@driver</span><span class="o">.</span><span class="n">find_element</span><span class="p">(</span><span class="nb">id</span><span class="p">:</span> <span class="s1">'file-upload'</span><span class="p">)</span>
-  <span class="n">uploader</span><span class="o">.</span><span class="n">send_keys</span> <span class="no">Dir</span><span class="o">.</span><span class="n">pwd</span> <span class="o">+</span> <span class="s1">'/DaveHaeffner.jpg'</span>
-  <span class="n">uploader</span><span class="o">.</span><span class="n">submit</span>
-
-  <span class="n">uploaded_image</span> <span class="o">=</span> <span class="vi">@driver</span><span class="o">.</span><span class="n">find_element</span><span class="p">(</span><span class="ss">css</span><span class="p">:</span> <span class="s1">'.example img'</span><span class="p">)</span><span class="o">.</span><span class="n">attribute</span><span class="p">(</span><span class="s1">'src'</span><span class="p">)</span>
-  <span class="n">uploaded_image</span><span class="o">.</span><span class="n">should</span> <span class="o">=~</span> <span class="sr">/DaveHaeffner.jpg/</span>
-<span class="k">end</span>
 </pre></div>
-<p>We created a helper method called 'run' to easily call our setup and teardown actions without being overly verbose.</p>
+<p>Now we're ready to write our file upload test.</p>
+<div class="highlight"><pre><span class="n">run</span> <span class="k">do</span>
+  <span class="n">file</span> <span class="o">=</span> <span class="s1">'some-file.txt'</span>
 
-<p>In our run block we are driving the test script using standard Selenium commands and ending things off with an RSpec assertion.</p>
-<h2>Expected Behavior</h2>
+  <span class="vi">@driver</span><span class="o">.</span><span class="n">get</span> <span class="s1">'http://the-internet.herokuapp.com/upload'</span>
+  <span class="vi">@driver</span><span class="o">.</span><span class="n">find_element</span><span class="p">(</span><span class="nb">id</span><span class="p">:</span> <span class="s1">'file-upload'</span><span class="p">)</span><span class="o">.</span><span class="n">send_keys</span> <span class="no">File</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="no">Dir</span><span class="o">.</span><span class="n">pwd</span><span class="p">,</span> <span class="n">file</span><span class="p">)</span>
+  <span class="vi">@driver</span><span class="o">.</span><span class="n">find_element</span><span class="p">(</span><span class="nb">id</span><span class="p">:</span> <span class="s1">'file-submit'</span><span class="p">)</span><span class="o">.</span><span class="n">click</span>
 
-<p>So the intended behavior is:</p>
+  <span class="n">uploaded_file</span> <span class="o">=</span> <span class="vi">@driver</span><span class="o">.</span><span class="n">find_element</span><span class="p">(</span><span class="nb">id</span><span class="p">:</span> <span class="s1">'uploaded-files'</span><span class="p">)</span><span class="o">.</span><span class="n">text</span>
+  <span class="n">uploaded_file</span><span class="o">.</span><span class="n">should</span> <span class="n">eql</span> <span class="n">file</span>
+<span class="k">end</span>
+</pre></div><h2>Expected Behavior</h2>
 
 <ul>
 <li>Load the page</li>
-<li>Grab the form element we want to work with</li>
-<li>Inject the path to the file we want to upload</li>
-<li>Submit the form</li>
-<li>Grab the source path for the image once it renders in the browser</li>
-<li>Check to see that the image path contains the proper filename</li>
+<li>Find the form element that stores the path of the file we want to upload</li>
+<li>Inject the path of the file we want to upload</li>
+<li>Find the form submit button and click it</li>
+<li>Grab the text from the uploaded file list that gets rendered</li>
+<li>Assert that the uploaded file is what we expect</li>
 </ul>
 <h1 id="chapter17_9"><small>Chapter 17.9</small><br>Forgot Password</h1>
 
@@ -3237,12 +3233,12 @@ With .selected?
             <span class="p">|</span> - right
     <span class="p">|</span> - bottom frame
 </pre></div><div class="highlight"><pre><span class="c1"># Nested Frames</span>
-<span class="n">run</span> <span class="p">{</span>
+<span class="n">run</span> <span class="k">do</span>
   <span class="vi">@driver</span><span class="o">.</span><span class="n">get</span> <span class="s1">'http://the-internet.herokuapp.com/frames'</span>
   <span class="vi">@driver</span><span class="o">.</span><span class="n">switch_to</span><span class="o">.</span><span class="n">frame</span><span class="p">(</span><span class="s1">'frame-top'</span><span class="p">)</span>
     <span class="vi">@driver</span><span class="o">.</span><span class="n">switch_to</span><span class="o">.</span><span class="n">frame</span><span class="p">(</span><span class="s1">'frame-middle'</span><span class="p">)</span>
       <span class="vi">@driver</span><span class="o">.</span><span class="n">find_element</span><span class="p">(</span><span class="nb">id</span><span class="p">:</span> <span class="s1">'content'</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">should</span> <span class="o">=~</span> <span class="sr">/MIDDLE/</span>
-<span class="p">}</span>
+<span class="k">end</span>
 </pre></div>
 <p>In order to get the text of the middle frame, we need to switch to it. But in order for Selenium to see it, we need to switch to the parent frame first, then the child frame.</p>
 
@@ -3253,7 +3249,7 @@ With .selected?
 
 <p>You can find the page we are testing against <a href="http://the-internet.herokuapp.com/tinymce">here</a>.</p>
 <div class="highlight"><pre><span class="c1"># Iframes</span>
-<span class="n">run</span> <span class="p">{</span>
+<span class="n">run</span> <span class="k">do</span>
   <span class="vi">@driver</span><span class="o">.</span><span class="n">get</span> <span class="s1">'http://the-internet.herokuapp.com/tinymce'</span>
   <span class="vi">@driver</span><span class="o">.</span><span class="n">switch_to</span><span class="o">.</span><span class="n">frame</span><span class="p">(</span><span class="s1">'mce_0_ifr'</span><span class="p">)</span>
     <span class="n">editor</span> <span class="o">=</span> <span class="vi">@driver</span><span class="o">.</span><span class="n">find_element</span><span class="p">(</span><span class="nb">id</span><span class="p">:</span> <span class="s1">'tinymce'</span><span class="p">)</span>
@@ -3263,7 +3259,7 @@ With .selected?
     <span class="n">after_text</span> <span class="o">=</span> <span class="n">editor</span><span class="o">.</span><span class="n">text</span>
 
   <span class="n">after_text</span><span class="o">.</span><span class="n">should_not</span> <span class="o">==</span> <span class="n">before_text</span>
-<span class="p">}</span>
+<span class="k">end</span>
 </pre></div>
 <p>Once the page renders we switch into the TinyMCE frame. While the frame element does not have a <code>name</code> attribute it does have an <code>id</code>. This works just the same in the <code>switch_to.frame</code> call, so we use it.</p>
 
@@ -3387,14 +3383,14 @@ With .selected?
 <span class="k">end</span>
 </pre></div>
 <p>Nothing fancy here. Just loading the libraries necessary to run Selenium Webdriver and perform our assertions. That and wiring up some simple setup, teardown, and run actions to keep things clean.</p>
-<div class="highlight"><pre><span class="n">run</span> <span class="p">{</span>
+<div class="highlight"><pre><span class="n">run</span> <span class="k">do</span>
   <span class="vi">@driver</span><span class="o">.</span><span class="n">get</span> <span class="s1">'http://the-internet.herokuapp.com/windows'</span>
   <span class="vi">@driver</span><span class="o">.</span><span class="n">find_element</span><span class="p">(</span><span class="ss">css</span><span class="p">:</span> <span class="s1">'.example a'</span><span class="p">)</span><span class="o">.</span><span class="n">click</span>
   <span class="vi">@driver</span><span class="o">.</span><span class="n">switch_to</span><span class="o">.</span><span class="n">window</span><span class="p">(</span><span class="vi">@driver</span><span class="o">.</span><span class="n">window_handles</span><span class="o">.</span><span class="n">first</span><span class="p">)</span>
   <span class="vi">@driver</span><span class="o">.</span><span class="n">title</span><span class="o">.</span><span class="n">should_not</span> <span class="o">=~</span> <span class="sr">/New Window/</span>
   <span class="vi">@driver</span><span class="o">.</span><span class="n">switch_to</span><span class="o">.</span><span class="n">window</span><span class="p">(</span><span class="vi">@driver</span><span class="o">.</span><span class="n">window_handles</span><span class="o">.</span><span class="n">last</span><span class="p">)</span>
   <span class="vi">@driver</span><span class="o">.</span><span class="n">title</span><span class="o">.</span><span class="n">should</span> <span class="o">=~</span> <span class="sr">/New Window/</span>
-<span class="p">}</span>
+<span class="k">end</span>
 </pre></div>
 <p>After loading the page and clicking the link (which spawns a new window) we grab the window handles (a.k.a. non-sensical identifier strings which represent each open browser window) and traverse between them based on the order of the list -- making assertions based on each page's title.</p>
 
@@ -3404,7 +3400,7 @@ With .selected?
 
 <p>Here's a more effective approach.</p>
 <h2>A Better Example</h2>
-<div class="highlight"><pre><span class="n">run</span> <span class="p">{</span>
+<div class="highlight"><pre><span class="n">run</span> <span class="k">do</span>
   <span class="vi">@driver</span><span class="o">.</span><span class="n">get</span> <span class="s1">'http://the-internet.herokuapp.com/windows'</span>
   <span class="n">main_window</span> <span class="o">=</span> <span class="vi">@driver</span><span class="o">.</span><span class="n">window_handle</span>
   <span class="vi">@driver</span><span class="o">.</span><span class="n">find_element</span><span class="p">(</span><span class="ss">css</span><span class="p">:</span> <span class="s1">'.example a'</span><span class="p">)</span><span class="o">.</span><span class="n">click</span>
@@ -3418,7 +3414,7 @@ With .selected?
   <span class="vi">@driver</span><span class="o">.</span><span class="n">title</span><span class="o">.</span><span class="n">should_not</span> <span class="o">=~</span> <span class="sr">/New Window/</span>
   <span class="vi">@driver</span><span class="o">.</span><span class="n">switch_to</span><span class="o">.</span><span class="n">window</span><span class="p">(</span><span class="vi">@new_window</span><span class="p">)</span>
   <span class="vi">@driver</span><span class="o">.</span><span class="n">title</span><span class="o">.</span><span class="n">should</span> <span class="o">=~</span> <span class="sr">/New Window/</span>
-<span class="p">}</span>
+<span class="k">end</span>
 </pre></div>
 <p>After we load the page, but before we click the new window link, we get the window handle for the main window. Then we click the link and get the window handles for both open windows.</p>
 
@@ -3680,6 +3676,7 @@ With .selected?
   <span class="n">dues</span><span class="o">.</span><span class="n">each</span> <span class="p">{</span> <span class="o">|</span><span class="n">due</span><span class="o">|</span> <span class="n">due_values</span> <span class="o">&lt;&lt;</span> <span class="n">due</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">gsub</span><span class="p">(</span><span class="sr">/\$/</span><span class="p">,</span><span class="s1">''</span><span class="p">)</span><span class="o">.</span><span class="n">to_f</span> <span class="p">}</span>
 
   <span class="p">(</span><span class="n">due_values</span> <span class="o">==</span> <span class="n">due_values</span><span class="o">.</span><span class="n">sort</span><span class="p">)</span><span class="o">.</span><span class="n">should</span> <span class="o">==</span> <span class="kp">true</span>
+  <span class="o">.</span><span class="n">.</span><span class="o">.</span>
 </pre></div>
 <p>After navigating to the page we find and click the column heading that we want with a CSS Pseudo-class (e.g., <code>#table1 thead tr th:nth-of-type(4)</code>) which is effectively saying 'give me the 4th <code>th</code> element in the table heading' which is the placement of <code>Due</code>.</p>
 
@@ -3688,16 +3685,21 @@ With .selected?
 <p>Once we have them we create an array and iterate over the collection of <code>td</code> elements we found, stripping off the dollar sign, converting them into a decimal number, and shoveling them into the array. With this array of numbers we can then compare it against a sorted version of itself to make sure that they match. If they do then the table data on the page was sorted in ascending order.</p>
 
 <p>If we click the <code>Due</code> heading again it should sort in descending order. The code for that is identical except for the assertion which is checking the same thing but seeing if it's false.</p>
-<div class="highlight"><pre>  <span class="vi">@driver</span><span class="o">.</span><span class="n">find_element</span><span class="p">(</span><span class="ss">css</span><span class="p">:</span> <span class="s1">'#table1 thead tr th:nth-of-type(4)'</span><span class="p">)</span><span class="o">.</span><span class="n">click</span>
+<div class="highlight"><pre><span class="c1"># continued from above</span>
+
+  <span class="vi">@driver</span><span class="o">.</span><span class="n">find_element</span><span class="p">(</span><span class="ss">css</span><span class="p">:</span> <span class="s1">'#table1 thead tr th:nth-of-type(4)'</span><span class="p">)</span><span class="o">.</span><span class="n">click</span>
 
   <span class="n">dues</span> <span class="o">=</span> <span class="vi">@driver</span><span class="o">.</span><span class="n">find_elements</span><span class="p">(</span><span class="ss">css</span><span class="p">:</span> <span class="s1">'#table1 tbody tr td:nth-of-type(4)'</span><span class="p">)</span>
   <span class="n">due_values</span> <span class="o">=</span> <span class="o">[]</span>
   <span class="n">dues</span><span class="o">.</span><span class="n">each</span> <span class="p">{</span> <span class="o">|</span><span class="n">due</span><span class="o">|</span> <span class="n">due_values</span> <span class="o">&lt;&lt;</span> <span class="n">due</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">gsub</span><span class="p">(</span><span class="sr">/\$/</span><span class="p">,</span><span class="s1">''</span><span class="p">)</span><span class="o">.</span><span class="n">to_i</span> <span class="p">}</span>
 
   <span class="p">(</span><span class="n">due_values</span> <span class="o">==</span> <span class="n">due_values</span><span class="o">.</span><span class="n">sort</span><span class="p">)</span><span class="o">.</span><span class="n">should</span> <span class="o">==</span> <span class="kp">false</span>
+  <span class="o">.</span><span class="n">.</span><span class="o">.</span>
 </pre></div>
 <p>We can then expand our sort check to a different column and see that it gets sorted correctly. So let's focus on the <code>Email</code> column.</p>
-<div class="highlight"><pre>  <span class="vi">@driver</span><span class="o">.</span><span class="n">find_element</span><span class="p">(</span><span class="ss">css</span><span class="p">:</span> <span class="s1">'#table1 thead tr th:nth-of-type(3)'</span><span class="p">)</span><span class="o">.</span><span class="n">click</span>
+<div class="highlight"><pre><span class="c1"># continued from above</span>
+
+  <span class="vi">@driver</span><span class="o">.</span><span class="n">find_element</span><span class="p">(</span><span class="ss">css</span><span class="p">:</span> <span class="s1">'#table1 thead tr th:nth-of-type(3)'</span><span class="p">)</span><span class="o">.</span><span class="n">click</span>
 
   <span class="n">emails</span> <span class="o">=</span> <span class="vi">@driver</span><span class="o">.</span><span class="n">find_elements</span><span class="p">(</span><span class="ss">css</span><span class="p">:</span> <span class="s1">'#table1 tbody tr td:nth-of-type(3)'</span><span class="p">)</span>
   <span class="n">email_values</span> <span class="o">=</span> <span class="o">[]</span>
