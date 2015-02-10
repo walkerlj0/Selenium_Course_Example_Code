@@ -1,1 +1,1 @@
-# book-java
+# The Selenium Guidebook Java Edition
