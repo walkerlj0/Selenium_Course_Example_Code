@@ -1,0 +1,32 @@
+package tests;
+
+import org.junit.Test;
+import org.junit.Before;
+import org.junit.After;
+import static org.junit.Assert.*;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import pageobjects.DynamicLoading;
+
+public class TestDynamicLoading {
+
+    private WebDriver driver;
+
+    @Before
+    public void setUp() {
+        driver = new FirefoxDriver();
+    }
+
+    @Test
+    public void hiddenElementLoads() {
+        DynamicLoading dynamicLoading = new DynamicLoading(driver);
+        dynamicLoading.loadExample("1");
+        assertTrue("finish text didn't display after loading",
+                dynamicLoading.finishTextPresent());
+    }
+
+    @After
+    public void tearDown() {
+        driver.quit();
+    }
+}
