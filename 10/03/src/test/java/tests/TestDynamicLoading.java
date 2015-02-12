@@ -11,11 +11,12 @@ import pageobjects.DynamicLoading;
 public class TestDynamicLoading {
 
     private WebDriver driver;
+    private DynamicLoading dynamicLoading;
 
     @Before
     public void setUp() {
         driver = new FirefoxDriver();
-        DynamicLoading dynamicLoading = new DynamicLoading(driver);
+        dynamicLoading = new DynamicLoading(driver);
     }
 
     @Test

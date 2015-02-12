@@ -11,11 +11,12 @@ import pageobjects.Login;
 public class TestLogin {
 
     private WebDriver driver;
+    private Login login;
 
     @Before
     public void setUp() {
         driver = new FirefoxDriver();
-        Login login = new Login(driver);
+        login = new Login(driver);
     }
 
     @Test
