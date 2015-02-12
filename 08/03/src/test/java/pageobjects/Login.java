@@ -27,12 +27,10 @@ public class Login {
     }
 
     public Boolean successMessagePresent() {
-        driver.findElement(successMessageLocator).isDisplayed();
-        return true;
+        return driver.findElement(successMessageLocator).isDisplayed();
     }
 
     public Boolean failureMessagePresent() {
-        driver.findElement(failureMessageLocator).isDisplayed();
-        return true;
+        return driver.findElement(failureMessageLocator).isDisplayed();
     }
 }

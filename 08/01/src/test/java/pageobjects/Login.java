@@ -24,8 +24,7 @@ public class Login {
     }
 
     public Boolean successMessagePresent() {
-        driver.findElement(successMessageLocator).isDisplayed();
-        return true;
+        return driver.findElement(successMessageLocator).isDisplayed();
     }
 
 }
