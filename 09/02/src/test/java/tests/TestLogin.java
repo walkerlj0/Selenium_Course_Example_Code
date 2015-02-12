@@ -31,8 +31,8 @@ public class TestLogin {
         login.with("tomsmith", "bad password");
         assertTrue("failure message wasn't present after providing bogus credentials",
                 login.failureMessagePresent());
-        //assertFalse("failure message wasn't present after providing bogus credentials",
-        //        login.successMessagePresent());
+        assertFalse("failure message wasn't present after providing bogus credentials",
+                login.successMessagePresent());
     }
 
     @After

@@ -33,7 +33,11 @@ public class Base {
     }
 
     public Boolean isDisplayed(By locator) {
-        return find(locator).isDisplayed();
+        try {
+            return find(locator).isDisplayed();
+        } catch (org.openqa.selenium.NoSuchElementException exception) {
+            return false;
+        }
     }
 
 }
