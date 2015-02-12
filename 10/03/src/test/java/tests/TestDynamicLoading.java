@@ -25,6 +25,14 @@ public class TestDynamicLoading {
                 dynamicLoading.finishTextPresent());
     }
 
+    @Test
+    public void elementAppears() {
+        DynamicLoading dynamicLoading = new DynamicLoading(driver);
+        dynamicLoading.loadExample("2");
+        assertTrue("finish text didn't render after loading",
+                dynamicLoading.finishTextPresent());
+    }
+
     @After
     public void tearDown() {
         driver.quit();
