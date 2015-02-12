@@ -15,11 +15,11 @@ public class TestLogin {
     @Before
     public void setUp() {
         driver = new FirefoxDriver();
+        Login login = new Login(driver);
     }
 
     @Test
     public void succeeded() {
-        Login login = new Login(driver);
         login.with("tomsmith", "SuperSecretPassword!");
         assertTrue("success message not present",
                 login.successMessagePresent());

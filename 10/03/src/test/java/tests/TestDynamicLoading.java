@@ -15,11 +15,11 @@ public class TestDynamicLoading {
     @Before
     public void setUp() {
         driver = new FirefoxDriver();
+        DynamicLoading dynamicLoading = new DynamicLoading(driver);
     }
 
     @Test
     public void hiddenElementLoads() {
-        DynamicLoading dynamicLoading = new DynamicLoading(driver);
         dynamicLoading.loadExample("1");
         assertTrue("finish text didn't display after loading",
                 dynamicLoading.finishTextPresent());
@@ -27,7 +27,6 @@ public class TestDynamicLoading {
 
     @Test
     public void elementAppears() {
-        DynamicLoading dynamicLoading = new DynamicLoading(driver);
         dynamicLoading.loadExample("2");
         assertTrue("finish text didn't render after loading",
                 dynamicLoading.finishTextPresent());
