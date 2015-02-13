@@ -14,7 +14,7 @@ public class Login extends Base {
 
     public Login(WebDriver driver) {
         super(driver);
-        visit("http://the-internet.herokuapp.com/login");
+        visit("/login");
         assertTrue("The login form is not present",
                 isDisplayed(loginFormLocator));
     }
