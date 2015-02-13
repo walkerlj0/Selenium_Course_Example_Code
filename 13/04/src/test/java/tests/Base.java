@@ -1,6 +1,5 @@
 package tests;
 
-import com.saucelabs.saucerest.SauceREST;
 import org.junit.Rule;
 import org.junit.rules.ExternalResource;
 import org.junit.rules.TestRule;
@@ -12,6 +11,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import java.net.URL;
+import com.saucelabs.saucerest.SauceREST;
 
 public class Base implements Config {
 
