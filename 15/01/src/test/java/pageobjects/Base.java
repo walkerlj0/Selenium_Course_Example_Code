@@ -40,12 +40,18 @@ public class Base implements Config {
         find(locator).submit();
     }
 
-    public Boolean isDisplayed(By locator, Integer... timeout) {
+    public Boolean isDisplayed(By locator) {
         try {
-            waitFor(ExpectedConditions.visibilityOfElementLocated(locator),
-                (timeout.length > 0 ? timeout[0] : null));
+            return find(locator).isDisplayed();
         } catch (org.openqa.selenium.NoSuchElementException exception) {
             return false;
+        }
+    }
+
+    public Boolean waitForIsDisplayed(By locator, Integer... timeout) {
+        try {
+            waitFor(ExpectedConditions.visibilityOfElementLocated(locator),
+                    (timeout.length > 0 ? timeout[0] : null));
         } catch (org.openqa.selenium.TimeoutException exception) {
             return false;
         }
@@ -57,4 +63,5 @@ public class Base implements Config {
         WebDriverWait wait = new WebDriverWait(driver, timeout);
         wait.until(condition);
     }
+
 }

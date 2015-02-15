@@ -44,11 +44,14 @@ public class Base {
     }
 
     public Boolean waitForIsDisplayed(By locator, Integer... timeout) {
-        waitFor(ExpectedConditions.visibilityOfElementLocated(locator),
-                (timeout.length > 0 ? timeout[0] : null));
+        try {
+            waitFor(ExpectedConditions.visibilityOfElementLocated(locator),
+                    (timeout.length > 0 ? timeout[0] : null));
+        } catch (org.openqa.selenium.TimeoutException exception) {
+            return false;
+        }
         return true;
     }
-
 
     private void waitFor(ExpectedCondition<WebElement> condition, Integer timeout) {
         timeout = timeout != null ? timeout : 5;
