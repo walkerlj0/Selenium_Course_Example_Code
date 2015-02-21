@@ -7,7 +7,7 @@ import pageobjects.DynamicLoading;
 import org.junit.experimental.categories.Category;
 import tests.groups.Deep;
 
-//@Category(Deep.class)
+@Category(Deep.class)
 public class TestDynamicLoading extends Base {
 
     private DynamicLoading dynamicLoading;
@@ -18,7 +18,6 @@ public class TestDynamicLoading extends Base {
     }
 
     @Test
-    @Category(Deep.class)
     public void hiddenElementLoads() {
         dynamicLoading.loadExample("1");
         assertTrue("finish text didn't display after loading",
@@ -26,7 +25,6 @@ public class TestDynamicLoading extends Base {
     }
 
     @Test
-    @Category(Deep.class)
     public void elementAppears() {
         dynamicLoading.loadExample("2");
         assertTrue("finish text didn't render after loading",
