@@ -35,7 +35,7 @@ public class TestLogin extends Base {
     }
 
     @Test
-    @Category(ShallowTests.class)
+    @Category(Shallow.class)
     public void forcedFailure() {
         pageobjects.Login login = new pageobjects.Login(driver);
         login.with("tomsmithasdf", "SuperSecretPassword!");
