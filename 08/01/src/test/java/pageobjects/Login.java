@@ -10,7 +10,6 @@ public class Login {
     By passwordLocator  = By.id("password");
     By loginFormLocator = By.id("login");
     By successMessageLocator = By.cssSelector(".flash.success");
-    By failureMessageLocator = By.cssSelector(".flash.error");
 
     public Login(WebDriver driver) {
         this.driver = driver;
