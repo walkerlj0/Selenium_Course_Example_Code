@@ -8,6 +8,7 @@ require 'zip'
 @template = <<HERE
 <html>
   <head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
     <title>The Selenium Guidebook: How To Use Selenium, successfully</title>
     <style type="text/css">
       @font-face {
@@ -71,7 +72,7 @@ class HighlightedCopyWithChapterNumbering < Redcarpet::Render::HTML
   end
 
   def block_code(code, language)
-    Pygments.highlight(code, :lexer => language)
+    Pygments.highlight(code, lexer: language, encoding: 'utf-8')
   end
 
   def postprocess(document)
@@ -116,9 +117,9 @@ HERE
 
 end
 
-@renderer_toc         = Redcarpet::Markdown.new(TOCwithChapterNumbering, :fenced_code_blocks => true)
-@renderer_content     = Redcarpet::Markdown.new(HighlightedCopyWithChapterNumbering, :fenced_code_blocks => true)
-@renderer_no_frills   = Redcarpet::Markdown.new(CopyWithNoFrills, :fenced_code_blocks => true)
+@renderer_toc         = Redcarpet::Markdown.new(TOCwithChapterNumbering, fenced_code_blocks: true)
+@renderer_content     = Redcarpet::Markdown.new(HighlightedCopyWithChapterNumbering, fenced_code_blocks: true)
+@renderer_no_frills   = Redcarpet::Markdown.new(CopyWithNoFrills, fenced_code_blocks: true)
 
 def vacuum
   tmp = ""
