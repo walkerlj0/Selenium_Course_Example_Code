@@ -3,7 +3,7 @@ require 'redcarpet/render_strip'
 require 'erb'
 require 'pygments'
 require 'docverter'
-require 'zip/zipfilesystem'
+require 'zip'
 
 @template = <<HERE
 <html>
@@ -64,22 +64,7 @@ class HighlightedCopyWithChapterNumbering < Redcarpet::Render::HTML
     if header_level == 1
       @counter ||= 0
       @counter += 1
-      @subcounter ||= 0
-      @postcounter ||= 0
-      if @counter == appendix_chapter
-        "<h1 id=\"chapter#{@counter}\"><small>Chapter #{@counter}</small><br>#{text}</h1>\n"
-      end
-      if @counter > appendix_chapter
-        if @subcounter <= (number_of_appendix_chapters - 1)
-          @subcounter += 1
-          "<h1 id=\"chapter#{appendix_chapter}_#{@subcounter}\"><small>Chapter #{appendix_chapter}.#{@subcounter}</small><br>#{text}</h1>\n"
-        else
-          @postcounter += 1
-          "<h1 id=\"chapter#{appendix_chapter + @postcounter}\"><small>Chapter #{appendix_chapter + @postcounter}</small><br>#{text}</h1>\n"
-        end
-      else
-        "<h1 id=\"chapter#{@counter}\"><small>Chapter #{@counter}</small><br>#{text}</h1>\n"
-      end
+      "<h1 id=\"chapter#{@counter}\"><small>Chapter #{@counter}</small><br>#{text}</h1>\n"
     else
       "<h#{header_level}>#{text}</h#{header_level}>\n"
     end
@@ -108,7 +93,6 @@ class CopyWithNoFrills < Redcarpet::Render::HTML
 end
 
 class TOCwithChapterNumbering < Redcarpet::Render::StripDown
-
   attr_reader :chapters
 
   def header(text, header_level)
@@ -120,27 +104,8 @@ class TOCwithChapterNumbering < Redcarpet::Render::StripDown
 
   def postprocess(document)
     items = []
-    @subcounter = 0
-    @postcounter = 0
     @chapters.each_with_index do |text, chapter_number|
-      if chapter_number == appendix_chapter
-        items << "<ul><ol>"
-        @subcounter += 1
-      end
-      if @subcounter == number_of_appendix_chapters
-        items << "</ol></ul>"
-      end
-      if chapter_number > appendix_chapter
-        @subcounter += 1
-        if @subcounter <= number_of_appendix_chapters
-          items << "<li><a href=\"#chapter#{appendix_chapter}_#{@subcounter}\">#{text}</a></li>"
-        else
-          @postcounter += 1
-          items << "<li><a href=\"#chapter#{appendix_chapter + @postcounter}\">#{text}</a></li>"
-        end
-      else
-        items << "<li><a href=\"#chapter#{chapter_number+1}\">#{text}</a></li>"
-      end
+      items << "<li><a href=\"#chapter#{chapter_number+1}\">#{text}</a></li>"
     end
     return <<HERE
 <ol>
@@ -179,51 +144,23 @@ def toc
 end
 
 def raw_content
-  tmp = ""
-  appendix_chapter.times do |chapter_number|
-    tmp << File.read("content/chapters/#{chapter_number + 1}.md")
-    tmp << "\n\n"
+  content = ""
+  number_of_chapters.times do |count|
+    chapter_number = count + 1
+    content << File.read("content/chapters/#{chapter_number}.md")
   end
-  Dir.glob('content/chapters/appendix/*.md').each do |appendix|
-    tmp << File.read(appendix)
-    tmp << "\n\n"
-  end
-  (number_of_chapters - appendix_chapter).times do |chapter_number|
-    tmp << File.read("content/chapters/#{appendix_chapter + chapter_number + 1}.md")
-  end
-  tmp
-end
-
-def content
-  @renderer_content.render(raw_content)
-end
-
-def raw_sample_content
-  tmp = ""
-  tmp << File.read('content/chapters/5.md')
-  tmp << "\n\n"
-  tmp << File.read('content/chapters/6.md')
-  tmp << "\n\n"
-  tmp
-end
-
-def sample_content
-  @renderer_no_frills.render(raw_sample_content)
+  content
 end
 
 def number_of_chapters
   Dir.glob('content/chapters/*.md').count
 end
 
-def number_of_appendix_chapters
-  Dir.glob('content/chapters/appendix/*.md').count
+def content
+  @renderer_content.render(raw_content)
 end
 
-def appendix_chapter
-  17
-end
-
-namespace :generate do
+namespace :gen do
   desc 'Generate HTML'
   task :html do
     @content =  cover + preface + acknowledgements + toc + content
@@ -306,8 +243,6 @@ namespace :generate do
     end
   end
 
-#  desc 'Generate everything'
-#  task :all => ['generate:html', 'generate:pdf', 'generate:preview', 'generate:mobi', 'generate:epub']
 end
 
 def make_zip_file(name, files)
@@ -395,9 +330,4 @@ namespace :package do
     end
   end
 
-#  desc 'Package everything'
-#  task :all => ['package:book', 'package:book_with_code', 'package:team']
 end
-
-#desc "z'Big Red Button"
-#task :z_big_red_button => ['generate:all', 'package:all']
