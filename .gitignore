@@ -12,3 +12,6 @@ target/
 
 # Selenium
 *.log
+
+# Other
+*.zip
