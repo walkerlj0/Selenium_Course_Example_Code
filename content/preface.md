@@ -28,7 +28,9 @@ The test examples are written to run against [JUnit](http://junit.org/), with [M
 
 Chapters 1 through 5 are focused on priming you with knowledge and questions to consider when it comes to test strategy, language selection, and test design. Chapter 6 is where we first start to code. From there, the examples build upon each other through chapter 16.
 
-All of the code examples from the book are available in the accompanying zip. Each chapter corresponds to a numbered folder. Chapters with multiple parts will have multiple sub-folders (e.g., code examples referenced in Part 2 of Chapter 9 can be found in `09/02/`).
+Chapter 17 paints a picture of the Selenium landscape so you're better able to find information on your own.
+
+All of the code examples from the book are available in the accompanying zip file. Each chapter corresponds to a numbered folder. Chapters with multiple parts will have multiple sub-folders (e.g., code examples referenced in Part 2 of Chapter 9 can be found in `09/02/`).
 
 ## Feedback
 
