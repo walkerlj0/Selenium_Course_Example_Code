@@ -36,4 +36,4 @@ All of the code examples from the book are available in the accompanying zip fil
 
 If you find an error in the book (e.g., grammar issue, code issue, etc.) or have questions/feedback -- please feel free to e-mail me at <dhaeffner@gmail.com>.
 
-If you submit something and I end up using it in future versions of the book, I'll give you a shout-out in the acknowledgements.
+If you submit something and I end up using it in future versions of the book, I'll give you a shout-out in the Acknowledgements.
