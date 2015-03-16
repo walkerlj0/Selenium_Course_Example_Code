@@ -37,7 +37,6 @@ public class TestLogin extends Base {
     @Test
     @Category(Shallow.class)
     public void forcedFailure() {
-        pageobjects.Login login = new pageobjects.Login(driver);
         login.with("tomsmithasdf", "SuperSecretPassword!");
 
         assertTrue("success message wasn't present after logging in",
