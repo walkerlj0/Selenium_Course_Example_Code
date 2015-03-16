@@ -7,5 +7,5 @@ Also a huge thanks to Ravi Gupta, Jonathan Taylor, Matthew Edwards, Josh Grant, 
 And lastly I'd like to thank you, the reader. If it weren't for you, I wouldn't have started writing about Selenium years ago -- let alone consider porting my book into other programming languages. Thanks for reading! I hope you find it useful in your daily work.
 
 
-Cheers,
+Cheers,  
 Dave H
