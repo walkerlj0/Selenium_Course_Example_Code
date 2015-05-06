@@ -120,6 +120,7 @@ end
 @renderer_toc         = Redcarpet::Markdown.new(TOCwithChapterNumbering, fenced_code_blocks: true)
 @renderer_content     = Redcarpet::Markdown.new(HighlightedCopyWithChapterNumbering, fenced_code_blocks: true)
 @renderer_no_frills   = Redcarpet::Markdown.new(CopyWithNoFrills, fenced_code_blocks: true)
+@location             = 'content/chapters'
 
 def vacuum
   tmp = ""
@@ -129,15 +130,15 @@ def vacuum
 end
 
 def cover
-  @renderer_no_frills.render( vacuum { File.read('content/cover.md') })
+  @renderer_no_frills.render( vacuum { File.read("#{@location}/cover.md") })
 end
 
 def acknowledgements
-  @renderer_no_frills.render( vacuum { File.read('content/acknowledgements.md') })
+  @renderer_no_frills.render( vacuum { File.read("#{@location}/acknowledgements.md") })
 end
 
 def preface
-  @renderer_no_frills.render( vacuum { File.read('content/preface.md') })
+  @renderer_no_frills.render( vacuum { File.read("#{@location}/preface.md") })
 end
 
 def toc
@@ -146,15 +147,14 @@ end
 
 def raw_content
   content = ""
-  number_of_chapters.times do |count|
-    chapter_number = count + 1
-    content << File.read("content/chapters/#{chapter_number}.md")
+  number_of_chapters.times do |chapter|
+    content << File.read("#{@location}/#{chapter + 1}.md")
   end
   content
 end
 
 def number_of_chapters
-  Dir.glob('content/chapters/*.md').count
+  Dir.glob("#{@location}/[0-9].md").count + Dir.glob("#{@location}/[0-9][0-9].md").count
 end
 
 def content
@@ -162,6 +162,23 @@ def content
 end
 
 namespace :gen do
+  desc 'Generate Bootcamp PDF'
+  task :bootcamp do
+    @location = "email-course"
+    @content = preface + toc + content
+    html = ERB.new(@template).result(binding)
+    File.open('output/The Selenium Bootcamp Java.pdf', 'w+') do |f|
+      f.write(Docverter::Conversion.run do |c|
+        c.from    = 'html'
+        c.to      = 'pdf'
+        c.content = html
+        Dir.glob('assets/*') do |asset|
+          c.add_other_file asset
+        end
+      end)
+    end
+  end
+
   desc 'Generate HTML'
   task :html do
     @content =  cover + preface + acknowledgements + toc + content
