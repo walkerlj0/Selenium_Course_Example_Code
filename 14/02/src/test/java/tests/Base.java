@@ -60,6 +60,7 @@ public class Base implements Config {
     @Rule
     public TestRule watcher = new TestWatcher() {
 
+        @Override
         protected void starting(Description description) {
             testName = description.getDisplayName();
         }
