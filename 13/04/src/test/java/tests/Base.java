@@ -10,12 +10,12 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
-
 import java.lang.Override;
 import java.net.URL;
 import com.saucelabs.saucerest.SauceREST;
+import static tests.Config.*;
 
-public class Base implements Config {
+public class Base {
 
     protected WebDriver driver;
     private String testName;

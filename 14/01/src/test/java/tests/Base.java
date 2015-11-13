@@ -12,8 +12,9 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import java.net.URL;
 import com.saucelabs.saucerest.SauceREST;
+import static tests.Config.*;
 
-public class Base implements Config {
+public class Base {
 
     protected WebDriver driver;
     private String testName;

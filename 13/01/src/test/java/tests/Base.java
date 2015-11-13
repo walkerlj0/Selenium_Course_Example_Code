@@ -8,8 +8,9 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import java.net.URL;
+import static tests.Config.*;
 
-public class Base implements Config {
+public class Base {
 
     protected WebDriver driver;
 

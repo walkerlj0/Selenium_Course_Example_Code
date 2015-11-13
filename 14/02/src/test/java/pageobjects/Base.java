@@ -6,9 +6,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import tests.Config;
+import static tests.Config.*;
 
-public class Base implements Config {
+public class Base {
 
     private WebDriver driver;
 

@@ -14,9 +14,10 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 import java.net.URL;
 import com.saucelabs.saucerest.SauceREST;
 import net.sf.randomjunit.RandomTestRunner;
+import static tests.Config.*;
 
 @RunWith(RandomTestRunner.class)
-public class Base implements Config {
+public class Base {
 
     protected WebDriver driver;
     private String testName;
