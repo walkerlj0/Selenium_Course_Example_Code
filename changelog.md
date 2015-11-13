@@ -8,6 +8,7 @@
 - 11/02 thru 16/03. Ported Config.java from an interface to a static class (Benjamin Limb)
 - 14/01 thru 16/03. Updated random order execution to use Maven Surefire's built-in functionality (removing random-jUnit)
 - 13/04 thru 16/03. Updated Sauce Connect from 4.3.6 to 4.3.11
+- 13/01 thru 16/03. Updated ChromeDriver from 2.14 to 2.20
 
 # 1.0.0
 ## March 2015
