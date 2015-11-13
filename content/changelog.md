@@ -6,6 +6,7 @@
 - Chapter 13, Part 2. Added missing @Override to starting method in tests/Base.java (Mark Winspear).
 - Chapters 11, 12, and 13. Ported Config.java from an interface to a static class (Benjamin Limb).
 - Chapter 14, Part 2 and Chapter 15. Updated random order execution to use Maven Surefire Plugin's built-in functionality (removing random-jUnit)
+- Updated links from Google Code to GitHub
 
 # 1.0.0
 ## March 2015
