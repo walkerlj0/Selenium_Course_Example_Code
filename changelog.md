@@ -4,6 +4,7 @@
 - Updated Selenium from 2.45.0 to 2.48.2
 - Updated JUnit from 4.11 to 4.12
 - 11/02 thru 16/03. Ported Config.java from an interface to a static class (Benjamin Limb)
+- 14/01 thru 16/03. Updated random order execution to use Maven Surefire's built-in functionality (removing random-jUnit)
 
 # 1.0.0
 ## March 2015

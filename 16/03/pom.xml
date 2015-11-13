@@ -30,12 +30,6 @@
             <scope>test</scope>
         </dependency>
 
-        <dependency>
-            <groupId>net.sf.randomjunit</groupId>
-            <artifactId>random-jUnit</artifactId>
-            <version>1.0.2</version>
-        </dependency>
-
     </dependencies>
 
     <repositories>
@@ -65,8 +59,8 @@
                     <configuration>
                         <parallel>classesAndMethods</parallel>
                         <threadCount>5</threadCount>
-                        <groups>${groups}</groups>
                         <runOrder>random</runOrder>
+                        <groups>${groups}</groups>
                     </configuration>
                 </plugin>
             </plugins>
