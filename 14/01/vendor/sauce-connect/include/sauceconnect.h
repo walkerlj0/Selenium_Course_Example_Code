@@ -34,6 +34,7 @@ void sc_free(struct sc_ctx *ctx);
 #define SC_PARAM_PROXY 0x0b         /* char * */
 #define SC_PARAM_PROXY_USERPWD 0x0c /* char * */
 #define SC_PARAM_RECONNECT 0x0d     /* int */
+#define SC_PARAM_DNS_SERVERS 0x0e   /* char * */
 int sc_get(struct sc_ctx *ctx, int param, void *value, size_t vlen);
 int sc_set(struct sc_ctx *ctx, int param, void *value);
 
