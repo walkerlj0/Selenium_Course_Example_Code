@@ -1,16 +1,4 @@
----
-title: "How To Work With HTML Data Tables"
-slug: "25-tables"
-number: 25
-publish_date: 2015-11-11
-tags:
-  - "tables"
-  - "sorting"
-  - "css selectors"
-  - "css pseudo-classes"
-level: 2
-category: "testing"
----
+# How To Work With HTML Data Tables
 
 ## The Problem
 

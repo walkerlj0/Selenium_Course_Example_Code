@@ -1,13 +1,4 @@
----
-title: "How To Work with Frames"
-slug: "3-work-with-frames"
-number: 3
-publish_date: 2015-11-09
-tags:
-  - "frames"
-level: 1
-category: "testing"
----
+# How To Work with Frames
 
 ## The Problem
 
@@ -143,7 +134,5 @@ When you save this file and run it (e.g., `mvn clean test` from the command-line
 ## Outro
 
 Now you're ready to handily defeat frames when they cross your path.
-
-A big thanks to [Roman Isko](https://github.com/RomanIsko) for contributing code for the example!
 
 Happy Testing!

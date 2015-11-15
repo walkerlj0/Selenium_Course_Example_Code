@@ -1,15 +1,4 @@
----
-title: "How To Use Selenium Grid"
-slug: "52-grid"
-number: 52
-publish_date: 2015-11-11
-tags:
-  - "grid"
-  - "selenium grid"
-  - "cross browser"
-level: 2
-category: "infrastructure"
----
+# How To Use Selenium Grid
 
 ## The Problem
 
@@ -53,7 +42,7 @@ __NOTE: This example only demonstrates a single node on the same machine as the 
 
 Now that the grid is running we can view the available browsers by visiting our Grid's console at `http://localhost:4444/grid/console`.
 
-<img src='/img/grid-console.png'/>
+<img src='http://elementalselenium.com/img/grid-console.png'/>
 
 To refine the list of available browsers, we can specify an additional `-browser` parameter when registering the node. For instance, if we wanted to only offer Safari on a node, we could specify it with `-browser browserName=safari`, which would look like this:
 

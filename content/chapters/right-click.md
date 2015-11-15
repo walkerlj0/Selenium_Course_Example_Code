@@ -1,17 +1,4 @@
----
-title: "How To Right-click"
-slug: "63-right-click"
-number: 63
-publish_date: 2015-11-11
-tags:
-  - "right-click"
-  - "right click"
-  - "context menu"
-  - "action builder"
-  - "context click"
-level: 2
-category: "testing"
----
+# How To Right-click
 
 ## The Problem
 

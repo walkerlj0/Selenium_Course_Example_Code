@@ -1,15 +1,4 @@
----
-title: "How To Work With Hovers"
-slug: "50-hovers"
-number: 50
-publish_date: 2015-11-11
-tags:
-  - "hover"
-  - "hovers"
-  - "action builder"
-level: 1
-category: "testing"
----
+# How To Work With Hovers
 
 ## The Problem
 

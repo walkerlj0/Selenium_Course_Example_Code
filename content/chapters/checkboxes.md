@@ -1,15 +1,4 @@
----
-title: "How To Test Checkboxes"
-slug: "45-checkboxes"
-number: 45
-publish_date: 2015-11-11
-tags:
-  - "checkboxes"
-  - "attribute"
-  - "selected"
-level: 1
-category: "testing"
----
+# How To Test Checkboxes
 
 ## The Problem
 

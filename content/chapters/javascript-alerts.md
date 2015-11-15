@@ -1,16 +1,4 @@
----
-title: "How To Work With JavaScript Alerts"
-slug: "51-javascript-alerts"
-number: 51
-publish_date: 2015-11-10
-tags:
-  - "javascript"
-  - "javascript alerts"
-  - "javascript popups"
-  - "javascript dialogs"
-level: 1
-category: "testing"
----
+# How To Work With JavaScript Alerts
 
 ## The Problem
 

@@ -1,15 +1,4 @@
----
-title: "How To Download a File"
-slug: "2-download-a-file"
-number: 2
-publish_date: 2015-11-15
-tags:
-  - "files"
-  - "downloading"
-  - "file download"
-level: 2
-category: "testing"
----
+# How To Download a File
 
 ## The Problem
 
@@ -146,6 +135,6 @@ When you save this file and run it (e.g., `mvn clean test` from the command-line
 
 A similar approach can be applied to some other browsers with varying configurations. But downloading files this way is not sustainable or recommended. Mark Collin articulates this point well in his prominent write-up about it [here](http://ardesco.lazerycode.com/index.php/2012/07/how-to-download-files-with-selenium-and-why-you-shouldnt/).
 
-In a future tip I'll cover a more reliable, faster, and scalable browser agnostic approach to downloading files.
+In the next tip I'll cover a more reliable, faster, and scalable browser agnostic approach to downloading files.
 
-Until then, Happy Testing (and another big thanks to [Roman Isko](https://github.com/RomanIsko) for contributing the Java code to help bring this tip to life)!
+Happy Testing!

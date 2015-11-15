@@ -1,14 +1,5 @@
----
-title: "How To Download a File Without a Browser"
-slug: "8-download-a-file-revisited"
-number: 8
-publish_date: 2015-11-10
-tags:
-  - "files"
-  - "downloading"
-level: 2
-category: "testing"
----
+# How To Download a File Without a Browser
+
 ## The Problem
 
 In a [previous tip](/tips/2-download-a-file) we stepped through how to download files with Selenium by configuring the browser to download them locally and performing some checks.
@@ -100,7 +91,5 @@ When you save this and run it (e.g., `mvn clean install` from the command-line) 
 ## Outro
 
 Compared to the browser specific configuration with Selenium this is hands-down a leaner, faster, and more maintainable approach.
-
-A huge thanks to [Roman Isko](https://github.com/RomanIsko) for contributing the code for this tip!
 
 Happy Testing!

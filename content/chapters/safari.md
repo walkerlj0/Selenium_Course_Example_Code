@@ -1,16 +1,4 @@
----
-title: "How To Use Safari"
-slug: "69-safari"
-number: 69
-publish_date: 2015-11-11
-tags:
-  - "safari"
-  - "drivers"
-  - "safaridriver"
-  - "different browsers"
-level: 1
-category: "setup"
----
+# How To Use Safari
 
 ## The Problem
 
@@ -34,7 +22,7 @@ After that, make sure it's enabled. To do that:
 4. Make sure `Enable WebDriver` is checked
 5. Close `Safari`
 
-<img src='/img/safari-extension.png'/>
+<img src='http://elementalselenium.com/img/safari-extension.png'/>
 
 Let's wire up a simple test so we can see that everything works as expected.
 
@@ -72,7 +60,7 @@ public class Safari {
 
 When we run the test, we should see a successful communication between Selenium and Safari, which would look like this:
 
-<img src='/img/safari-success.png'/>
+<img src='http://elementalselenium.com/img/safari-success.png'/>
 
 ## Expected Behavior
 

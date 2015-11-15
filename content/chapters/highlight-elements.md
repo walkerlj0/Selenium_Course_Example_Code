@@ -1,16 +1,4 @@
----
-title: "How To Visually Verify Your Locators"
-slug: "65-highlight-elements"
-number: 65
-publish_date: 2015-11-11
-tags:
-  - "guest post"
-  - "highlight"
-  - "javascript"
-  - "locators"
-level: 2
-category: "testing"
----
+# How To Visually Verify Your Locators
 
 This is a pseudo guest post from Brian Goad. I've adapted a blog post of his with permission. You can see the original [here](http://swdandruby.wordpress.com/2013/07/19/did-i-select-the-right-element/). Brian is a Test Engineer at [Digitalsmiths](http://www.digitalsmiths.com/). You can follow him on Twitter at [@bbbco](https://twitter.com/bbbco) and check out his testing blog [here](http://swdandruby.wordpress.com/).
 

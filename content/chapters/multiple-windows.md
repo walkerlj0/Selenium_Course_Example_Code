@@ -1,15 +1,4 @@
----
-title: "How To Work with Multiple Windows"
-slug: "4-work-with-multiple-windows"
-number: 4
-publish_date: 2015-11-09
-tags:
-  - "windows"
-  - "multiple windows"
-  - "new window"
-level: 2
-category: "testing"
----
+# How To Work with Multiple Windows
 
 ## The Problem
 
@@ -121,6 +110,6 @@ If you save this file and run it (e.g., `mvn clean test` from the command-line) 
 
 ## Outro
 
-Hat tip to [Jim Evans](https://twitter.com/jimevansmusic) for providing the info for this tip, and [Roman Isko](https://github.com/RomanIsko) for the initial code contribution.
+Hat tip to [Jim Evans](https://twitter.com/jimevansmusic) for providing the info for this tip.
 
 Happy Testing!

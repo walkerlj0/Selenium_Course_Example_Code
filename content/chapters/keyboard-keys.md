@@ -1,17 +1,4 @@
----
-title: "How To Press Keyboard Keys"
-slug: "61-keyboard-keys"
-number: 61
-publish_date: 2015-11-09
-tags:
-  - "keyboard"
-  - "keys"
-  - "key presses"
-  - "tab"
-  - "enter"
-level: 1
-category: "testing"
----
+# How To Press Keyboard Keys
 
 ## The Problem
 
@@ -109,7 +96,5 @@ When you save this file and run it (e.g. `mvn clean test` from the command-line)
 ## Outro
 
 If you have a specific element that you want to issue key presses to, then finding the element first is the way to go. But if you don't have a receiving element, or you need to string together multiple key presses, then the action builder is what you should reach for.
-
-Thanks to [Roman Isko](https://github.com/RomanIsko) for contributing the initial Java code for this tip!
 
 Happy Testing!

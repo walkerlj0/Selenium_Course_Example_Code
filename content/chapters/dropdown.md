@@ -1,14 +1,4 @@
----
-title: "How To Select From a Dropdown List"
-slug: "5-select-from-a-dropdown"
-number: 5
-publish_date: 2015-11-09
-tags:
-  - "dropdown"
-  - "forms"
-level: 1
-category: "testing"
----
+# How To Select From a Dropdown List
 
 ## The Problem
 
