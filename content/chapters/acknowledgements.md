@@ -1,6 +1,7 @@
 # Acknowledgements
 
 Writing this book in Java was always something I thought about doing. But it wasn't until some thoughtful encouragement from Ravi Gupta that I finally made up my mind to do it. Thanks Ravi, I hope this was what you were looking for.
+
 Also a huge thanks to Ravi Gupta, Jonathan Taylor, Matthew Edwards, Josh Grant, and Brian Goad for offering to review my initial code earlier this year, providing constructive feedback, and acting as a general sounding board. No matter the amount of effort you provided (big or small), this book is better as a result. Thank you!
 
 With this updated edition I'd also like to thank the following readers (sorted alphabetically by last name):
