@@ -2,7 +2,7 @@
 
 ## The Problem
 
-Just like with [uploading files](/tips/1-upload-a-file) we hit the same issue with downloading them. A dialog box just out of Selenium's reach.
+Just like with [uploading files](http://elementalselenium.com/tips/1-upload-a-file) we hit the same issue with downloading them. A dialog box just out of Selenium's reach.
 
 ## A Solution
 
