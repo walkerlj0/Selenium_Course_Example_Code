@@ -2,7 +2,7 @@
 
 ## The Problem
 
-In a [previous tip](http://elementalselenium.com/tips/2-download-a-file) we stepped through how to download files with Selenium by configuring the browser to download them locally and performing some checks.
+In the last tip we stepped through how to download files with Selenium by configuring the browser to download them locally and performing some checks.
 
 While this works it requires a custom configuration that is not available in all browsers, and is inconsistent between the browsers that have it.
 

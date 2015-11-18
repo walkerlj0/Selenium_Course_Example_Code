@@ -122,6 +122,6 @@ If you're looking to set up Selenium Grid to work with Internet Explorer or Chro
 + [InternetExplorerDriver](https://github.com/SeleniumHQ/selenium/wiki/InternetExplorerDriver)
 + [SafariDriver](https://github.com/SeleniumHQ/selenium/wiki/SafariDriver)
 
-Also, it's worth noting that while Selenium Grid is a great option for scaling your test infrastructure, it by itself will NOT give you parallelization. That is to say, it can handle as many connections as you throw at it (within reason), but you will still need to find a way to execute your tests in parallel. You can see some previous write-ups on how to accomplish that [here](http://elementalselenium.com/tips/tags/parallelization).
+Also, it's worth noting that while Selenium Grid is a great option for scaling your test infrastructure, it by itself will NOT give you parallelization. That is to say, it can handle as many connections as you throw at it (within reason), but you will still need to find a way to execute your tests in parallel.
 
 Happy Testing!

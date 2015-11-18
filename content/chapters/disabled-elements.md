@@ -12,7 +12,7 @@ Let's take a look at how to use it.
 
 ## An Example
 
-For this example we will use [the dropdown list](http://github.com/tourdedave/the-internet) from [the-internet](http://the-internet.herokuapp.com/dropdown). In this list there a few options to select, one which should be disabled. Let's find this element and assert that it is disabled.
+For this example we will use [the dropdown list](http://the-internet.herokuapp.com/dropdown) from [the-internet](http://github.com/tourdedave/the-internet). In this list there a few options to select, one which should be disabled. Let's find this element and assert that it is disabled.
 
 Let's start by importing our requisite classes (for annotations (e.g., `org.junit.After`, etc.), driving the browser with Selenium (e.g., `org.openqa.selenium.WebDriver`, etc.), and matchers for our assertions (e.g., `org.hamcrest.CoreMatchers`, etc.)) and start our class with some setup and teardown methods.
 

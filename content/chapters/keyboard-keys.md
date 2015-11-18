@@ -14,7 +14,7 @@ You can easily issue a key press by using the `send_keys` command.
 
 This can be done to a specific element, or generically with Selenium's Action Builder (which has been documented on [the Selenium project's Wiki page for Advanced User Interactions](https://github.com/SeleniumHQ/selenium/wiki/Advanced-User-Interactions)). Either approach will send a key press. The latter will send it to the element that's currently in focus in the browser (so you don't have to specify a locator along with it), whereas the prior approach will send the key press directly to the element found.
 
-You can see a full list of keyboard key symbols [here](https://github.com/SeleniumHQ/selenium/blob/master/java/client/src/org/openqa/selenium/Keys.java).
+You can see a full list of keyboard key commands [here](https://github.com/SeleniumHQ/selenium/blob/master/java/client/src/org/openqa/selenium/Keys.java).
 
 Let's step through a couple of examples.
 

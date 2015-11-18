@@ -8,7 +8,7 @@ Sometimes you'll run into an app that has functionality hidden behind a right-cl
 
 By leveraging [Selenium's Action Builder](https://seleniumhq.github.io/selenium/docs/api/java/org/openqa/selenium/interactions/Actions.html) we can issue a right-click command (a.k.a. a [`contextClick`](https://seleniumhq.github.io/selenium/docs/api/java/org/openqa/selenium/interactions/Actions.html#contextClick--)).
 
-We can then select an option from the menu by traversing it with keyboard arrow keys (which we can issue with the Action Builder's [`sendKeys`](https://seleniumhq.github.io/selenium/docs/api/java/org/openqa/selenium/interactions/Actions.html#sendKeys-java.lang.CharSequence...-) command). For a full write-up on working with keyboard keys in Selenium, see [tip 61](http://elementalselenium.com/tips/61-keyboard-keys).
+We can then select an option from the menu by traversing it with keyboard arrow keys (which we can issue with the Action Builder's [`sendKeys`](https://seleniumhq.github.io/selenium/docs/api/java/org/openqa/selenium/interactions/Actions.html#sendKeys-java.lang.CharSequence...-) command).
 
 Let's dig in with an example.
 
@@ -83,6 +83,6 @@ When you save this file and run it (e.g., `mvn clean test` from the command-line
 
 ## Outro
 
-To learn more about context menus, you can read [this write-up from the Tree House blog](http://blog.teamtreehouse.com/building-html5-context-menus). And for more thorough examples on working with keyboard keys and JavaScript alerts in your Selenium tests, check out tips [61](http://elementalselenium.com/tips/61-keyboard-keys) and [51](http://elementalselenium.com/tips/51-javascript-alerts).
+To learn more about context menus, you can read [this write-up from the Tree House blog](http://blog.teamtreehouse.com/building-html5-context-menus). And for more thorough examples on working with JavaScript alerts and keyboard keys, be sure to check out chapters 14 and 15.
 
 Happy Testing!

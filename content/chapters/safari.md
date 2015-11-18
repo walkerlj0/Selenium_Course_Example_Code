@@ -75,6 +75,6 @@ When you save the file and run it (e.g., `mvn clean test` from the command-line)
 
 Keep in mind that Safari can load without you realizing it (since it doesn't obtain focus when launching with Selenium). When that happens you'll need to switch to Safari in order to see what the test is doing.
 
-And if you're running Safari on a remote node (or set of nodes) then you'll need to install and enable the SafariDriver browser extension on _each_ of them (unless you're using a third-party service like [Sauce Labs[(http://saucelabs.com/) in which case you don't need to do any of this since they take care of that for you).
+And if you're running Safari on a remote node (or set of nodes) then you'll need to install and enable the SafariDriver browser extension on _each_ of them (unless you're using a third-party service like [Sauce Labs](http://saucelabs.com/) in which case you don't need to do any of this since they take care of it for you).
 
 Happy Testing!
