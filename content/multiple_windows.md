@@ -1,6 +1,6 @@
 # Multiple Windows
 
-Some browsers list window handles in order, others alphabetically. Here's a ubiquitous approach to switching between windows:
+Some browsers list window handles in the order opened, others alphabetically. Here's a ubiquitous approach to switching between windows:
 
 1. Find and store the initial window handle
 2. Trigger the new window to appear

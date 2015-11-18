@@ -1,9 +1,9 @@
 # Screenshots on Failure
 
-1. Add a test watcher and configure a `failed` method
+1. Add a TestWatcher and configure a `failed` method within it
 2. Capture a screenshot with Selenium, storing it in a file object
 3. Write the file object to disk using a unique name
-4. Move the test teardown into a `finished` method in the test watcher
+4. Move the test teardown into a `finished` method in the TestWatcher
 
 ```java
 import org.junit.rules.TestRule;
