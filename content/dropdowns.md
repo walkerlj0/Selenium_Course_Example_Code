@@ -7,5 +7,5 @@
 driver.get("http://the-internet.herokuapp.com/dropdown");
 Select selectList = new Select(driver.findElement(By.id("dropdown")));
 selectList.selectByVisibleText("Option 1");
-select.selectByValue("1");
+selectList.selectByValue("1");
 ```
