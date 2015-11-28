@@ -11,3 +11,4 @@
 + Added new content to the second half of the book for checkboxes, drag and drop, forgot password, and Selenium Grid
 + Updated the File Upload example In Chapter 17.8
 + Updated the code examples in all of the sub-chapters in Chapter 17 to follow a consistent style
++ Took out mention of specifying number of parallel sessions since parallel_tests grows parallel processes dynamically with spec files
