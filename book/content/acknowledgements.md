@@ -1,26 +1,13 @@
 # Acknowledgements
 
-I'd like to take a moment to thank the following people (sorted alphabetically by last name):
+It all started with a notion - write things down. That way when I was asked a question, rather than explain the answer poorly, I could just give someone a coherent, detailed explanation of how I solved a certain problem that they're facing right now with Selenium. It started as a couple of blog posts, quickly turned into a weekly tip newsletter, and not-too-long after that it became a book. This book.
 
-+ Matt Allen
-+ Donald Bialer
-+ Katy Burns
-+ Sergey Franchuk
-+ Brian Goad
-+ Jonathan Lipps
-+ Mary Ann May-Pumphrey
-+ Jimi Odeyemi
-+ Kent O'Driscoll
-+ Matthew Pickle
-+ Ken Pier
-+ Jason Riley
-+ Dmytro Shpakovskyi
-+ Ilkka Urtti
+The early access edition of The Selenium Guidebook first came out 2 years ago, and since then it's been read by hundreds of people. I'm humbled by the interest and the feedback that's been given over the years.
 
-Katy, I somehow convinced you that doing one-on-one sessions with me over Google Hangout an hour a week would be a great way to learn more about Selenium. Over the course of that time an outline for the book emerged, and with your feedback and insights I was able to shape it into something useful and compelling. Without your help, I'm not sure how far along the book would be or if it would be as useful.
+I'd like to thank Matt Allen, Donald Bialer, Katy Burns, Sergey Franchuk, Brian Goad, Jonathan Lipps, Mary Ann May-Pumphrey, Jimi Odeyemi, Kent O'Driscoll, Matthew Pickle, Ken Pier (you will be missed), Jason Riley, Dmytro Shpakovskyi, and Ilkka Urtti. Each of you have contributed something truly helpful to make the book better than what it was way back when. THANK YOU!
 
-Brian, Ken, Jonathan, and Mary Ann -- your feedback was thorough and challenging. You asked tough questions and provided great suggestions for improvements. A good deal of the book has been rewritten based on your feedback. Examples have been refined. Concepts have been made more concise. And generally, there is a better build-up and flow throughout the book.
+I'd also like to thank you, the reader. I hope you find it useful in your daily work.
 
-Donald, Dmytro, Ilkka, Jimi, Jason, Kent, Matt, Matthew, and Sergey -- your feedback has helped refine the book into something much more clear and concise than it was before. I'm ecstatic that you got so much out of reading it and provided so much great feedback in return.
 
-THANK YOU!
+Cheers,
+Dave H

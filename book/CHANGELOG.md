@@ -1,5 +1,16 @@
-# 1.1.0 - July 31, 2014
+# 2.0.0 - November, 2015
++ Updated all assertions to use new expect syntax
++ Updated all libraries to current version
++ Simplified Ch. 15 with some metaprogramming
++ Moved custom failure output from Ch. 16 to Ch. 13
++ Simplified the custom failure output so it doesn't require custom matchers or a global variable
++ Updated screenshots in Ch. 16 and cleaned up the copy with more succinct directions
++ Updated references for Selenium project links from Google Code to Github
++ Added mention about different ChromeDriver binaries per operating system
++ Updated Sauce Connect directions in Ch. 13
++ Removed Appendix of tips (moving to separate e-book)
 
+# 1.1.0 - July 31, 2014
 + Fixed the cover so it's no longer fuzzy
 + Errata fixes throughout the book (e.g, grammar, code fixes, broken links, etc.) from reader feedback
 + Beefed up Chapter 11 with more examples and descriptions for clarity
