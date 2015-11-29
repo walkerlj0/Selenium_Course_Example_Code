@@ -32,6 +32,7 @@ element.click
 ```
 
 ## Work with a collection of found elements
+
 ```ruby
 collection = driver.find_elements(locator)
 
@@ -45,14 +46,15 @@ collection[-1].click
 ```
 
 ## Perform an action
+
 ```ruby
-element.click
-element.submit      # submits a form
+element.click       # click on an element
 element.clear       # clearing an input field of its text
 element.send_keys   # typing into an input field
 ```
 
 ## Ask a question
+
 ```ruby
 element.displayed? # is it visible?
 element.enabled?   # can it be selected?
@@ -71,5 +73,5 @@ element.text
 
 For more info:
 
-+ [the Element API documentation](http://selenium.googlecode.com/git/docs/api/rb/Selenium/WebDriver/Element.html)
-+ [the `attribute` Element API documentation](http://selenium.googlecode.com/git/docs/api/rb/Selenium/WebDriver/Element.html#attribute-instance_method)
++ [Selenium's Element API documentation](https://seleniumhq.github.io/selenium/docs/api/rb/Selenium/WebDriver/Element.html)
++ [Selenium's `attribute` Element API documentation](https://seleniumhq.github.io/selenium/docs/api/rb/Selenium/WebDriver/Element.html#attribute-instance_method)

@@ -2,7 +2,7 @@
 
 ## Upload
 
-1. Find the text field for the upload form 
+1. Find the text field for the upload form
 2. Send text to it
 3. Submit the form
 
@@ -31,13 +31,14 @@ profile['browser.download.dir'] = 'path to download dir'
 profile['browser.helperApps.neverAsk.saveToDisk'] = 'image/jpeg, application/pdf'
 profile['pdfjs.disabled'] = true
 
-@driver = Selenium::WebDriver.for :firefox, :profile => profile
+@driver = Selenium::WebDriver.for :firefox, profile: profile
 ```
 
 For more info:
 
 + [A list of MIME types](http://www.webmaster-toolkit.com/mime-types.shtml)
 + [A list of all of Firefox's available preferences](http://preferential.mozdev.org/preferences.html)
++ [Tip 2 on Elemental Selenium](http://elementalselenium.com/tips/2-download-a-file)
 
 ## Download with an HTTP Library
 
@@ -47,14 +48,14 @@ For more info:
 
 ```ruby
 require 'selenium-webdriver'
-require 'rspec-expectations'
+require 'rspec/expectations'
 require 'rest-client'
 
 driver.get 'http://the-internet.herokuapp.com/download'
 link = driver.find_element(css: 'a').attribute('href')
 response = RestClient.head link
-response.headers[:content_type].should == 'image/jpeg'
-response.headers[:content_length].to_i.should > 0
+expect(response.headers[:content_type]).to eql 'image/jpeg'
+expect(response.headers[:content_length].to_i).to > 0
 ```
 
 ## Download Secure Files with an HTTP Library
@@ -66,13 +67,13 @@ response.headers[:content_length].to_i.should > 0
 
 ```ruby
 require 'selenium-webdriver'
-require 'rspec-expectations'
+require 'rspec/expectations'
 require 'rest-client'
 
 driver.get 'http://admin:admin@the-internet.herokuapp.com/download_secure'
 link = driver.find_element(css: 'a').attribute('href')
 driver.manage.cookie_named 'rack.session'
 response = RestClient.head link, cookie: "#{cookie[:name]}=#{cookie[:value]};"
-response.headers[:content_type].should == 'application/pdf'
-response.headers[:content_length].to_i.should > 0
+expect(response.headers[:content_type]).to eql 'image/jpeg'
+expect(response.headers[:content_length].to_i).to > 0
 ```

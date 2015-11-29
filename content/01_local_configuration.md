@@ -13,7 +13,7 @@ driver = Selenium::WebDriver.for :chrome
 
 For more info:
 
-+ [the Selenium wiki page for ChromeDriver](https://code.google.com/p/selenium/wiki/ChromeDriver)
++ [the Selenium wiki page for ChromeDriver](https://github.com/seleniumhq/selenium/wiki/ChromeDriver)
 + [the official user documentation](https://sites.google.com/a/chromium.org/chromedriver/home)
 
 
@@ -28,7 +28,7 @@ driver = Selenium::WebDriver.for :firefox
 
 For more info:
 
-+ [the Selenium wiki page for FirefoxDriver](https://sites.google.com/a/chromium.org/chromedriver/home)
++ [the Selenium wiki page for FirefoxDriver](https://github.com/seleniumhq/selenium/wiki/FirefoxDriver)
 
 
 ## Internet Explorer
@@ -46,27 +46,7 @@ driver = Selenium::WebDriver.for :internet_explorer
 
 For more info:
 
-+ [the Selenium wiki page for InternetExplorerDriver](https://code.google.com/p/selenium/wiki/InternetExplorerDriver)
-
-
-## Opera
-Only works for version 12.16 or earlier. For newer versions of Opera, test using Chrome (since it uses the same back-end).
-
-1. Download the latest Selenium Standalone Server from [here](http://selenium-release.storage.googleapis.com/index.html)
-2. Create an environment variable pointing to the server file
-3. Create an instance of Opera
-
-```ruby
-require 'selenium-webdriver'
-ENV['SELENIUM_SERVER_JAR'] = './selenium-server-standalone.jar'
-driver = Selenium::WebDriver.for :opera
-driver.get 'http://www.google.com'
-driver.quit
-```
-
-For more info:
-
-+ [The Selenium wiki page for OperaDriver](https://code.google.com/p/selenium/wiki/OperaDriver)
++ [the Selenium wiki page for InternetExplorerDriver](https://github.com/seleniumhq/selenium/wiki/InternetExplorerDriver)
 
 
 ## Safari
@@ -80,4 +60,5 @@ driver = Selenium::WebDriver.for :safari
 
 For more info:
 
-+ [the Selenium wiki page for SafariDriver](https://code.google.com/p/selenium/wiki/SafariDriver)
++ [the Selenium wiki page for SafariDriver](https://github.com/seleniumhq/selenium/wiki/SafariDriver)
+= [Elemental Selenium tip 69](http://elementalselenium.com/tips/69-safari)

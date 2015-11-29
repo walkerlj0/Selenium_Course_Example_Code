@@ -10,6 +10,6 @@ require 'selenium-webdriver'
 driver.get 'http://the-internet.herokuapp.com/dropdown'
 dropdown = @driver.find_element(id: 'dropdown')
 select_list = Selenium::WebDriver::Support::Select.new(dropdown)
-select_list.select_by(:text, "Option 1")
-# select_list.select_by(:value, "1")
+select_list.select_by(text: "Option 1")
+# select_list.select_by(value: "1")
 ```

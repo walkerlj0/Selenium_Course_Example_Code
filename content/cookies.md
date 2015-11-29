@@ -1,6 +1,7 @@
 # Cookies
 
 ## Retrieve Individual Cookie
+
 ```ruby
 cookie = driver.manage.cookie_named 'CookieName'
 ```
@@ -11,11 +12,13 @@ driver.manage.add_cookie(name: 'key', value: 'value')
 ```
 
 ## Delete
+
 ```ruby
-# one cookie
+# Delete a single cookie
 driver.manage.delete_cookie('CookieName')
 
-# all cookies
+# Delete all cookies
 driver.manage.delete_all_cookies
-# does not delete third-party cookies, just the ones for the domain Selenium is visiting
+# Does not delete third-party cookies,
+# just the ones for the domain Selenium is visiting
 ```

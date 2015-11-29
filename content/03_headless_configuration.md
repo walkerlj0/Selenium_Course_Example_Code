@@ -2,7 +2,7 @@
 
 ## GhostDriver via PhantomJS
 
-1. Download PhantomJS from [here](http://phantomjs.org/download.html)
+1. [Download PhantomJS](http://phantomjs.org/download.html)
 2. Start up PhantomJS with WebDriver support (specifying a port to run on)
 3. Point your tests at PhantomJS
 4. Run your tests
@@ -71,4 +71,4 @@ require 'headless'
 For more info:
 
 + [Wikipedia write-up on Xvfb](http://en.wikipedia.org/wiki/Xvfb)
-+ [Element Selenium write-up on approaches with Xvfb](http://elementalselenium.com/tips/38-headless)
++ [Tip 38 on Elemental Selenium](http://elementalselenium.com/tips/38-headless)

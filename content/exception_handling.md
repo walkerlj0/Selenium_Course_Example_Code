@@ -1,12 +1,12 @@
 # Exception Handling
 
-1. Rescue the relevant exceptions in a helper method, returning `false` for each
-2. Create a convenience method to see if an element is displayed
+1. Rescue the relevant exceptions, returning `false` for each
+2. Place in a helper method for easy reuse
 
 ```ruby
-def rescue_exceptions
+def is_displayed?(locator)
   begin
-    yield
+    driver.find_element(locator).displayed?
   rescue Selenium::WebDriver::Error::NoSuchElementError
     false
   rescue Selenium::WebDriver::Error::StaleElementReferenceError
@@ -14,15 +14,11 @@ def rescue_exceptions
   end
 end
 
-def is_displayed?(locator)
-  rescue_exceptions { driver.find_element(locator).displayed? }
-end
-
 is_displayed? locator
-# will return false if the element is not displayed
-# otherwise, it will return true
+# Returns false if the element is not displayed.
+# Otherwise, returns true.
 ```
 
 For more info:
 
-+ [a full list of Selenium exceptions](https://selenium.googlecode.com/git/docs/api/rb/Selenium/WebDriver/Error.html)
++ [Selenium's list of exceptions](https://seleniumhq.github.io/selenium/docs/api/rb/Selenium/WebDriver/Error.html)

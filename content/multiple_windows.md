@@ -20,4 +20,16 @@ windows.each do |window|
     @new_window = window
   end
 end
+
+@driver.get 'http://the-internet.herokuapp.com/windows'
+main_window = @driver.window_handle
+@driver.find_element(css: '.example a').click # triggers a new window
+windows = @driver.window_handles
+new_window = windows.select do |window|
+  window != main_window
+end
 ```
+
+For more info:
+
+[Tip 4 on Elemental Selenium](http://elementalselenium.com/tips/4-work-with-multiple-windows)

@@ -34,7 +34,8 @@ driver.find_elements(class: 'dues')
 
 ```ruby
 # Example usage
-driver.find_element(css: '#example')
+driver.find_element(css: '#username')
+driver.find_element(css: '.dues')
 ```
 
 | Approach          | Locator                                  | Description                                   |
