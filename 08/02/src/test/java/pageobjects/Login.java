@@ -8,7 +8,7 @@ public class Login {
     private WebDriver driver;
     By usernameLocator  = By.id("username");
     By passwordLocator  = By.id("password");
-    By loginFormLocator = By.id("login");
+    By submitButton     = By.cssSelector("button");
     By successMessageLocator = By.cssSelector(".flash.success");
     By failureMessageLocator = By.cssSelector(".flash.error");
 
@@ -20,7 +20,7 @@ public class Login {
     public void with(String username, String password) {
         driver.findElement(usernameLocator).sendKeys(username);
         driver.findElement(passwordLocator).sendKeys(password);
-        driver.findElement(loginFormLocator).submit();
+        driver.findElement(submitButton).click();
     }
 
     public Boolean successMessagePresent() {

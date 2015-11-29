@@ -6,9 +6,10 @@ import static org.junit.Assert.assertTrue;
 
 public class Login extends Base {
 
+    By loginFormLocator = By.id("login");
     By usernameLocator  = By.id("username");
     By passwordLocator  = By.id("password");
-    By loginFormLocator = By.id("login");
+    By submitButton     = By.cssSelector("button");
     By successMessageLocator = By.cssSelector(".flash.success");
     By failureMessageLocator = By.cssSelector(".flash.error");
 
@@ -22,7 +23,7 @@ public class Login extends Base {
     public void with(String username, String password) {
         type(username, usernameLocator);
         type(password, passwordLocator);
-        submit(loginFormLocator);
+        click(submitButton);
     }
 
     public Boolean successMessagePresent() {

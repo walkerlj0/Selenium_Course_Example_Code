@@ -28,10 +28,6 @@ public class Base {
         find(locator).sendKeys(inputText);
     }
 
-    public void submit(By locator) {
-        find(locator).submit();
-    }
-
     public Boolean isDisplayed(By locator) {
         try {
             return find(locator).isDisplayed();
