@@ -1,3 +1,4 @@
 output/**
 .pdf
 .swp
+.DS_Store
