@@ -1,4 +1,4 @@
-How To Work with Multiple Windows
+# How To Work with Multiple Windows
 
 ## The Problem
 
