@@ -1,4 +1,8 @@
-# 1.0.1
+# 1.1.1
+### December 2015
+- Chapter 4, fixed typo (Vitali Lucenco)
+
+# 1.1.0
 ## November 2015
 - Chapter 4, "Choosing an IDE". Fixed a broken link in Chapter 4 for dependency management (Matt Allen).
 - Chapter 4, "Access Modifiers". Clarified distinction between protected and package-private for members of a class. (Myroslav Oleinykov).
