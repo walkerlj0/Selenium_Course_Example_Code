@@ -15,7 +15,13 @@ namespace PageObjects
             
         public void Visit(String Url)
         {
-            Driver.Navigate().GoToUrl(Url);
+            if (Url.Contains("http"))
+            {
+                Driver.Navigate().GoToUrl(Url);
+            } else
+            {
+                Driver.Navigate().GoToUrl(Tests.BaseTest.ApplicationBaseUrl + Url);
+            }
         }
 
         public IWebElement Find(By Locator)

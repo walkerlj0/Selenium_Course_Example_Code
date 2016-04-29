@@ -17,6 +17,7 @@ namespace Tests
         public static string BrowserName;
         public static string BrowserVersion;
         public static string Platform;
+        public static string ApplicationBaseUrl;
         public static string VendorDirectory;
 
         private void LoadConfigValues()
@@ -26,6 +27,7 @@ namespace Tests
             BrowserName = (string)ConfigReader.GetValue("BrowserName", typeof(string));
             BrowserVersion = (string)ConfigReader.GetValue("BrowserVersion", typeof(string));
             Platform = (string)ConfigReader.GetValue("Platform", typeof(string));
+            ApplicationBaseUrl = (string)ConfigReader.GetValue("ApplicationBaseUrl", typeof(string));
             VendorDirectory = System.IO.Directory.GetParent(
                                                         System.IO.Path.GetDirectoryName(
                                                             typeof(Tests.BaseTest).Assembly.Location)).Parent.FullName + 

@@ -1,10 +1,12 @@
 ﻿using System;
 using OpenQA.Selenium;
+using NUnit.Framework;
 
 namespace PageObjects
 {
     public class LoginPage : BasePage
     {
+        By LoginForm = By.Id("login");
         By UsernameInput = By.Id("username");
         By PasswordInput = By.Id("password");
         By SubmitButton = By.CssSelector("button");
@@ -13,7 +15,8 @@ namespace PageObjects
 
         public LoginPage(IWebDriver Driver) : base(Driver)
         {
-            Visit("http://the-internet.herokuapp.com/login");
+            Visit("/login");
+            Assert.That(IsDisplayed(LoginForm));
         }
 
         public void With(String Username, String Password)

@@ -12,7 +12,7 @@ namespace PageObjects
 
         public void LoadExample(int ExampleNumber)
         {
-            Visit("http://the-internet.herokuapp.com/dynamic_loading/" + ExampleNumber);
+            Visit("/dynamic_loading/" + ExampleNumber);
             Click(StartButton);
         }
 
