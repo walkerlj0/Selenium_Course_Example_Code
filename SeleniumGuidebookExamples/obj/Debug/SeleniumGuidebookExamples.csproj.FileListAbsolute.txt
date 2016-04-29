@@ -1,0 +1,12 @@
+C:\Users\IEUser\Desktop\SeleniumGuidebookExamples\SeleniumGuidebookExamples\bin\Debug\SeleniumGuidebookExamples.dll
+C:\Users\IEUser\Desktop\SeleniumGuidebookExamples\SeleniumGuidebookExamples\bin\Debug\SeleniumGuidebookExamples.pdb
+C:\Users\IEUser\Desktop\SeleniumGuidebookExamples\SeleniumGuidebookExamples\bin\Debug\nunit.framework.dll
+C:\Users\IEUser\Desktop\SeleniumGuidebookExamples\SeleniumGuidebookExamples\bin\Debug\WebDriver.dll
+C:\Users\IEUser\Desktop\SeleniumGuidebookExamples\SeleniumGuidebookExamples\bin\Debug\WebDriver.Support.dll
+C:\Users\IEUser\Desktop\SeleniumGuidebookExamples\SeleniumGuidebookExamples\bin\Debug\nunit.framework.xml
+C:\Users\IEUser\Desktop\SeleniumGuidebookExamples\SeleniumGuidebookExamples\bin\Debug\WebDriver.xml
+C:\Users\IEUser\Desktop\SeleniumGuidebookExamples\SeleniumGuidebookExamples\bin\Debug\WebDriver.Support.xml
+C:\Users\IEUser\Desktop\SeleniumGuidebookExamples\SeleniumGuidebookExamples\obj\Debug\SeleniumGuidebookExamples.csprojResolveAssemblyReference.cache
+C:\Users\IEUser\Desktop\SeleniumGuidebookExamples\SeleniumGuidebookExamples\obj\Debug\SeleniumGuidebookExamples.dll
+C:\Users\IEUser\Desktop\SeleniumGuidebookExamples\SeleniumGuidebookExamples\obj\Debug\SeleniumGuidebookExamples.pdb
+C:\Users\IEUser\Desktop\SeleniumGuidebookExamples\SeleniumGuidebookExamples\bin\Debug\SeleniumGuidebookExamples.dll.config

@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<test-run id="2" testcasecount="3" result="Passed" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="3" engine-version="3.2.1.0" clr-version="4.0.30319.42000" start-time="2016-04-29 21:28:54Z" end-time="2016-04-29 21:29:06Z" duration="11.565523">
+  <command-line><![CDATA["C:\Users\IEUser\Desktop\SeleniumGuidebookExamples\packages\NUnit.ConsoleRunner.3.2.1\tools\nunit3-console.exe"  .\SeleniumGuidebookExamples.sln]]></command-line>
+  <test-suite type="Project" id="2" name="SeleniumGuidebookExamples.sln" fullname="C:\Users\IEUser\Desktop\SeleniumGuidebookExamples\SeleniumGuidebookExamples.sln" testcasecount="3" result="Passed" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="3">
+    <test-suite type="Assembly" id="1-1006" name="SeleniumGuidebookExamples.dll" fullname="C:\Users\IEUser\Desktop\SeleniumGuidebookExamples\SeleniumGuidebookExamples\bin\Debug\SeleniumGuidebookExamples.dll" runstate="Runnable" testcasecount="3" result="Passed" start-time="2016-04-29 21:28:54Z" end-time="2016-04-29 21:29:06Z" duration="11.538066" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="3">
+      <environment framework-version="3.2.1.0" clr-version="4.0.30319.42000" os-version="Microsoft Windows NT 6.1.7601 Service Pack 1" platform="Win32NT" cwd="C:\Users\IEUser\Desktop\SeleniumGuidebookExamples" machine-name="IE11WIN7" user="IEUser" user-domain="IE11WIN7" culture="en-US" uiculture="en-US" os-architecture="x86" />
+      <settings>
+        <setting name="WorkDirectory" value="C:\Users\IEUser\Desktop\SeleniumGuidebookExamples" />
+        <setting name="ImageRuntimeVersion" value="4.0.30319" />
+        <setting name="ImageTargetFrameworkName" value=".NETFramework,Version=v4.5.2" />
+        <setting name="ImageRequiresX86" value="False" />
+        <setting name="ImageRequiresDefaultAppDomainAssemblyResolver" value="False" />
+        <setting name="NumberOfTestWorkers" value="3" />
+      </settings>
+      <properties>
+        <property name="_PID" value="5152" />
+        <property name="_APPDOMAIN" value="test-domain-SeleniumGuidebookExamples.sln" />
+      </properties>
+      <test-suite type="TestSuite" id="1-1007" name="Tests" fullname="Tests" runstate="Runnable" testcasecount="3" result="Passed" start-time="2016-04-29 21:28:54Z" end-time="2016-04-29 21:29:06Z" duration="11.533064" total="3" passed="3" failed="0" inconclusive="0" skipped="0" asserts="3">
+        <test-suite type="TestFixture" id="1-1000" name="BaseTest" fullname="Tests.BaseTest" classname="Tests.BaseTest" runstate="Runnable" testcasecount="0" result="Passed" start-time="2016-04-29 21:28:54Z" end-time="2016-04-29 21:28:54Z" duration="0.000991" total="0" passed="0" failed="0" inconclusive="0" skipped="0" asserts="0" />
+        <test-suite type="TestFixture" id="1-1001" name="DynamicLoadingTest" fullname="Tests.DynamicLoadingTest" classname="Tests.DynamicLoadingTest" runstate="Runnable" testcasecount="1" result="Passed" start-time="2016-04-29 21:28:54Z" end-time="2016-04-29 21:29:04Z" duration="9.902153" total="1" passed="1" failed="0" inconclusive="0" skipped="0" asserts="1">
+          <properties>
+            <property name="ParallelScope" value="Self" />
+            <property name="Category" value="Deep" />
+          </properties>
+          <test-case id="1-1002" name="ElementHidden" fullname="Tests.DynamicLoadingTest.ElementHidden" methodname="ElementHidden" classname="Tests.DynamicLoadingTest" runstate="Runnable" seed="1998102471" result="Passed" start-time="2016-04-29 21:28:54Z" end-time="2016-04-29 21:29:04Z" duration="9.899154" asserts="1" />
+        </test-suite>
+        <test-suite type="TestFixture" id="1-1003" name="LoginTest" fullname="Tests.LoginTest" classname="Tests.LoginTest" runstate="Runnable" testcasecount="2" result="Passed" start-time="2016-04-29 21:28:54Z" end-time="2016-04-29 21:29:06Z" duration="11.527394" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="2">
+          <properties>
+            <property name="ParallelScope" value="Self" />
+          </properties>
+          <test-case id="1-1005" name="BadPasswordProvided" fullname="Tests.LoginTest.BadPasswordProvided" methodname="BadPasswordProvided" classname="Tests.LoginTest" runstate="Runnable" seed="332551961" result="Passed" start-time="2016-04-29 21:28:54Z" end-time="2016-04-29 21:29:01Z" duration="6.242982" asserts="1">
+            <properties>
+              <property name="Category" value="Deep" />
+            </properties>
+          </test-case>
+          <test-case id="1-1004" name="ValidAccount" fullname="Tests.LoginTest.ValidAccount" methodname="ValidAccount" classname="Tests.LoginTest" runstate="Runnable" seed="575529885" result="Passed" start-time="2016-04-29 21:29:01Z" end-time="2016-04-29 21:29:06Z" duration="5.281583" asserts="1">
+            <properties>
+              <property name="Category" value="Shallow" />
+            </properties>
+          </test-case>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>
