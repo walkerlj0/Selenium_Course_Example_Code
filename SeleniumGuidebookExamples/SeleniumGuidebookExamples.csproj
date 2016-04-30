@@ -81,9 +81,12 @@
     <None Include="Configs\Local\ie.config" />
     <None Include="Configs\Local\chrome.config" />
     <None Include="Configs\Local\firefox.config" />
+    <None Include="Configs\Remote\ie10.config" />
+    <None Include="Configs\Remote\edge.config" />
+    <None Include="Configs\Remote\safari.config" />
     <None Include="Configs\Remote\chrome.config" />
     <None Include="Configs\Remote\firefox.config" />
-    <None Include="Configs\Remote\ie.config" />
+    <None Include="Configs\Remote\ie11.config" />
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
