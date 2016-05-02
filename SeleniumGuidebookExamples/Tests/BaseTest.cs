@@ -10,15 +10,15 @@ using OpenQA.Selenium.IE;
 namespace Tests
 {
     [TestFixture]
-    public class BaseTest
+    class BaseTest
     {
         public IWebDriver Driver;
-        public static string Host;
-        public static string BrowserName;
-        public static string BrowserVersion;
-        public static string Platform;
+        protected static string Host;
+        protected static string BrowserName;
+        protected static string BrowserVersion;
+        protected static string Platform;
         public static string ApplicationBaseUrl;
-        public static string VendorDirectory;
+        protected static string VendorDirectory;
 
         private void LoadConfigValues()
         {
@@ -35,7 +35,7 @@ namespace Tests
         }
 
         [SetUp]
-        public void SetUp()
+        protected void SetUp()
         {
             LoadConfigValues();
             switch (Host.ToLower())
@@ -68,7 +68,7 @@ namespace Tests
         }
 
         [TearDown]
-        public void TearDown()
+        protected void TearDown()
         {
             if (Host == "saucelabs")
                 {

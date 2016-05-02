@@ -6,7 +6,7 @@ namespace Tests
 {
     [TestFixture]
     [Parallelizable]
-    public class LoginTest : BaseTest
+    class LoginTest : BaseTest
     {
         LoginPage Login;
 

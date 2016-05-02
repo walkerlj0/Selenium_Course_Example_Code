@@ -7,7 +7,7 @@ namespace Tests
     [TestFixture]
     [Parallelizable]
     [Category("Deep")]
-    public class DynamicLoadingTest : BaseTest
+    class DynamicLoadingTest : BaseTest
     {
         DynamicLoadingPage DynamicLoading;
 

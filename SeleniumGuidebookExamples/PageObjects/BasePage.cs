@@ -4,16 +4,16 @@ using OpenQA.Selenium.Support.UI;
 
 namespace PageObjects
 {
-    public class BasePage
+    class BasePage
     {
         IWebDriver Driver;
 
-        public BasePage(IWebDriver Driver)
+        protected BasePage(IWebDriver Driver)
         {
             this.Driver = Driver;
         }
             
-        public void Visit(String Url)
+        protected void Visit(String Url)
         {
             if (Url.Contains("http"))
             {
@@ -24,22 +24,22 @@ namespace PageObjects
             }
         }
 
-        public IWebElement Find(By Locator)
+        protected IWebElement Find(By Locator)
         {
             return Driver.FindElement(Locator);
         }
 
-        public void Click(By Locator)
+        protected void Click(By Locator)
         {
             Find(Locator).Click();
         }
 
-        public void Type(By Locator, String InputText)
+        protected void Type(By Locator, String InputText)
         {
             Find(Locator).SendKeys(InputText);
         }
 
-        public Boolean IsDisplayed(By Locator)
+        protected Boolean IsDisplayed(By Locator)
         {
             try {
                 return Find(Locator).Displayed;
@@ -48,7 +48,7 @@ namespace PageObjects
             }
         }
 
-        public Boolean IsDisplayed(By Locator, int MaxWaitTime)
+        protected Boolean IsDisplayed(By Locator, int MaxWaitTime)
         {
             try {
                 WebDriverWait wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(MaxWaitTime));
@@ -58,5 +58,6 @@ namespace PageObjects
                 return false;
             }
         }
+
     }
 }

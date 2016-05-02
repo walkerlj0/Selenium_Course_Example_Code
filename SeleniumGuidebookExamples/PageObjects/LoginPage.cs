@@ -4,7 +4,7 @@ using NUnit.Framework;
 
 namespace PageObjects
 {
-    public class LoginPage : BasePage
+    class LoginPage : BasePage
     {
         By LoginForm = By.Id("login");
         By UsernameInput = By.Id("username");
