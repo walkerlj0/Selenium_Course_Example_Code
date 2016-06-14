@@ -1,14 +1,4 @@
----
-title: "How To Download a File Without a Browser"
-slug: "8-download-a-file-revisited"
-number: 8
-publish_date: 2016-06-12
-tags:
-  - "files"
-  - "downloading"
-level: 2
-category: "testing"
----
+# How To Download a File Without a Browser
 
 ## The Problem
 

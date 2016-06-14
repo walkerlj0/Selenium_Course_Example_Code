@@ -1,13 +1,4 @@
----
-title: "How To Access Basic Auth"
-slug: "13-work-with-basic-auth"
-number: 13
-publish_date: 2016-06-12
-tags:
-  - "authentication"
-level: 1
-category: "testing"
----
+# How To Access Basic Auth
 
 ## The Problem
 

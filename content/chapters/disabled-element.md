@@ -1,15 +1,4 @@
----
-title: "How To Test For Disabled Elements"
-slug: "40-disabled-element"
-number: 40
-publish_date: 2016-06-13
-tags:
-  - "dropdown list"
-  - "dropdown lists"
-  - "disabled element"
-level: 2
-category: "testing"
----
+# How To Test For Disabled Elements
 
 ## The Problem
 

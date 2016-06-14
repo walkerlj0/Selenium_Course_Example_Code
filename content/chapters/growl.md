@@ -1,16 +1,4 @@
----
-title: "How To Add Growl Notifications To Your Tests"
-slug: "53-growl"
-number: 53
-publish_date: 2016-06-13
-tags:
-  - "jquery"
-  - "growl"
-  - "growl notifications"
-  - "jquery-growl"
-level: 2
-category: "reporting"
----
+# How To Add Growl Notifications To Your Tests
 
 ## The Problem
 
@@ -69,18 +57,19 @@ Next we'll need to visit the page we want to display notifications on and do som
 
         // check for jQuery, add it if it's not on the page
         JSDriver.ExecuteScript("if (!window.jQuery) {" +
-                               "var jquery = document.createElement('script'); jquery.type = 'text/javascript';" +
-                               "jquery.src = 'https://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js';" +
-                               "document.getElementsByTagName('head')[0].appendChild(jquery);" +
-                               "}");
+             "var jquery = document.createElement('script');" +
+             "jquery.type = 'text/javascript';" +
+             "jquery.src = 'https://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js';" +
+             "document.getElementsByTagName('head')[0].appendChild(jquery);" +
+             "}");
 
         // add jQuery Growl to the page
         JSDriver.ExecuteScript("$.getScript('http://the-internet.herokuapp.com/js/vendor/jquery.growl.js')");
 
         // add jQuery Growl Styles to the page
         JSDriver.ExecuteScript("$('head').append(\"<link rel='stylesheet' " +
-                               "href='http://the-internet.herokuapp.com/css/jquery.growl.css' " +
-                               "type='text/css' />\");");
+          "href='http://the-internet.herokuapp.com/css/jquery.growl.css' " +
+          "type='text/css' />\");");
 
         // trigger a plain jQuery Growl notification to display on the page
         JSDriver.ExecuteScript("$.growl({ title: 'GET', message: '/' });");

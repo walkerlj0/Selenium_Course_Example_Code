@@ -1,15 +1,4 @@
----
-title: "How To Upload a File"
-slug: "1-upload-a-file"
-number: 1
-publish_date: 2016-06-11
-tags:
-  - "file"
-  - "upload"
-  - "file upload"
-level: 1
-category: "testing"
----
+# How To Upload a File
 
 ## The Problem
 

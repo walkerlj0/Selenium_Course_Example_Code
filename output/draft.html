@@ -1,0 +1,2237 @@
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <style type="text/css">
+      @font-face {
+        font-family: 'Droid Sans';
+        font-style: normal;
+        font-weight: 400;
+        src: url('droid_sans.ttf');
+        -fs-pdf-font-embed: embed;
+        -fs-pdf-font-encoding: Identity-H;
+      }
+      body {
+        font-family: 'Droid Sans';
+      }
+      div.page_footer {
+      }
+      h1 {
+        page-break-before: always;
+      }
+      h2 {
+        page-break-after: avoid;
+      }
+      pre {
+        white-space: pre;
+        white-space: pre-wrap;
+        page-break-inside: avoid;
+        orphans: 0;
+        widows: 0;
+        background-color: #f5f5f5;
+        border: 1px solid #ccc;
+        border: 1px solid rgba(0, 0, 0, 0.15);
+        border-radius: 4px;
+        display: block;
+        padding: 9.5px;
+        margin: 0 0 10px;
+        font-size: 13px;
+        line-height: 20px;
+      }
+      code {
+          padding: 2px 4px;
+          background-color: #f7f7f9;
+      }
+      img {
+        width: 600px;
+      }
+      table {
+        page-break-inside: avoid;
+        orphans: 0;
+        widows: 0;
+        font-size: 12px;
+        border-collapse:collapse;
+        margin:20px 0 0;
+        padding:0;
+      }
+      table tr {
+        border-top:1px solid #ccc;
+        background-color:#fff;
+        margin:0;
+        padding:0;
+      }
+      table tr:nth-child(2n) {
+        background-color:#f8f8f8;
+      }
+      table tr th[align="center"], table tr td[align="center"] {
+        text-align:center;
+      }
+      table tr th, table tr td {
+        border:1px solid #ccc;
+        text-align:left;
+        margin:0;
+        padding:6px 13px;
+      }
+      .hll { background-color: #ffffcc }
+.c { color: #408080; font-style: italic } /* Comment */
+.err { border: 1px solid #FF0000 } /* Error */
+.k { color: #008000; font-weight: bold } /* Keyword */
+.o { color: #666666 } /* Operator */
+.cm { color: #408080; font-style: italic } /* Comment.Multiline */
+.cp { color: #BC7A00 } /* Comment.Preproc */
+.c1 { color: #408080; font-style: italic } /* Comment.Single */
+.cs { color: #408080; font-style: italic } /* Comment.Special */
+.gd { color: #A00000 } /* Generic.Deleted */
+.ge { font-style: italic } /* Generic.Emph */
+.gr { color: #FF0000 } /* Generic.Error */
+.gh { color: #000080; font-weight: bold } /* Generic.Heading */
+.gi { color: #00A000 } /* Generic.Inserted */
+.go { color: #888888 } /* Generic.Output */
+.gp { color: #000080; font-weight: bold } /* Generic.Prompt */
+.gs { font-weight: bold } /* Generic.Strong */
+.gu { color: #800080; font-weight: bold } /* Generic.Subheading */
+.gt { color: #0044DD } /* Generic.Traceback */
+.kc { color: #008000; font-weight: bold } /* Keyword.Constant */
+.kd { color: #008000; font-weight: bold } /* Keyword.Declaration */
+.kn { color: #008000; font-weight: bold } /* Keyword.Namespace */
+.kp { color: #008000 } /* Keyword.Pseudo */
+.kr { color: #008000; font-weight: bold } /* Keyword.Reserved */
+.kt { color: #B00040 } /* Keyword.Type */
+.m { color: #666666 } /* Literal.Number */
+.s { color: #BA2121 } /* Literal.String */
+.na { color: #7D9029 } /* Name.Attribute */
+.nb { color: #008000 } /* Name.Builtin */
+.nc { color: #0000FF; font-weight: bold } /* Name.Class */
+.no { color: #880000 } /* Name.Constant */
+.nd { color: #AA22FF } /* Name.Decorator */
+.ni { color: #999999; font-weight: bold } /* Name.Entity */
+.ne { color: #D2413A; font-weight: bold } /* Name.Exception */
+.nf { color: #0000FF } /* Name.Function */
+.nl { color: #A0A000 } /* Name.Label */
+.nn { color: #0000FF; font-weight: bold } /* Name.Namespace */
+.nt { color: #008000; font-weight: bold } /* Name.Tag */
+.nv { color: #19177C } /* Name.Variable */
+.ow { color: #AA22FF; font-weight: bold } /* Operator.Word */
+.w { color: #bbbbbb } /* Text.Whitespace */
+.mb { color: #666666 } /* Literal.Number.Bin */
+.mf { color: #666666 } /* Literal.Number.Float */
+.mh { color: #666666 } /* Literal.Number.Hex */
+.mi { color: #666666 } /* Literal.Number.Integer */
+.mo { color: #666666 } /* Literal.Number.Oct */
+.sb { color: #BA2121 } /* Literal.String.Backtick */
+.sc { color: #BA2121 } /* Literal.String.Char */
+.sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
+.s2 { color: #BA2121 } /* Literal.String.Double */
+.se { color: #BB6622; font-weight: bold } /* Literal.String.Escape */
+.sh { color: #BA2121 } /* Literal.String.Heredoc */
+.si { color: #BB6688; font-weight: bold } /* Literal.String.Interpol */
+.sx { color: #008000 } /* Literal.String.Other */
+.sr { color: #BB6688 } /* Literal.String.Regex */
+.s1 { color: #BA2121 } /* Literal.String.Single */
+.ss { color: #19177C } /* Literal.String.Symbol */
+.bp { color: #008000 } /* Name.Builtin.Pseudo */
+.vc { color: #19177C } /* Name.Variable.Class */
+.vg { color: #19177C } /* Name.Variable.Global */
+.vi { color: #19177C } /* Name.Variable.Instance */
+.il { color: #666666 } /* Literal.Number.Integer.Long */
+    </style>
+  </head>
+  <body>
+    <p align="center">
+  <img src="cover.png" alt="C# Tips Cover Image"/>
+</p>
+<h1>Preface</h1>
+
+<p>This book is a compendium of tips from my weekly Selenium tip newsletter (<a href="http://elementalselenium.com/">Elemental Selenium</a>). Its aim is to give you a glimpse into the things you'll see in the wild, and a reference for how to deal with them.</p>
+
+<p>Up until now these tips were originally only available in Ruby and Java, and I've been steadily converting them over to all of the supported programming languages thanks to the contributions I've received since open-sourcing my example code (which you can see <a href="https://github.com/tourdedave/elemental-selenium-tips">here</a>).</p>
+
+<p>The tips differ from The Selenium Guidebook in that they do not build upon previous examples. Instead, they serve as standalone works that can be consumed individually. So feel free to read them in order, or jump around.</p>
+
+<p>Enjoy!</p>
+<h1>Table of Contents</h1>  <ol>
+  <li><a href="#chapter1">How To Upload a File</a></li>
+<li><a href="#chapter2">How To Download a File</a></li>
+<li><a href="#chapter3">How To Download a File Without a Browser</a></li>
+<li><a href="#chapter4">How To Take A Screenshot on Failure</a></li>
+<li><a href="#chapter5">How To Run Your Tests on Internet Explorer</a></li>
+<li><a href="#chapter6">How To Use Selenium Grid</a></li>
+<li><a href="#chapter7">How To Opt-out of A/B Tests</a></li>
+<li><a href="#chapter8">How To Access Basic Auth</a></li>
+<li><a href="#chapter9">How To Test Checkboxes</a></li>
+<li><a href="#chapter10">How To Test For Disabled Elements</a></li>
+<li><a href="#chapter11">How To Select From a Dropdown List</a></li>
+<li><a href="#chapter12">How To Work with Frames</a></li>
+<li><a href="#chapter13">How To Add Growl Notifications To Your Tests</a></li>
+<li><a href="#chapter14">How To Visually Verify Your Locators</a></li>
+<li><a href="#chapter15">How To Work With Hovers</a></li>
+<li><a href="#chapter16">How To Work With HTML Data Tables</a></li>
+<li><a href="#chapter17">How To Work With JavaScript Alerts</a></li>
+<li><a href="#chapter18">How To Press Keyboard Keys</a></li>
+<li><a href="#chapter19">How To Work with Multiple Windows</a></li>
+<li><a href="#chapter20">How To Right-click</a></li>
+  </ol>
+<h1 id="chapter1"><small>Chapter 1</small><br>How To Upload a File</h1>
+<h2>The Problem</h2>
+
+<p>Uploading a file is a common piece of functionality found on the web. But when trying to automate it you get prompted with a with a dialog box that is just out of reach for Selenium.</p>
+
+<p>In these cases people often look to a third-party tool to manipulate this window (e.g., <a href="http://www.toolsqa.com/selenium-webdriver/autoit-selenium-webdriver/">AutoIt</a>). While this can help solve your short-term need, it sets you up for failure later by chaining you to a specific platform (e.g., AutoIt only works on Windows), effectively limiting your ability to test this functionality on different browser &amp; operating system combinations.</p>
+<h2>A Solution</h2>
+
+<p>A work-around for this problem is to side-step the system dialog box entirely. We can do this by using Selenium to insert the full path of the file we want to upload (as text) <em>into</em> the form and then submit the form.</p>
+
+<p>Let's step through an example.</p>
+<h2>An Example</h2>
+
+<p><strong>NOTE: We are using <a href="http://the-internet.herokuapp.com/upload">a file upload example</a> found on <a href="https://github.com/tourdedave/the-internet">the-internet</a>.</strong></p>
+
+<p>First let's pull in our requisite classes for our testing framework (e.g., <code>using NUnit.Framework;</code>), driving the browser with Selenium (e.g., <code>using OpenQA.Selenium;</code>), and launching an instance of Firefox (e.g., <code>using OpenQA.Selenium.Firefox;</code>).</p>
+<div class="highlight"><pre><span class="c1">// filename: FileUpload.cs</span>
+<span class="k">using</span> <span class="nn">NUnit.Framework</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">OpenQA.Selenium</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">OpenQA.Selenium.Firefox</span><span class="p">;</span>
+<span class="c1">// ...</span>
+</pre></div>
+<p>Now to create a class and take care of the test's setup and teardown.</p>
+<div class="highlight"><pre><span class="c1">// filename: FileUpload.cs</span>
+<span class="c1">// ...</span>
+<span class="k">public</span> <span class="k">class</span> <span class="nc">FileUpload</span>
+<span class="p">{</span>
+    <span class="n">IWebDriver</span> <span class="n">Driver</span><span class="p">;</span>
+
+<span class="na">    [SetUp]</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">SetUp</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">Driver</span> <span class="p">=</span> <span class="k">new</span> <span class="n">FirefoxDriver</span><span class="p">();</span>
+    <span class="p">}</span>
+
+<span class="na">    [TearDown]</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">TearDown</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">Driver</span><span class="p">.</span><span class="n">Quit</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="c1">// ...</span>
+</pre></div>
+<p>After specifying the class (e.g., <code>public class FileUpload</code>) we create a field variable (e.g., <code>IWebDriver Driver;</code>) to store our Selenium instance for reuse throughout the class. We then create a <code>SetUp()</code> method with a <code>[SetUp]</code> attribute so it runs before our test. In this method we are creating an instance of Selenium with Firefox (e.g., <code>Driver = new FirefoxDriver();</code>).</p>
+
+<p>After our test executes, the <code>TearDown()</code> method will run thanks to the <code>[TearDown]</code> attribute. This calls <code>Driver.Quit();</code> which will close the browser instance.</p>
+
+<p>Now to wire up our test.</p>
+<div class="highlight"><pre><span class="c1">// filename: FileUpload.cs</span>
+<span class="c1">// ...</span>
+<span class="na">    [Test]</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">UploadFileFromDisk</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="kt">string</span> <span class="n">File</span> <span class="p">=</span> <span class="s">&quot;SomeFile.txt&quot;</span><span class="p">;</span>
+        <span class="kt">string</span> <span class="n">FilePath</span> <span class="p">=</span> <span class="s">@&quot;C:\Temp\&quot;</span> <span class="p">+</span> <span class="n">File</span><span class="p">;</span>
+
+        <span class="n">Driver</span><span class="p">.</span><span class="n">Navigate</span><span class="p">().</span><span class="n">GoToUrl</span><span class="p">(</span><span class="s">&quot;http://the-internet.herokuapp.com/upload&quot;</span><span class="p">);</span>
+        <span class="n">Driver</span><span class="p">.</span><span class="n">FindElement</span><span class="p">(</span><span class="n">By</span><span class="p">.</span><span class="n">Id</span><span class="p">(</span><span class="s">&quot;file-upload&quot;</span><span class="p">)).</span><span class="n">SendKeys</span><span class="p">(</span><span class="n">FilePath</span><span class="p">);</span>
+        <span class="n">Driver</span><span class="p">.</span><span class="n">FindElement</span><span class="p">(</span><span class="n">By</span><span class="p">.</span><span class="n">Id</span><span class="p">(</span><span class="s">&quot;file-submit&quot;</span><span class="p">)).</span><span class="n">Click</span><span class="p">();</span>
+
+        <span class="n">IWebElement</span> <span class="n">FileUploaded</span> <span class="p">=</span> <span class="n">Driver</span><span class="p">.</span><span class="n">FindElement</span><span class="p">(</span><span class="n">By</span><span class="p">.</span><span class="n">Id</span><span class="p">(</span><span class="s">&quot;uploaded-files&quot;</span><span class="p">));</span>
+        <span class="n">Assert</span><span class="p">.</span><span class="n">IsTrue</span><span class="p">(</span><span class="n">FileUploaded</span><span class="p">.</span><span class="n">Text</span> <span class="p">==</span> <span class="n">File</span><span class="p">,</span> <span class="s">&quot;The File Did Not Upload Correctly&quot;</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+<p>We create an <code>UploadFileFromDisk()</code> method and add a <code>[Test]</code> attribute so it is run as a test. In it we leverage a file from local disk by specifying the file (e.g., <code>SomeFile.txt</code>) and its path (e.g., currently set to <code>C:\Temp\</code>, adapt as needed to suit your needs).</p>
+
+<p><strong>NOTE: The value for <code>FilePath</code> starts with a <code>@</code> symbol. This denotes that what follows after it is a string literal. If we didn't have it, we would need to escape our backslashes (e.g, `&quot;C:\Temp\&quot;).</strong></p>
+
+<p>Next we visit the page with the upload form, input the string value of <code>FilePath</code> (e.g., the full path to the file plus the filename with its extension), and submit the form. After the file is uploaded to the page it will display the filename it just processed. We use this text to perform our assertion (making sure the uploaded file is what we expect).</p>
+<h2>Expected Behavior</h2>
+
+<p>When we save this file and run it (e.g., <code>nunit3-console.exe .\FileUpload.sln</code> from the command-line) here is what will happen:</p>
+
+<ul>
+<li>Open the browser</li>
+<li>Visit the upload form page</li>
+<li>Inject the file path into the form and submit it</li>
+<li>Page displays the uploaded filename</li>
+<li>Grab the text from the page and assert it's what we expect</li>
+<li>Close the browser</li>
+</ul>
+<h2>Outro</h2>
+
+<p>This approach will work across all browsers. If you want to use it with a remote instance (e.g., on Selenium Grid or Sauce Labs) then you'll want to have a look at <a href="http://seleniumhq.github.io/selenium/docs/api/dotnet/html/T_OpenQA_Selenium_IAllowsFileDetection.htm"><code>IAllowsFileDetection</code></a>.</p>
+
+<p>Thanks to Jonathan Taylor for contributing the initial C# code for this tip!</p>
+
+<p>Happy Testing!</p>
+<h1 id="chapter2"><small>Chapter 2</small><br>How To Download a File</h1>
+<h2>The Problem</h2>
+
+<p>Just like with uploading files we hit the same issue with downloading them. A dialog box just out of Selenium's reach.</p>
+<h2>A Solution</h2>
+
+<p>With some additional configuration when setting up Selenium we can easily side-step the dialog box. This is done by instructing the browser to download files to a specific location without being prompted.</p>
+
+<p>After the file is downloaded we can perform some simple checks to make sure the file is what we expect.</p>
+
+<p>Let's dig in with an example.</p>
+<h2>An Example</h2>
+
+<p>Let's start off by declaring our requisite classes for our testing framework (e.g., <code>using NUnit.Framework</code>), driving the browser with Selenium (e.g., <code>using OpenQA.Selenium</code>, etc.), and leveraging common C# functions (e.g., <code>using System.IO</code>, etc.).</p>
+<div class="highlight"><pre><span class="c1">// filename: FileDownload.cs</span>
+<span class="k">using</span> <span class="nn">NUnit.Framework</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">OpenQA.Selenium</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">OpenQA.Selenium.Firefox</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">System.IO</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">System.Threading</span><span class="p">;</span>
+<span class="c1">// ...</span>
+</pre></div>
+<p>Now to create a class and add our test's setup.</p>
+<div class="highlight"><pre><span class="c1">// filename: FileDownload.cs</span>
+<span class="k">public</span> <span class="k">class</span> <span class="nc">FileDownload</span>
+<span class="p">{</span>
+    <span class="n">IWebDriver</span> <span class="n">Driver</span><span class="p">;</span>
+    <span class="kt">string</span> <span class="n">FolderPath</span><span class="p">;</span>
+
+<span class="na">    [SetUp]</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">SetUp</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">FolderPath</span> <span class="p">=</span> <span class="s">@&quot;C:\Temp\&quot;</span> <span class="p">+</span> <span class="n">System</span><span class="p">.</span><span class="n">Guid</span><span class="p">.</span><span class="n">NewGuid</span><span class="p">().</span><span class="n">ToString</span><span class="p">();</span>
+        <span class="n">Directory</span><span class="p">.</span><span class="n">CreateDirectory</span><span class="p">(</span><span class="n">FolderPath</span><span class="p">);</span>
+
+        <span class="n">FirefoxProfile</span> <span class="n">Profile</span> <span class="p">=</span> <span class="k">new</span> <span class="n">FirefoxProfile</span><span class="p">();</span>
+        <span class="n">profile</span><span class="p">.</span><span class="n">SetPreference</span><span class="p">(</span><span class="s">&quot;browser.download.dir&quot;</span><span class="p">,</span> <span class="n">FolderPath</span><span class="p">);</span>
+        <span class="n">profile</span><span class="p">.</span><span class="n">SetPreference</span><span class="p">(</span><span class="s">&quot;browser.download.folderList&quot;</span><span class="p">,</span> <span class="m">2</span><span class="p">);</span>
+        <span class="n">profile</span><span class="p">.</span><span class="n">SetPreference</span><span class="p">(</span><span class="s">&quot;browser.helperApps.neverAsk.saveToDisk&quot;</span><span class="p">,</span>
+                              <span class="s">&quot;image/jpeg, application/pdf, application/octet-stream&quot;</span><span class="p">);</span>
+        <span class="n">profile</span><span class="p">.</span><span class="n">SetPreference</span><span class="p">(</span><span class="s">&quot;pdfjs.disabled&quot;</span><span class="p">,</span> <span class="k">true</span><span class="p">);</span>
+        <span class="n">Driver</span> <span class="p">=</span> <span class="k">new</span> <span class="n">FirefoxDriver</span><span class="p">(</span><span class="n">Profile</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="c1">// ...</span>
+</pre></div>
+<p>Our <code>SetUp()</code> method is where the magic is happening in this example. In it we're creating a uniquely named temp directory (e.g., <code>System.Guid.NewGuid().ToString();</code>), configuring a browser profile object (for Firefox in this case), and plying it with the necessary configuration parameters to make it automatically download the file where we want (e.g., in the newly created temp directory).</p>
+
+<p>Here's a breakdown of each of the browser preferences being set:</p>
+
+<ul>
+<li><code>browser.download.dir</code> accepts a string. This is how we set the custom download path. It needs to be an absolute path.</li>
+<li><code>browser.download.folderList</code> takes a number. It tells Firefox which download directory to use. <code>2</code> tells it to use a custom download path, wheras <code>1</code> would use the browser's default path, and <code>0</code> would place them on the Desktop.</li>
+<li><code>browser.helperApps.neverAsk.saveToDisk</code> tells Firefox when not to prompt for a file download. It accepts a string of <a href="http://en.wikipedia.org/wiki/Internet_media_type">the file's MIME type</a>. If you want to specify more than one, you do it with a comma-separated string (which we've done).</li>
+<li><code>pdfjs.disabled</code> is for when downloading PDFs. This overrides the sensible default in Firefox that previews PDFs in the browser. It accepts a boolean.</li>
+</ul>
+
+<p>This profile object is then passed into our instance of Selenium (e.g., <code>Driver = new FirefoxDriver(Profile);</code>).</p>
+
+<p>Now let's take care of our test's teardown.</p>
+<div class="highlight"><pre><span class="c1">// filename: FileDownload.cs</span>
+<span class="c1">// ...</span>
+<span class="na">    [TearDown]</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">TearDown</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">Driver</span><span class="p">.</span><span class="n">Quit</span><span class="p">();</span>
+        <span class="n">Directory</span><span class="p">.</span><span class="n">Delete</span><span class="p">(</span><span class="n">FolderPath</span><span class="p">,</span> <span class="k">true</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="c1">// ...</span>
+</pre></div>
+<p>In <code>TearDown()</code> we close the browser instance and then clean up the temp directory by deleting it. Specifying <code>true</code> as a second parameter for <code>Directory.Delete()</code> will recursively delete the files in the folder before deleting it.</p>
+
+<p>Now to wire up our test.</p>
+<div class="highlight"><pre><span class="c1">// filename: FileDownload.cs</span>
+<span class="c1">// ...</span>
+<span class="na">    [Test]</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">DownloadFileToDisk</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">Driver</span><span class="p">.</span><span class="n">Navigate</span><span class="p">().</span><span class="n">GoToUrl</span><span class="p">(</span><span class="s">&quot;http://the-internet.herokuapp.com/download&quot;</span><span class="p">);</span>
+        <span class="n">Driver</span><span class="p">.</span><span class="n">FindElement</span><span class="p">(</span><span class="n">By</span><span class="p">.</span><span class="n">CssSelector</span><span class="p">(</span><span class="s">&quot;.example a&quot;</span><span class="p">)).</span><span class="n">Click</span><span class="p">();</span>
+        <span class="n">Thread</span><span class="p">.</span><span class="n">Sleep</span><span class="p">(</span><span class="m">2000</span><span class="p">);</span>
+
+        <span class="n">DirectoryInfo</span> <span class="n">DownloadFolder</span> <span class="p">=</span> <span class="k">new</span> <span class="n">DirectoryInfo</span><span class="p">(</span><span class="n">FolderPath</span><span class="p">);</span>
+        <span class="n">Assert</span><span class="p">.</span><span class="n">IsTrue</span><span class="p">(</span><span class="n">DownloadFolder</span><span class="p">.</span><span class="n">GetFiles</span><span class="p">().</span><span class="n">Length</span> <span class="p">&gt;</span> <span class="m">0</span><span class="p">,</span> <span class="s">&quot;File not downloaded&quot;</span><span class="p">);</span>
+        <span class="k">foreach</span><span class="p">(</span><span class="n">FileInfo</span> <span class="n">file</span> <span class="k">in</span> <span class="n">DownloadFolder</span><span class="p">.</span><span class="n">GetFiles</span><span class="p">())</span>
+        <span class="p">{</span>
+            <span class="n">Assert</span><span class="p">.</span><span class="n">IsTrue</span><span class="p">(</span><span class="n">file</span><span class="p">.</span><span class="n">Length</span> <span class="p">&gt;</span> <span class="m">0</span><span class="p">,</span> <span class="s">&quot;File empty&quot;</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+<p>After visiting the page we find the first download link and click it. The click triggers an automatic download to the temp directory created in <code>SetUp()</code>. We need to wait for the download to finish, so we add a brief sleep (e.g., <code>Thread.sleep(2000);</code>). After the file downloads, we perform some rudimentary checks to make sure the unique temp directory isn't empty and then check the file (or files) to see that they aren't empty either.</p>
+<h2>Expected Behavior</h2>
+
+<p>When you save this file and run it (e.g., <code>nunit3-console.exe .\FileDownload.sln</code> from the command-line) here is will happen:</p>
+
+<ul>
+<li>Create a uniquely named temp directory in the present working directory</li>
+<li>Open the browser</li>
+<li>Visit the page</li>
+<li>Find and click the first download link on the page</li>
+<li>Automatically download the file to the temp directory without prompting</li>
+<li>Check that the temp directory is not empty</li>
+<li>Check that the downloaded file is not empty</li>
+<li>Close the browser</li>
+<li>Delete the temp directory</li>
+</ul>
+<h2>Outro</h2>
+
+<p>A similar approach can be applied to some other browsers with varying configurations. But downloading files this way is not sustainable or recommended. Mark Collin articulates this point well in his prominent write-up about it <a href="http://ardesco.lazerycode.com/index.php/2012/07/how-to-download-files-with-selenium-and-why-you-shouldnt/">here</a>. In a future tip I'll cover a more reliable, faster, and scalable browser agnostic approach to downloading files. Stay tuned.</p>
+
+<p>Thanks to Jonathan Taylor for contributing the initial C# code for this tip!</p>
+
+<p>Happy Testing!</p>
+<h1 id="chapter3"><small>Chapter 3</small><br>How To Download a File Without a Browser</h1>
+<h2>The Problem</h2>
+
+<p>In a previous tip we stepped through how to download files with Selenium by configuring the browser to download them locally and performing some checks on them.</p>
+
+<p>While this works it requires a specific configuration that is not available in all browsers and is inconsistent between the browsers that do have it.</p>
+<h2>A Solution</h2>
+
+<p>Ultimately we shouldn't care if a file was downloaded or not. Instead we should care that a file <em>can</em> be downloaded. And we can do that by using an HTTP request alongside Selenium.</p>
+
+<p>With an HTTP library we can perform a header (<code>HEAD</code>) request for the file. Instead of downloading the file we'll receive the header information for the file which contains things like the content type and its length. With this information we can easily confirm the file is what we expect without onerous configuration, local disk usage, or lengthy download times.</p>
+
+<p>Let's dig with an example.</p>
+<h2>An Example</h2>
+
+<p>To start things off let's include our requisite classes for our test framework (e.g., <code>NUnit.Framework</code>), driving the browser with Selenium (e.g., <code>OpenQA.Selenium</code>, etc.), an HTTP library to handle our HEAD request (e.g., <code>System.Net</code>), and start our class with some setup and teardown methods.</p>
+<div class="highlight"><pre><span class="c1">// filename: FileDownloadRevisited.cs </span>
+<span class="k">using</span> <span class="nn">NUnit.Framework</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">OpenQA.Selenium</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">OpenQA.Selenium.Firefox</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">System.Net</span><span class="p">;</span>
+
+<span class="k">public</span> <span class="k">class</span> <span class="nc">FileDownloadRevisited</span>
+<span class="p">{</span>
+
+    <span class="n">IWebDriver</span> <span class="n">Driver</span><span class="p">;</span>
+
+<span class="na">    [SetUp]</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">SetUp</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">Driver</span> <span class="p">=</span> <span class="k">new</span> <span class="n">FirefoxDriver</span><span class="p">();</span>
+    <span class="p">}</span>
+
+<span class="na">    [TearDown]</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">TearDown</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">Driver</span><span class="p">.</span><span class="n">Quit</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="c1">// ...</span>
+</pre></div>
+<p>Now we're ready to wire up our test.</p>
+
+<p>It's just a simple matter of visiting the page with download links, grabbing a URL from one of them, and performing a <code>HEAD</code> request with it.</p>
+<div class="highlight"><pre><span class="c1">// filename: FileDownloadRevisited.cs</span>
+<span class="c1">// ...</span>
+<span class="na">    [Test]</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">CheckFileDownloadWithoutBrowser</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">Driver</span><span class="p">.</span><span class="n">Navigate</span><span class="p">().</span><span class="n">GoToUrl</span><span class="p">(</span><span class="s">&quot;http://the-internet.herokuapp.com/download&quot;</span><span class="p">);</span>
+        <span class="kt">string</span> <span class="n">FileURL</span> <span class="p">=</span> <span class="n">Driver</span><span class="p">.</span><span class="n">FindElement</span><span class="p">(</span><span class="n">By</span><span class="p">.</span><span class="n">CssSelector</span><span class="p">(</span><span class="s">&quot;.example a&quot;</span><span class="p">)).</span><span class="n">GetAttribute</span><span class="p">(</span><span class="s">&quot;href&quot;</span><span class="p">);</span>
+        <span class="kt">var</span> <span class="n">Request</span> <span class="p">=</span> <span class="p">(</span><span class="n">HttpWebRequest</span><span class="p">)</span><span class="n">WebRequest</span><span class="p">.</span><span class="n">Create</span><span class="p">(</span><span class="n">FileURL</span><span class="p">);</span>
+        <span class="n">Request</span><span class="p">.</span><span class="n">Method</span> <span class="p">=</span> <span class="s">&quot;HEAD&quot;</span><span class="p">;</span>
+        <span class="n">WebResponse</span> <span class="n">Response</span> <span class="p">=</span> <span class="n">Request</span><span class="p">.</span><span class="n">GetResponse</span><span class="p">();</span>
+        <span class="n">Assert</span><span class="p">.</span><span class="n">That</span><span class="p">(</span><span class="n">Response</span><span class="p">.</span><span class="n">ContentType</span><span class="p">.</span><span class="n">Equals</span><span class="p">(</span><span class="s">&quot;application/octet-stream&quot;</span><span class="p">));</span>
+        <span class="n">Assert</span><span class="p">.</span><span class="n">Greater</span><span class="p">(</span><span class="n">Response</span><span class="p">.</span><span class="n">ContentLength</span><span class="p">,</span> <span class="m">0</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+<p>Once we receive the response we check its header for the content type (e.g., <code>Assert.That(Response.ContentType.Equals(&quot;application/octet-stream&quot;));</code>) and content length (e.g., <code>Assert.Greater(Response.ContentLength, 0);</code>) to make sure the file is the correct type and not empty.</p>
+<h2>Expected Behavior</h2>
+
+<p>When you save this and run it (e.g., <code>nunit3-console.exe .\FileDownloadRevisited.sln</code> from the command-line) here is what will will happen:</p>
+
+<ul>
+<li>Open the browser</li>
+<li>Load the page</li>
+<li>Grab the URL of the first download link</li>
+<li>Perform a <code>HEAD</code> request against it with an HTTP library</li>
+<li>Store the response headers</li>
+<li>Check the response headers to see that the file type is correct</li>
+<li>Check the response headers to see that the file is not empty</li>
+<li>Close the browser</li>
+</ul>
+<h2>Outro</h2>
+
+<p>Compared to the browser specific configuration with Selenium this is hands-down a leaner, faster, and more maintainable approach. But if you are dealing with file downloads that are getting rendered in-memory within the browser (rather than being served by a flat URL) then the browser specific configuration is the better approach.</p>
+
+<p>Happy Testing!</p>
+<h1 id="chapter4"><small>Chapter 4</small><br>How To Take A Screenshot on Failure</h1>
+<h2>The Problem</h2>
+
+<p>With browser tests it can often be challenging to track down the issue that caused a failure. By itself a failure message along with a stack trace is hardly enough to go on. Especially when you run the test again and it passes.</p>
+<h2>A Solution</h2>
+
+<p>A simple way to gain insight into your test failures is to capture screenshots at the moment of a failure. And it's a quick and easy thing to add to your tests.</p>
+
+<p>Let's dig in with an example.</p>
+<h2>An Example</h2>
+
+<p>Let's start by including our requisite classes for our test framework (e.g., <code>NUnit.Framework</code>), driving the browser with Selenium (e.g., <code>OpenQA.Selenium</code>, etc.), accessing C#'s image functionality (e.g., <code>System.Drawing.Imaging</code>), and start our class off with some setup and teardown methods.</p>
+<div class="highlight"><pre><span class="c1">// filename: Screenshot.cs</span>
+<span class="k">using</span> <span class="nn">NUnit.Framework</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">NUnit.Framework.Interfaces</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">OpenQA.Selenium</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">OpenQA.Selenium.Firefox</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">System.Drawing.Imaging</span><span class="p">;</span>
+
+<span class="k">public</span> <span class="k">class</span> <span class="nc">Screenshot</span>
+<span class="p">{</span>
+    <span class="n">IWebDriver</span> <span class="n">Driver</span><span class="p">;</span>
+
+<span class="na">    [SetUp]</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">SetUp</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">Driver</span> <span class="p">=</span> <span class="k">new</span> <span class="n">FirefoxDriver</span><span class="p">();</span>
+    <span class="p">}</span>
+
+<span class="na">    [TearDown]</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">TearDown</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">TestContext</span><span class="p">.</span><span class="n">CurrentContext</span><span class="p">.</span><span class="n">Result</span><span class="p">.</span><span class="n">Outcome</span><span class="p">.</span><span class="n">Status</span><span class="p">.</span><span class="n">Equals</span><span class="p">(</span><span class="n">TestStatus</span><span class="p">.</span><span class="n">Failed</span><span class="p">))</span>
+            <span class="n">TakeScreenshot</span><span class="p">();</span>
+
+        <span class="n">Driver</span><span class="p">.</span><span class="n">Quit</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="c1">// ...</span>
+</pre></div>
+<p>Notice in the teardown we have a conditional statement before we call <code>Driver.Quit();</code>. It's checking to see if the test failed, if it has then it will take a screenshot. Right now the method we're referencing isn't declared. Let's add it now.</p>
+<div class="highlight"><pre><span class="c1">// filename: Screenshot.cs</span>
+<span class="c1">// ...</span>
+    <span class="k">private</span> <span class="k">void</span> <span class="nf">TakeScreenshot</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="kt">string</span> <span class="n">SaveLocation</span> <span class="p">=</span> <span class="s">@&quot;C:\Temp\&quot;</span> <span class="p">+</span>
+                               <span class="s">&quot;failshot_&quot;</span> <span class="p">+</span>
+                               <span class="n">TestContext</span><span class="p">.</span><span class="n">CurrentContext</span><span class="p">.</span><span class="n">Test</span><span class="p">.</span><span class="n">FullName</span> <span class="p">+</span>
+                               <span class="s">&quot;.png&quot;</span><span class="p">;</span>
+        <span class="n">ITakesScreenshot</span> <span class="n">ScreenshotDriver</span> <span class="p">=</span> <span class="p">(</span><span class="n">ITakesScreenshot</span><span class="p">)</span> <span class="n">Driver</span><span class="p">;</span>
+        <span class="n">ScreenshotDriver</span><span class="p">.</span><span class="n">GetScreenshot</span><span class="p">().</span><span class="n">SaveAsFile</span><span class="p">(</span><span class="n">SaveLocation</span><span class="p">,</span> <span class="n">ImageFormat</span><span class="p">.</span><span class="n">Png</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="c1">// ...</span>
+</pre></div>
+<p>There are numerous ways to make the filename unique for the screenshot (e.g., unique ID, timestamp, etc.). The simplest way to get started is with the full test name (e.g., test class name and test method name), which we've done. We also specified the save location on disk using a string literal (e.g., <code>@&quot;C:\Temp&quot;</code>), feel free to change it to suit your needs.</p>
+
+<p>The rest is a simple matter of casting the <code>Driver</code> as an <code>ITakeScreenshot</code> object and calling <code>GetScreenshot().SaveAsFile</code> (specifying the save location and image format -- which is PNG in this case).</p>
+
+<p>Now let's wire up our test with a forced failure.</p>
+<div class="highlight"><pre><span class="c1">// filename: Screenshot.cs</span>
+<span class="c1">// ...</span>
+<span class="na">    [Test]</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">ScreenShotOnFailure</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">Driver</span><span class="p">.</span><span class="n">Navigate</span><span class="p">().</span><span class="n">GoToUrl</span><span class="p">(</span><span class="s">&quot;http://the-internet.herokuapp.com&quot;</span><span class="p">);</span>
+        <span class="n">Assert</span><span class="p">.</span><span class="n">That</span><span class="p">(</span><span class="k">false</span><span class="p">.</span><span class="n">Equals</span><span class="p">(</span><span class="k">true</span><span class="p">));</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div><h2>Expected Behavior</h2>
+
+<p>When you save this file and run it (<code>nunit3-console.exe .\Screenshot.sln</code> from the command-line) here is what will happen:</p>
+
+<ul>
+<li>Open the browser</li>
+<li>Visit the page</li>
+<li>Test Fails</li>
+<li>Selenium Captures a screenshot in <code>C:\Temp</code> with the name <code>failshot_Screenshot.ScreenShotOnFailure.png</code></li>
+<li>Close the browser</li>
+</ul>
+<h2>Outro</h2>
+
+<p>Happy Testing!</p>
+<h1 id="chapter5"><small>Chapter 5</small><br>How To Run Your Tests on Internet Explorer</h1>
+<h2>The Problem</h2>
+
+<p>To get your tests running on Internet Explorer the setup is similar to Chrome. But there are a couple of extra steps you need to know in order to get things working smoothly.</p>
+<h2>A Solution</h2>
+
+<p>Just like with ChromeDriver you need to download the browser driver binary and either add it to your system path or specify it in code. After that you also need to configure the privacy mode settings of Internet Explorer.</p>
+
+<p>Let's step through an example.</p>
+<h2>An Example</h2>
+
+<p>First we need to download <a href="https://github.com/SeleniumHQ/selenium/wiki/InternetExplorerDriver">InternetExplorerDriver</a> from <a href="http://selenium-release.storage.googleapis.com/index.html">here</a> and tell our Selenium tests about it. Rather than adding this to our system path, let's go ahead and add it to our test project in a <code>Vendor</code> directory.</p>
+
+<p>Next we need to configure the Security Options of Internet Explorer to <code>Enable Protected Mode</code> for each zone (e.g., Internet, Local intranet, Trusted Sites, and Restricted Sites). <code>Internet Options</code> can be accessed from the <code>Tools</code> menu in Internet Explorer.</p>
+
+<p><img src="http://elementalselenium.com/img/internet-explorer/tools-options.png" alt="Accessing the Internet Explorer Options Menu"></p>
+
+<p>Select the Security tab and enable the checkbox for <code>Enable Protected Mode</code> for each zone and click <code>OK</code> when done.</p>
+
+<p><img src="http://elementalselenium.com/img/internet-explorer/security-options.png" alt="Security Options for Internet Explorer" width="350"></p>
+
+<p>Now to create our test class. Let's start it off by including our requisite classes for our test framework (e.g., <code>using NUnit.Framework</code>), driving the browser with Selenium (e.g., <code>using OpenQA.Selenium</code>, etc.), accessing C# methods to work with the local file system (e.g., <code>using System.IO</code>), and start our class with some setup and teardown methods.</p>
+<div class="highlight"><pre><span class="c1">// filename: InternetExplorer.cs</span>
+<span class="k">using</span> <span class="nn">NUnit.Framework</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">OpenQA.Selenium</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">OpenQA.Selenium.IE</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">System.IO</span><span class="p">;</span>
+
+<span class="k">public</span> <span class="k">class</span> <span class="nc">InternetExplorer</span>
+<span class="p">{</span>
+    <span class="n">IWebDriver</span> <span class="n">Driver</span><span class="p">;</span>
+    <span class="kt">string</span> <span class="n">VendorDirectory</span> <span class="p">=</span> <span class="n">Directory</span><span class="p">.</span><span class="n">GetParent</span><span class="p">(</span>
+        <span class="n">Path</span><span class="p">.</span><span class="n">GetDirectoryName</span><span class="p">(</span><span class="k">typeof</span><span class="p">(</span><span class="n">InternetExplorer</span><span class="p">).</span><span class="n">Assembly</span><span class="p">.</span><span class="n">Location</span><span class="p">)).</span>
+            <span class="n">Parent</span><span class="p">.</span><span class="n">FullName</span> <span class="p">+</span> <span class="s">@&quot;\Vendor&quot;</span><span class="p">;</span>
+
+<span class="na">    [SetUp]</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">SetUp</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">Driver</span> <span class="p">=</span> <span class="k">new</span> <span class="n">InternetExplorerDriver</span><span class="p">(</span><span class="n">VendorDirectory</span><span class="p">);</span>
+    <span class="p">}</span>
+
+<span class="na">    [TearDown]</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">TearDown</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">Driver</span><span class="p">.</span><span class="n">Quit</span><span class="p">();</span>
+    <span class="p">}</span>
+</pre></div>
+<p>Notice the field variable declaration for <code>VendorDirectory</code>. With it we are effectively grabbing the full path of the project directory and appending the <code>Vendor</code> directory to it. This is then put to use when creating an instance of Internet Explorer (e.g., <code>Driver = new InternetExplorerDriver(VendorDirectory);</code>).</p>
+
+<p>Now it's a simple matter of writing a Hello World test method to verify that a page can be loaded by the browser.</p>
+<div class="highlight"><pre><span class="c1">// filename: InternetExplorer.cs</span>
+<span class="c1">// ...</span>
+<span class="na">    [Test]</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">PageLoads</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">Driver</span><span class="p">.</span><span class="n">Navigate</span><span class="p">().</span><span class="n">GoToUrl</span><span class="p">(</span><span class="s">&quot;http://the-internet.herokuapp.com&quot;</span><span class="p">);</span>
+        <span class="n">Assert</span><span class="p">.</span><span class="n">That</span><span class="p">(</span><span class="n">Driver</span><span class="p">.</span><span class="n">Title</span><span class="p">.</span><span class="n">Equals</span><span class="p">(</span><span class="s">&quot;The Internet&quot;</span><span class="p">));</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div><h2>Running Your Tests on IE11</h2>
+
+<p>It's worth noting that <a href="https://github.com/seleniumhq/selenium-google-code-issue-archive/issues/6511#issuecomment-192149674">there is a known bug</a> with Selenium and IE11 which prevents tests from launching a browser. Thankfully there is a workaround to this issue which involves making a tweak to your system registry.</p>
+<div class="highlight"><pre># For 32-bit Windows
+HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_BFCACHE
+
+# For 64-bit Windows
+HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_BFCACHE
+</pre></div>
+<p>To find out if your system is 32 or 64 bit, click <code>Start</code>, right-click on <code>Computer</code>, and select <code>Properties</code>.</p>
+
+<p><img alt="Finding the OS bit-level" src="http://elementalselenium.com/img/internet-explorer/find-os-bit-level.png" width="500"></p>
+
+<p>In the <code>System</code> section there is an entry titled <code>System type:</code>. It will tell you whether you're using a 32-bit Operating System or 64-bit.</p>
+
+<p><img src="http://elementalselenium.com/img/internet-explorer/found-os-bit-level.png" alt="Found the OS bit-level"></p>
+
+<p>To access your system registry click <code>Start</code>, type <code>regedit</code>, and hit <code>Enter</code>. This opens up the Registry Editor (assuming you have local administrator permissions for the machine).</p>
+
+<p><img src="http://elementalselenium.com/img/internet-explorer/regedit.png" alt="regedit"></p>
+
+<p>The left-pane of the window enables you to traverse the registry keys in the system. Simply navigate to the correct key location depending on which version of Windows you're running (e.g., 32-bit or 64-bit). Once you've reached the <code>FeatureControl</code> sub-key you may or may not see the <code>FEATURE_BFCACHE</code> subkey. If it isn't there, add it. If it is there, skip to the next step.</p>
+
+<p>To add it right-click on <code>FeatureControl</code>, click <code>New</code>, and then <code>Key</code>. Type the name <code>FEATURE_BFCACHE</code> and hit <code>Enter</code>.</p>
+
+<p><img src="http://elementalselenium.com/img/internet-explorer/new-key-bfcache.png" alt="Adding a sub-key in regedit"></p>
+
+<p>Select the <code>FEATURE_BFCACHE</code> key in the left-pane and then right-click in the right-hand pane. Select <code>New</code>, then <code>DWORD Value</code>.</p>
+
+<p><img src="http://elementalselenium.com/img/internet-explorer/new-dword.png" alt="Adding a DWORD value in regedit"></p>
+
+<p>Type <code>iexplore.exe</code> for the name of the DWORD entry and hit <code>Enter</code>. The value for it should be <code>0</code> (which should have been set by default on creation).</p>
+
+<p><img src="http://elementalselenium.com/img/internet-explorer/new-dword-with-name.png" alt="Naming the new DWORD entry in regedit"></p>
+
+<p>Now your tests should run fine in IE11.</p>
+<h2>Expected Behavior</h2>
+
+<p>When we save our test file and run the project (e.g., <code>nunit3-console.exe .\InternetExplorer.sln</code>) here is what will happen:</p>
+
+<ul>
+<li>The InternetExplorerDriver server launches</li>
+<li>A new Internet Explorer browser window opens</li>
+<li>Selenium visits the page</li>
+<li>Selenium grabs the title from the page</li>
+<li>An assertion is performed to check that the correct page loaded</li>
+<li>The browser window closes</li>
+<li>The InternetExpplorerDriver server quits</li>
+</ul>
+
+<p>Depending on your User Access Control settings you might be prompted to allow the InternetExplorerDriver server to launch. Simply allow it.</p>
+<h2>Outro</h2>
+
+<p>Be sure to check out <a href="https://github.com/SeleniumHQ/selenium/wiki/InternetExplorerDriver">the InternetExplorerDriver documentation on the SeleniumHQ wiki</a> for more information about working with Internet Explorer and Selenium.</p>
+
+<p>Happy Testing!</p>
+<h1 id="chapter6"><small>Chapter 6</small><br>How To Use Selenium Grid</h1>
+<h2>The Problem</h2>
+
+<p>If you're looking to run your tests on different browser and operating system combinations but you're unable to justify using a third-party solution like <a href="https://saucelabs.com/">Sauce Labs</a> or <a href="http://www.browserstack.com/">Browser Stack</a> then what do you do?</p>
+<h2>A Solution</h2>
+
+<p>With <a href="https://github.com/SeleniumHQ/selenium/wiki/Grid2">Selenium Grid</a> you can stand up a simple infrastructure of various browsers on different operating systems to not only distribute test load, but also give you a diversity of browsers to work with.</p>
+<h2>A brief Selenium Grid primer</h2>
+
+<p>Selenium Grid is part of <a href="http://www.seleniumhq.org/">the Selenium project</a>. It lets you distribute test execution across several machines. You can connect to it with Selenium Remote by specifying the browser, browser version, and operating system you want. You specify these values through Selenium's Remote <code>Capabilities</code>.</p>
+
+<p>There are two main elements to Selenium Grid -- a hub, and nodes. First you need to stand up a hub. Then you can connect (or &quot;register&quot;) nodes to that hub. Nodes are where your tests will run, and the hub is responsible for making sure your tests end up on the right one (e.g., the machine with the operating system and browser you specified in your test).</p>
+
+<p>Let's step through an example.</p>
+<h2>An Example</h2>
+<h3>Part 1: Grid Setup</h3>
+
+<p>Selenium Grid comes built into the Selenium Standalone Server. So to get started we'll need to download the latest version of it from <a href="http://selenium-release.storage.googleapis.com/index.html">here</a>.</p>
+
+<p>Then we need to start the hub.</p>
+<div class="highlight"><pre>&gt; java -jar selenium-server-standalone.jar -role hub
+19:05:12.718 INFO - Launching Selenium Grid hub
+...
+</pre></div>
+<p>After that we can register nodes to it.</p>
+<div class="highlight"><pre>&gt; java -jar selenium-server-standalone.jar -role node -hub http://localhost:4444/grid/register
+19:05:57.880 INFO - Launching a Selenium Grid node
+...
+</pre></div>
+<p><strong>NOTE: This example only demonstrates a single node on the same machine as the hub. To span nodes across multiple machines you will need to place the standalone server on each machine and launch it with the same registration command (replacing <code>http://localhost</code> with the location of your hub, and specifying additional parameters as needed).</strong></p>
+
+<p>Now that the grid is running we can view the available browsers by visiting our Grid's console at <code>http://localhost:4444/grid/console</code>.</p>
+
+<p><img src='/img/grid-console.png'/></p>
+
+<p>To refine the list of available browsers, we can specify an additional <code>-browser</code> parameter when registering the node. For instance, if we wanted to only offer Safari on a node, we could specify it with <code>-browser browserName=safari</code>, which would look like this:</p>
+<div class="highlight"><pre>java -jar selenium-server-standalone.jar -role node -browser <span class="nv">browserName</span><span class="o">=</span>safari -hub http://localhost:4444/grid/register
+</pre></div>
+<p>We could also repeat this parameter again if we wanted to explicitly specify more than one browser.</p>
+<div class="highlight"><pre>java -jar selenium-server-standalone.jar -role node -browser <span class="nv">browserName</span><span class="o">=</span>safari -browser <span class="nv">browserName</span><span class="o">=</span>chrome -browser <span class="nv">browserName</span><span class="o">=</span>firefox -hub http://localhost:4444/grid/register
+</pre></div>
+<p>There are numerous parameters that we can use at run time. You can see a full list <a href="https://github.com/SeleniumHQ/selenium/wiki/Grid2#optional-parameters">here</a>.</p>
+<h3>Part 2: Test Setup</h3>
+
+<p>Now let's wire up a simple test to use our new Grid.</p>
+<div class="highlight"><pre><span class="c1">// filename: Grid.cs</span>
+<span class="k">using</span> <span class="nn">NUnit.Framework</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">OpenQA.Selenium</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">OpenQA.Selenium.Remote</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
+
+<span class="k">public</span> <span class="k">class</span> <span class="nc">Grid</span>
+<span class="p">{</span>
+    <span class="n">IWebDriver</span> <span class="n">Driver</span><span class="p">;</span>
+
+<span class="na">    [SetUp]</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">SetUp</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">DesiredCapabilities</span> <span class="n">Capabilities</span> <span class="p">=</span> <span class="k">new</span> <span class="n">DesiredCapabilities</span><span class="p">();</span>
+        <span class="n">Capabilities</span><span class="p">.</span><span class="n">SetCapability</span><span class="p">(</span><span class="n">CapabilityType</span><span class="p">.</span><span class="n">BrowserName</span><span class="p">,</span> <span class="s">&quot;firefox&quot;</span><span class="p">);</span>
+        <span class="kt">string</span> <span class="n">GridURL</span> <span class="p">=</span> <span class="s">&quot;http://localhost:4444/wd/hub&quot;</span><span class="p">;</span>
+        <span class="n">Driver</span> <span class="p">=</span> <span class="k">new</span> <span class="n">RemoteWebDriver</span><span class="p">(</span><span class="k">new</span> <span class="n">Uri</span><span class="p">(</span><span class="n">GridURL</span><span class="p">),</span> <span class="n">Capabilities</span><span class="p">);</span>
+    <span class="p">}</span>
+
+<span class="na">    [TearDown]</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">TearDown</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">Driver</span><span class="p">.</span><span class="n">Quit</span><span class="p">();</span>
+    <span class="p">}</span>
+
+<span class="na">    [Test]</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">BrowserLaunchesOnGrid</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">Driver</span><span class="p">.</span><span class="n">Navigate</span><span class="p">().</span><span class="n">GoToUrl</span><span class="p">(</span><span class="s">&quot;http://the-internet.herokuapp.com&quot;</span><span class="p">);</span>
+        <span class="n">Assert</span><span class="p">.</span><span class="n">That</span><span class="p">(</span><span class="n">Driver</span><span class="p">.</span><span class="n">Title</span><span class="p">.</span><span class="n">Equals</span><span class="p">(</span><span class="s">&quot;The Internet&quot;</span><span class="p">));</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+<p>Notice in this configuration we're using Selenium Remote (e.g., <code>new RemoteWebDriver()</code>) to connect to the grid. And we are telling the grid which browser we want to use with <code>DesiredCapabilities</code> (e.g., <code>DesiredCapabilities.SetCapability(CapabilityType.BrowserName, &quot;firefox&quot;);</code>).</p>
+
+<p>You can see a full list of the available Selenium <code>Capabilities</code> options <a href="https://github.com/SeleniumHQ/selenium/wiki/DesiredCapabilities">here</a>.</p>
+<h2>Expected Behavior</h2>
+
+<p>After standing up your own grid, when you save this file and run it (e.g., <code>nunit3-console.exe .\Grid.sln</code> from the command-line) here is what will happen:</p>
+
+<ul>
+<li>Connect to the Grid Hub</li>
+<li>Hub determines which node has the necessary browser/platform combination</li>
+<li>Hub connects the test to the node</li>
+<li>Browser opens on the node</li>
+<li>Test runs</li>
+<li>Browser closes on the node</li>
+</ul>
+<h2>Outro</h2>
+
+<p>If you're looking to set up Selenium Grid to work with Internet Explorer or Chrome, be sure to read up on how to set them up since there is additional configuration required for each. And if you run into issues be sure to check out the browser driver documentation for the browser you're working with:</p>
+
+<ul>
+<li><a href="https://github.com/SeleniumHQ/selenium/wiki/ChromeDriver">ChromeDriver</a></li>
+<li><a href="https://github.com/SeleniumHQ/selenium/wiki/FirefoxDriver">FirefoxDriver</a></li>
+<li><a href="https://github.com/SeleniumHQ/selenium/wiki/InternetExplorerDriver">InternetExplorerDriver</a></li>
+<li><a href="https://github.com/SeleniumHQ/selenium/wiki/SafariDriver">SafariDriver</a></li>
+</ul>
+
+<p>Also, it's worth noting that while Selenium Grid is a great option for scaling your test infrastructure, it by itself will NOT give you parallelization. It can handle as many connections as you throw at it (within reason), but you will still need to find a way to execute your tests in parallel.</p>
+
+<p>Happy Testing!</p>
+<h1 id="chapter7"><small>Chapter 7</small><br>How To Opt-out of A/B Tests</h1>
+<h2>The Problem</h2>
+
+<p>Occasionally when running tests you may see unexpected behavior due to <a href="http://en.wikipedia.org/wiki/A/B_testing">A/B testing (a.k.a. split testing)</a> of the application you're working with.</p>
+
+<p>In order to keep your tests running without issue we need a clean way to opt-out of these split tests.</p>
+<h2>A quick primer on A/B testing</h2>
+
+<p>Split testing is a simple way to experiment with an application's features to see which changes lead to higher user engagement.</p>
+
+<p>A simple example would be testing variations of an e-mail landing page to see if more people sign up. In such a split test there would be the control (how the application looks and behaves now) and variants (e.g., 2 or 3 changes that could include changing text or images on the page, element positioning, color of the submit button, etc.).</p>
+
+<p>Once the variants are configured they are put into rotation and the experiment starts. During this experiment each user will see a different version of the feature and their engagement with it will be tracked. Split tests live for the length of the experiment or until a winner is found (e.g., tracking indicates that a variant converted higher than the control). If no winner is found, new variants may be created and another experiment tried. If a winner is found, then the winning variant becomes the new control and the feature gets updated accordingly.</p>
+<h2>A Solution</h2>
+
+<p>Thankfully there are some standard opt-out mechanisms built into A/B testing platforms. They tend to come in the form of an appended URL or forging a cookie. Let's dig in with an example of each approach with a popular A/B testing platform, <a href="https://www.optimizely.com/">Optimizely</a>.</p>
+<h2>An Example</h2>
+
+<p>Our example page is from <a href="http://github.com/tourdedave/the-internet">the-internet</a> and can be seen <a href="http://the-internet.herokuapp.com/abtest">here</a>. There are three different variants of the page that are available, each with different heading text:</p>
+
+<ul>
+<li>Control: <code>A/B Test Control</code></li>
+<li>Variation 1: <code>A/B Test Variation 1</code></li>
+<li>Opt-out: <code>No A/B Test</code></li>
+</ul>
+
+<p>Let's start things off by including our requisite classes for our test framework (e.g., <code>NUnit.Framework</code>), driving the browser with Selenium (e.g., <code>OpenQA.Selenium</code>, etc.), and start our class with some setup and teardown methods. </p>
+<div class="highlight"><pre><span class="c1">// filename: ABTestOptOut.cs</span>
+<span class="k">using</span> <span class="nn">NUnit.Framework</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">OpenQA.Selenium</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">OpenQA.Selenium.Firefox</span><span class="p">;</span>
+
+<span class="k">public</span> <span class="k">class</span> <span class="nc">ABTestOptOut</span>
+<span class="p">{</span>
+    <span class="n">IWebDriver</span> <span class="n">Driver</span><span class="p">;</span>
+
+<span class="na">    [SetUp]</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">SetUp</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">Driver</span> <span class="p">=</span> <span class="k">new</span> <span class="n">FirefoxDriver</span><span class="p">();</span>
+    <span class="p">}</span>
+
+<span class="na">    [TearDown]</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">TearDown</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">Driver</span><span class="p">.</span><span class="n">Quit</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="c1">// ...</span>
+</pre></div>
+<p>Now let's wire up our first test to step through visiting the page and verifying that the text changes as we forge an opt-out cookie.</p>
+<div class="highlight"><pre><span class="c1">// filename: ABTestOptOut.cs</span>
+<span class="c1">// ...</span>
+<span class="na">    [Test]</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">OptOutWithCookieAfterVisitingPage</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">Driver</span><span class="p">.</span><span class="n">Navigate</span><span class="p">().</span><span class="n">GoToUrl</span><span class="p">(</span><span class="s">&quot;http://the-internet.herokuapp.com/abtest&quot;</span><span class="p">);</span>
+        <span class="kt">string</span> <span class="n">HeadingText</span> <span class="p">=</span> <span class="n">Driver</span><span class="p">.</span><span class="n">FindElement</span><span class="p">(</span><span class="n">By</span><span class="p">.</span><span class="n">TagName</span><span class="p">(</span><span class="s">&quot;h3&quot;</span><span class="p">)).</span><span class="n">Text</span><span class="p">;</span>
+        <span class="n">Assert</span><span class="p">.</span><span class="n">That</span><span class="p">(</span><span class="n">HeadingText</span><span class="p">.</span><span class="n">StartsWith</span><span class="p">(</span><span class="s">&quot;A/B Test&quot;</span><span class="p">));</span>
+        <span class="n">Driver</span><span class="p">.</span><span class="n">Manage</span><span class="p">().</span><span class="n">Cookies</span><span class="p">.</span><span class="n">AddCookie</span><span class="p">(</span><span class="k">new</span> <span class="n">Cookie</span><span class="p">(</span><span class="s">&quot;optimizelyOptOut&quot;</span><span class="p">,</span> <span class="s">&quot;true&quot;</span><span class="p">));</span>
+        <span class="n">Driver</span><span class="p">.</span><span class="n">Navigate</span><span class="p">().</span><span class="n">Refresh</span><span class="p">();</span>
+        <span class="n">HeadingText</span> <span class="p">=</span> <span class="n">Driver</span><span class="p">.</span><span class="n">FindElement</span><span class="p">(</span><span class="n">By</span><span class="p">.</span><span class="n">TagName</span><span class="p">(</span><span class="s">&quot;h3&quot;</span><span class="p">)).</span><span class="n">Text</span><span class="p">;</span>
+        <span class="n">Assert</span><span class="p">.</span><span class="n">That</span><span class="p">(</span><span class="n">HeadingText</span><span class="p">.</span><span class="n">StartsWith</span><span class="p">(</span><span class="s">&quot;No A/B Test&quot;</span><span class="p">));</span>
+    <span class="p">}</span>
+<span class="c1">// ...</span>
+</pre></div>
+<p>After navigating to the page we confirm that we are in one of the A/B test groups by grabbing the heading text and checking to see if it starts with the text <code>&quot;A/B Test&quot;</code>. After that we add the opt-out cookie, refresh the page, and then confirm that we are no longer in the A/B test group by checking the heading text again.</p>
+
+<p>We could also load the opt-out cookie <em>before</em> navigating to the page.</p>
+<div class="highlight"><pre><span class="c1">// filename: ABTestOptOut.cs</span>
+<span class="c1">// ...</span>
+<span class="na">    [Test]</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">OptOutWithCookieBeforeVisitingPage</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">Driver</span><span class="p">.</span><span class="n">Navigate</span><span class="p">().</span><span class="n">GoToUrl</span><span class="p">(</span><span class="s">&quot;http://the-internet.herokuapp.com&quot;</span><span class="p">);</span>
+        <span class="n">Driver</span><span class="p">.</span><span class="n">Manage</span><span class="p">().</span><span class="n">Cookies</span><span class="p">.</span><span class="n">AddCookie</span><span class="p">(</span><span class="k">new</span> <span class="n">Cookie</span><span class="p">(</span><span class="s">&quot;optimizelyOptOut&quot;</span><span class="p">,</span> <span class="s">&quot;true&quot;</span><span class="p">));</span>
+        <span class="n">Driver</span><span class="p">.</span><span class="n">Navigate</span><span class="p">().</span><span class="n">GoToUrl</span><span class="p">(</span><span class="s">&quot;http://the-internet.herokuapp.com/abtest&quot;</span><span class="p">);</span>
+        <span class="kt">string</span> <span class="n">HeadingText</span> <span class="p">=</span> <span class="n">Driver</span><span class="p">.</span><span class="n">FindElement</span><span class="p">(</span><span class="n">By</span><span class="p">.</span><span class="n">TagName</span><span class="p">(</span><span class="s">&quot;h3&quot;</span><span class="p">)).</span><span class="n">Text</span><span class="p">;</span>
+        <span class="n">Assert</span><span class="p">.</span><span class="n">That</span><span class="p">(</span><span class="n">HeadingText</span><span class="p">.</span><span class="n">StartsWith</span><span class="p">(</span><span class="s">&quot;No A/B Test&quot;</span><span class="p">));</span>
+    <span class="p">}</span>
+<span class="c1">// ...</span>
+</pre></div>
+<p>Here we are navigating to the main page of the site first (to establish the host) and then adding the opt-out cookie. If we didn't visit the site first, then adding the cookie wouldn't have worked. Once added we navigate to the example page and perform our checks just like before.</p>
+
+<p>Alternatively, we can achieve the same thing without forging a cookie. Instead we can append an opt-out query to the URL when visiting the page.</p>
+<div class="highlight"><pre><span class="c1">// filename: ABTestOptOut.cs</span>
+<span class="c1">// ...</span>
+<span class="na">    [Test]</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">OptOutWithURL</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">Driver</span><span class="p">.</span><span class="n">Navigate</span><span class="p">().</span><span class="n">GoToUrl</span><span class="p">(</span><span class="s">&quot;http://the-internet.herokuapp.com/abtest?optimizely_opt_out=true&quot;</span><span class="p">);</span>
+        <span class="n">Driver</span><span class="p">.</span><span class="n">SwitchTo</span><span class="p">().</span><span class="n">Alert</span><span class="p">().</span><span class="n">Dismiss</span><span class="p">();</span>
+        <span class="kt">string</span> <span class="n">HeadingText</span> <span class="p">=</span> <span class="n">Driver</span><span class="p">.</span><span class="n">FindElement</span><span class="p">(</span><span class="n">By</span><span class="p">.</span><span class="n">TagName</span><span class="p">(</span><span class="s">&quot;h3&quot;</span><span class="p">)).</span><span class="n">Text</span><span class="p">;</span>
+        <span class="n">Assert</span><span class="p">.</span><span class="n">That</span><span class="p">(</span><span class="n">HeadingText</span><span class="p">.</span><span class="n">StartsWith</span><span class="p">(</span><span class="s">&quot;No A/B Test&quot;</span><span class="p">));</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+<p>By appending <code>?optimizely_opt_out=true</code> to the URL we achieve the same outcome as with forging a cookie. But keep in mind that this approach triggers a JavaScript alert, so we have to switch to it and dismiss it (e.g., <code>Driver.SwitchTo().Alert().Dismiss();</code>) before performing our assertion.</p>
+<h2>Expected Behavior</h2>
+
+<p>When you save this file and run it (e.g., <code>nunit3-console.exe .\ABTestOptOut.sln</code> from the command-line) here is what will happen:</p>
+
+<ul>
+<li>Open the browser</li>
+<li>Opt-out of the split tests (either by cookie or appended URL)</li>
+<li>Visit the split testing page</li>
+<li>Grab the header text</li>
+<li>Confirm that the session is opted out of the split tests</li>
+<li>Close the browser</li>
+</ul>
+<h2>Outro</h2>
+
+<p>Happy Testing!</p>
+<h1 id="chapter8"><small>Chapter 8</small><br>How To Access Basic Auth</h1>
+<h2>The Problem</h2>
+
+<p>Sometimes you'll work with applications that are secured behind <a href="http://en.wikipedia.org/wiki/Basic_access_authentication">Basic HTTP Authentication</a> (a.k.a. Basic Auth). In order to access them you'll need to pass credentials to the site when requesting a page. Otherwise you'll get a system level pop-up prompting you for a username and password -- rendering Selenium helpless.</p>
+
+<p>Before Selenium 2 we were able to accomplish this by injecting credentials into a custom header. But now the cool kid way to do it it was something like <a href="http://bmp.lightbody.net/">BrowserMob Proxy</a>. Some people are solving this with browser specific configurations too.</p>
+
+<p>But all of this feels heavy. Instead, let's look at a simple approach that is browser agnostic and quick to setup.</p>
+<h2>A Solution</h2>
+
+<p>By specifying the username and password <em>in the URL</em> when visiting a page with Selenium we can side-step the system level dialog box from Basic Auth and avoid the need to set up a proxy server. This approach will work for both HTTP and HTTPS pages.</p>
+
+<p>Let's take a look at an example.</p>
+<h2>An Example</h2>
+
+<p>First we'll include our requisite classes for our test framework (e.g., <code>NUnit.Framework</code>), driving the browser with Selenium (e.g., <code>OpenQA.Selenium</code>, etc.), and start our class off with some setup and teardown methods.</p>
+<div class="highlight"><pre><span class="c1">// filename: BasicAuth1.cs </span>
+<span class="k">using</span> <span class="nn">NUnit.Framework</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">OpenQA.Selenium</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">OpenQA.Selenium.Firefox</span><span class="p">;</span>
+
+<span class="k">public</span> <span class="k">class</span> <span class="nc">BasicAuth1</span>
+<span class="p">{</span>
+    <span class="n">IWebDriver</span> <span class="n">Driver</span><span class="p">;</span>
+
+<span class="na">    [SetUp]</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">SetUp</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">Driver</span> <span class="p">=</span> <span class="k">new</span> <span class="n">FirefoxDriver</span><span class="p">();</span>
+    <span class="p">}</span>
+
+<span class="na">    [TearDown]</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">TearDown</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">Driver</span><span class="p">.</span><span class="n">Quit</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="c1">// ...</span>
+</pre></div>
+<p>Now to add our test.</p>
+<div class="highlight"><pre><span class="c1">// filename: BasicAuth1.cs</span>
+<span class="na">    [Test]</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">ConnectToBasicAuthByURL</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">Driver</span><span class="p">.</span><span class="n">Navigate</span><span class="p">().</span><span class="n">GoToUrl</span><span class="p">(</span><span class="s">&quot;http://admin:admin@the-internet.herokuapp.com/basic_auth&quot;</span><span class="p">);</span>
+        <span class="kt">string</span> <span class="n">PageMessage</span> <span class="p">=</span> <span class="n">Driver</span><span class="p">.</span><span class="n">FindElement</span><span class="p">(</span><span class="n">By</span><span class="p">.</span><span class="n">CssSelector</span><span class="p">(</span><span class="s">&quot;p&quot;</span><span class="p">)).</span><span class="n">Text</span><span class="p">;</span>
+        <span class="n">Assert</span><span class="p">.</span><span class="n">That</span><span class="p">(</span><span class="n">PageMessage</span><span class="p">.</span><span class="n">Contains</span><span class="p">(</span><span class="s">&quot;Congratulations!&quot;</span><span class="p">));</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+<span class="c1">// ...</span>
+</pre></div>
+<p>In the test we're loading the page by passing in the username and password in the front of the URL (e.g., <code>http://admin:admin@</code>). Once it loads we grab text from the page to make sure we ended up in the right place.</p>
+
+<p>Alternatively we could have accessed this page as part of the test setup (after creating an instance of Selenium). This would have cached the Basic Auth session in the browser, enabling us to visit the page again without having to specify credentials. This is particularly useful if you have numerous pages behind Basic Auth.</p>
+
+<p>Here's what that would look like.</p>
+<div class="highlight"><pre><span class="c1">// filename: BasicAuth2.cs </span>
+<span class="k">using</span> <span class="nn">NUnit.Framework</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">OpenQA.Selenium</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">OpenQA.Selenium.Firefox</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">BasicAuth2</span>
+<span class="p">{</span>
+    <span class="n">IWebDriver</span> <span class="n">Driver</span><span class="p">;</span>
+
+<span class="na">    [SetUp]</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">SetUp</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">Driver</span> <span class="p">=</span> <span class="k">new</span> <span class="n">FirefoxDriver</span><span class="p">();</span>
+        <span class="n">Driver</span><span class="p">.</span><span class="n">Navigate</span><span class="p">().</span><span class="n">GoToUrl</span><span class="p">(</span><span class="s">&quot;http://admin:admin@the-internet.herokuapp.com/basic_auth&quot;</span><span class="p">);</span>
+    <span class="p">}</span>
+
+<span class="na">    [TearDown]</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">TearDown</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">Driver</span><span class="p">.</span><span class="n">Quit</span><span class="p">();</span>
+    <span class="p">}</span>
+
+<span class="na">    [Test]</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">AccessBasicAuthPageAfterAuthentication</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">Driver</span><span class="p">.</span><span class="n">Navigate</span><span class="p">().</span><span class="n">GoToUrl</span><span class="p">(</span><span class="s">&quot;http://the-internet.herokuapp.com/basic_auth&quot;</span><span class="p">);</span>
+        <span class="kt">string</span> <span class="n">PageMessage</span> <span class="p">=</span> <span class="n">Driver</span><span class="p">.</span><span class="n">FindElement</span><span class="p">(</span><span class="n">By</span><span class="p">.</span><span class="n">CssSelector</span><span class="p">(</span><span class="s">&quot;p&quot;</span><span class="p">)).</span><span class="n">Text</span><span class="p">;</span>
+        <span class="n">Assert</span><span class="p">.</span><span class="n">That</span><span class="p">(</span><span class="n">PageMessage</span><span class="p">.</span><span class="n">Contains</span><span class="p">(</span><span class="s">&quot;Congratulations!&quot;</span><span class="p">));</span>
+    <span class="p">}</span>
+
+<span class="p">}</span>
+</pre></div>
+<p><strong>NOTE: If your application serves both HTTP and HTTPS pages from behind Basic Auth then you will need to load one of each type before executing your test steps. Otherwise you will get authorization errors when switching between HTTP and HTTPS because the browser can't use Basic Auth credentials interchangeably (e.g. HTTP for HTTPS and vice versa).</strong></p>
+<h2>Expected Behavior</h2>
+
+<p>When you save the first example and run it here is what will happen:</p>
+
+<ul>
+<li>Open the browser</li>
+<li>Visit the page using Basic Auth</li>
+<li>Get the page text</li>
+<li>Assert that the text is what we expect</li>
+<li>Close the browser</li>
+</ul>
+
+<p>And when you save the second example and run it here is what will happen:</p>
+
+<ul>
+<li>Open the browser</li>
+<li>Visit the page using Basic Auth in the setup</li>
+<li>Navigate to the Basic Auth page (without providing credentials)</li>
+<li>Get the page text</li>
+<li>Assert that the text is what we expect</li>
+<li>Close the browser</li>
+</ul>
+<h2>Outro</h2>
+
+<p>Hopefully this tip will help save you from getting tripped by Basic Auth when you come across it.
+Happy Testing!</p>
+<h1 id="chapter9"><small>Chapter 9</small><br>How To Test Checkboxes</h1>
+<h2>The Problem</h2>
+
+<p>Checkboxes are an often used element in web applications. But how do you work with them in your Selenium tests? Intuitively you may reach for a method that has the word 'checked' in it -- like <code>.checked?</code> or <code>.isChecked</code>. But this doesn't exist in Selenium. So how do you do it?</p>
+<h2>A Solution</h2>
+
+<p>There are two ways to approach this -- by seeing if an element has a <code>checked</code> attribute (a.k.a. performing an attribute lookup), or by asking an element if it has been <em>selected</em>.</p>
+
+<p>Let's step through each approach to see their pros and cons.</p>
+<h2>An Example</h2>
+
+<p>For reference, here is the markup from <a href="http://the-internet.herokuapp.com/checkboxes">the page we'll be testing against</a> (from <a href="https://github.com/tourdedave/the-internet">the-internet</a>).</p>
+<div class="highlight"><pre><span class="nt">&lt;form&gt;</span>
+  <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">&quot;checkbox&quot;</span><span class="nt">&gt;</span> unchecked<span class="nt">&lt;br&gt;</span>
+  <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">&quot;checkbox&quot;</span> <span class="na">checked=</span><span class="s">&quot;&quot;</span><span class="nt">&gt;</span> checked
+<span class="nt">&lt;/form&gt;</span>
+</pre></div>
+<p>First let's include our requisite classes for our test framework (e.g., <code>NUnit.Framework</code>), driving the browser with Selenium (e.g., <code>OpenQA.Selenium</code>, etc.), access to common C# functions (e.g., <code>System</code>, etc.) and start our class off with some setup and teardown methods.</p>
+<div class="highlight"><pre><span class="c1">// filename: Checkboxes.cs</span>
+<span class="k">using</span> <span class="nn">NUnit.Framework</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">OpenQA.Selenium</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">OpenQA.Selenium.Firefox</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">System.Collections.Generic</span><span class="p">;</span>
+
+<span class="k">public</span> <span class="k">class</span> <span class="nc">Checkboxes</span>
+<span class="p">{</span>
+    <span class="n">IWebDriver</span> <span class="n">Driver</span><span class="p">;</span>
+
+<span class="na">    [SetUp]</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">SetUp</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">Driver</span> <span class="p">=</span> <span class="k">new</span> <span class="n">FirefoxDriver</span><span class="p">();</span>
+    <span class="p">}</span>
+
+<span class="na">    [TearDown]</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">TearDown</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">Driver</span><span class="p">.</span><span class="n">Quit</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="c1">// ...</span>
+</pre></div>
+<p>Before we write any tests let's walk through both checkbox approaches to see what Selenium gives us.</p>
+
+<p>To do that we'll want to grab all of the checkboxes on the page and iterate through them. Once using an attribute lookup, and again asking if the element is selected. Each time outputting the return value we get from Selenium.</p>
+<div class="highlight"><pre><span class="c1">// filename: Checkboxes.cs</span>
+<span class="c1">// ...</span>
+<span class="na">[Test]</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">CheckboxDiscovery</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">Driver</span><span class="p">.</span><span class="n">Navigate</span><span class="p">().</span><span class="n">GoToUrl</span><span class="p">(</span><span class="s">&quot;http://the-internet.herokuapp.com/checkboxes&quot;</span><span class="p">);</span>
+        <span class="n">IReadOnlyCollection</span><span class="p">&lt;</span><span class="n">IWebElement</span><span class="p">&gt;</span> <span class="n">Checkboxes</span> <span class="p">=</span> <span class="n">Driver</span><span class="p">.</span><span class="n">FindElements</span><span class="p">(</span><span class="n">By</span><span class="p">.</span><span class="n">CssSelector</span><span class="p">(</span><span class="s">&quot;input[type=\&quot;checkbox\&quot;]&quot;</span><span class="p">));</span>
+
+        <span class="n">Console</span><span class="p">.</span><span class="n">Write</span><span class="p">(</span><span class="s">&quot;With .attribute('checked')&quot;</span><span class="p">);</span>
+        <span class="k">foreach</span><span class="p">(</span><span class="n">IWebElement</span> <span class="n">Checkbox</span> <span class="k">in</span> <span class="n">Checkboxes</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">Checkbox</span><span class="p">.</span><span class="n">GetAttribute</span><span class="p">(</span><span class="s">&quot;checked&quot;</span><span class="p">));</span>
+        <span class="p">}</span>
+
+        <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&quot;With .selected?&quot;</span><span class="p">);</span>
+        <span class="k">foreach</span><span class="p">(</span><span class="n">IWebElement</span> <span class="n">Checkbox</span> <span class="k">in</span> <span class="n">Checkboxes</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="n">Checkbox</span><span class="p">.</span><span class="n">Selected</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="c1">// ...</span>
+</pre></div>
+<p>When we save our file and run it (e.g., <code>nunit3-console.exe .\Checkboxes.sln</code> from the command-line), here is the output we'll see:</p>
+<div class="highlight"><pre>With .attribute<span class="o">(</span><span class="s1">'checked'</span><span class="o">)</span>
+<span class="nb">true</span>
+With .selected?
+False
+True
+</pre></div>
+<p>With the attribute lookup, depending on the state of the checkbox, we receive either a nothing or a string with the value <code>&quot;true&quot;</code>. Whereas with <code>.selected?</code> we get a boolean (<code>true</code> or <code>false</code>) response.</p>
+
+<p>Let's see what these approaches look like when put to use in a test.</p>
+<div class="highlight"><pre><span class="c1">// filename: Checkboxes.cs</span>
+<span class="c1">// ...</span>
+<span class="na">    [Test]</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">GetCheckBoxStatusByAttribute</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">Driver</span><span class="p">.</span><span class="n">Navigate</span><span class="p">().</span><span class="n">GoToUrl</span><span class="p">(</span><span class="s">&quot;http://the-internet.herokuapp.com/checkboxes&quot;</span><span class="p">);</span>
+        <span class="n">IWebElement</span> <span class="n">Checkbox</span> <span class="p">=</span> <span class="n">Driver</span><span class="p">.</span><span class="n">FindElement</span><span class="p">(</span><span class="n">By</span><span class="p">.</span><span class="n">CssSelector</span><span class="p">(</span><span class="s">&quot;form input:nth-of-type(2)&quot;</span><span class="p">));</span>
+        <span class="n">Assert</span><span class="p">.</span><span class="n">That</span><span class="p">(</span><span class="n">Checkbox</span><span class="p">.</span><span class="n">GetAttribute</span><span class="p">(</span><span class="s">&quot;checked&quot;</span><span class="p">).</span><span class="n">Equals</span><span class="p">(</span><span class="s">&quot;true&quot;</span><span class="p">));</span>
+    <span class="p">}</span>
+<span class="c1">// ...</span>
+</pre></div>
+<p>With an attribute lookup we check against the return value (which is a string). In this case we're seeing if the return value is <code>&quot;true&quot;</code>. Let's see what the other approach looks like.</p>
+<div class="highlight"><pre><span class="c1">// filename: Checkboxes.cs</span>
+<span class="c1">// ...</span>
+<span class="na">    [Test]</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">GetCheckBoxesStatusByQuery</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">Driver</span><span class="p">.</span><span class="n">Navigate</span><span class="p">().</span><span class="n">GoToUrl</span><span class="p">(</span><span class="s">&quot;http://the-internet.herokuapp.com/checkboxes&quot;</span><span class="p">);</span>
+        <span class="n">IWebElement</span> <span class="n">Checkbox</span> <span class="p">=</span> <span class="n">Driver</span><span class="p">.</span><span class="n">FindElement</span><span class="p">(</span><span class="n">By</span><span class="p">.</span><span class="n">CssSelector</span><span class="p">(</span><span class="s">&quot;form input:nth-of-type(2)&quot;</span><span class="p">));</span>
+        <span class="n">Assert</span><span class="p">.</span><span class="n">That</span><span class="p">(</span><span class="n">Checkbox</span><span class="p">.</span><span class="n">Selected</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+<p>In this case, when referencing the return value it's a simple matter of checking against a boolean value.</p>
+<h2>Expected Behavior</h2>
+
+<p>When you save and run the test file (e.g., <code>nunit3-console.exe .\Checkboxes.sln</code> from the command-line) here is what will happen:</p>
+
+<ul>
+<li>Open the browser</li>
+<li>Visit the page</li>
+<li>Find all of the checkboxes on the page</li>
+<li>Assert that the second checkbox (the one that is supposed to be checked on initial page load) is checked</li>
+<li>Close the browser</li>
+</ul>
+<h2>Outro</h2>
+
+<p>Attribute lookups are meant for pulling information out of the page for review. While they work in this circumstance you're better off using a selected lookup. But the approach you choose will depend on how the checkboxes you're testing are constructed.</p>
+
+<p>Happy Testing!</p>
+<h1 id="chapter10"><small>Chapter 10</small><br>How To Test For Disabled Elements</h1>
+<h2>The Problem</h2>
+
+<p>On occasion you may have the need to check if an element on a page is disabled or enabled. Sounds simple enough, but how do you do it? It's not a well documented function of Selenium. So doing a trivial action like this can quickly become a pain.</p>
+<h2>A Solution</h2>
+
+<p>If we look at <a href="http://seleniumhq.github.io/selenium/docs/api/dotnet/html/T_OpenQA_Selenium_IWebElement.htm">the API documentation for Selenium's IWebElement Interface</a> we can see there is an available method called <code>Enabled</code> that can help us accomplish what we want.</p>
+
+<p>Let's take a look at how to use it.</p>
+<h2>An Example</h2>
+
+<p>For this example we will use <a href="http://github.com/tourdedave/the-internet">the dropdown list</a> from <a href="http://the-internet.herokuapp.com/dropdown">the-internet</a>. In this list there a few options to select, one which should be disabled. Let's find this element and assert that it is in fact disabled.</p>
+
+<p>Let's start by including our requisite classes for our test framework (e.g., <code>NUnit.Framework</code>), driving the browser with Selenium (e.g., <code>OpenQA.Selenium</code>, etc.), and start our class off with some setup and teardown methods.</p>
+<div class="highlight"><pre><span class="c1">// filename: DisabledElements.cs</span>
+<span class="k">using</span> <span class="nn">NUnit.Framework</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">OpenQA.Selenium</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">OpenQA.Selenium.Firefox</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">OpenQA.Selenium.Support.UI</span><span class="p">;</span>
+
+<span class="k">public</span> <span class="k">class</span> <span class="nc">DisabledElements</span>
+<span class="p">{</span>
+    <span class="n">IWebDriver</span> <span class="n">Driver</span><span class="p">;</span>
+
+<span class="na">    [SetUp]</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">SetUp</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">Driver</span> <span class="p">=</span> <span class="k">new</span> <span class="n">FirefoxDriver</span><span class="p">();</span>
+    <span class="p">}</span>
+
+<span class="na">    [TearDown]</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">TearDown</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">Driver</span><span class="p">.</span><span class="n">Quit</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="c1">// ...</span>
+</pre></div>
+<p>Now to wire up our test.</p>
+<div class="highlight"><pre><span class="c1">// filename: DisabledElements.cs</span>
+<span class="c1">// ...</span>
+<span class="na">    [Test]</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">ElementDisabled</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">Driver</span><span class="p">.</span><span class="n">Navigate</span><span class="p">().</span><span class="n">GoToUrl</span><span class="p">(</span><span class="s">&quot;http://the-internet.herokuapp.com/dropdown&quot;</span><span class="p">);</span>
+        <span class="kt">var</span> <span class="n">Dropdown</span> <span class="p">=</span> <span class="k">new</span> <span class="n">SelectElement</span><span class="p">(</span><span class="n">Driver</span><span class="p">.</span><span class="n">FindElement</span><span class="p">(</span><span class="n">By</span><span class="p">.</span><span class="n">Id</span><span class="p">(</span><span class="s">&quot;dropdown&quot;</span><span class="p">)));</span>
+        <span class="c1">// The SelectedOption we want is selected by default on page load</span>
+        <span class="n">Assert</span><span class="p">.</span><span class="n">False</span><span class="p">(</span><span class="n">Dropdown</span><span class="p">.</span><span class="n">SelectedOption</span><span class="p">.</span><span class="n">Enabled</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+<p>After visiting the page we find the dropdown list with the <code>SelectElement</code> function and store it in a variable. We then use in our assertion, focusing on the currently selected option which is the first one by default on page load (e.g., <code>Dropdown.SelectedOption</code>) and check that it is enabled (e.g., <code>.Enabled</code>). This will return a boolean result. If the element is disabled (e.g., not selectable) then Selenium will return <code>false</code>. So that's what we use in our assertion (e.g., <code>Assert.False</code>).</p>
+<h2>Expected Behavior</h2>
+
+<p>When you save this file and run it (e.g., <code>nunit3-console.exe .\DisabledElements.sln</code> from the command-line) here is what will happen:</p>
+
+<ul>
+<li>Open a browser</li>
+<li>Visit the page</li>
+<li>Grab the dropdown list</li>
+<li>Assert that the target element is not enabled</li>
+<li>Close the browser</li>
+</ul>
+<h2>Outro</h2>
+
+<p>Hopefully this tip has helped make the simple task of seeing if an element is enabled or disabled more approachable.</p>
+
+<p>Happy Testing!</p>
+<h1 id="chapter11"><small>Chapter 11</small><br>How To Select From a Dropdown List</h1>
+<h2>The Problem</h2>
+
+<p>Selecting from a dropdown list <em>seems</em> like one of those simple things. Just grab the list by its element and select an item within it based on the text you want.</p>
+
+<p>While it sounds pretty straightforward, there is a bit more finesse to it.</p>
+
+<p>Let's take a look at a couple of different approaches.</p>
+<h2>An Example</h2>
+
+<p>First let's include our requisite classes for our test framework (e.g., <code>NUnit.Framework</code>), driving the browser with Selenium (e.g., <code>OpenQA.Selenium</code>, etc.), access to C# collections (e.g., <code>System.Collections.Generic</code>), and start our class off with some setup and teardown methods.</p>
+<div class="highlight"><pre><span class="c1">// filename: Dropdown.cs</span>
+<span class="k">using</span> <span class="nn">NUnit.Framework</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">OpenQA.Selenium</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">OpenQA.Selenium.Firefox</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">OpenQA.Selenium.Support.UI</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">System.Collections.Generic</span><span class="p">;</span>
+
+<span class="k">public</span> <span class="k">class</span> <span class="nc">Dropdown</span>
+<span class="p">{</span>
+    <span class="n">IWebDriver</span> <span class="n">Driver</span><span class="p">;</span>
+
+<span class="na">    [SetUp]</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">SetUp</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">Driver</span> <span class="p">=</span> <span class="k">new</span> <span class="n">FirefoxDriver</span><span class="p">();</span>
+    <span class="p">}</span>
+
+<span class="na">    [TearDown]</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">TearDown</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">Driver</span><span class="p">.</span><span class="n">Quit</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="c1">// ...</span>
+</pre></div>
+<p>Now let's wire up our test.</p>
+<div class="highlight"><pre><span class="c1">// filename: Dropdown.cs</span>
+<span class="c1">// ...</span>
+<span class="na">    [Test]</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">SelectFromDropdownTheHardWay</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">Driver</span><span class="p">.</span><span class="n">Navigate</span><span class="p">().</span><span class="n">GoToUrl</span><span class="p">(</span><span class="s">&quot;http://the-internet.herokuapp.com/dropdown&quot;</span><span class="p">);</span>
+        <span class="n">IWebElement</span> <span class="n">Dropdown</span> <span class="p">=</span> <span class="n">Driver</span><span class="p">.</span><span class="n">FindElement</span><span class="p">(</span><span class="n">By</span><span class="p">.</span><span class="n">Id</span><span class="p">(</span><span class="s">&quot;dropdown&quot;</span><span class="p">));</span>
+        <span class="n">IReadOnlyCollection</span><span class="p">&lt;</span><span class="n">IWebElement</span><span class="p">&gt;</span> <span class="n">DropdownOptions</span> <span class="p">=</span> <span class="n">Dropdown</span><span class="p">.</span><span class="n">FindElements</span><span class="p">(</span><span class="n">By</span><span class="p">.</span><span class="n">TagName</span><span class="p">(</span><span class="s">&quot;option&quot;</span><span class="p">));</span>
+        <span class="k">foreach</span><span class="p">(</span><span class="n">IWebElement</span> <span class="n">Option</span> <span class="k">in</span> <span class="n">DropdownOptions</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">Option</span><span class="p">.</span><span class="n">Text</span><span class="p">.</span><span class="n">Equals</span><span class="p">(</span><span class="s">&quot;Option 1&quot;</span><span class="p">))</span>
+                <span class="n">Option</span><span class="p">.</span><span class="n">Click</span><span class="p">();</span>
+        <span class="p">}</span>
+        <span class="kt">string</span> <span class="n">SelectedOption</span> <span class="p">=</span> <span class="s">&quot;&quot;</span><span class="p">;</span>
+        <span class="k">foreach</span> <span class="p">(</span><span class="n">IWebElement</span> <span class="n">Option</span> <span class="k">in</span> <span class="n">DropdownOptions</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">Option</span><span class="p">.</span><span class="n">Selected</span><span class="p">)</span>
+                <span class="n">SelectedOption</span> <span class="p">=</span> <span class="n">Option</span><span class="p">.</span><span class="n">Text</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="n">Assert</span><span class="p">.</span><span class="n">That</span><span class="p">(</span><span class="n">SelectedOption</span><span class="p">.</span><span class="n">Equals</span><span class="p">(</span><span class="s">&quot;Option 1&quot;</span><span class="p">));</span>
+    <span class="p">}</span>
+<span class="c1">// ...</span>
+</pre></div>
+<p>After visiting <a href="http://the-internet.herokuapp.com/dropdown">the example application</a> we find the dropdown list by its ID and store it in a variable. We then find each element in the dropdown list (e.g., each element with an <code>option</code> tag) with <code>FindElements</code> (note the plural).</p>
+
+<p>Grabbing all of the options with <code>FindElements</code> returns a collection that we iterate over. When the text matches what we want (e.g., <code>&quot;Option 1&quot;</code>) we click on it.</p>
+
+<p>We finish the test by performing a check to see that our selection was made correctly. This is done by iterating over the dropdown options collection once more. This time we're getting the text of the item that was selected, storing it in a variable, and making an assertion against it.</p>
+
+<p>While this works, there is a simpler, built-in way to do this with Selenium. Let's give that a go.</p>
+<h2>Another Example</h2>
+<div class="highlight"><pre><span class="c1">// filename: Dropdown.cs</span>
+<span class="c1">// ...</span>
+<span class="na">    [Test]</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">SelectFromDropdownTheEasyWay</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">Driver</span><span class="p">.</span><span class="n">Navigate</span><span class="p">().</span><span class="n">GoToUrl</span><span class="p">(</span><span class="s">&quot;http://the-internet.herokuapp.com/dropdown&quot;</span><span class="p">);</span>
+        <span class="n">SelectElement</span> <span class="n">Dropdown</span> <span class="p">=</span> <span class="k">new</span> <span class="n">SelectElement</span><span class="p">(</span><span class="n">Driver</span><span class="p">.</span><span class="n">FindElement</span><span class="p">(</span><span class="n">By</span><span class="p">.</span><span class="n">Id</span><span class="p">(</span><span class="s">&quot;dropdown&quot;</span><span class="p">)));</span>
+        <span class="n">Dropdown</span><span class="p">.</span><span class="n">SelectByText</span><span class="p">(</span><span class="s">&quot;Option 1&quot;</span><span class="p">);</span>
+        <span class="n">Assert</span><span class="p">.</span><span class="n">That</span><span class="p">(</span><span class="n">Dropdown</span><span class="p">.</span><span class="n">SelectedOption</span><span class="p">.</span><span class="n">Text</span><span class="p">.</span><span class="n">Equals</span><span class="p">(</span><span class="s">&quot;Option 1&quot;</span><span class="p">));</span>
+    <span class="p">}</span>
+
+<span class="p">}</span>
+</pre></div>
+<p>Similar to the first example, we are finding the dropdown list by its ID. But instead of iterating over its option elements and clicking based on a conditional we are leveraging a built-in helper function of Selenium. With <a href="http://seleniumhq.github.io/selenium/docs/api/dotnet/html/T_OpenQA_Selenium_Support_UI_SelectElement.htm"><code>SelectElement</code></a> and its <code>SelectBy</code> methods (e.g., <a href="http://seleniumhq.github.io/selenium/docs/api/dotnet/html/M_OpenQA_Selenium_Support_UI_SelectElement_SelectByText.htm"><code>SelectByText</code></a>) we're able to easily choose the item we want.</p>
+
+<p>We then perform our assertion against the text of the currently selected option (e.g., <code>Dropdown.SelectedOption.Text.Equals(&quot;Option 1&quot;)</code>).</p>
+
+<p>As an aside, in addition to selecting by text you can also select by value.</p>
+<div class="highlight"><pre>        <span class="n">Dropdown</span><span class="p">.</span><span class="n">SelectByValue</span><span class="p">(</span><span class="s">&quot;1&quot;</span><span class="p">);</span>
+</pre></div><h2>Expected Behavior</h2>
+
+<p>When you save this file and run it (e.g., <code>nunit3-console.exe .\Dropdown.sln</code> from the command-line) here is what will happen for either example:</p>
+
+<ul>
+<li>Open the browser</li>
+<li>Visit the example application</li>
+<li>Find the dropdown list</li>
+<li>Select the specified item from the dropdown list</li>
+<li>Assert that the selected option is what you expect </li>
+<li>Close the browser</li>
+</ul>
+<h2>Outro</h2>
+
+<p>Hopefully this tip will help you breeze through selecting items from a dropdown list.</p>
+
+<p>Thanks to Jonathan Taylor for contributing the initial C# code for this tip!</p>
+
+<p>Happy Testing!</p>
+<h1 id="chapter12"><small>Chapter 12</small><br>How To Work with Frames</h1>
+<h2>The Problem</h2>
+
+<p>On occasion you'll run into a relic of the front-end world -- frames. And when writing a test against them, you can easily get tripped if you're not paying attention.</p>
+<h2>A Solution</h2>
+
+<p>Rather than gnash your teeth when authoring your tests, you can easily work with the elements in a frame by telling Selenium to <em>switch</em> to that frame first. Then the rest of your test should be business as usual.</p>
+
+<p>Let's dig in with some examples.</p>
+<h2>An Example</h2>
+
+<p>First we'll need to include our requisite classes for our test framework (e.g., <code>NUnit.Framework</code>), driving the browser with Selenium (e.g., <code>OpenQA.Selenium</code>, etc.), and start our class off with some setup and teardown methods.</p>
+<div class="highlight"><pre><span class="c1">// filename: Frames.cs</span>
+<span class="k">using</span> <span class="nn">NUnit.Framework</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">OpenQA.Selenium</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">OpenQA.Selenium.Firefox</span><span class="p">;</span>
+
+<span class="k">public</span> <span class="k">class</span> <span class="nc">Frames</span>
+<span class="p">{</span>
+    <span class="n">IWebDriver</span> <span class="n">Driver</span><span class="p">;</span>
+
+<span class="na">    [SetUp]</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">SetUp</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">Driver</span> <span class="p">=</span> <span class="k">new</span> <span class="n">FirefoxDriver</span><span class="p">();</span>
+    <span class="p">}</span>
+
+<span class="na">    [TearDown]</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">TearDown</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">Driver</span><span class="p">.</span><span class="n">Quit</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="c1">// ...</span>
+</pre></div>
+<p>Now onto our test. In it we'll step through <a href="http://the-internet.herokuapp.com/nested_frames">an example of nested frames</a> from <a href="https://github.com/tourdedave/the-internet">the-internet</a>.</p>
+<div class="highlight"><pre><span class="c1">// filename: Frames.cs</span>
+<span class="c1">// ...</span>
+<span class="na">    [Test]</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">NestedFrames</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">Driver</span><span class="p">.</span><span class="n">Navigate</span><span class="p">().</span><span class="n">GoToUrl</span><span class="p">(</span><span class="s">&quot;http://the-internet.herokuapp.com/nested_frames&quot;</span><span class="p">);</span>
+        <span class="n">Driver</span><span class="p">.</span><span class="n">SwitchTo</span><span class="p">().</span><span class="n">Frame</span><span class="p">(</span><span class="s">&quot;frame-top&quot;</span><span class="p">);</span>
+        <span class="n">Driver</span><span class="p">.</span><span class="n">SwitchTo</span><span class="p">().</span><span class="n">Frame</span><span class="p">(</span><span class="s">&quot;frame-middle&quot;</span><span class="p">);</span>
+        <span class="n">Assert</span><span class="p">.</span><span class="n">That</span><span class="p">(</span><span class="n">Driver</span><span class="p">.</span><span class="n">FindElement</span><span class="p">(</span><span class="n">By</span><span class="p">.</span><span class="n">Id</span><span class="p">(</span><span class="s">&quot;content&quot;</span><span class="p">)).</span><span class="n">Text</span><span class="p">.</span><span class="n">Equals</span><span class="p">(</span><span class="s">&quot;MIDDLE&quot;</span><span class="p">));</span>
+    <span class="p">}</span>
+<span class="c1">// ...</span>
+</pre></div>
+<p>With Selenium's <a href="http://seleniumhq.github.io/selenium/docs/api/dotnet/html/M_OpenQA_Selenium_IWebDriver_SwitchTo.htm"><code>.SwitchTo()</code></a> method we can easily switch to the frame we want. When using it for frames (e.g., <code>Driver.SwitchTo().Frame();</code>) it accepts either an ID or name attribute. But in order to get the text of the middle frame (e.g., a frame nested within another frame), we need to switch to the parent frame (e.g., the top frame) first <em>and then</em> switch to the child frame (e.g., the middle frame).</p>
+
+<p>Once we've done that we're able to find the element we need, grab its text, and assert that it's what we expect.</p>
+
+<p>While this example helps illustrate the point of frame switching, it's not very practical.</p>
+<h2>A More Practical Example</h2>
+
+<p>Here is a more likely example you'll run into -- working with a WYSIWYG Editor like <a href="http://www.tinymce.com/">TinyMCE</a>. You can see the page we're testing <a href="http://the-internet.herokuapp.com/tinymce">here</a>.</p>
+<div class="highlight"><pre><span class="c1">// filename: Frames.cs</span>
+<span class="c1">// ...</span>
+<span class="na">    [Test]</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">Iframes</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">Driver</span><span class="p">.</span><span class="n">Navigate</span><span class="p">().</span><span class="n">GoToUrl</span><span class="p">(</span><span class="s">&quot;http://the-internet.herokuapp.com/tinymce&quot;</span><span class="p">);</span>
+        <span class="n">Driver</span><span class="p">.</span><span class="n">SwitchTo</span><span class="p">().</span><span class="n">Frame</span><span class="p">(</span><span class="s">&quot;mce_0_ifr&quot;</span><span class="p">);</span>
+        <span class="n">IWebElement</span> <span class="n">Editor</span> <span class="p">=</span> <span class="n">Driver</span><span class="p">.</span><span class="n">FindElement</span><span class="p">(</span><span class="n">By</span><span class="p">.</span><span class="n">Id</span><span class="p">(</span><span class="s">&quot;tinymce&quot;</span><span class="p">));</span>
+        <span class="kt">string</span> <span class="n">StartText</span> <span class="p">=</span> <span class="n">Editor</span><span class="p">.</span><span class="n">Text</span><span class="p">;</span>
+        <span class="n">Editor</span><span class="p">.</span><span class="n">Clear</span><span class="p">();</span>
+        <span class="n">Editor</span><span class="p">.</span><span class="n">SendKeys</span><span class="p">(</span><span class="s">&quot;Hello World!&quot;</span><span class="p">);</span>
+        <span class="kt">string</span> <span class="n">EndText</span> <span class="p">=</span> <span class="n">Editor</span><span class="p">.</span><span class="n">Text</span><span class="p">;</span>
+        <span class="n">Assert</span><span class="p">.</span><span class="n">AreNotEqual</span><span class="p">(</span><span class="n">EndText</span><span class="p">,</span> <span class="n">StartText</span><span class="p">);</span>
+<span class="c1">// ...</span>
+</pre></div>
+<p>Once the page loads we switch into the frame that contains TinyMCE and...</p>
+
+<ul>
+<li>grab the original text and store it</li>
+<li>clear and input new text</li>
+<li>grab the new text value</li>
+<li>assert that the original and new texts are not the same</li>
+</ul>
+
+<p>Keep in mind that if we need to access a part of the page outside of the frame we're currently in we'll need to switch to it. Thankfully Selenium has a method that enables us to quickly jump back to the top level of the page -- <a href="http://seleniumhq.github.io/selenium/docs/api/dotnet/html/M_OpenQA_Selenium_ITargetLocator_DefaultContent.htm"><code>.DefaultContent();</code></a>.</p>
+
+<p>Here is what that looks like in practice.</p>
+<div class="highlight"><pre><span class="c1">// filename: Frames.cs</span>
+<span class="c1">// ...</span>
+        <span class="n">Driver</span><span class="p">.</span><span class="n">SwitchTo</span><span class="p">().</span><span class="n">DefaultContent</span><span class="p">();</span>
+        <span class="kt">string</span> <span class="n">HeaderText</span> <span class="p">=</span> <span class="n">Driver</span><span class="p">.</span><span class="n">FindElement</span><span class="p">(</span><span class="n">By</span><span class="p">.</span><span class="n">CssSelector</span><span class="p">(</span><span class="s">&quot;h3&quot;</span><span class="p">)).</span><span class="n">Text</span><span class="p">;</span>
+        <span class="n">Assert</span><span class="p">.</span><span class="n">That</span><span class="p">(</span><span class="n">HeaderText</span><span class="p">.</span><span class="n">Equals</span><span class="p">(</span><span class="s">&quot;An iFrame containing the TinyMCE WYSIWYG Editor&quot;</span><span class="p">));</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div><h2>Expected Behavior</h2>
+
+<p>When you save this file and run it (e.g., <code>nunit3-console.exe .\Frames.sln</code> from the command-line) here is what will happen:</p>
+
+<p><u>Example 1</u></p>
+
+<ul>
+<li>Open the browser</li>
+<li>Visit the page</li>
+<li>Switch to the nested frame</li>
+<li>Grab the text from the frame and assert that Selenium is in the correct place</li>
+<li>Close the browser</li>
+</ul>
+
+<p><u>Example 2</u></p>
+
+<ul>
+<li>Open the browser</li>
+<li>Visit the page</li>
+<li>Switch to the frame that contains the TinyMCE editor</li>
+<li>Find and store the text in the editor</li>
+<li>Clear the text in the editor</li>
+<li>Input new text in the editor</li>
+<li>Find and store the new text in the editor</li>
+<li>Assert that the original and new text entries don't match</li>
+<li>Switch to the top level of the page</li>
+<li>Grab the text from the top of the page and assert it's what we expect</li>
+<li>Close the browser</li>
+</ul>
+<h2>Outro</h2>
+
+<p>Now you're ready to handily defeat frames when they cross your path.</p>
+
+<p>Thanks to Jonathan Taylor for contributing the initial C# code for this tip!</p>
+
+<p>Happy Testing!</p>
+<h1 id="chapter13"><small>Chapter 13</small><br>How To Add Growl Notifications To Your Tests</h1>
+<h2>The Problem</h2>
+
+<p>Good test reports are a fundamental component of successful test automation. But running down a test failure by looking at a test report can be a real pain sometimes.</p>
+
+<p>Leaving you with no choice but to roll up your sleeves and get your hands dirty with debugging, stepping through things piece by piece. All for the sake of trying to track down a transient issue.</p>
+<h2>A Solution</h2>
+
+<p>By leveraging something like <a href="http://ksylvest.github.io/jquery-growl/">jQuery Growl</a> you can output non-interactive debugging statements directly to the page you're testing. This way you can see helpful information and more-likely correlate it to the test actions that are being taken.</p>
+
+<p>This can a boon for your test runs when coupled with screenshots and/or video recordings of your test runs </p>
+
+<p>Let's step through an example of how to set this up.</p>
+<h2>An Example</h2>
+
+<p>First let's include our requisite classes for our test framework (e.g., <code>NUnit.Framework</code>), driving the browser with Selenium (e.g., <code>OpenQA.Selenium</code>, etc.), access to C#'s Thread.Sleep function (e.g., <code>System.Threading</code>), and start our class off with some setup and teardown methods.</p>
+<div class="highlight"><pre><span class="c1">// filename: Growl.cs</span>
+<span class="k">using</span> <span class="nn">NUnit.Framework</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">OpenQA.Selenium</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">OpenQA.Selenium.Firefox</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">System.Threading</span><span class="p">;</span>
+
+<span class="k">public</span> <span class="k">class</span> <span class="nc">Growl</span>
+<span class="p">{</span>
+    <span class="n">IWebDriver</span> <span class="n">Driver</span><span class="p">;</span>
+    <span class="n">IJavaScriptExecutor</span> <span class="n">JSDriver</span><span class="p">;</span>
+
+<span class="na">    [SetUp]</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">SetUp</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">Driver</span> <span class="p">=</span> <span class="k">new</span> <span class="n">FirefoxDriver</span><span class="p">();</span>
+        <span class="n">JSDriver</span> <span class="p">=</span> <span class="p">(</span><span class="n">IJavaScriptExecutor</span><span class="p">)</span> <span class="n">Driver</span><span class="p">;</span>
+    <span class="p">}</span>
+
+<span class="na">    [TearDown]</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">TearDown</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">Driver</span><span class="p">.</span><span class="n">Quit</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="c1">// ...</span>
+</pre></div>
+<p>Next we'll need to visit the page we want to display notifications on and do some work with JavaScript to load <a href="http://jquery.com/">jQuery</a>, jQuery Growl, and styles for jQuery Growl. After that we can issue commands to jQuery Growl to make notification messages display on the page.</p>
+<div class="highlight"><pre><span class="c1">// filename: Growl.cs</span>
+<span class="c1">// ...</span>
+<span class="na">    [Test]</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">GrowlNotificationExample</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">Driver</span><span class="p">.</span><span class="n">Navigate</span><span class="p">().</span><span class="n">GoToUrl</span><span class="p">(</span><span class="s">&quot;http://the-internet.herokuapp.com&quot;</span><span class="p">);</span>
+
+        <span class="c1">// check for jQuery, add it if it's not on the page</span>
+        <span class="n">JSDriver</span><span class="p">.</span><span class="n">ExecuteScript</span><span class="p">(</span><span class="s">&quot;if (!window.jQuery) {&quot;</span> <span class="p">+</span>
+             <span class="s">&quot;var jquery = document.createElement('script');&quot;</span> <span class="p">+</span>
+             <span class="s">&quot;jquery.type = 'text/javascript';&quot;</span> <span class="p">+</span>
+             <span class="s">&quot;jquery.src = 'https://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js';&quot;</span> <span class="p">+</span>
+             <span class="s">&quot;document.getElementsByTagName('head')[0].appendChild(jquery);&quot;</span> <span class="p">+</span>
+             <span class="s">&quot;}&quot;</span><span class="p">);</span>
+
+        <span class="c1">// add jQuery Growl to the page</span>
+        <span class="n">JSDriver</span><span class="p">.</span><span class="n">ExecuteScript</span><span class="p">(</span><span class="s">&quot;$.getScript('http://the-internet.herokuapp.com/js/vendor/jquery.growl.js')&quot;</span><span class="p">);</span>
+
+        <span class="c1">// add jQuery Growl Styles to the page</span>
+        <span class="n">JSDriver</span><span class="p">.</span><span class="n">ExecuteScript</span><span class="p">(</span><span class="s">&quot;$('head').append(\&quot;&lt;link rel='stylesheet' &quot;</span> <span class="p">+</span>
+          <span class="s">&quot;href='http://the-internet.herokuapp.com/css/jquery.growl.css' &quot;</span> <span class="p">+</span>
+          <span class="s">&quot;type='text/css' /&gt;\&quot;);&quot;</span><span class="p">);</span>
+
+        <span class="c1">// trigger a plain jQuery Growl notification to display on the page</span>
+        <span class="n">JSDriver</span><span class="p">.</span><span class="n">ExecuteScript</span><span class="p">(</span><span class="s">&quot;$.growl({ title: 'GET', message: '/' });&quot;</span><span class="p">);</span>
+<span class="c1">// ...</span>
+</pre></div>
+<p>If we wanted to see color-coded notifications we would use one of the following.</p>
+<div class="highlight"><pre><span class="c1">// filename: Growl.cs</span>
+<span class="c1">// ...</span>
+        <span class="n">JSDriver</span><span class="p">.</span><span class="n">ExecuteScript</span><span class="p">(</span><span class="s">&quot;$.growl.error({ title: 'ERROR', message: 'your message goes here' });&quot;</span><span class="p">);</span>
+        <span class="n">JSDriver</span><span class="p">.</span><span class="n">ExecuteScript</span><span class="p">(</span><span class="s">&quot;$.growl.notice({ title: 'Notice', message: 'your notice message goes here' });&quot;</span><span class="p">);</span>
+        <span class="n">JSDriver</span><span class="p">.</span><span class="n">ExecuteScript</span><span class="p">(</span><span class="s">&quot;$.growl.notice({ title: 'Warning!', message: 'your warning message goes here' });&quot;</span><span class="p">);</span>
+        <span class="n">Thread</span><span class="p">.</span><span class="n">Sleep</span><span class="p">(</span><span class="m">5000</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+<p>The <code>Thread.Sleep(5000);</code> is there for demonstration purposes. It will keep the Growl notifications on the page for 5 seconds so they're easier to see.</p>
+<h2>Expected Behavior</h2>
+
+<p>When you save this file and run it (e.g., <code>nunit3-console.exe .\Growl.sln</code> from the command-line) this is what will happen:</p>
+
+<ul>
+<li>Browser opens</li>
+<li>Visit the page</li>
+<li>Make sure jQuery is on the page, add it if it's not</li>
+<li>Add jQuery Growl and its styles to the page</li>
+<li>Display a set of notification messages in the top-right corner of the page with jQuery Growl</li>
+<li>Notification messages disappear after 5 seconds</li>
+<li>Browser closes</li>
+</ul>
+<h2>Outro</h2>
+
+<p>In order to use this approach you will need to load jQuery Growl on every page you want to display output to -- which can be a bit of overhead. But if you want rich messaging like this, then that's the price you have to pay (unless you can get your team to add it to the application under test).</p>
+
+<p>I'd like to give a big thanks to Jon Austen (<a href="https://twitter.com/austenjt">Twitter</a>, <a href="https://github.com/djangofan">GitHub</a>, <a href="http://jonausten.info/">Blog</a>) for giving me the idea to use jQuery Growl with Selenium.</p>
+
+<p>Happy Testing!</p>
+<h1 id="chapter14"><small>Chapter 14</small><br>How To Visually Verify Your Locators</h1>
+
+<p>This is a pseudo guest post from Brian Goad. I've adapted a blog post of his with permission. You can see the original <a href="http://swdandruby.wordpress.com/2013/07/19/did-i-select-the-right-element/">here</a>. Brian is a Test Engineer at <a href="http://www.digitalsmiths.com/">Digitalsmiths</a>. You can follow him on Twitter at <a href="https://twitter.com/bbbco">@bbbco</a> and check out his testing blog <a href="http://swdandruby.wordpress.com/">here</a>.</p>
+<h2>The Problem</h2>
+
+<p>It's likely that you'll run into odd test behavior that makes you question the locators you're using in a test. But how do you interrogate your locators to make sure they are doing what you expect?</p>
+<h2>A Solution</h2>
+
+<p>By leveraging some simple JavaScript and CSS styling you can highlight a targeted element on the page so you can visually inspect it to make sure it's the one you want.</p>
+
+<p>Let's take a look at an example.</p>
+<h2>An Example</h2>
+
+<p>First let's include our requisite classes for our test framework (e.g., <code>NUnit.Framework</code>), driving the browser with Selenium (e.g., <code>OpenQA.Selenium</code>, etc.), access to C# collections (e.g., <code>System.Collections.Generic</code>), and start our class off with some setup and teardown methods.</p>
+<div class="highlight"><pre><span class="c1">// filename: HighlightElements.cs</span>
+<span class="k">using</span> <span class="nn">NUnit.Framework</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">OpenQA.Selenium</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">OpenQA.Selenium.Firefox</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">System.Threading</span><span class="p">;</span>
+
+<span class="k">public</span> <span class="k">class</span> <span class="nc">HighlightElements</span>
+<span class="p">{</span>
+    <span class="n">IWebDriver</span> <span class="n">Driver</span><span class="p">;</span>
+    <span class="n">IJavaScriptExecutor</span> <span class="n">JSDriver</span><span class="p">;</span>
+
+<span class="na">    [SetUp]</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">SetUp</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">Driver</span> <span class="p">=</span> <span class="k">new</span> <span class="n">FirefoxDriver</span><span class="p">();</span>
+        <span class="n">JSDriver</span> <span class="p">=</span> <span class="p">(</span><span class="n">IJavaScriptExecutor</span><span class="p">)</span> <span class="n">Driver</span><span class="p">;</span>
+    <span class="p">}</span>
+
+<span class="na">    [TearDown]</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">TearDown</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">Driver</span><span class="p">.</span><span class="n">Quit</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="c1">// ...</span>
+</pre></div>
+<p>Now let's create a <code>HighlightElement</code> helper method that will accept a Selenium WebDriver <code>IWebElement</code> and a time to wait (e.g., <code>Duration</code>) as parameters.</p>
+
+<p>By setting a duration we can control how long to highlight an element on the page before reverting the styling back. And we can make this an optional argument by setting a sensible default (e.g., 3 seconds).</p>
+<div class="highlight"><pre><span class="c1">// filename: HighlightElements.cs</span>
+<span class="c1">// ...</span>
+    <span class="k">private</span> <span class="k">void</span> <span class="nf">HighlightElement</span><span class="p">(</span><span class="n">IWebElement</span> <span class="n">Element</span><span class="p">,</span> <span class="kt">int</span> <span class="n">Duration</span> <span class="p">=</span> <span class="m">3</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="kt">string</span> <span class="n">OriginalStyle</span> <span class="p">=</span> <span class="n">Element</span><span class="p">.</span><span class="n">GetAttribute</span><span class="p">(</span><span class="s">&quot;style&quot;</span><span class="p">);</span>
+
+        <span class="n">JSDriver</span><span class="p">.</span><span class="n">ExecuteScript</span><span class="p">(</span><span class="s">&quot;arguments[0].setAttribute(arguments[1], arguments[2])&quot;</span><span class="p">,</span>
+                               <span class="n">Element</span><span class="p">,</span>
+                               <span class="s">&quot;style&quot;</span><span class="p">,</span>
+                               <span class="s">&quot;border: 2px solid red; border-style: dashed;&quot;</span><span class="p">);</span>
+
+        <span class="n">Thread</span><span class="p">.</span><span class="n">Sleep</span><span class="p">(</span><span class="n">Duration</span> <span class="p">*</span> <span class="m">1000</span><span class="p">);</span>
+        <span class="n">JSDriver</span><span class="p">.</span><span class="n">ExecuteScript</span><span class="p">(</span><span class="s">&quot;arguments[0].setAttribute(arguments[1], arguments[2])&quot;</span><span class="p">,</span>
+                               <span class="n">Element</span><span class="p">,</span>
+                               <span class="s">&quot;style&quot;</span><span class="p">,</span>
+                               <span class="n">OriginalStyle</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="c1">// ...</span>
+</pre></div>
+<p>There are three things going on here.</p>
+
+<ul>
+<li>We store the style of the element so we can revert it back when we're done</li>
+<li>We change the style of the element so it visually stands out (e.g., a red dashed border)</li>
+<li>We revert the style of the element back after 3 seconds (or longer if specified)</li>
+</ul>
+
+<p>We're accomplishing the style change through JavaScript's <code>setAttribute</code> function. And we're executing it with Selenium's <code>ExecuteScript</code> command.</p>
+
+<p>Now to use this in our test is a simple matter to finding an element and passing it to <code>HighlightElement</code>.</p>
+<div class="highlight"><pre><span class="c1">// filename: HighlightElements.cs</span>
+<span class="c1">// ...</span>
+<span class="na">    [Test]</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">HighlightElementExample</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">Driver</span><span class="p">.</span><span class="n">Navigate</span><span class="p">().</span><span class="n">GoToUrl</span><span class="p">(</span><span class="s">&quot;http://the-internet.herokuapp.com/large&quot;</span><span class="p">);</span>
+        <span class="n">IWebElement</span> <span class="n">TargetElement</span> <span class="p">=</span> <span class="n">Driver</span><span class="p">.</span><span class="n">FindElement</span><span class="p">(</span><span class="n">By</span><span class="p">.</span><span class="n">Id</span><span class="p">(</span><span class="s">&quot;sibling-2.3&quot;</span><span class="p">));</span>
+        <span class="n">HighlightElement</span><span class="p">(</span><span class="n">TargetElement</span><span class="p">);</span>
+    <span class="p">}</span>
+
+<span class="p">}</span>
+</pre></div><h2>Expected Behavior</h2>
+
+<p>When you save this file and run it (e.g., <code>nunit3-console.exe .\HighlightElements.sln</code> from the command-line) here is what will happen.</p>
+
+<ul>
+<li>Open the browser</li>
+<li>Load the page</li>
+<li>Find the element to highlight</li>
+<li>Change the styling of the element so it has a red dashed-line border</li>
+<li>Wait 3 seconds</li>
+<li>Revert the styling of the element back (removing the red border)</li>
+<li>Close the browser</li>
+</ul>
+<h2>Outro</h2>
+
+<p>This approach can be handy when trying to debug your test. Alternatively, you could verify your locators in-browser with a plugin like FireFinder, or through the JavaScript console. You can read more about how to do that in <a href="/tips/verifying-locators">tip 35</a>.</p>
+
+<p>Happy Testing!</p>
+<h1 id="chapter15"><small>Chapter 15</small><br>How To Work With Hovers</h1>
+<h2>The Problem</h2>
+
+<p>If you need to work with mouse hovers in your tests it may not be obvious how to do this with Selenium. And a quick search through the documentation will likely leave you befuddled forcing you to go spelunking through StackOverflow for the solution.</p>
+<h2>A Solution</h2>
+
+<p>By leveraging Selenium's <a href="http://seleniumhq.github.io/selenium/docs/api/dotnet/html/T_OpenQA_Selenium_Interactions_Actions.htm">Action Builder</a> we can handle more complex user interactions like hovers. This is done by telling Selenium which element we want to move the mouse to, and then performing what we need to after.</p>
+
+<p>Let's dig in with an example.</p>
+<h2>An Example</h2>
+
+<p>Our example application is available <a href="http://the-internet.herokuapp.com/hovers">here</a> on <a href="http://github.com/tourdedave/the-internet">the-internet</a>. It has a few avatars displayed in a grid layout. When you hover over each of them they display additional user information and a link to view a full profile.</p>
+
+<p>Let's write a test that will hover over the first avatar and make sure that its additional information appears.</p>
+
+<p>First let's include our requisite classes for our test framework (e.g., <code>NUnit.Framework</code>), driving the browser with Selenium (e.g., <code>OpenQA.Selenium</code>, etc.), and start our class off with some setup and teardown methods.</p>
+<div class="highlight"><pre><span class="c1">// filename: Hovers.cs</span>
+<span class="k">using</span> <span class="nn">NUnit.Framework</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">OpenQA.Selenium</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">OpenQA.Selenium.Firefox</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">OpenQA.Selenium.Interactions</span><span class="p">;</span>
+
+<span class="k">public</span> <span class="k">class</span> <span class="nc">Hovers</span>
+<span class="p">{</span>
+    <span class="n">IWebDriver</span> <span class="n">Driver</span><span class="p">;</span>
+
+<span class="na">    [SetUp]</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">SetUp</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">Driver</span> <span class="p">=</span> <span class="k">new</span> <span class="n">FirefoxDriver</span><span class="p">();</span>
+    <span class="p">}</span>
+
+<span class="na">    [TearDown]</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">TearDown</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">Driver</span><span class="p">.</span><span class="n">Quit</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="c1">// ...</span>
+</pre></div>
+<p>Now let's write our test.</p>
+<div class="highlight"><pre><span class="c1">// filename: Hovers.cs</span>
+<span class="na">    [Test]</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">MouseHoverDisplays</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">Driver</span><span class="p">.</span><span class="n">Navigate</span><span class="p">().</span><span class="n">GoToUrl</span><span class="p">(</span><span class="s">&quot;http://the-internet.herokuapp.com/hovers&quot;</span><span class="p">);</span>
+
+        <span class="n">IWebElement</span> <span class="n">Avatar</span> <span class="p">=</span> <span class="n">Driver</span><span class="p">.</span><span class="n">FindElement</span><span class="p">(</span><span class="n">By</span><span class="p">.</span><span class="n">ClassName</span><span class="p">(</span><span class="s">&quot;figure&quot;</span><span class="p">));</span>
+        <span class="n">Actions</span> <span class="n">Builder</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Actions</span><span class="p">(</span><span class="n">Driver</span><span class="p">);</span>
+        <span class="n">Builder</span><span class="p">.</span><span class="n">MoveToElement</span><span class="p">(</span><span class="n">Avatar</span><span class="p">).</span><span class="n">Build</span><span class="p">().</span><span class="n">Perform</span><span class="p">();</span>
+
+        <span class="n">By</span> <span class="n">Hover</span> <span class="p">=</span> <span class="n">By</span><span class="p">.</span><span class="n">ClassName</span><span class="p">(</span><span class="s">&quot;figcaption&quot;</span><span class="p">);</span>
+        <span class="n">Assert</span><span class="p">.</span><span class="n">That</span><span class="p">(</span><span class="n">Driver</span><span class="p">.</span><span class="n">FindElement</span><span class="p">(</span><span class="n">Hover</span><span class="p">).</span><span class="n">Displayed</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+<p>After visiting the page we find the first avatar and store it in a variable (<code>Avatar</code>). We then use Selenium's <code>MoveToElement</code> method and pass the avatar variable to it (which triggers the hover) and check to see if the additional user information displayed.</p>
+<h2>Expected Behavior</h2>
+
+<p>When you save this file and run it (e.g., <code>nunit3-console.exe .\Hovers.sln</code> from the command-line) here is what will happen:</p>
+
+<ul>
+<li>Open the browser</li>
+<li>Visit the page</li>
+<li>Hover over the first avatar</li>
+<li>Assert that the caption displayed for that avatar</li>
+<li>Close the browser</li>
+</ul>
+<h2>Outro</h2>
+
+<p>Happy Testing!</p>
+<h1 id="chapter16"><small>Chapter 16</small><br>How To Work With HTML Data Tables</h1>
+<h2>The Problem</h2>
+
+<p>Odds are at some point you've come across the use of tables in a web application to display data or information to a user, giving them the option to sort and manipulate it. Depending on your application it can be quite common and something you will want to write an automated test for.</p>
+
+<p>But when the table has no helpful semantic markup (e.g. easy to use <code>id</code> or <code>class</code> attributes) it quickly becomes more difficult to work with and write tests against it. And if you're able to pull something together, it will likely not work against older browsers.</p>
+<h2>A Solution</h2>
+
+<p>You can easily traverse a table through the use of <a href="http://www.w3schools.com/css/css_pseudo_classes.asp">CSS Pseudo-classes</a>.</p>
+
+<p>But keep in mind that if you care about older browsers (e.g., Internet Explorer 8, et al), then this approach won't work on them. In those cases your best bet is to find a workable solution for the short term and get a front-end developer to update the table with helpful attributes.</p>
+<h2>A quick primer on Tables and CSS Pseudo-classes</h2>
+
+<p>Understanding the broad strokes of an HTML table's structure goes a long way in writing effective automation against it. So here's a quick primer.</p>
+
+<p>A table has...</p>
+
+<ul>
+<li>a header (e.g. <code>&lt;thead&gt;</code>)</li>
+<li>a body (e.g. <code>&lt;tbody&gt;</code>).</li>
+<li>rows (e.g. <code>&lt;tr&gt;</code>) -- horizontal slats of data</li>
+<li>columns -- vertical slats of data</li>
+</ul>
+
+<p>Columns are made up of cells which are...</p>
+
+<ul>
+<li>a header (e.g., <code>&lt;th&gt;</code>)</li>
+<li>one or more standard cells (e.g., <code>&lt;td&gt;</code> -- which is short for <strong>table data</strong>)</li>
+</ul>
+
+<p>CSS Pseudo-classes work by walking through the structure of an object and targeting a specific part of it based on a relative number (e.g. the <strong>third</strong> <code>&lt;td&gt;</code> cell from a row in the table body). This works well with tables since we can grab all instances of a target (e.g. the third <code>&lt;td&gt;</code> cell from each <code>&lt;tr&gt;</code> in the table body) and use it in our test -- which would give us all of the data for the third column.</p>
+
+<p>Let's step through some examples for a common set of table functionality like sorting columns in ascending and descending order.</p>
+<h2>An Example</h2>
+
+<p><strong>NOTE: You can see the application under test <a href="http://the-internet.herokuapp.com/tables">here</a>. It's an example from <a href="https://github.com/tourdedave/the-internet">the-internet</a>. In the example there are 2 tables. We will start with the first table and then work with the second.</strong></p>
+
+<p>Let's start by declaring our requisite classes for our testing framework (e.g., <code>using NUnit.Framework</code>), driving the browser with Selenium (e.g., <code>using OpenQA.Selenium</code>, etc.), and accessing C#'s collections functionality (e.g., <code>using System.Collections.Generic</code>).</p>
+<div class="highlight"><pre><span class="c1">// filename: Tables.cs</span>
+<span class="k">using</span> <span class="nn">NUnit.Framework</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">OpenQA.Selenium</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">OpenQA.Selenium.Firefox</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">System.Collections.Generic</span><span class="p">;</span>
+
+<span class="k">public</span> <span class="k">class</span> <span class="nc">Tables</span>
+<span class="p">{</span>
+    <span class="n">IWebDriver</span> <span class="n">Driver</span><span class="p">;</span>
+
+<span class="na">    [SetUp]</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">SetUp</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">Driver</span> <span class="p">=</span> <span class="k">new</span> <span class="n">FirefoxDriver</span><span class="p">();</span>
+    <span class="p">}</span>
+
+<span class="na">    [TearDown]</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">TearDown</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">Driver</span><span class="p">.</span><span class="n">Quit</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="c1">// ...</span>
+</pre></div>
+<p>Here is the markup from the first table we're working with. Note that it does not have any <code>id</code> or <code>class</code> attributes.</p>
+<div class="highlight"><pre><span class="nt">&lt;table</span> <span class="na">id=</span><span class="s">&quot;table1&quot;</span> <span class="na">class=</span><span class="s">&quot;tablesorter&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;thead&gt;</span>
+      <span class="nt">&lt;tr&gt;</span>
+        <span class="nt">&lt;th&gt;&lt;span&gt;</span>Last Name<span class="nt">&lt;/span&gt;&lt;/th&gt;</span>
+        <span class="nt">&lt;th&gt;&lt;span&gt;</span>First Name<span class="nt">&lt;/span&gt;&lt;/th&gt;</span>
+        <span class="nt">&lt;th&gt;&lt;span&gt;</span>Email<span class="nt">&lt;/span&gt;&lt;/th&gt;</span>
+        <span class="nt">&lt;th&gt;&lt;span&gt;</span>Due<span class="nt">&lt;/span&gt;&lt;/th&gt;</span>
+        <span class="nt">&lt;th&gt;&lt;span&gt;</span>Web Site<span class="nt">&lt;/span&gt;&lt;/th&gt;</span>
+        <span class="nt">&lt;th&gt;&lt;span&gt;</span>Action<span class="nt">&lt;/span&gt;&lt;/th&gt;</span>
+      <span class="nt">&lt;/tr&gt;</span>
+    <span class="nt">&lt;/thead&gt;</span>
+    <span class="nt">&lt;tbody&gt;</span>
+      <span class="nt">&lt;tr&gt;</span>
+        <span class="nt">&lt;td&gt;</span>Smith<span class="nt">&lt;/td&gt;</span>
+        <span class="nt">&lt;td&gt;</span>John<span class="nt">&lt;/td&gt;</span>
+        <span class="nt">&lt;td&gt;</span>jsmith@gmail.com<span class="nt">&lt;/td&gt;</span>
+        <span class="nt">&lt;td&gt;</span>$50.00<span class="nt">&lt;/td&gt;</span>
+        <span class="nt">&lt;td&gt;</span>http://www.jsmith.com<span class="nt">&lt;/td&gt;</span>
+        <span class="nt">&lt;td&gt;</span>
+          <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">'#edit'</span><span class="nt">&gt;</span>edit<span class="nt">&lt;/a&gt;</span>
+          <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">'#delete'</span><span class="nt">&gt;</span>delete<span class="nt">&lt;/a&gt;</span>
+        <span class="nt">&lt;/td&gt;</span>
+      <span class="nt">&lt;/tr&gt;</span>
+</pre></div>
+<p>There are 6 columns (<code>Last Name</code>, <code>First Name</code>, <code>Email</code>, <code>Due</code>, <code>Web Site</code>, and <code>Action</code>). Each one is sortable by clicking on the column header. The first click will sort them in ascending order, the second click in descending order.</p>
+
+<p>There is a small sampling of data in the table to work with (4 rows worth), so we should be able to sort the data, grab it, and confirm that it sorted correctly. So let's do that in our first test with the <code>Due</code> column using a CSS Pseudo-class.</p>
+<div class="highlight"><pre><span class="c1">// filename: Tables.cs</span>
+<span class="c1">// ...</span>
+<span class="na">    [Test]</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">TableWithNoHelpfulMarkup1</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">Driver</span><span class="p">.</span><span class="n">Navigate</span><span class="p">().</span><span class="n">GoToUrl</span><span class="p">(</span><span class="s">&quot;http://the-internet.herokuapp.com/tables&quot;</span><span class="p">);</span>
+        <span class="n">Driver</span><span class="p">.</span><span class="n">FindElement</span><span class="p">(</span><span class="n">By</span><span class="p">.</span><span class="n">CssSelector</span><span class="p">(</span><span class="s">&quot;#table1 thead tr th:nth-of-type(4)&quot;</span><span class="p">)).</span><span class="n">Click</span><span class="p">();</span>
+
+        <span class="n">IReadOnlyCollection</span><span class="p">&lt;</span><span class="n">IWebElement</span><span class="p">&gt;</span> <span class="n">Dues</span> <span class="p">=</span> <span class="n">Driver</span><span class="p">.</span><span class="n">FindElements</span><span class="p">(</span><span class="n">By</span><span class="p">.</span><span class="n">CssSelector</span><span class="p">(</span><span class="s">&quot;#table1 tbody tr td:nth-of-type(4)&quot;</span><span class="p">));</span>
+        <span class="n">List</span><span class="p">&lt;</span><span class="kt">double</span><span class="p">&gt;</span> <span class="n">FormattedDues</span> <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">&lt;</span><span class="kt">double</span><span class="p">&gt;();</span>
+        <span class="k">foreach</span><span class="p">(</span><span class="n">IWebElement</span> <span class="n">Due</span> <span class="k">in</span> <span class="n">Dues</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">FormattedDues</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="kt">double</span><span class="p">.</span><span class="n">Parse</span><span class="p">(</span><span class="n">Due</span><span class="p">.</span><span class="n">Text</span><span class="p">.</span><span class="n">Replace</span><span class="p">(</span><span class="s">&quot;$&quot;</span><span class="p">,</span> <span class="s">&quot;&quot;</span><span class="p">)));</span>
+        <span class="p">}</span>
+
+        <span class="n">Assert</span><span class="p">.</span><span class="n">That</span><span class="p">(</span><span class="n">FormattedDues</span><span class="p">,</span> <span class="n">Is</span><span class="p">.</span><span class="n">Ordered</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="c1">// ...</span>
+</pre></div>
+<p>After visiting the page we find and click the column heading that we want with a CSS Pseudo-class (e.g. <code>#table1 thead tr th:nth-of-type(4)</code>). This locator targets the 4th <code>&lt;th&gt;</code> element in the table heading section (e.g., <code>&lt;thead&gt;</code>) (which is the <code>Due</code> column heading).</p>
+
+<p>We use another pseudo-class to find all <code>&lt;td&gt;</code> elements within the <code>Due</code> column by looking for the 4th <code>&lt;td&gt;</code> of each row in the table body. Once we have them we grab each of their text values, clean them up by removing the <code>$</code>, convert them to a number (e.g., <code>double</code>), and store them all in a collection called <code>FormattedDues</code>. We then assert that the collection is sorted in ascending order.</p>
+
+<p>If we wanted to test for descending order, we would need to click the <code>Due</code> heading twice after loading the page. Other than that the code is identical except for the assertion.</p>
+<div class="highlight"><pre><span class="c1">// filename: Tables.cs</span>
+<span class="c1">// ...</span>
+<span class="na">    [Test]</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">TableWithNoHelpfulMarkup2</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">Driver</span><span class="p">.</span><span class="n">Navigate</span><span class="p">().</span><span class="n">GoToUrl</span><span class="p">(</span><span class="s">&quot;http://the-internet.herokuapp.com/tables&quot;</span><span class="p">);</span>
+        <span class="n">Driver</span><span class="p">.</span><span class="n">FindElement</span><span class="p">(</span><span class="n">By</span><span class="p">.</span><span class="n">CssSelector</span><span class="p">(</span><span class="s">&quot;#table1 thead tr th:nth-of-type(4)&quot;</span><span class="p">)).</span><span class="n">Click</span><span class="p">();</span>
+        <span class="n">Driver</span><span class="p">.</span><span class="n">FindElement</span><span class="p">(</span><span class="n">By</span><span class="p">.</span><span class="n">CssSelector</span><span class="p">(</span><span class="s">&quot;#table1 thead tr th:nth-of-type(4)&quot;</span><span class="p">)).</span><span class="n">Click</span><span class="p">();</span>
+
+        <span class="n">IReadOnlyCollection</span><span class="p">&lt;</span><span class="n">IWebElement</span><span class="p">&gt;</span> <span class="n">Dues</span> <span class="p">=</span> <span class="n">Driver</span><span class="p">.</span><span class="n">FindElements</span><span class="p">(</span><span class="n">By</span><span class="p">.</span><span class="n">CssSelector</span><span class="p">(</span><span class="s">&quot;#table1 tbody tr td:nth-of-type(4)&quot;</span><span class="p">));</span>
+        <span class="n">List</span><span class="p">&lt;</span><span class="kt">double</span><span class="p">&gt;</span> <span class="n">FormattedDues</span> <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">&lt;</span><span class="kt">double</span><span class="p">&gt;();</span>
+        <span class="k">foreach</span><span class="p">(</span><span class="n">IWebElement</span> <span class="n">Due</span> <span class="k">in</span> <span class="n">Dues</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">FormattedDues</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="kt">double</span><span class="p">.</span><span class="n">Parse</span><span class="p">(</span><span class="n">Due</span><span class="p">.</span><span class="n">Text</span><span class="p">.</span><span class="n">Replace</span><span class="p">(</span><span class="s">&quot;$&quot;</span><span class="p">,</span> <span class="s">&quot;&quot;</span><span class="p">)));</span>
+        <span class="p">}</span>
+
+        <span class="n">Assert</span><span class="p">.</span><span class="n">That</span><span class="p">(</span><span class="n">FormattedDues</span><span class="p">,</span> <span class="n">Is</span><span class="p">.</span><span class="n">Ordered</span><span class="p">.</span><span class="n">Descending</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="c1">// ...</span>
+</pre></div>
+<p>We can easily use this locator strategy to test a different column (e.g., one that doesn't deal with numbers) and see that it gets sorted correctly too. Here's a test that exercises the <code>Email</code> column.</p>
+<div class="highlight"><pre><span class="c1">// filename: Tables.cs</span>
+<span class="c1">// ...</span>
+<span class="na">    [Test]</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">TableWithNoHelpfulMarkup3</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">Driver</span><span class="p">.</span><span class="n">Navigate</span><span class="p">().</span><span class="n">GoToUrl</span><span class="p">(</span><span class="s">&quot;http://the-internet.herokuapp.com/tables&quot;</span><span class="p">);</span>
+        <span class="n">Driver</span><span class="p">.</span><span class="n">FindElement</span><span class="p">(</span><span class="n">By</span><span class="p">.</span><span class="n">CssSelector</span><span class="p">(</span><span class="s">&quot;#table1 thead tr th:nth-of-type(3)&quot;</span><span class="p">)).</span><span class="n">Click</span><span class="p">();</span>
+
+        <span class="n">IReadOnlyCollection</span><span class="p">&lt;</span><span class="n">IWebElement</span><span class="p">&gt;</span> <span class="n">Emails</span> <span class="p">=</span> <span class="n">Driver</span><span class="p">.</span><span class="n">FindElements</span><span class="p">(</span><span class="n">By</span><span class="p">.</span><span class="n">CssSelector</span><span class="p">(</span><span class="s">&quot;#table1 tbody tr td:nth-of-type(3)&quot;</span><span class="p">));</span>
+        <span class="n">List</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;</span> <span class="n">FormattedEmails</span> <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;();</span>
+        <span class="k">foreach</span><span class="p">(</span><span class="n">IWebElement</span> <span class="n">Email</span> <span class="k">in</span> <span class="n">Emails</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">FormattedEmails</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="n">Email</span><span class="p">.</span><span class="n">Text</span><span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="n">Assert</span><span class="p">.</span><span class="n">That</span><span class="p">(</span><span class="n">FormattedEmails</span><span class="p">,</span> <span class="n">Is</span><span class="p">.</span><span class="n">Ordered</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="c1">// ...</span>
+</pre></div>
+<p>The mechanism for this is the same except that we don't need to clean the text up before performing our assertion (we just need to pull the text out of the <code>IWebElement</code> collection).</p>
+<h2>But What About Older Browsers?</h2>
+
+<p>Now we have some working tests that will load the page and check sorting for a couple of columns in both ascending and descending order. Great! But if we run these again an older browser (e.g., Internet Explorer 8, etc.) it will throw an exception stating <code>Unable to find element</code>. This is because older browsers don't support CSS Pseudo-classes.</p>
+
+<p>You've come a long way, so it's best to get value out of what you've just written. To do that you can run these tests on <strong>current browsers</strong> and submit a request to your front-end developers to update the table's markup with some semantic <code>class</code> attributes. Later, when these new locators have been implemented on the page, you can revisit these tests and update them accordingly.</p>
+
+<p>Here is markup of what our original table would look like with some helpful attributes added in. It's also the markup from the second table on <a href="http://the-internet.herokuapp.com/tables">the example page</a>.</p>
+<div class="highlight"><pre><span class="nt">&lt;table</span> <span class="na">id=</span><span class="s">&quot;table2&quot;</span> <span class="na">class=</span><span class="s">&quot;tablesorter&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;thead&gt;</span>
+      <span class="nt">&lt;tr&gt;</span>
+        <span class="nt">&lt;th&gt;&lt;span</span> <span class="na">class=</span><span class="s">'last-name'</span><span class="nt">&gt;</span>Last Name<span class="nt">&lt;/span&gt;&lt;/th&gt;</span>
+        <span class="nt">&lt;th&gt;&lt;span</span> <span class="na">class=</span><span class="s">'first-name'</span><span class="nt">&gt;</span>First Name<span class="nt">&lt;/span&gt;&lt;/th&gt;</span>
+        <span class="nt">&lt;th&gt;&lt;span</span> <span class="na">class=</span><span class="s">'email'</span><span class="nt">&gt;</span>Email<span class="nt">&lt;/span&gt;&lt;/th&gt;</span>
+        <span class="nt">&lt;th&gt;&lt;span</span> <span class="na">class=</span><span class="s">'dues'</span><span class="nt">&gt;</span>Due<span class="nt">&lt;/span&gt;&lt;/th&gt;</span>
+        <span class="nt">&lt;th&gt;&lt;span</span> <span class="na">class=</span><span class="s">'web-site'</span><span class="nt">&gt;</span>Web Site<span class="nt">&lt;/span&gt;&lt;/th&gt;</span>
+        <span class="nt">&lt;th&gt;&lt;span</span> <span class="na">class=</span><span class="s">'action'</span><span class="nt">&gt;</span>Action<span class="nt">&lt;/span&gt;&lt;/th&gt;</span>
+      <span class="nt">&lt;/tr&gt;</span>
+    <span class="nt">&lt;/thead&gt;</span>
+    <span class="nt">&lt;tbody&gt;</span>
+      <span class="nt">&lt;tr&gt;</span>
+        <span class="nt">&lt;td</span> <span class="na">class=</span><span class="s">'last-name'</span><span class="nt">&gt;</span>Smith<span class="nt">&lt;/td&gt;</span>
+        <span class="nt">&lt;td</span> <span class="na">class=</span><span class="s">'first-name'</span><span class="nt">&gt;</span>John<span class="nt">&lt;/td&gt;</span>
+        <span class="nt">&lt;td</span> <span class="na">class=</span><span class="s">'email'</span><span class="nt">&gt;</span>jsmith@gmail.com<span class="nt">&lt;/td&gt;</span>
+        <span class="nt">&lt;td</span> <span class="na">class=</span><span class="s">'dues'</span><span class="nt">&gt;</span>$50.00<span class="nt">&lt;/td&gt;</span>
+        <span class="nt">&lt;td</span> <span class="na">class=</span><span class="s">'web-site'</span><span class="nt">&gt;</span>http://www.jsmith.com<span class="nt">&lt;/td&gt;</span>
+        <span class="nt">&lt;td</span> <span class="na">class=</span><span class="s">'action'</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">'#edit'</span><span class="nt">&gt;</span>edit<span class="nt">&lt;/a&gt;</span>
+          <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">'#delete'</span><span class="nt">&gt;</span>delete<span class="nt">&lt;/a&gt;</span>
+        <span class="nt">&lt;/td&gt;</span>
+      <span class="nt">&lt;/tr&gt;</span>
+</pre></div>
+<p>With these well-placed and descriptive class attributes the locators in our sorting tests become <em>a lot</em> simpler to write and more expressive. Let's revisit sorting the <code>Due</code> column in ascending order in a new test.</p>
+<div class="highlight"><pre><span class="c1">// filename: Tables.cs</span>
+<span class="c1">// ...</span>
+<span class="na">    [Test]</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">TableWithHelpfulMarkup</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">Driver</span><span class="p">.</span><span class="n">Navigate</span><span class="p">().</span><span class="n">GoToUrl</span><span class="p">(</span><span class="s">&quot;http://the-internet.herokuapp.com/tables&quot;</span><span class="p">);</span>
+        <span class="n">Driver</span><span class="p">.</span><span class="n">FindElement</span><span class="p">(</span><span class="n">By</span><span class="p">.</span><span class="n">CssSelector</span><span class="p">(</span><span class="s">&quot;#table2 thead .dues&quot;</span><span class="p">)).</span><span class="n">Click</span><span class="p">();</span>
+        <span class="n">IReadOnlyCollection</span><span class="p">&lt;</span><span class="n">IWebElement</span><span class="p">&gt;</span> <span class="n">Dues</span> <span class="p">=</span> <span class="n">Driver</span><span class="p">.</span><span class="n">FindElements</span><span class="p">(</span><span class="n">By</span><span class="p">.</span><span class="n">CssSelector</span><span class="p">(</span><span class="s">&quot;#table2 tbody .dues&quot;</span><span class="p">));</span>
+        <span class="n">List</span><span class="p">&lt;</span><span class="kt">double</span><span class="p">&gt;</span> <span class="n">FormattedDues</span> <span class="p">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">&lt;</span><span class="kt">double</span><span class="p">&gt;();</span>
+        <span class="k">foreach</span><span class="p">(</span><span class="n">IWebElement</span> <span class="n">Due</span> <span class="k">in</span> <span class="n">Dues</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">FormattedDues</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="kt">double</span><span class="p">.</span><span class="n">Parse</span><span class="p">(</span><span class="n">Due</span><span class="p">.</span><span class="n">Text</span><span class="p">.</span><span class="n">Replace</span><span class="p">(</span><span class="s">&quot;$&quot;</span><span class="p">,</span> <span class="s">&quot;&quot;</span><span class="p">)));</span>
+        <span class="p">}</span>
+        <span class="n">Assert</span><span class="p">.</span><span class="n">That</span><span class="p">(</span><span class="n">FormattedDues</span><span class="p">,</span> <span class="n">Is</span><span class="p">.</span><span class="n">Ordered</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+<p>Not only will these selectors work in current <em>and</em> older browsers, but they are also more resilient to changes in the table layout since they are not using hard-coded numbers that rely on the column order.</p>
+<h2>Expected Behavior</h2>
+
+<p>When you save this file and run it (e.g., <code>nunit3-console.exe .\Tables.sln</code> from the command-line) here is what will happen:</p>
+
+<ul>
+<li>Open the browser</li>
+<li>Load the page</li>
+<li>Click the column heading</li>
+<li>Grab the values for the column</li>
+<li>Assert that the column values are sorted in the correct order (ascending or descending)</li>
+<li>Close the browser</li>
+</ul>
+<h2>Outro</h2>
+
+<p>CSS Pseudo-classes are a great resource and can unlock a lot of potential for your tests. They enable a bit of CSS gymnastics (assuming you've come up with a test strategy that rules out older browsers). If you don't have a test strategy or are curious to see how yours compares, check out <a href="/tips/18-what-to-test">tip 18</a>.</p>
+
+<p>For more info on CSS Pseudo-classes see <a href="https://saucelabs.com/resources/selenium/css-selectors">this write-up by Sauce Labs</a>, and maybe <a href="http://www.w3.org/TR/css3-selectors/#structural-pseudos">the W3C spec CSS3</a> if you're feeling adventurous. And for a more in-depth walk-through on HTML Table design check out Treehouse's write-up <a href="http://blog.teamtreehouse.com/how-to-code-sortable-tabular-data-with-jquery">here</a>.</p>
+
+<p>Happy Testing!</p>
+<h1 id="chapter17"><small>Chapter 17</small><br>How To Work With JavaScript Alerts</h1>
+<h2>The Problem</h2>
+
+<p>If your application triggers any JavaScript pop-ups (a.k.a. alerts, dialogs, etc.) then you need to know how to handle them in your Selenium tests.</p>
+<h2>A Solution</h2>
+
+<p>Built into Selenium is the ability to switch to an alert window and either accept or dismiss it. This way your tests can continue unencumbered by dialog boxes that may feel just out of reach.</p>
+
+<p>Let's dig in with an example.</p>
+<h2>An Example</h2>
+
+<p>Our example application is available <a href="http://the-internet.herokuapp.com/javascript_alerts">here</a> on <a href="http://github.com/tourdedave/the-internet">the-internet</a>. It has various JavaScript alerts available (e.g., an alert, a confirmation, and a prompt). Let's demonstrate testing a confirmation dialog (e.g., a prompt which asks the user to click <code>Ok</code> or <code>Cancel</code>).</p>
+
+<p>First let's include our requisite classes for our test framework (e.g., <code>NUnit.Framework</code>), driving the browser with Selenium (e.g., <code>OpenQA.Selenium</code>, etc.), and start our class off with some setup and teardown methods.</p>
+<div class="highlight"><pre><span class="c1">// filename: JavaScriptAlerts.cs</span>
+<span class="k">using</span> <span class="nn">NUnit.Framework</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">OpenQA.Selenium</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">OpenQA.Selenium.Firefox</span><span class="p">;</span>
+
+<span class="k">public</span> <span class="k">class</span> <span class="nc">JavaScriptAlerts</span>
+<span class="p">{</span>
+    <span class="n">IWebDriver</span> <span class="n">Driver</span><span class="p">;</span>
+
+<span class="na">    [SetUp]</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">SetUp</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">Driver</span> <span class="p">=</span> <span class="k">new</span> <span class="n">FirefoxDriver</span><span class="p">();</span>
+    <span class="p">}</span>
+
+<span class="na">    [TearDown]</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">TearDown</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">Driver</span><span class="p">.</span><span class="n">Quit</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="c1">// ...</span>
+</pre></div>
+<p>Now let's write our test.</p>
+<div class="highlight"><pre><span class="c1">// filename: JavaScriptAlerts.cs</span>
+<span class="c1">// ...</span>
+<span class="na">    [Test]</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">JavaScriptAlertAppearsAndAccepted</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">Driver</span><span class="p">.</span><span class="n">Navigate</span><span class="p">().</span><span class="n">GoToUrl</span><span class="p">(</span><span class="s">&quot;http://the-internet.herokuapp.com/javascript_alerts&quot;</span><span class="p">);</span>
+        <span class="n">Driver</span><span class="p">.</span><span class="n">FindElement</span><span class="p">(</span><span class="n">By</span><span class="p">.</span><span class="n">CssSelector</span><span class="p">(</span><span class="s">&quot;.example li:nth-child(2) button&quot;</span><span class="p">)).</span><span class="n">Click</span><span class="p">();</span>
+        <span class="n">IAlert</span> <span class="n">Popup</span> <span class="p">=</span> <span class="n">Driver</span><span class="p">.</span><span class="n">SwitchTo</span><span class="p">().</span><span class="n">Alert</span><span class="p">();</span>
+        <span class="n">Popup</span><span class="p">.</span><span class="n">Accept</span><span class="p">();</span>
+        <span class="kt">string</span> <span class="n">Result</span> <span class="p">=</span> <span class="n">Driver</span><span class="p">.</span><span class="n">FindElement</span><span class="p">(</span><span class="n">By</span><span class="p">.</span><span class="n">Id</span><span class="p">(</span><span class="s">&quot;result&quot;</span><span class="p">)).</span><span class="n">Text</span><span class="p">;</span>
+        <span class="n">Assert</span><span class="p">.</span><span class="n">That</span><span class="p">(</span><span class="n">Result</span><span class="p">.</span><span class="n">Equals</span><span class="p">(</span><span class="s">&quot;You clicked: Ok&quot;</span><span class="p">));</span>
+    <span class="p">}</span>
+
+<span class="p">}</span>
+</pre></div>
+<p>A quick glance at the page's markup shows that there are no unique IDs on the buttons. So to click on the second button (to trigger the JavaScript confirmation dialog) we find it with a child CSS Pseudo-class (<code>nth-child(2)</code>).</p>
+
+<p>After click the button to trigger the JavaScript alert we use Selenium's <code>SwitchTo().Alert();</code> method to focus on the JavaScript pop-up and use <code>.Accept();</code> to click <code>Ok</code>. If we wanted to click <code>Cancel</code> we would have used <code>.Dismiss();</code>.</p>
+
+<p>After accepting the alert our browser window will automatically regain focus and the page will display the result that we chose. We use this text for our assertion, making sure that the words <code>You clicked: Ok</code> are displayed.</p>
+<h2>Expected Behavior</h2>
+
+<p>When you save this file and run it (e.g., <code>nunit3-console.exe .\JavaScriptAlerts.sln</code> from the command-line) here is what will happen:</p>
+
+<ul>
+<li>Open the browser</li>
+<li>Load the page</li>
+<li>Click the second button on the page</li>
+<li>JavaScript confirmation alert appears</li>
+<li>JavaScript confirmation alert is accepted and goes away</li>
+<li>Browser window is returned to focus</li>
+<li>Assert that the result on the page is what we expect</li>
+<li>Close the browser</li>
+</ul>
+<h2>Outro</h2>
+
+<p>Happy Testing!</p>
+<h1 id="chapter18"><small>Chapter 18</small><br>How To Press Keyboard Keys</h1>
+<h2>The Problem</h2>
+
+<p>On occasion you'll come across functionality that requires the use of keyboard key presses in your tests.</p>
+
+<p>Perhaps you'll need to tab to traverse from one portion of the page to another, back out of some kind of menu or overlay with the escape key, or even submit a form with Enter.</p>
+
+<p>But how do you do it with Selenium and where do you start?</p>
+<h2>A Solution</h2>
+
+<p>You can easily issue a key press by using the <code>SendKeys</code> command. This can be done to a specific element, or generically with Selenium's Action Builder (which has been documented on <a href="https://github.com/SeleniumHQ/selenium/wiki/Advanced-User-Interactions">the Selenium project's Wiki page for Advanced User Interactions</a>).</p>
+
+<p>Either approach will send a key press. The latter approach will send it to the element that's currently in focus in the browser (so you don't have to specify a locator along with it), whereas the prior approach will send the key press directly to the element found.</p>
+
+<p>You can see a full list of Selenium's available keyboard keys <a href="http://seleniumhq.github.io/selenium/docs/api/dotnet/html/T_OpenQA_Selenium_Keys.htm">here</a>.</p>
+
+<p>Let's step through a couple of examples.</p>
+<h2>An Example</h2>
+
+<p>First let's include our requisite classes for our test framework (e.g., <code>NUnit.Framework</code>), driving the browser with Selenium (e.g., <code>OpenQA.Selenium</code>, etc.), and start our class off with some setup and teardown methods.</p>
+<div class="highlight"><pre><span class="c1">// filename: KeyboardKeys.cs</span>
+<span class="k">using</span> <span class="nn">NUnit.Framework</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">OpenQA.Selenium</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">OpenQA.Selenium.Firefox</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">OpenQA.Selenium.Interactions</span><span class="p">;</span>
+
+<span class="k">public</span> <span class="k">class</span> <span class="nc">KeyboardKeys</span>
+<span class="p">{</span>
+    <span class="n">IWebDriver</span> <span class="n">Driver</span><span class="p">;</span>
+
+<span class="na">    [SetUp]</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">SetUp</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">Driver</span> <span class="p">=</span> <span class="k">new</span> <span class="n">FirefoxDriver</span><span class="p">();</span>
+    <span class="p">}</span>
+
+<span class="na">    [TearDown]</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">TearDown</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">Driver</span><span class="p">.</span><span class="n">Quit</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="c1">// ...</span>
+</pre></div>
+<p>Now we can wire up our test.</p>
+
+<p>Let's use an example from <a href="https://github.com/tourdedave/the-internet">the-internet</a> that will display what key has been pressed (<a href="http://the-internet.herokuapp.com/key_presses">link</a>). We'll use the result text that gets displayed on the page to perform our assertion.</p>
+<div class="highlight"><pre><span class="c1">// filename: KeyboardKeys.cs</span>
+<span class="c1">// ...</span>
+<span class="na">    [Test]</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">KeyboardKeysExample</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">Driver</span><span class="p">.</span><span class="n">Navigate</span><span class="p">().</span><span class="n">GoToUrl</span><span class="p">(</span><span class="s">&quot;http://the-internet.herokuapp.com/key_presses&quot;</span><span class="p">);</span>
+
+        <span class="n">Driver</span><span class="p">.</span><span class="n">FindElement</span><span class="p">(</span><span class="n">By</span><span class="p">.</span><span class="n">Id</span><span class="p">(</span><span class="s">&quot;content&quot;</span><span class="p">)).</span><span class="n">SendKeys</span><span class="p">(</span><span class="n">Keys</span><span class="p">.</span><span class="n">Space</span><span class="p">);</span>
+        <span class="n">Assert</span><span class="p">.</span><span class="n">That</span><span class="p">(</span><span class="n">Driver</span><span class="p">.</span><span class="n">FindElement</span><span class="p">(</span><span class="n">By</span><span class="p">.</span><span class="n">Id</span><span class="p">(</span><span class="s">&quot;result&quot;</span><span class="p">)).</span><span class="n">Text</span><span class="p">.</span><span class="n">Equals</span><span class="p">(</span><span class="s">&quot;You entered: SPACE&quot;</span><span class="p">));</span>
+<span class="c1">// ...</span>
+</pre></div>
+<p>After visiting the page we find a visible element (e.g., the primary content of the page) and send the space key to it (e.g., <code>.SendKeys(Keys.SPACE)</code>). Then we grab the resulting text (e.g., <code>Driver.FindElement(By.Id(&quot;result&quot;)).Text</code>) and assert that it says what we expect (e.g., <code>.Equals(&quot;You entered: SPACE&quot;</code>).</p>
+
+<p>Alternatively, we can issue a key press without finding the element by using the Selenium Action Builder.</p>
+<div class="highlight"><pre><span class="c1">// filename: KeyboardKeys.cs</span>
+<span class="c1">// ...</span>
+        <span class="n">Actions</span> <span class="n">Builder</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Actions</span><span class="p">(</span><span class="n">Driver</span><span class="p">);</span>
+        <span class="n">Builder</span><span class="p">.</span><span class="n">SendKeys</span><span class="p">(</span><span class="n">Keys</span><span class="p">.</span><span class="n">Left</span><span class="p">).</span><span class="n">Build</span><span class="p">().</span><span class="n">Perform</span><span class="p">();</span>
+        <span class="n">Assert</span><span class="p">.</span><span class="n">That</span><span class="p">(</span><span class="n">Driver</span><span class="p">.</span><span class="n">FindElement</span><span class="p">(</span><span class="n">By</span><span class="p">.</span><span class="n">Id</span><span class="p">(</span><span class="s">&quot;result&quot;</span><span class="p">)).</span><span class="n">Text</span><span class="p">.</span><span class="n">Equals</span><span class="p">(</span><span class="s">&quot;You entered: LEFT&quot;</span><span class="p">));</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div><h2>Expected Behavior</h2>
+
+<p>When you save this file and run it (e.g. <code>nunit3-console.exe .\KeyboardKeys.sln</code> from the command-line) here is what will happen:</p>
+
+<ul>
+<li>Open the browser</li>
+<li>Visit the page</li>
+<li>Find the element and send the space key to it</li>
+<li>Find the result text on the page and asset it's what we expect</li>
+<li>Send the left arrow key to the element that's currently in focus</li>
+<li>Find the result text on the page and assert it's what we expect</li>
+<li>Close the browser</li>
+</ul>
+<h2>Outro</h2>
+
+<p>If you have a specific element that you want to issue key presses to, then finding the element first is the way to go. But if you don't have a receiving element, or you need to string together multiple key presses, then the action builder is what you should reach for.</p>
+
+<p>Happy Testing!</p>
+<h1 id="chapter19"><small>Chapter 19</small><br>How To Work with Multiple Windows</h1>
+<h2>The Problem</h2>
+
+<p>Occasionally you'll run into a link or action in the application you're testing that will open a new window. In order to work with both the new and originating windows you'll need to switch between them.</p>
+
+<p>On the face of it this is a pretty straightforward concept. But lurking within it is a small gotcha to watch out for that will bite you in some browsers and not others.</p>
+
+<p>Let's step through a couple of examples to demonstrate.</p>
+<h2>An Example</h2>
+
+<p>First let's include our requisite classes for our test framework (e.g., <code>NUnit.Framework</code>), driving the browser with Selenium (e.g., <code>OpenQA.Selenium</code>, etc.), access to C# collections (e.g., <code>System.Collections.Generic</code>), and start our class off with some setup and teardown methods.</p>
+<div class="highlight"><pre><span class="c1">// filename: MultipleWindows.cs</span>
+<span class="k">using</span> <span class="nn">NUnit.Framework</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">OpenQA.Selenium</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">OpenQA.Selenium.Firefox</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">System.Collections.Generic</span><span class="p">;</span>
+
+<span class="k">public</span> <span class="k">class</span> <span class="nc">MultipleWindows</span>
+<span class="p">{</span>
+    <span class="n">IWebDriver</span> <span class="n">Driver</span><span class="p">;</span>
+
+<span class="na">    [SetUp]</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">SetUp</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">Driver</span> <span class="p">=</span> <span class="k">new</span> <span class="n">FirefoxDriver</span><span class="p">();</span>
+    <span class="p">}</span>
+
+<span class="na">    [TearDown]</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">TearDown</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">Driver</span><span class="p">.</span><span class="n">Quit</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="c1">// ...</span>
+</pre></div>
+<p>Now let's write a test that exercises new window functionality from an application. In this case, we'll be using <a href="http://the-internet.herokuapp.com/windows">the new window example</a> from <a href="https://github.com/tourdedave/the-internet">the-internet</a>.</p>
+<div class="highlight"><pre><span class="c1">// filename: MultipleWindows.cs</span>
+<span class="c1">// ...</span>
+<span class="na">    [Test]</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">MultipleWindowsExample1</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">Driver</span><span class="p">.</span><span class="n">Navigate</span><span class="p">().</span><span class="n">GoToUrl</span><span class="p">(</span><span class="s">&quot;http://the-internet.herokuapp.com/windows&quot;</span><span class="p">);</span>
+        <span class="n">Driver</span><span class="p">.</span><span class="n">FindElement</span><span class="p">(</span><span class="n">By</span><span class="p">.</span><span class="n">CssSelector</span><span class="p">(</span><span class="s">&quot;.example a&quot;</span><span class="p">)).</span><span class="n">Click</span><span class="p">();</span>
+        <span class="kt">var</span> <span class="n">Windows</span> <span class="p">=</span> <span class="n">Driver</span><span class="p">.</span><span class="n">WindowHandles</span><span class="p">;</span>
+
+        <span class="n">Driver</span><span class="p">.</span><span class="n">SwitchTo</span><span class="p">().</span><span class="n">Window</span><span class="p">(</span><span class="n">Windows</span><span class="p">[</span><span class="m">0</span><span class="p">]);</span>
+        <span class="n">Assert</span><span class="p">.</span><span class="n">That</span><span class="p">(</span><span class="n">Driver</span><span class="p">.</span><span class="n">Title</span> <span class="p">!=</span> <span class="s">&quot;New Window&quot;</span><span class="p">);</span>
+
+        <span class="n">Driver</span><span class="p">.</span><span class="n">SwitchTo</span><span class="p">().</span><span class="n">Window</span><span class="p">(</span><span class="n">Windows</span><span class="p">[</span><span class="m">1</span><span class="p">]);</span>
+        <span class="n">Assert</span><span class="p">.</span><span class="n">That</span><span class="p">(</span><span class="n">Driver</span><span class="p">.</span><span class="n">Title</span><span class="p">.</span><span class="n">Equals</span><span class="p">(</span><span class="s">&quot;New Window&quot;</span><span class="p">));</span>
+    <span class="p">}</span>
+<span class="c1">// ...</span>
+</pre></div>
+<p>After loading the page we click the link which spawns a new window. We then grab the window handles (a.k.a. unique identifier strings which represent each open browser window) and switch between them based on their order (assuming that the first one is the originating window, and that the second one is the new window). We round this test out by performing a simple check against the title of the page to make sure Selenium is focused on the correct window.</p>
+
+<p>While this may seem like a good approach it can present problems later because the order of the window handles is not consistent across all browsers. Some return it in the order opened, others <em>alphabetically</em>.</p>
+
+<p>Here's a more resilient approach. One that will work across all browsers.</p>
+<h2>A Better Example</h2>
+<div class="highlight"><pre><span class="c1">// filename: MultipleWindows.cs</span>
+<span class="c1">// ...</span>
+<span class="na">    [Test]</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">MultipleWindowsExample2</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">Driver</span><span class="p">.</span><span class="n">Navigate</span><span class="p">().</span><span class="n">GoToUrl</span><span class="p">(</span><span class="s">&quot;http://the-internet.herokuapp.com/windows&quot;</span><span class="p">);</span>
+        <span class="kt">string</span> <span class="n">FirstWindow</span> <span class="p">=</span> <span class="n">Driver</span><span class="p">.</span><span class="n">CurrentWindowHandle</span><span class="p">;</span>
+        <span class="kt">string</span> <span class="n">SecondWindow</span> <span class="p">=</span> <span class="s">&quot;&quot;</span><span class="p">;</span>
+
+        <span class="n">Driver</span><span class="p">.</span><span class="n">FindElement</span><span class="p">(</span><span class="n">By</span><span class="p">.</span><span class="n">CssSelector</span><span class="p">(</span><span class="s">&quot;.example a&quot;</span><span class="p">)).</span><span class="n">Click</span><span class="p">();</span>
+
+        <span class="kt">var</span> <span class="n">Windows</span> <span class="p">=</span> <span class="n">Driver</span><span class="p">.</span><span class="n">WindowHandles</span><span class="p">;</span>
+        <span class="k">foreach</span><span class="p">(</span><span class="kt">var</span> <span class="n">Window</span> <span class="k">in</span> <span class="n">Windows</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">Window</span> <span class="p">!=</span> <span class="n">FirstWindow</span><span class="p">)</span>
+                <span class="n">SecondWindow</span> <span class="p">=</span> <span class="n">Window</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="n">Driver</span><span class="p">.</span><span class="n">SwitchTo</span><span class="p">().</span><span class="n">Window</span><span class="p">(</span><span class="n">FirstWindow</span><span class="p">);</span>
+        <span class="n">Assert</span><span class="p">.</span><span class="n">That</span><span class="p">(</span><span class="n">Driver</span><span class="p">.</span><span class="n">Title</span> <span class="p">!=</span> <span class="s">&quot;New Window&quot;</span><span class="p">);</span>
+
+        <span class="n">Driver</span><span class="p">.</span><span class="n">SwitchTo</span><span class="p">().</span><span class="n">Window</span><span class="p">(</span><span class="n">SecondWindow</span><span class="p">);</span>
+        <span class="n">Assert</span><span class="p">.</span><span class="n">That</span><span class="p">(</span><span class="n">Driver</span><span class="p">.</span><span class="n">Title</span><span class="p">.</span><span class="n">Equals</span><span class="p">(</span><span class="s">&quot;New Window&quot;</span><span class="p">));</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+<p>After loading the page we store the window handle in a variable (e.g., <code>FirstWindow</code>) and then proceed with clicking the new window link.</p>
+
+<p>Now that we have two windows open we grab all of the window handles and search through them to find the new window handle (e.g., the handle that doesn't match the one we've already stored). We store the new window result in another variable (e.g., <code>SecondWindow</code>) and then switch between the windows, checking the page title each time to make sure the correct window is in focus.</p>
+<h2>Expected Behavior</h2>
+
+<p>If you save this file and run it (e.g., <code>nunit3-console.exe .\MultipleWindows.sln</code> from the command-line) here is what will happen for either example.</p>
+
+<ul>
+<li>Open the browser</li>
+<li>Visit the page</li>
+<li>Click to open a new window</li>
+<li>Switch between the windows</li>
+<li>Check the page title to make sure the correct window is in focus</li>
+<li>Close the browser</li>
+</ul>
+<h2>Outro</h2>
+
+<p>Hat tip to <a href="https://twitter.com/jimevansmusic">Jim Evans</a> for providing the info for this tip, and Jonathan Taylor for the initial code contribution.</p>
+
+<p>Happy Testing!</p>
+<h1 id="chapter20"><small>Chapter 20</small><br>How To Right-click</h1>
+<h2>The Problem</h2>
+
+<p>Sometimes you'll run into an app that has functionality hidden behind a right-click menu (a.k.a. a context menu). These menus tend to be system level menus that are untouchable by Selenium. So how do you test this functionality?</p>
+<h2>A Solution</h2>
+
+<p>By leveraging <a href="http://seleniumhq.github.io/selenium/docs/api/dotnet/html/T_OpenQA_Selenium_Interactions_Actions.htm">Selenium's Action Builder</a> we can issue a right-click command (a.k.a. a <a href="http://seleniumhq.github.io/selenium/docs/api/dotnet/html/M_OpenQA_Selenium_Interactions_Actions_ContextClick.htm"><code>ContextClick</code></a>).</p>
+
+<p>We can then select an option from the menu by traversing it with keyboard arrow keys (which we can issue with the Action Builder's <a href="http://seleniumhq.github.io/selenium/docs/api/dotnet/html/M_OpenQA_Selenium_Interactions_Actions_SendKeys_1.htm"><code>SendKeys</code></a> command).</p>
+
+<p>Let's dig in with an example.</p>
+<h2>An Example</h2>
+
+<p>Let's start by importing our requisite classes for our test framework (e.g., <code>NUnit.Framework</code>), driving the browser with Selenium (e.g., <code>OpenQA.Selenium</code>, etc.), and start our class off with some setup and teardown methods.</p>
+<div class="highlight"><pre><span class="c1">// filename: RightClick.cs</span>
+<span class="k">using</span> <span class="nn">NUnit.Framework</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">OpenQA.Selenium</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">OpenQA.Selenium.Firefox</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">OpenQA.Selenium.Interactions</span><span class="p">;</span>
+
+<span class="k">public</span> <span class="k">class</span> <span class="nc">RightClick</span>
+<span class="p">{</span>
+    <span class="n">IWebDriver</span> <span class="n">Driver</span><span class="p">;</span>
+
+<span class="na">    [SetUp]</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">SetUp</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">Driver</span> <span class="p">=</span> <span class="k">new</span> <span class="n">FirefoxDriver</span><span class="p">();</span>
+    <span class="p">}</span>
+
+<span class="na">    [TearDown]</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">TearDown</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">Driver</span><span class="p">.</span><span class="n">Quit</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="c1">// ...</span>
+</pre></div>
+<p>Now we're ready to write our test.</p>
+
+<p>Let's use an example from <a href="https://github.com/tourdedave/the-internet">the-internet</a> that will render a custom context menu when we right-click on a specific area of the page (<a href="http://the-internet.herokuapp.com/context_menu">link</a>).</p>
+
+<p>Clicking the context menu item will trigger a JavaScript alert which will say <code>You selected a context menu</code>. We'll grab this text and use it to assert that the menu was actually triggered.</p>
+<div class="highlight"><pre><span class="c1">// filename: RightClick.cs</span>
+<span class="c1">// ...</span>
+<span class="na">    [Test]</span>
+    <span class="k">public</span> <span class="k">void</span> <span class="nf">RightClickExample</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">Driver</span><span class="p">.</span><span class="n">Navigate</span><span class="p">().</span><span class="n">GoToUrl</span><span class="p">(</span><span class="s">&quot;http://the-internet.herokuapp.com/context_menu&quot;</span><span class="p">);</span>
+        <span class="n">IWebElement</span> <span class="n">MenuArea</span> <span class="p">=</span> <span class="n">Driver</span><span class="p">.</span><span class="n">FindElement</span><span class="p">(</span><span class="n">By</span><span class="p">.</span><span class="n">Id</span><span class="p">(</span><span class="s">&quot;hot-spot&quot;</span><span class="p">));</span>
+        <span class="n">Actions</span> <span class="n">Builder</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Actions</span><span class="p">(</span><span class="n">Driver</span><span class="p">);</span>
+        <span class="n">Builder</span><span class="p">.</span><span class="n">ContextClick</span><span class="p">(</span><span class="n">MenuArea</span><span class="p">)</span>
+            <span class="p">.</span><span class="n">SendKeys</span><span class="p">(</span><span class="n">Keys</span><span class="p">.</span><span class="n">ArrowDown</span><span class="p">)</span>
+            <span class="p">.</span><span class="n">SendKeys</span><span class="p">(</span><span class="n">Keys</span><span class="p">.</span><span class="n">ArrowDown</span><span class="p">)</span>
+            <span class="p">.</span><span class="n">SendKeys</span><span class="p">(</span><span class="n">Keys</span><span class="p">.</span><span class="n">ArrowDown</span><span class="p">)</span>
+            <span class="p">.</span><span class="n">SendKeys</span><span class="p">(</span><span class="n">Keys</span><span class="p">.</span><span class="n">ArrowDown</span><span class="p">)</span>
+            <span class="p">.</span><span class="n">SendKeys</span><span class="p">(</span><span class="n">Keys</span><span class="p">.</span><span class="n">ArrowDown</span><span class="p">)</span>
+            <span class="p">.</span><span class="n">SendKeys</span><span class="p">(</span><span class="n">Keys</span><span class="p">.</span><span class="n">Enter</span><span class="p">)</span>
+            <span class="p">.</span><span class="n">Perform</span><span class="p">();</span>
+        <span class="n">IAlert</span> <span class="n">Alert</span> <span class="p">=</span> <span class="n">Driver</span><span class="p">.</span><span class="n">SwitchTo</span><span class="p">().</span><span class="n">Alert</span><span class="p">();</span>
+        <span class="n">Assert</span><span class="p">.</span><span class="n">That</span><span class="p">(</span><span class="n">Alert</span><span class="p">.</span><span class="n">Text</span><span class="p">.</span><span class="n">Equals</span><span class="p">(</span><span class="s">&quot;You selected a context menu&quot;</span><span class="p">));</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div><h2>Expected Behavior</h2>
+
+<p>When you save this file and run it (e.g., <code>nunit3-console.exe .\RightClick.sln</code> from the command-line) here is what will happen.</p>
+
+<ul>
+<li>Open the browser</li>
+<li>Visit the page</li>
+<li>Find and right-click the area of the page that renders a custom context menu</li>
+<li>Navigate to the context menu option with keyboard keys and select it</li>
+<li>JavaScript alert appears</li>
+<li>Grab the text of the JavaScript alert</li>
+<li>Assert that the text from the alert is what we expect</li>
+<li>Close the browser</li>
+</ul>
+<h2>Outro</h2>
+
+<p>To learn more about context menus check out <a href="http://blog.teamtreehouse.com/building-html5-context-menus">this write-up from the Tree House blog</a>.</p>
+
+<p>Happy Testing!</p>
+
+  </body>
+</html>

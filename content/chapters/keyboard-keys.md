@@ -1,17 +1,4 @@
----
-title: "How To Press Keyboard Keys"
-slug: "61-keyboard-keys"
-number: 61
-publish_date: 2016-06-13
-tags:
-  - "keyboard"
-  - "keys"
-  - "key presses"
-  - "tab"
-  - "enter"
-level: 1
-category: "testing"
----
+# How To Press Keyboard Keys
 
 ## The Problem
 

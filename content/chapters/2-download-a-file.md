@@ -1,15 +1,4 @@
----
-title: "How To Download a File"
-slug: "2-download-a-file"
-number: 2
-publish_date: 2016-06-11
-tags:
-  - "files"
-  - "downloading"
-  - "file download"
-level: 2
-category: "testing"
----
+# How To Download a File
 
 ## The Problem
 

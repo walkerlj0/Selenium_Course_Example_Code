@@ -1,14 +1,4 @@
----
-title: "How To Take A Screenshot on Failure"
-slug: "16-take-screenshot-on-failure"
-number: 16
-publish_date: 2016-06-13
-tags:
-  - "reporting"
-  - "screenshot"
-level: 2
-category: "reporting"
----
+# How To Take A Screenshot on Failure
 
 ## The Problem
 

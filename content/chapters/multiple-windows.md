@@ -1,15 +1,4 @@
----
-title: "How To Work with Multiple Windows"
-slug: "4-work-with-multiple-windows"
-number: 4
-publish_date: 2016-06-13
-tags:
-  - "windows"
-  - "multiple windows"
-  - "new window"
-level: 2
-category: "testing"
----
+# How To Work with Multiple Windows
 
 ## The Problem
 

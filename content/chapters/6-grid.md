@@ -1,15 +1,4 @@
----
-title: "How To Use Selenium Grid"
-slug: "52-grid"
-number: 52
-publish_date: 2016-06-13
-tags:
-  - "grid"
-  - "selenium grid"
-  - "cross browser"
-level: 2
-category: "infrastructure"
----
+# How To Use Selenium Grid
 
 ## The Problem
 

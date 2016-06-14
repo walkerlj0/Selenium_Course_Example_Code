@@ -1,15 +1,4 @@
----
-title: "How To Opt-out of A/B Tests"
-slug: "12-opt-out-of-ab-tests"
-number: 12
-publish_date: 2016-06-12
-tags:
-  - "ab tests"
-  - "optimizely"
-  - "opt-out"
-level: 2
-category: "testing"
----
+# How To Opt-out of A/B Tests
 
 ## The Problem
 

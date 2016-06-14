@@ -1,13 +1,4 @@
----
-title: "How To Work with Frames"
-slug: "3-work-with-frames"
-number: 3
-publish_date: 2016-06-12
-tags:
-  - "frames"
-level: 1
-category: "testing"
----
+# How To Work with Frames
 
 ## The Problem
 

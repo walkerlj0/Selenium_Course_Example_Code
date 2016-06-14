@@ -1,17 +1,4 @@
----
-title: "How To Run Your Tests on Internet Explorer"
-slug: "71-internet-explorer"
-number: 71
-publish_date: 2016-06-13
-tags:
-  - "drivers"
-  - "iedriver"
-  - "internet explorer driver"
-  - "internet explorer"
-  - "different browsers"
-level: 2
-category: "setup"
----
+# How To Run Your Tests on Internet Explorer
 
 ## The Problem
 
@@ -29,11 +16,11 @@ First we need to download [InternetExplorerDriver](https://github.com/SeleniumHQ
 
 Next we need to configure the Security Options of Internet Explorer to `Enable Protected Mode` for each zone (e.g., Internet, Local intranet, Trusted Sites, and Restricted Sites). `Internet Options` can be accessed from the `Tools` menu in Internet Explorer.
 
-![Accessing the Internet Explorer Options Menu](/img/internet-explorer/tools-options.png)
+![Accessing the Internet Explorer Options Menu](http://elementalselenium.com/img/internet-explorer/tools-options.png)
 
 Select the Security tab and enable the checkbox for `Enable Protected Mode` for each zone and click `OK` when done.
 
-![Security Options for Internet Explorer](/img/internet-explorer/security-options.png)
+<img src="http://elementalselenium.com/img/internet-explorer/security-options.png" alt="Security Options for Internet Explorer" width="350">
 
 Now to create our test class. Let's start it off by including our requisite classes for our test framework (e.g., `using NUnit.Framework`), driving the browser with Selenium (e.g., `using OpenQA.Selenium`, etc.), accessing C# methods to work with the local file system (e.g., `using System.IO`), and start our class with some setup and teardown methods.
 
@@ -94,29 +81,29 @@ HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Microsoft\Internet Explorer\Main\Feature
 
 To find out if your system is 32 or 64 bit, click `Start`, right-click on `Computer`, and select `Properties`.
 
-![Finding the OS bit-level](/img/internet-explorer/find-os-bit-level.png)
+<img alt="Finding the OS bit-level" src="http://elementalselenium.com/img/internet-explorer/find-os-bit-level.png" width="500">
 
 In the `System` section there is an entry titled `System type:`. It will tell you whether you're using a 32-bit Operating System or 64-bit.
 
-![Found the OS bit-level](/img/internet-explorer/found-os-bit-level.png)
+![Found the OS bit-level](http://elementalselenium.com/img/internet-explorer/found-os-bit-level.png)
 
 To access your system registry click `Start`, type `regedit`, and hit `Enter`. This opens up the Registry Editor (assuming you have local administrator permissions for the machine).
 
-![regedit](/img/internet-explorer/regedit.png)
+![regedit](http://elementalselenium.com/img/internet-explorer/regedit.png)
 
 The left-pane of the window enables you to traverse the registry keys in the system. Simply navigate to the correct key location depending on which version of Windows you're running (e.g., 32-bit or 64-bit). Once you've reached the `FeatureControl` sub-key you may or may not see the `FEATURE_BFCACHE` subkey. If it isn't there, add it. If it is there, skip to the next step.
 
 To add it right-click on `FeatureControl`, click `New`, and then `Key`. Type the name `FEATURE_BFCACHE` and hit `Enter`.
 
-![Adding a sub-key in regedit](/img/internet-explorer/new-key-bfcache.png)
+![Adding a sub-key in regedit](http://elementalselenium.com/img/internet-explorer/new-key-bfcache.png)
 
 Select the `FEATURE_BFCACHE` key in the left-pane and then right-click in the right-hand pane. Select `New`, then `DWORD Value`.
 
-![Adding a DWORD value in regedit](/img/internet-explorer/new-dword.png)
+![Adding a DWORD value in regedit](http://elementalselenium.com/img/internet-explorer/new-dword.png)
 
 Type `iexplore.exe` for the name of the DWORD entry and hit `Enter`. The value for it should be `0` (which should have been set by default on creation).
 
-![Naming the new DWORD entry in regedit](/img/internet-explorer/new-dword-with-name.png)
+![Naming the new DWORD entry in regedit](http://elementalselenium.com/img/internet-explorer/new-dword-with-name.png)
 
 Now your tests should run fine in IE11.
 
