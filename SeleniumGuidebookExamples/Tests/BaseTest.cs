@@ -6,6 +6,7 @@ using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Remote;
 using OpenQA.Selenium.IE;
+using NUnit.Framework.Interfaces;
 
 namespace Tests
 {
@@ -29,9 +30,9 @@ namespace Tests
             Platform = (string)ConfigReader.GetValue("Platform", typeof(string));
             ApplicationBaseUrl = (string)ConfigReader.GetValue("ApplicationBaseUrl", typeof(string));
             VendorDirectory = System.IO.Directory.GetParent(
-                                                        System.IO.Path.GetDirectoryName(
-                                                            typeof(Tests.BaseTest).Assembly.Location)).Parent.FullName + 
-                                                                "\\Vendor";
+                              System.IO.Path.GetDirectoryName(
+                              typeof(Tests.BaseTest).Assembly.Location)).
+                              Parent.FullName + "\\Vendor";
         }
 
         [SetUp]
@@ -70,12 +71,12 @@ namespace Tests
         [TearDown]
         protected void TearDown()
         {
-            if (Host == "saucelabs")
+            if (Host.Equals("saucelabs"))
                 {
-                    bool passed = TestContext.CurrentContext.Result.Outcome.Status == NUnit.Framework.Interfaces.TestStatus.Passed;
+                    bool TestPassed = TestContext.CurrentContext.Result.Outcome.Status.Equals(TestStatus.Passed);
                 try
                 {
-                    ((IJavaScriptExecutor)Driver).ExecuteScript("sauce:job-result=" + (passed ? "passed" : "failed"));
+                    ((IJavaScriptExecutor)Driver).ExecuteScript("sauce:job-result=" + (TestPassed ? "passed" : "failed"));
                     Console.WriteLine("https://saucelabs.com/beta/tests/" + ((RemoteWebDriver)Driver).SessionId);
                 }    
                 finally

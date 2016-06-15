@@ -1,5 +1,4 @@
-﻿using System;
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
 
 namespace PageObjects 
 {
@@ -16,7 +15,7 @@ namespace PageObjects
             Click(StartButton);
         }
 
-        public Boolean FinishTextPresent()
+        public bool FinishTextPresent()
         {
             return IsDisplayed(FinishText, 10);
         }

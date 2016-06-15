@@ -1,5 +1,4 @@
-﻿using System;
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
 using NUnit.Framework;
 
 namespace PageObjects
@@ -19,19 +18,19 @@ namespace PageObjects
             Assert.That(IsDisplayed(LoginForm));
         }
 
-        public void With(String Username, String Password)
+        public void With(string Username, string Password)
         {
             Type(UsernameInput, Username);
             Type(PasswordInput, Password);
             Click(SubmitButton);
         }
 
-        public Boolean SuccessMessagePresent()
+        public bool SuccessMessagePresent()
         {
             return IsDisplayed(SuccessMessage);
         }
 
-        public Boolean FailureMessagePresent()
+        public bool FailureMessagePresent()
         {
             return IsDisplayed(FailureMessage);
         }

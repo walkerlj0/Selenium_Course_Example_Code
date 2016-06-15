@@ -1,5 +1,4 @@
-﻿using System;
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 
 namespace PageObjects
@@ -13,7 +12,7 @@ namespace PageObjects
             this.Driver = Driver;
         }
             
-        protected void Visit(String Url)
+        protected void Visit(string Url)
         {
             if (Url.Contains("http"))
             {
@@ -34,12 +33,12 @@ namespace PageObjects
             Find(Locator).Click();
         }
 
-        protected void Type(By Locator, String InputText)
+        protected void Type(By Locator, string InputText)
         {
             Find(Locator).SendKeys(InputText);
         }
 
-        protected Boolean IsDisplayed(By Locator)
+        protected bool IsDisplayed(By Locator)
         {
             try {
                 return Find(Locator).Displayed;
@@ -48,11 +47,11 @@ namespace PageObjects
             }
         }
 
-        protected Boolean IsDisplayed(By Locator, int MaxWaitTime)
+        protected bool IsDisplayed(By Locator, int MaxWaitTime)
         {
             try {
-                WebDriverWait wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(MaxWaitTime));
-                wait.Until(ExpectedConditions.ElementIsVisible(Locator));
+                WebDriverWait Wait = new WebDriverWait(Driver, System.TimeSpan.FromSeconds(MaxWaitTime));
+                Wait.Until(ExpectedConditions.ElementIsVisible(Locator));
                 return true;
             } catch(OpenQA.Selenium.NoSuchElementException) {
                 return false;
