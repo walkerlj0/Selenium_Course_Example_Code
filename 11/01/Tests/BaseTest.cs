@@ -7,7 +7,7 @@ namespace Tests
     [TestFixture]
     class BaseTest
     {
-        public IWebDriver Driver;
+        protected IWebDriver Driver;
 
         [SetUp]
         protected void SetUp()

@@ -9,16 +9,16 @@ namespace Tests
     [TestFixture]
     class BaseTest
     {
-        public IWebDriver Driver;
+        protected IWebDriver Driver;
         public static string ApplicationBaseUrl;
-        protected static string BrowserName;
-        protected static string VendorDirectory;
+        private static string BrowserName;
+        private static string VendorDirectory;
 
         private void LoadConfigValues()
         {
-            var ConfigReader    = new AppSettingsReader();
-            BrowserName         = (string)ConfigReader.GetValue("BrowserName", typeof(string));
-            ApplicationBaseUrl  = (string)ConfigReader.GetValue("ApplicationBaseUrl", typeof(string));
+            var configReader    = new AppSettingsReader();
+            BrowserName         = (string)configReader.GetValue("BrowserName", typeof(string));
+            ApplicationBaseUrl  = (string)configReader.GetValue("ApplicationBaseUrl", typeof(string));
             VendorDirectory     = System.IO.Directory.GetParent(
                                   System.IO.Path.GetDirectoryName(
                                   typeof(Tests.BaseTest).Assembly.Location)).

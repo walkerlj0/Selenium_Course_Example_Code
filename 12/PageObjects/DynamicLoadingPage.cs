@@ -7,11 +7,11 @@ namespace PageObjects
         By StartButton = By.CssSelector("#start > button");
         By FinishText = By.Id("finish");
 
-        public DynamicLoadingPage(IWebDriver Driver) : base(Driver) { }
+        public DynamicLoadingPage(IWebDriver driver) : base(driver) { }
 
-        public void LoadExample(int ExampleNumber)
+        public void LoadExample(int exampleNumber)
         {
-            Visit("/dynamic_loading/" + ExampleNumber);
+            Visit("/dynamic_loading/" + exampleNumber);
             Click(StartButton);
         }
 

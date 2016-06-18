@@ -7,34 +7,34 @@ namespace PageObjects
     {
         IWebDriver Driver;
 
-        protected BasePage(IWebDriver Driver)
+        protected BasePage(IWebDriver driver)
         {
-            this.Driver = Driver;
+            this.Driver = driver;
         }
             
-        protected void Visit(string Url)
+        protected void Visit(string url)
         {
-            Driver.Navigate().GoToUrl(Url);
+            Driver.Navigate().GoToUrl(url);
         }
 
-        protected IWebElement Find(By Locator)
+        protected IWebElement Find(By locator)
         {
-            return Driver.FindElement(Locator);
+            return Driver.FindElement(locator);
         }
 
-        protected void Click(By Locator)
+        protected void Click(By locator)
         {
-            Find(Locator).Click();
+            Find(locator).Click();
         }
 
-        protected void Type(By Locator, string InputText)
+        protected void Type(By locator, string inputText)
         {
-            Find(Locator).SendKeys(InputText);
+            Find(locator).SendKeys(inputText);
         }
 
-        protected bool IsDisplayed(By Locator)
+        protected bool IsDisplayed(By locator)
         {
-            return Find(Locator).Displayed;
+            return Find(locator).Displayed;
         }
     }
 }

@@ -10,12 +10,12 @@ namespace Tests
     class BaseTest
     {
         public IWebDriver Driver;
-        public static string ApplicationBaseUrl;
+        private static string ApplicationBaseUrl;
 
         private void LoadConfigValues()
         {
-            var ConfigReader    = new AppSettingsReader();
-            ApplicationBaseUrl  = (string)ConfigReader.GetValue("ApplicationBaseUrl", typeof(string));
+            var configReader    = new AppSettingsReader();
+            ApplicationBaseUrl  = (string)configReader.GetValue("ApplicationBaseUrl", typeof(string));
         }
 
         [SetUp]

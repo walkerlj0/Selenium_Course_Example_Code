@@ -12,16 +12,16 @@ namespace PageObjects
         By SuccessMessage = By.CssSelector(".flash.success");
         By FailureMessage = By.CssSelector(".flash.error");
 
-        public LoginPage(IWebDriver Driver) : base(Driver)
+        public LoginPage(IWebDriver driver) : base(driver)
         {
             Visit("http://the-internet.herokuapp.com/login");
             Assert.That(IsDisplayed(LoginForm));
         }
 
-        public void With(string Username, string Password)
+        public void With(string username, string password)
         {
-            Type(UsernameInput, Username);
-            Type(PasswordInput, Password);
+            Type(UsernameInput, username);
+            Type(PasswordInput, password);
             Click(SubmitButton);
         }
 

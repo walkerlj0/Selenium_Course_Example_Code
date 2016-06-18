@@ -11,22 +11,22 @@ namespace Tests
     [TestFixture]
     class BaseTest
     {
-        public IWebDriver Driver;
+        protected IWebDriver Driver;
         public static string ApplicationBaseUrl;
-        protected static string BrowserName;
-        protected static string VendorDirectory;
-        protected static string Host;
-        protected static string BrowserVersion;
-        protected static string Platform;
+        private static string BrowserName;
+        private static string VendorDirectory;
+        private static string Host;
+        private static string BrowserVersion;
+        private static string Platform;
 
         private void LoadConfigValues()
         {
-            var ConfigReader    = new AppSettingsReader();
-            Host                = (string)ConfigReader.GetValue("Host", typeof(string));
-            BrowserName         = (string)ConfigReader.GetValue("BrowserName", typeof(string));
-            BrowserVersion      = (string)ConfigReader.GetValue("BrowserVersion", typeof(string));
-            Platform            = (string)ConfigReader.GetValue("Platform", typeof(string));
-            ApplicationBaseUrl  = (string)ConfigReader.GetValue("ApplicationBaseUrl", typeof(string));
+            var configReader    = new AppSettingsReader();
+            Host                = (string)configReader.GetValue("Host", typeof(string));
+            BrowserName         = (string)configReader.GetValue("BrowserName", typeof(string));
+            BrowserVersion      = (string)configReader.GetValue("BrowserVersion", typeof(string));
+            Platform            = (string)configReader.GetValue("Platform", typeof(string));
+            ApplicationBaseUrl  = (string)configReader.GetValue("ApplicationBaseUrl", typeof(string));
             VendorDirectory     = System.IO.Directory.GetParent(
                                     System.IO.Path.GetDirectoryName(
                                     typeof(Tests.BaseTest).Assembly.Location)).

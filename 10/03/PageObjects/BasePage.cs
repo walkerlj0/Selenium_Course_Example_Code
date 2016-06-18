@@ -7,50 +7,49 @@ namespace PageObjects
     {
         IWebDriver Driver;
 
-        protected BasePage(IWebDriver Driver)
+        protected BasePage(IWebDriver driver)
         {
-            this.Driver = Driver;
+            this.Driver = driver;
         }
             
-        protected void Visit(string Url)
+        protected void Visit(string url)
         {
-            Driver.Navigate().GoToUrl(Url);
+            Driver.Navigate().GoToUrl(url);
         }
 
-        protected IWebElement Find(By Locator)
+        protected IWebElement Find(By locator)
         {
-            return Driver.FindElement(Locator);
+            return Driver.FindElement(locator);
         }
 
-        protected void Click(By Locator)
+        protected void Click(By locator)
         {
-            Find(Locator).Click();
+            Find(locator).Click();
         }
 
-        protected void Type(By Locator, string InputText)
+        protected void Type(By locator, string inputText)
         {
-            Find(Locator).SendKeys(InputText);
+            Find(locator).SendKeys(inputText);
         }
 
-        protected bool IsDisplayed(By Locator)
+        protected bool IsDisplayed(By locator)
         {
             try {
-                return Find(Locator).Displayed;
+                return Find(locator).Displayed;
             } catch(OpenQA.Selenium.NoSuchElementException) {
                 return false;
             }
         }
 
-        protected bool IsDisplayed(By Locator, int MaxWaitTime)
+        protected bool IsDisplayed(By locator, int maxWaitTime)
         {
             try {
-                WebDriverWait Wait = new WebDriverWait(Driver, System.TimeSpan.FromSeconds(MaxWaitTime));
-                Wait.Until(ExpectedConditions.ElementIsVisible(Locator));
+                WebDriverWait Wait = new WebDriverWait(Driver, System.TimeSpan.FromSeconds(maxWaitTime));
+                Wait.Until(ExpectedConditions.ElementIsVisible(locator));
                 return true;
-            } catch(OpenQA.Selenium.NoSuchElementException) {
+            } catch(OpenQA.Selenium.WebDriverTimeoutException) {
                 return false;
             }
         }
-
     }
 }
