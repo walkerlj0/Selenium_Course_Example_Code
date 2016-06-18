@@ -22,7 +22,7 @@ namespace Tests
             VendorDirectory     = System.IO.Directory.GetParent(
                                   System.IO.Path.GetDirectoryName(
                                   typeof(Tests.BaseTest).Assembly.Location)).
-                              	  Parent.FullName + "\\Vendor";
+                              	  Parent.FullName + @"\Vendor";
         }
 
         [SetUp]
