@@ -9,7 +9,7 @@ namespace PageObjects
 
         protected BasePage(IWebDriver driver)
         {
-            this.Driver = driver;
+            Driver = driver;
         }
             
         protected void Visit(string url)

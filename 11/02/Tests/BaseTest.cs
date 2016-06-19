@@ -10,7 +10,7 @@ namespace Tests
     class BaseTest
     {
         public IWebDriver Driver;
-        private static string ApplicationBaseUrl;
+        public static string ApplicationBaseUrl;
 
         private void LoadConfigValues()
         {
