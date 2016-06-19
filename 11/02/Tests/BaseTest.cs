@@ -2,7 +2,6 @@
 using OpenQA.Selenium;
 using NUnit.Framework;
 using OpenQA.Selenium.Firefox;
-using OpenQA.Selenium.Chrome;
 
 namespace Tests
 {
