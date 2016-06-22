@@ -22,16 +22,16 @@ namespace Tests
 
         private void LoadConfigValues()
         {
-            var configReader    = new AppSettingsReader();
-            Host                = (string)configReader.GetValue("Host", typeof(string));
-            BrowserName         = (string)configReader.GetValue("BrowserName", typeof(string));
-            BrowserVersion      = (string)configReader.GetValue("BrowserVersion", typeof(string));
-            Platform            = (string)configReader.GetValue("Platform", typeof(string));
-            ApplicationBaseUrl  = (string)configReader.GetValue("ApplicationBaseUrl", typeof(string));
-            VendorDirectory     = System.IO.Directory.GetParent(
-                                    System.IO.Path.GetDirectoryName(
-                                    typeof(Tests.BaseTest).Assembly.Location)).
-                                    Parent.FullName + @"\Vendor";
+            var configReader        = new AppSettingsReader();
+            Host                    = (string)configReader.GetValue("Host", typeof(string));
+            BrowserName             = (string)configReader.GetValue("BrowserName", typeof(string));
+            BrowserVersion          = (string)configReader.GetValue("BrowserVersion", typeof(string));
+            Platform                = (string)configReader.GetValue("Platform", typeof(string));
+            ApplicationBaseUrl      = (string)configReader.GetValue("ApplicationBaseUrl", typeof(string));
+            VendorDirectory         = System.IO.Directory.GetParent(
+                                        System.IO.Path.GetDirectoryName(
+                                        typeof(Tests.BaseTest).Assembly.Location)).
+                                        Parent.FullName + @"\Vendor";
         }
 
         [SetUp]
@@ -73,7 +73,10 @@ namespace Tests
                 try
                 {
                     ((IJavaScriptExecutor)Driver).ExecuteScript("sauce:job-result=" + (testPassed ? "passed" : "failed"));
-                    Console.WriteLine("https://saucelabs.com/beta/tests/" + ((RemoteWebDriver)Driver).SessionId);
+                    if(!testPassed)
+                    {
+                        throw new System.Exception("https://saucelabs.com/beta/tests/" + ((RemoteWebDriver)Driver).SessionId);
+                    }
                 }    
                 finally
                 {
