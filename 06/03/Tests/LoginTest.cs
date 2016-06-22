@@ -29,6 +29,7 @@ namespace Tests
             Driver.FindElement(By.Id("password")).SendKeys("SuperSecretPassword!");
             Driver.FindElement(By.CssSelector("button")).Click();
             Assert.That(Driver.FindElement(By.CssSelector(".flash.success")).Displayed);
+            //Assert.That(Driver.FindElement(By.CssSelector(".flash.successasdf")).Displayed);
         }
     }
 }
