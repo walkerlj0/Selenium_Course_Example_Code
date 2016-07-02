@@ -11,7 +11,7 @@ namespace PageObjects
         {
             this.Driver = driver;
         }
-            
+
         protected void Visit(string url)
         {
             Driver.Navigate().GoToUrl(url);

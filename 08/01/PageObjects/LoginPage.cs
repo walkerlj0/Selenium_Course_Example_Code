@@ -1,5 +1,4 @@
 ﻿using OpenQA.Selenium;
-using NUnit.Framework;
 
 namespace PageObjects
 {
@@ -10,7 +9,6 @@ namespace PageObjects
         By PasswordInput = By.Id("password");
         By SubmitButton = By.CssSelector("button");
         By SuccessMessage = By.CssSelector(".flash.success");
-        By FailureMessage = By.CssSelector(".flash.error");
 
         public LoginPage(IWebDriver driver)
         {
@@ -30,9 +28,5 @@ namespace PageObjects
             return Driver.FindElement(SuccessMessage).Displayed;
         }
 
-        public bool FailureMessagePresent()
-        {
-            return Driver.FindElement(FailureMessage).Displayed;
-        }
     }
 }
