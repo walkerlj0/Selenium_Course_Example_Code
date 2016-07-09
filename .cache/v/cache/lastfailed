@@ -1,1 +1,3 @@
-{}
+{
+  "tests/login_test.py::test_forced_failure": true
+}
