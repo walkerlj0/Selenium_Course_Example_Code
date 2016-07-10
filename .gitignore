@@ -140,3 +140,6 @@ fabric.properties
 
 # xml in the root (e.g, like from test results from test harness)
 *.xml
+
+# Random bits
+.DS_Store
