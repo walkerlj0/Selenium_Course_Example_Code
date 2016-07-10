@@ -135,3 +135,6 @@ com_crashlytics_export_strings.xml
 crashlytics.properties
 crashlytics-build.properties
 fabric.properties
+
+# xml in the root (e.g, like from test results from test harness)
+.xml
