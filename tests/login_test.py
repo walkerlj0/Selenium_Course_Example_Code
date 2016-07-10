@@ -9,15 +9,15 @@ class TestLogin():
         return login_page.LoginPage(driver)
 
     def test_valid_credentials(self, login):
-        login._with("tomsmith", "SuperSecretPassword!")
+        login.with_("tomsmith", "SuperSecretPassword!")
         assert login.success_message_present()
 
     def test_invalid_credentials(self, login):
-        login._with("tomsmith", "bad password")
+        login.with_("tomsmith", "bad password")
         assert login.failure_message_present()
-        #assert self.login.success_message_present() == False
+        # assert self.login.success_message_present() == False
 
     @pytest.mark.shallow
     def test_forced_failure(self, login):
-        login._with("tomsmith", "bad password")
+        login.with_("tomsmith", "bad password")
         assert login.success_message_present()

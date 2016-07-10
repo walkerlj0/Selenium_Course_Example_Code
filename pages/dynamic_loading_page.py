@@ -4,8 +4,8 @@ from base_page import BasePage
 
 class DynamicLoadingPage(BasePage):
 
-    _start_button = {"by":By.CSS_SELECTOR, "value":"#start button"}
-    _finish_text = {"by":By.ID, "value":"finish"}
+    _start_button = {"by": By.CSS_SELECTOR, "value": "#start button"}
+    _finish_text = {"by": By.ID, "value": "finish"}
 
     def ___init___(self, driver):
         self.driver = driver

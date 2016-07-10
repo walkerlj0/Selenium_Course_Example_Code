@@ -26,12 +26,16 @@ class BasePage():
     def _is_displayed(self, locator):
         try:
             self._find(locator).is_displayed()
-        except NoSuchElementException, exception: return False
+        except NoSuchElementException:
+            return False
         return True
 
     def _wait_for_is_displayed(self, locator, timeout):
         try:
             wait = WebDriverWait(self.driver, timeout)
-            wait.until(expected_conditions.visibility_of_element_located((locator['by'], locator['value'])))
-        except TimeoutException, exception: return False
+            wait.until(
+                expected_conditions.visibility_of_element_located(
+                    (locator['by'], locator['value'])))
+        except TimeoutException:
+            return False
         return True

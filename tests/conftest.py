@@ -8,7 +8,7 @@ def pytest_addoption(parser):
     parser.addoption("--baseurl",
                      action="store",
                      default="http://the-internet.herokuapp.com",
-                     help="provide base URL of application under test")
+                     help="base URL for the application under test")
     parser.addoption("--host",
                      action="store",
                      default="saucelabs",
@@ -16,28 +16,33 @@ def pytest_addoption(parser):
     parser.addoption("--browser",
                      action="store",
                      default="internet explorer",
-                     help="provide the name of the browser you want to test with")
+                     help="the name of the browser you want to test with")
     parser.addoption("--browserversion",
                      action="store",
                      default="10.0",
-                     help="provide the browser version you want to test with")
+                     help="the browser version you want to test with")
     parser.addoption("--platform",
                      action="store",
                      default="Windows 7",
-                     help="provide the operating system you want to run your tests on (saucelabs only)")
+                     help="the operating system to run your tests on (saucelabs only)")
+
 
 @pytest.hookimpl(tryfirst=True, hookwrapper=True)
 def pytest_runtest_makereport(item, call):
-    # grab the test outcome and store the result
+    """
+    grab the test outcome and store the result
+    add the result for each phase of a call ("setup", "call", and "teardown")
+    as an attribute to the request.node object in a fixture
+    e.g.,
+        request.node.result_call.failed
+        request.node.result_call.passed
+    """
     outcome = yield
     result = outcome.get_result()
-    # set attributes for each phase of a call, which are "setup", "call", "teardown"
-    # it contains the result and is added to the fixture request object
-    # e.g., request.node.result_call.failed or request.node.result_call.passed
     setattr(item, "result_" + result.when, result)
 
 
-@pytest.fixture(scope = "function")
+@pytest.fixture(scope="function")
 def driver(request):
     config.baseurl = request.config.getoption("--baseurl")
     config.host = request.config.getoption("--host").lower()
@@ -46,7 +51,7 @@ def driver(request):
     config.platform = request.config.getoption("--platform").lower()
 
     if config.host == "saucelabs":
-        desired_caps = { }
+        desired_caps = {}
         desired_caps["browserName"] = config.browser
         desired_caps["version"] = config.browserversion
         desired_caps["platform"] = config.platform
