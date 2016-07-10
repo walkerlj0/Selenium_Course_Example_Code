@@ -42,7 +42,7 @@ def pytest_runtest_makereport(item, call):
     setattr(item, "result_" + result.when, result)
 
 
-@pytest.fixture(scope="function")
+@pytest.fixture
 def driver(request):
     config.baseurl = request.config.getoption("--baseurl")
     config.host = request.config.getoption("--host").lower()

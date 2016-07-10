@@ -15,7 +15,7 @@ def pytest_addoption(parser):
                      help="the name of the browser you want to test with")
 
 
-@pytest.fixture(scope="function")
+@pytest.fixture
 def driver(request):
     config.baseurl = request.config.getoption("--baseurl")
     config.browser = request.config.getoption("--browser").lower()
