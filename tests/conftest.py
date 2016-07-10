@@ -28,9 +28,13 @@ def pytest_addoption(parser):
 
 @pytest.hookimpl(tryfirst=True, hookwrapper=True)
 def pytest_runtest_makereport(item, call):
+    # grab the test outcome and store the result
     outcome = yield
-    rep = outcome.get_result()
-    setattr(item, "rep_" + rep.when, rep)
+    result = outcome.get_result()
+    # set attributes for each phase of a call, which are "setup", "call", "teardown"
+    # it contains the result and is added to the fixture request object
+    # e.g., request.node.result_call.failed or request.node.result_call.passed
+    setattr(item, "result_" + result.when, result)
 
 
 @pytest.fixture(scope = "function")
@@ -43,10 +47,10 @@ def driver(request):
 
     if config.host == "saucelabs":
         desired_caps = { }
-        desired_caps["browserName"] = config["browser"]
-        desired_caps["version"] = config["browserversion"]
-        desired_caps["platform"] = config["platform"]
-        desired_caps["name"] = request.function.__name__
+        desired_caps["browserName"] = config.browser
+        desired_caps["version"] = config.browserversion
+        desired_caps["platform"] = config.platform
+        desired_caps["name"] = request.cls.__name__ + "." + request.function.__name__
         credentials = os.environ["SAUCE_USERNAME"] + ":" + os.environ["SAUCE_ACCESS_KEY"]
         url = "http://" + credentials + "@ondemand.saucelabs.com:80/wd/hub"
         _driver = webdriver.Remote(url, desired_caps)
@@ -60,10 +64,10 @@ def driver(request):
     def quit():
         try:
             if config.host == "saucelabs":
-                if request.node.rep_call.failed:
+                if request.node.result_call.failed:
                     _driver.execute_script("sauce:job-result=failed")
-                    print "\nhttp://saucelabs.com/beta/tests/" + _driver.session_id
-                elif request.node.rep_call.passed:
+                    raise AssertionError("http://saucelabs.com/beta/tests/" + _driver.session_id)
+                elif request.node.result_call.passed:
                     _driver.execute_script("sauce:job-result=passed")
         finally:
             _driver.quit()
