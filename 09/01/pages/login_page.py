@@ -3,7 +3,6 @@ from base_page import BasePage
 
 
 class LoginPage(BasePage):
-    _locators = {}
     _login_form = {"by": By.ID, "value": "login"}
     _username_input = {"by": By.ID, "value": "username"}
     _password_input = {"by": By.ID, "value": "password"}
@@ -13,7 +12,7 @@ class LoginPage(BasePage):
 
     def __init__(self, driver):
         self.driver = driver
-        self._visit("/login")
+        self._visit("http://the-internet.herokuapp.com/login")
         assert self._is_displayed(self._login_form)
 
     def with_(self, username, password):

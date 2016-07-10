@@ -1,6 +1,5 @@
 import pytest
 from selenium import webdriver
-import os
 import config
 
 
@@ -15,10 +14,10 @@ def pytest_addoption(parser):
 def driver(request):
     config.baseurl = request.config.getoption("--baseurl")
 
-    _driver = webdriver.Firefox()
+    driver_ = webdriver.Firefox()
 
     def quit():
-        _driver.quit()
+        driver_.quit()
 
     request.addfinalizer(quit)
-    return _driver
+    return driver_

@@ -1,13 +1,19 @@
 import pytest
+from selenium import webdriver
 from pages import login_page
 
 
 class TestLogin():
 
     @pytest.fixture
-    def login(self):
-        _driver = webdriver.Firefox()
-        return login_page.LoginPage(_driver)
+    def login(self, request):
+        driver_ = webdriver.Firefox()
+
+        def quit():
+            driver_.quit()
+
+        request.addfinalizer(quit)
+        return login_page.LoginPage(driver_)
 
     def test_valid_credentials(self, login):
         login.with_("tomsmith", "SuperSecretPassword!")
@@ -16,4 +22,4 @@ class TestLogin():
     def test_invalid_credentials(self, login):
         login.with_("tomsmith", "bad password")
         assert login.failure_message_present()
-        # assert self.login.success_message_present() == False
+        #assert login.success_message_present() == False

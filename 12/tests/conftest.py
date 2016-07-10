@@ -1,7 +1,7 @@
 import pytest
 from selenium import webdriver
-import os
 import config
+import os
 
 
 def pytest_addoption(parser):
@@ -21,13 +21,13 @@ def driver(request):
     config.browser = request.config.getoption("--browser").lower()
 
     if config.browser == "firefox":
-        _driver = webdriver.Firefox()
+        driver_ = webdriver.Firefox()
     elif config.browser == "chrome":
         chromedriver = os.getcwd() + "/vendor/chromedriver"
-        _driver = webdriver.Chrome(chromedriver)
+        driver_ = webdriver.Chrome(chromedriver)
 
     def quit():
-        _driver.quit()
+        driver_.quit()
 
     request.addfinalizer(quit)
-    return _driver
+    return driver_

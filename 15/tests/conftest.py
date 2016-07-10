@@ -1,7 +1,7 @@
 import pytest
 from selenium import webdriver
-import os
 import config
+import os
 
 
 def pytest_addoption(parser):
@@ -51,31 +51,31 @@ def driver(request):
     config.platform = request.config.getoption("--platform").lower()
 
     if config.host == "saucelabs":
-        desired_caps = {}
-        desired_caps["browserName"] = config.browser
-        desired_caps["version"] = config.browserversion
-        desired_caps["platform"] = config.platform
-        desired_caps["name"] = request.cls.__name__ + "." + request.function.__name__
-        credentials = os.environ["SAUCE_USERNAME"] + ":" + os.environ["SAUCE_ACCESS_KEY"]
-        url = "http://" + credentials + "@ondemand.saucelabs.com:80/wd/hub"
-        _driver = webdriver.Remote(url, desired_caps)
+        _desired_caps = {}
+        _desired_caps["browserName"] = config.browser
+        _desired_caps["version"] = config.browserversion
+        _desired_caps["platform"] = config.platform
+        _desired_caps["name"] = request.cls.__name__ + "." + request.function.__name__
+        _credentials = os.environ["SAUCE_USERNAME"] + ":" + os.environ["SAUCE_ACCESS_KEY"]
+        _url = "http://" + _credentials + "@ondemand.saucelabs.com:80/wd/hub"
+        driver_ = webdriver.Remote(_url, _desired_caps)
     if config.host == "localhost":
         if config.browser == "firefox":
-            _driver = webdriver.Firefox()
+            driver_ = webdriver.Firefox()
         elif config.browser == "chrome":
-            chromedriver = os.getcwd() + "/vendor/chromedriver"
-            _driver = webdriver.Chrome(chromedriver)
+            _chromedriver = os.getcwd() + "/vendor/chromedriver"
+            driver_ = webdriver.Chrome(_chromedriver)
 
     def quit():
         try:
             if config.host == "saucelabs":
                 if request.node.result_call.failed:
-                    _driver.execute_script("sauce:job-result=failed")
-                    print "http://saucelabs.com/beta/tests/" + _driver.session_id
+                    driver_.execute_script("sauce:job-result=failed")
+                    print "http://saucelabs.com/beta/tests/" + driver_.session_id
                 elif request.node.result_call.passed:
-                    _driver.execute_script("sauce:job-result=passed")
+                    driver_.execute_script("sauce:job-result=passed")
         finally:
-            _driver.quit()
+            driver_.quit()
 
     request.addfinalizer(quit)
-    return _driver
+    return driver_

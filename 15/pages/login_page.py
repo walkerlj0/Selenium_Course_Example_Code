@@ -3,7 +3,6 @@ from base_page import BasePage
 
 
 class LoginPage(BasePage):
-    _locators = {}
     _login_form = {"by": By.ID, "value": "login"}
     _username_input = {"by": By.ID, "value": "username"}
     _password_input = {"by": By.ID, "value": "password"}

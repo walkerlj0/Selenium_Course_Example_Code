@@ -1,9 +1,7 @@
 from selenium.webdriver.common.by import By
-from base_page import BasePage
 
 
-class LoginPage(BasePage):
-    _locators = {}
+class LoginPage():
     _login_form = {"by": By.ID, "value": "login"}
     _username_input = {"by": By.ID, "value": "username"}
     _password_input = {"by": By.ID, "value": "password"}
@@ -13,15 +11,15 @@ class LoginPage(BasePage):
 
     def __init__(self, driver):
         self.driver = driver
-        self.driver.get("/login")
+        self.driver.get("http://the-internet.herokuapp.com/login")
 
     def with_(self, username, password):
         self.driver.find_element(self._username_input["by"], self._username_input["value"]).send_keys(username)
         self.driver.find_element(self._password_input["by"], self._password_input["value"]).send_keys(password)
-        self.driver(self._submit_button["by"], self._submit_button["value"]).click()
+        self.driver.find_element(self._submit_button["by"], self._submit_button["value"]).click()
 
     def success_message_present(self):
         return self.driver.find_element(self._success_message["by"], self._success_message["value"]).is_displayed()
 
     def failure_message_present(self):
-        return self._is_displayed(self._failure_message)
+        return self.driver.find_element(self._failure_message["by"], self._failure_message["value"]).is_displayed()

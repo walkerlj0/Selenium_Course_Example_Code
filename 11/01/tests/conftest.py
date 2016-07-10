@@ -1,14 +1,13 @@
 import pytest
 from selenium import webdriver
-import os
 
 
-@pytest.fixture(scope="function")
+@pytest.fixture
 def driver(request):
-    _driver = webdriver.Firefox()
+    driver_ = webdriver.Firefox()
 
     def quit():
-        _driver.quit()
+        driver_.quit()
 
     request.addfinalizer(quit)
-    return _driver
+    return driver_
