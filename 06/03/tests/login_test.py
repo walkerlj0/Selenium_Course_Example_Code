@@ -22,3 +22,4 @@ class TestLogin():
         driver.find_element(By.ID, "password").send_keys("SuperSecretPassword!")
         driver.find_element(By.CSS_SELECTOR, "button").click()
         assert driver.find_element(By.CSS_SELECTOR, ".flash.success").is_displayed()
+        #assert driver.find_element(By.CSS_SELECTOR, ".flash.successasdf").is_displayed()
