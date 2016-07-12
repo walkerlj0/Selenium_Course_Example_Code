@@ -7,7 +7,6 @@ class LoginPage():
     _password_input = {"by": By.ID, "value": "password"}
     _submit_button = {"by": By.CSS_SELECTOR, "value": "button"}
     _success_message = {"by": By.CSS_SELECTOR, "value": ".flash.success"}
-    _failure_message = {"by": By.CSS_SELECTOR, "value": ".flash.error"}
 
     def __init__(self, driver):
         self.driver = driver
@@ -20,6 +19,3 @@ class LoginPage():
 
     def success_message_present(self):
         return self.driver.find_element(self._success_message["by"], self._success_message["value"]).is_displayed()
-
-    def failure_message_present(self):
-        return self.driver.find_element(self._failure_message["by"], self._failure_message["value"]).is_displayed()
