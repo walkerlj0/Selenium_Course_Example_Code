@@ -13,6 +13,7 @@ class TestLogin():
         login.with_("tomsmith", "SuperSecretPassword!")
         assert login.success_message_present()
 
+    @pytest.mark.deep
     def test_invalid_credentials(self, login):
         login.with_("tomsmith", "bad password")
         assert login.failure_message_present()
