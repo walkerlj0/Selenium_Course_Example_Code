@@ -2,7 +2,6 @@ from selenium.webdriver.common.by import By
 
 
 class LoginPage():
-    _login_form = {"by": By.ID, "value": "login"}
     _username_input = {"by": By.ID, "value": "username"}
     _password_input = {"by": By.ID, "value": "password"}
     _submit_button = {"by": By.CSS_SELECTOR, "value": "button"}
