@@ -1,22 +1,16 @@
 'use strict';
-var assert = require('assert')
+var assert = require('assert');
 var webdriver = require('selenium-webdriver');
 var test = require('selenium-webdriver/testing');
-var DriverFactory = require('../lib/DriverFactory');
+var BaseTest = require('./BaseTest');
 var LoginPage = require('../pages/LoginPage');
 
 test.describe('Login', function() {
-  this.timeout(30000); // for mocha
+  this.timeout(30000);
   var login;
 
   test.beforeEach(function() {
-    login = new LoginPage(DriverFactory.build());
-  });
-
-  test.afterEach(function() {
-    var testName = this.currentTest.fullTitle();
-    var testResult = (this.currentTest.state === 'passed') ? true : false;
-    DriverFactory.quit(testName, testResult);
+    login = new LoginPage(global.driver);
   });
 
   test.it('with valid credentials', function() {

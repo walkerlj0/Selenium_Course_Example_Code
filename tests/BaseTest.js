@@ -1,13 +1,19 @@
+'use strict';
+var test = require('selenium-webdriver/testing');
+var DriverFactory = require('../lib/DriverFactory'),
+    driverFactory;
 var driver;
 
-beforeEach(function() {
-  this.driver = DriverFactory.build();
+test.beforeEach(function() {
+  this.timeout(30000);
+  driverFactory = new DriverFactory();
+  driver = driverFactory.driver;
+  global.driver = driver;
 });
 
-afterEach(function() {
-  var testName = this.currentTest.fullTitle();
-  var testResult = (this.currentTest.state === 'passed') ? true : false;
-  DriverFactory.quit(testName, testResult);
+test.afterEach(function() {
+  this.timeout(30000);
+  var testName = this.currentTest.fullTitle(),
+      testResult = (this.currentTest.state === 'passed') ? true : false;
+  driverFactory.quit(testName, testResult);
 });
-
-module.exports.driver = driver;
