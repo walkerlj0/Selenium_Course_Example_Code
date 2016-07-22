@@ -2,19 +2,15 @@
 var assert = require('assert')
 var webdriver = require('selenium-webdriver');
 var test = require('selenium-webdriver/testing');
-var DriverFactory = require('../lib/DriverFactory');
+var BaseTest = require('./BaseTest');
 var DynamicLoadingPage = require('../pages/DynamicLoadingPage');
 
 test.describe('Dynamic Loading', function() {
-  this.timeout(30000); // for mocha
+  this.timeout(global.test_timeout);
   var dynamicLoading;
 
   test.beforeEach(function() {
-    dynamicLoading = new DynamicLoadingPage(DriverFactory.build());
-  });
-
-  test.afterEach(function() {
-    DriverFactory.quit();
+    dynamicLoading = new DynamicLoadingPage(global.driver);
   });
 
   test.it('hidden element', function() {

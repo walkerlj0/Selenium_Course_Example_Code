@@ -6,7 +6,7 @@ var BaseTest = require('./BaseTest');
 var LoginPage = require('../pages/LoginPage');
 
 test.describe('Login', function() {
-  this.timeout(30000);
+  this.timeout(global.test_timeout);
   var login;
 
   test.beforeEach(function() {
