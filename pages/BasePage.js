@@ -29,19 +29,16 @@ BasePage.prototype.isDisplayed = function(locator) {
   this.find(locator).isDisplayed().then(function(isDisplayed) {
     defer.fulfill(isDisplayed);
   }, function(error) {
-    defer.fulfill(false);
+    if (error.name === 'NoSuchElementError') {
+      defer.fulfill(false);
+    } else {
+      defer.reject(error);
+    }
   });
   return defer.promise;
 };
 
 BasePage.prototype.waitForIsDisplayed = function(locator, timeout) {
-  //var defer = Promise.defer();
-  //this.driver.wait(Until.elementIsVisible(this.find(locator)), timeout).then(function() {
-  //  defer.fulfill(true);
-  //}, function(error) {
-  //  defer.fulfill(false);
-  //});
-  //return defer.promise;
   var defer = Promise.defer();
   var driver = this.driver;
   driver.wait(Until.elementLocated(locator), timeout).then(function() {
@@ -49,7 +46,11 @@ BasePage.prototype.waitForIsDisplayed = function(locator, timeout) {
     driver.wait(Until.elementIsVisible(element), timeout).then(function() {
       defer.fulfill(true);
     }, function(error) {
-      defer.fulfill(false);
+      if (error.name === 'NoSuchElementError') {
+        defer.fulfill(false);
+      } else {
+        defer.reject(error);
+      }
     });
   });
   return defer.promise;

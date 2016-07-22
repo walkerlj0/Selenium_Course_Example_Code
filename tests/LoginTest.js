@@ -14,7 +14,9 @@ test.describe('Login', function() {
   });
 
   test.afterEach(function() {
-    DriverFactory.quit();
+    var testName = this.currentTest.fullTitle();
+    var testResult = (this.currentTest.state === 'passed') ? true : false;
+    DriverFactory.quit(testName, testResult);
   });
 
   test.it('with valid credentials', function() {
