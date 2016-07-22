@@ -4,7 +4,7 @@ var BasePage = require('./BasePage');
 
 function LoginPage(driver) {
   BasePage.call(this, driver);
-  this.visit('http://the-internet.herokuapp.com/login');
+  this.visit('/login');
 }
 
 LoginPage.prototype = Object.create(BasePage.prototype);

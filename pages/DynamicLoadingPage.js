@@ -13,7 +13,7 @@ var START_BUTTON = {css: '#start button'};
 var FINISH_TEXT = {id: 'finish'};
 
 DynamicLoadingPage.prototype.loadExample = function(exampleNumber) {
-  this.visit('http://the-internet.herokuapp.com/dynamic_loading/' + exampleNumber);
+  this.visit('/dynamic_loading/' + exampleNumber);
   this.click(START_BUTTON);
 };
 
