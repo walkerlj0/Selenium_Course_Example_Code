@@ -2,8 +2,6 @@
   "name": "selenium-guidebook-examples",
   "dependencies": {
     "mocha": "2.5.3",
-    "mocha-parallel-tests": "^0.5.3",
-    "saucelabs": "1.2.0",
     "selenium-webdriver": "2.53.3"
   }
 }
