@@ -5,7 +5,7 @@ var test = require('selenium-webdriver/testing');
 var BaseTest = require('./BaseTest');
 var DynamicLoadingPage = require('../pages/DynamicLoadingPage');
 
-test.describe('Dynamic Loading', function() {
+test.describe('Dynamic Loading @deep', function() {
   this.timeout(global.test_timeout);
   var dynamicLoading;
 
