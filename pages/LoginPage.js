@@ -24,10 +24,10 @@ LoginPage.prototype.with = function(username, password) {
 
 LoginPage.prototype.successMessagePresent = function() {
   return this.isDisplayed(SUCCESS_MESSAGE);
-}
+};
 
 LoginPage.prototype.failureMessagePresent = function() {
   return this.isDisplayed(FAILURE_MESSAGE);
-}
+};
 
 module.exports = LoginPage;
