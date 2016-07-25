@@ -29,4 +29,11 @@ test.describe('Login', function() {
     //  assert.equal(elementDisplayed, false, "Success message displayed");
     //});
   });
+
+  test.it('forced failured @shallow', function() {
+    login.with('tomsmith', 'bad password');
+    login.successMessagePresent().then(function(elementDisplayed) {
+      assert.equal(elementDisplayed, true, "Success message displayed");
+    });
+  });
 });
