@@ -2,14 +2,12 @@
 var test = require('selenium-webdriver/testing');
 var DriverFactory = require('../lib/DriverFactory'),
     driverFactory;
-var driver;
 global.test_timeout = 30000;
 
 test.beforeEach(function() {
   this.timeout(global.test_timeout);
   driverFactory = new DriverFactory();
-  driver = driverFactory.driver;
-  global.driver = driver;
+  global.driver = driverFactory.driver;
 });
 
 test.afterEach(function() {
