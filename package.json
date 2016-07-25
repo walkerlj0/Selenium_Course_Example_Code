@@ -1,6 +1,9 @@
 {
   "name": "selenium-guidebook-examples",
   "dependencies": {
+    "grunt": "^1.0.1",
+    "grunt-parallel": "^0.5.1",
+    "grunt-shell": "^1.3.0",
     "mocha": "2.5.3",
     "selenium-webdriver": "2.53.3"
   }
