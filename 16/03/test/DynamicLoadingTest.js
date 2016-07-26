@@ -1,7 +1,7 @@
 'use strict';
-var assert = require('assert');
 var webdriver = require('selenium-webdriver');
 var test = require('selenium-webdriver/testing');
+var assert = require('assert');
 var BaseTest = require('./BaseTest');
 var DynamicLoadingPage = require('../pages/DynamicLoadingPage');
 
