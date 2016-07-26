@@ -1,0 +1,7 @@
+{
+  "name": "selenium-guidebook-examples",
+  "dependencies": {
+    "mocha": "2.5.3",
+    "selenium-webdriver": "2.53.3"
+  }
+}
