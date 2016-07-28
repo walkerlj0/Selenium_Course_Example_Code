@@ -12,7 +12,7 @@ DynamicLoadingPage.prototype = Object.create(BasePage.prototype);
 DynamicLoadingPage.prototype.constructor = DynamicLoadingPage;
 
 DynamicLoadingPage.prototype.loadExample = function(exampleNumber) {
-  this.visit('http://the-internet.herokuapp.com/dynamic_loading/' + exampleNumber);
+  this.visit('/dynamic_loading/' + exampleNumber);
   this.click(START_BUTTON);
 };
 

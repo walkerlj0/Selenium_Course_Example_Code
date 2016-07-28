@@ -1,5 +1,4 @@
 'use strict';
-var webdriver = require('selenium-webdriver');
 var test = require('selenium-webdriver/testing');
 var assert = require('assert');
 var BaseTest = require('./BaseTest');

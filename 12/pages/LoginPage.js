@@ -11,7 +11,7 @@ var FAILURE_MESSAGE = {css: '.flash.error'};
 
 function LoginPage(driver) {
   BasePage.call(this, driver);
-  this.visit('http://the-internet.herokuapp.com/login');
+  this.visit('/login');
   this.isDisplayed(LOGIN_FORM).then(function(elementDisplayed) {
     assert.equal(elementDisplayed, true, 'Login form not loaded');
   });

@@ -30,6 +30,9 @@ test.describe('Login', function() {
     login.failureMessagePresent().then(function(elementDisplayed) {
       assert.equal(elementDisplayed, true, 'Failure message not displayed');
     });
+    //login.successMessagePresent().then(function(elementDisplayed) {
+    //  assert.equal(elementDisplayed, false, "Success message displayed");
+    //});
   });
 
 });
