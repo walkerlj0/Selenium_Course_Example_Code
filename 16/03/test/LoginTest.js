@@ -29,7 +29,7 @@ test.describe('Login', function() {
     //});
   });
 
-  test.it('forced failured @shallow', function() {
+  test.it('forced failure @shallow', function() {
     login.with('tomsmith', 'bad password');
     login.successMessagePresent().then(function(elementDisplayed) {
       assert.equal(elementDisplayed, true, "Success message displayed");
