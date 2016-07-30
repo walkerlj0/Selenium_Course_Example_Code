@@ -38,6 +38,7 @@ BasePage.prototype.isDisplayed = function(locator) {
   return defer.promise;
 };
 
+//BasePage.prototype.waitForIsDisplayed = function(locator, timeout = 15000) {
 BasePage.prototype.waitForIsDisplayed = function(locator, timeout) {
   var defer = Promise.defer();
   var driver = this.driver;
