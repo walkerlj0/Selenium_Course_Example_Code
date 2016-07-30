@@ -1,0 +1,80 @@
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <style type="text/css">
+      @font-face {
+        font-family: 'Droid Sans';
+        font-style: normal;
+        font-weight: 400;
+        src: url('droid_sans.ttf');
+        -fs-pdf-font-embed: embed;
+        -fs-pdf-font-encoding: Identity-H;
+      }
+      body {
+        font-family: 'Droid Sans';
+      }
+      div.page_footer {
+      }
+      h1 {
+        page-break-before: always;
+      }
+      h2 {
+        page-break-after: avoid;
+      }
+      pre {
+        white-space: pre;
+        white-space: pre-wrap;
+        page-break-inside: avoid;
+        orphans: 0;
+        widows: 0;
+        background-color: #f5f5f5;
+        border: 1px solid #ccc;
+        border: 1px solid rgba(0, 0, 0, 0.15);
+        border-radius: 4px;
+        display: block;
+        padding: 9.5px;
+        margin: 0 0 10px;
+        font-size: 13px;
+        line-height: 20px;
+      }
+      code {
+          padding: 2px 4px;
+          background-color: #f7f7f9;
+      }
+      img {
+        width: 600px;
+      }
+      table {
+        page-break-inside: avoid;
+        orphans: 0;
+        widows: 0;
+        font-size: 12px;
+        border-collapse:collapse;
+        margin:20px 0 0;
+        padding:0;
+      }
+      table tr {
+        border-top:1px solid #ccc;
+        background-color:#fff;
+        margin:0;
+        padding:0;
+      }
+      table tr:nth-child(2n) {
+        background-color:#f8f8f8;
+      }
+      table tr th[align="center"], table tr td[align="center"] {
+        text-align:center;
+      }
+      table tr th, table tr td {
+        border:1px solid #ccc;
+        text-align:left;
+        margin:0;
+        padding:6px 13px;
+      }
+      <%= Pygments.css %>
+    </style>
+  </head>
+  <body>
+    <%= @content %>
+  </body>
+</html>
