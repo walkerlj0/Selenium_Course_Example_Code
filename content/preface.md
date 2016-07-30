@@ -24,7 +24,7 @@ The examples in this book are written in JavaScript, but the strategies and patt
 
 The tests in this book are written to exercise functionality from an open-source project I created and maintain called the-internet -- available [here on GitHub](https://github.com/tourdedave/the-internet) and viewable [here on Heroku](http://the-internet.herokuapp.com/).
 
-The test examples are written to run against [Mocha](http://mochajs.org/) with [npm](https://www.npmjs.com/) managing the third-party dependencies.
+The test examples are written with [Node.js](https://nodejs.org/) and [the officially supported Selenium JavaScript bindings](https://github.com/SeleniumHQ/selenium/tree/master/javascript/node/selenium-webdriver) to run on [Mocha](http://mochajs.org/) with [npm](https://www.npmjs.com/) managing the third-party dependencies.
 
 All of the code examples from the book are available in an accompanying zip file. It contains folders for each chapter where code was written or altered. Chapters with multiple parts will have multiple sub-folders (e.g., code examples referenced in Part 2 of Chapter 9 can be found in `09/02/` in the zip file).
 
