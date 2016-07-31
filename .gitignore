@@ -46,3 +46,6 @@ jspm_packages
 
 # Test outpu
 *.xml
+
+# Junk
+.*.swp
