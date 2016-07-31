@@ -5,7 +5,7 @@ var BaseTest = require('./BaseTest');
 var DynamicLoadingPage = require('../pages/DynamicLoadingPage');
 
 test.describe('Dynamic Loading', function() {
-  this.timeout(global.test_timeout);
+  this.timeout(global.testTimeout);
   var dynamicLoading;
 
   test.beforeEach(function() {
