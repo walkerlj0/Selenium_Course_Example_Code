@@ -3,7 +3,9 @@
 module.exports = function (grunt) {
     var testFiles = grunt.file.expand('test/*.js');
     testFiles.shift();
-    testFiles = testFiles.map(function(testFile) { return testFile.replace(/test\//, ''); });
+    testFiles = testFiles.map(function(testFile) {
+      return testFile.replace(/test\//, '');
+    });
 
     grunt.initConfig({
       shell: {
