@@ -2,13 +2,12 @@
 var webdriver = require('selenium-webdriver');
 var driver;
 
-function DriverFactory(driver) {
+function DriverFactory() {
   this.build();
 }
 
 DriverFactory.prototype.build = function() {
-  var builder;
-  builder = new webdriver.Builder().forBrowser('firefox');
+  var builder = new webdriver.Builder().forBrowser('firefox');
   this.driver = builder.build();
 };
 
