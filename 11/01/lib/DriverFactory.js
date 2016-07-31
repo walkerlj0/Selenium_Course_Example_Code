@@ -7,8 +7,7 @@ function DriverFactory() {
 }
 
 DriverFactory.prototype.build = function() {
-  var builder;
-  builder = new webdriver.Builder().forBrowser('firefox');
+  var builder = new webdriver.Builder().forBrowser('firefox');
   this.driver = builder.build();
 };
 
