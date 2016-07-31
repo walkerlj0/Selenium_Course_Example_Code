@@ -3,7 +3,7 @@ var webdriver = require('selenium-webdriver');
 var config = require('./config');
 var driver;
 
-function DriverFactory(driver) {
+function DriverFactory() {
   this.build();
 }
 

@@ -4,7 +4,7 @@ var config = require('./config');
 var driver,
     sessionId;
 
-function DriverFactory(driver) {
+function DriverFactory() {
   this.build();
 }
 
