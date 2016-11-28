@@ -43,11 +43,11 @@ def driver(request):
         _credentials = os.environ["SAUCE_USERNAME"] + ":" + os.environ["SAUCE_ACCESS_KEY"]
         _url = "http://" + _credentials + "@ondemand.saucelabs.com:80/wd/hub"
         driver_ = webdriver.Remote(_url, _desired_caps)
-    if config.host == "localhost":
+    elif config.host == "localhost":
         if config.browser == "firefox":
             driver_ = webdriver.Firefox()
         elif config.browser == "chrome":
-            _chromedriver = os.getcwd() + "/vendor/chromedriver"
+            _chromedriver = os.path.join(os.getcwd() + 'vendor', 'chromedriver')
             driver_ = webdriver.Chrome(_chromedriver)
 
     def quit():

@@ -48,7 +48,7 @@ def driver(request):
         if config.browser == "firefox":
             driver_ = webdriver.Firefox()
         elif config.browser == "chrome":
-            _chromedriver = os.getcwd() + "/vendor/chromedriver"
+            _chromedriver = os.path.join(os.getcwd() + 'vendor', 'chromedriver')
             driver_ = webdriver.Chrome(_chromedriver)
 
     def quit():
