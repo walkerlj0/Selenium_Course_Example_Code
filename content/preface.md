@@ -20,7 +20,7 @@ That is to say, this book is for anyone who wants to use computers for what they
 
 ## About The Examples In This Book
 
-The examples in this book are written in C#, but the strategies and patterns used are applicable regardless of your technical stack.
+The examples in this book are written in Python, but the strategies and patterns used are applicable regardless of your technical stack.
 
 The tests in this book are written to exercise functionality from an open-source project I created and maintain called the-internet -- available [here on GitHub](https://github.com/tourdedave/the-internet) and viewable [here on Heroku](http://the-internet.herokuapp.com/).
 
