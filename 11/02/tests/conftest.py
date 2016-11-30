@@ -14,7 +14,8 @@ def pytest_addoption(parser):
 def driver(request):
     config.baseurl = request.config.getoption("--baseurl")
 
-    driver_ = webdriver.Firefox()
+    _geckodriver = os.path.join(os.getcwd(), 'vendor', 'geckodriver')
+    driver_ = webdriver.Firefox(executable_path=_geckodriver)
 
     def quit():
         driver_.quit()

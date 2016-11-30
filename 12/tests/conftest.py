@@ -21,7 +21,8 @@ def driver(request):
     config.browser = request.config.getoption("--browser").lower()
 
     if config.browser == "firefox":
-        driver_ = webdriver.Firefox()
+        _geckodriver = os.path.join(os.getcwd(), 'vendor', 'geckodriver')
+        driver_ = webdriver.Firefox(executable_path=_geckodriver)
     elif config.browser == "chrome":
         _chromedriver = os.path.join(os.getcwd() + 'vendor', 'chromedriver')
         driver_ = webdriver.Chrome(_chromedriver)

@@ -1,4 +1,5 @@
 from selenium.webdriver.common.by import By
+import time
 
 
 class LoginPage():
@@ -19,6 +20,7 @@ class LoginPage():
                                  self._password_input["value"]).send_keys(password)
         self.driver.find_element(self._submit_button["by"],
                                  self._submit_button["value"]).click()
+        time.sleep(1)
 
     def success_message_present(self):
         return self.driver.find_element(self._success_message["by"], self._success_message["value"]).is_displayed()

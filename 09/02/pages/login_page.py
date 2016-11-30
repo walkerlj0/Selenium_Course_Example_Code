@@ -1,5 +1,6 @@
 from selenium.webdriver.common.by import By
 from base_page import BasePage
+import time
 
 
 class LoginPage(BasePage):
@@ -19,6 +20,7 @@ class LoginPage(BasePage):
         self._type(self._username_input, username)
         self._type(self._password_input, password)
         self._click(self._submit_button)
+        time.sleep(1)
 
     def success_message_present(self):
         return self._is_displayed(self._success_message)

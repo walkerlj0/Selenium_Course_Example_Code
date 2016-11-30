@@ -1,4 +1,5 @@
 import pytest
+import os
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 
@@ -7,7 +8,9 @@ class TestLogin():
 
     @pytest.fixture
     def driver(self, request):
-        driver_ = webdriver.Firefox()
+        #driver_ = webdriver.Firefox(capabilities={'marionette': False})
+        _geckodriver = os.path.join(os.getcwd(), 'vendor', 'geckodriver')
+        driver_ = webdriver.Firefox(executable_path=_geckodriver)
 
         def quit():
             driver_.quit()

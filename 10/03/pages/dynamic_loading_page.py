@@ -17,13 +17,3 @@ class DynamicLoadingPage():
 
     def finish_text_present(self):
         return self._wait_for_is_displayed(self._finish_text, 10)
-
-    def _wait_for_is_displayed(self, locator, timeout):
-        try:
-            wait = WebDriverWait(self.driver, timeout)
-            wait.until(
-                expected_conditions.visibility_of_element_located(
-                    (locator['by'], locator['value'])))
-        except TimeoutException:
-            return False
-        return True

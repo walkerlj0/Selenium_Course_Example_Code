@@ -10,9 +10,9 @@ class TestLogin():
 
     def test_valid_credentials(self, login):
         login.with_("tomsmith", "SuperSecretPassword!")
-        assert login.success_message_present()
+        assert(login.success_message_present())
 
     def test_invalid_credentials(self, login):
         login.with_("tomsmith", "bad password")
-        assert login.failure_message_present()
-        # assert self.login.success_message_present() == False
+        assert(login.failure_message_present())
+        # assert(self.login.success_message_present() == False)
