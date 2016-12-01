@@ -22,7 +22,7 @@ The examples in this book are written in Ruby. This is partly because that is th
 
 The application under test used in the examples throughout this book are from an open source project of mine called the-internet. It's available [on GitHub](https://github.com/tourdedave/the-internet) and is accessible [on Heroku](http://the-internet.herokuapp.com/).
 
-The tests are written for version 3.4.0 of [RSpec](http://rspec.info/) (a popular open source Behavior Driven Development Ruby testing framework).
+The tests are written for version 3.x of [RSpec](http://rspec.info/) (a popular open source Behavior Driven Development Ruby testing framework).
 
 All third-party libraries (a.k.a. "gems") are specified in a `Gemfile` and installed using [Bundler](http://bundler.io/) with `bundle install`.
 
@@ -38,7 +38,7 @@ Code examples will correspond to each chapter number. For chapters with multiple
 
 ## Feedback
 
-If you find a glitch in the book (e.g., grammar issue, code issue, etc.) or have questions/feedback  please feel free to e-mail me at <dhaeffner@gmail.com>.
+If you find a glitch in the book (e.g., grammar issue, code issue, etc.) or have questions/feedback  please feel free to e-mail me at <hello@seleniumguidebook.com>.
 
 If you submit something and I end up using it in a future version of the book, I'll give you a shout-out in the acknowledgements.
 
