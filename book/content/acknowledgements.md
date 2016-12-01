@@ -9,5 +9,5 @@ I'd like to thank Matt Allen, Donald Bialer, Katy Burns, Sergey Franchuk, Brian 
 I'd also like to thank you, the reader. I hope you find it useful in your daily work.
 
 
-Cheers,
+Cheers,  
 Dave H
