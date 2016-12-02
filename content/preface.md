@@ -18,11 +18,11 @@ This book is for anyone who wants to take automated acceptance testing seriously
 
 ## About The Examples In This Book
 
-The examples in this book are written in Java. If Java isn't your preferred language, the strategies and patterns used here are applicable regardless of your tech stack. Alternatively, this book is also available in the Ruby programming language. Go [here](https://seleniumguidebook.com/) for details.
+The examples in this book are written in Java. If Java isn't your preferred language, the strategies and patterns used here are applicable regardless of your tech stack. Alternatively, this book is also available in C#, JavaScript, Python, and Ruby. Go [here](https://seleniumguidebook.com/) for details.
 
 The tests in this book are written to exercise functionality from an open source project called the-internet -- available on [GitHub](https://github.com/tourdedave/the-internet) and viewable through [a Heroku site](http://the-internet.herokuapp.com/).
 
-The test examples are written to run against [JUnit](http://junit.org/), with [Maven](http://maven.apache.org/) managing the third party dependencies.
+The test examples are written to run in [JUnit](http://junit.org/), with [Maven](http://maven.apache.org/) managing the third party dependencies.
 
 ## How To Read This Book
 
@@ -34,6 +34,6 @@ All of the code examples from the book are available in the accompanying zip fil
 
 ## Feedback
 
-If you find an error in the book (e.g., grammar issue, code issue, etc.) or have questions/feedback -- please feel free to e-mail me at <dhaeffner@gmail.com>.
+If you find an error in the book (e.g., grammar issue, code issue, etc.) or have questions/feedback -- please feel free to e-mail me at <hello@seleniumguidebook.com>.
 
 If you submit something and I end up using it in future versions of the book, I'll give you a shout-out in the Acknowledgements.
