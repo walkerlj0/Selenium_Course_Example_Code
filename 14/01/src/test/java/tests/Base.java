@@ -39,6 +39,8 @@ public class Base {
                 sauceClient = new SauceREST(sauceUser, sauceKey);
             } else if (host.equals("localhost")) {
                 if (browser.equals("firefox")) {
+                    System.setProperty("webdriver.gecko.driver",
+                            System.getProperty("user.dir") + "/vendor/geckodriver");
                     driver = new FirefoxDriver();
                 } else if (browser.equals("chrome")) {
                     System.setProperty("webdriver.chrome.driver",

@@ -14,6 +14,8 @@ public class Base {
 
         @Override
         protected void before() throws Throwable {
+            System.setProperty("webdriver.gecko.driver",
+                    System.getProperty("user.dir") + "/vendor/geckodriver");
             driver = new FirefoxDriver();
         }
 

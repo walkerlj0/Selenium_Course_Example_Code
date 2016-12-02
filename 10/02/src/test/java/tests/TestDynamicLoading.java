@@ -15,6 +15,8 @@ public class TestDynamicLoading {
 
     @Before
     public void setUp() {
+        System.setProperty("webdriver.gecko.driver",
+                System.getProperty("user.dir") + "/vendor/geckodriver");
         driver = new FirefoxDriver();
         dynamicLoading = new DynamicLoading(driver);
     }

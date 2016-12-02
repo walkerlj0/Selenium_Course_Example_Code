@@ -29,6 +29,8 @@ public class Base {
                 driver = new RemoteWebDriver(new URL(sauceUrl), capabilities);
             } else if (host.equals("localhost")) {
                 if (browser.equals("firefox")) {
+                    System.setProperty("webdriver.gecko.driver",
+                            System.getProperty("user.dir") + "/vendor/geckodriver");
                     driver = new FirefoxDriver();
                 } else if (browser.equals("chrome")) {
                     System.setProperty("webdriver.chrome.driver",
