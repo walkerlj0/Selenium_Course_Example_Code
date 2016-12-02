@@ -14,15 +14,19 @@ public class TestLogin {
 
     @Before
     public void setUp() {
+        //System.setProperty("webdriver.firefox.marionette", "false");
+        System.setProperty("webdriver.gecko.driver",
+                System.getProperty("user.dir") + "/vendor/geckodriver");
         driver = new FirefoxDriver();
     }
 
     @Test
-    public void succeeded() {
+    public void succeeded() throws InterruptedException {
         driver.get("http://the-internet.herokuapp.com/login");
         driver.findElement(By.id("username")).sendKeys("tomsmith");
         driver.findElement(By.id("password")).sendKeys("SuperSecretPassword!");
         driver.findElement(By.cssSelector("button")).click();
+        Thread.sleep(1000);
         assertTrue("success message not present",
                 driver.findElement(By.cssSelector(".flash.success")).isDisplayed());
         //assertTrue("success message not present",

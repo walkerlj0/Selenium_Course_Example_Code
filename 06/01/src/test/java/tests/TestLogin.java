@@ -13,6 +13,9 @@ public class TestLogin {
 
     @Before
     public void setUp() {
+        //System.setProperty("webdriver.firefox.marionette", "false");
+        System.setProperty("webdriver.gecko.driver",
+                System.getProperty("user.dir") + "/vendor/geckodriver");
         driver = new FirefoxDriver();
     }
 
