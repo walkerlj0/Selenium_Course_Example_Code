@@ -8,7 +8,7 @@ My goal in writing this is to provide you with the materials I wish existed when
 
 ## What This Book Will Cover
 
-This book focuses on the latest version of Selenium (a.k.a. Selenium WebDriver) and its use to test desktop browsers. It's predecessor, Selenium RC, will not be covered. Mobile testing with Appium will not be covered either. But you can see a series of getting start with Appium posts [here](https://saucelabs.com/resources/appium-bootcamp).
+This book focuses on the latest version of Selenium (a.k.a. Selenium WebDriver) and its use to test desktop browsers. It's predecessor, Selenium RC, will not be covered. Mobile testing with Appium will not be covered either. But you can see a series of getting start with Appium posts [here](https://saucelabs.com/resources/articles/appium-bootcamp-chapter-1).
 
 Record and Playback tools like Selenium IDE and Selenium Builder are great for getting started, but abysmal for growing past that point. To that end, they will not be covered. Instead, an approach on writing well factored tests, in code, will be the primary focus of this book.
 
@@ -18,7 +18,7 @@ This book is for anyone who wants to take automated acceptance testing seriously
 
 ## About The Examples In This Book
 
-The examples in this book are written in Java. If Java isn't your preferred language, the strategies and patterns used here are applicable regardless of your tech stack. Alternatively, this book is also available in C#, JavaScript, Python, and Ruby. Go [here](https://seleniumguidebook.com/) for details.
+The examples in this book are written in Java. If Java isn't your preferred language, the strategies and patterns used here are applicable regardless of your tech stack.
 
 The tests in this book are written to exercise functionality from an open source project called the-internet -- available on [GitHub](https://github.com/tourdedave/the-internet) and viewable through [a Heroku site](http://the-internet.herokuapp.com/).
 
