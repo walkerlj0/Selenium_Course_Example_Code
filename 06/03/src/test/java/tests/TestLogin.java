@@ -21,12 +21,16 @@ public class TestLogin {
     }
 
     @Test
-    public void succeeded() throws InterruptedException {
+    public void succeeded() {
         driver.get("http://the-internet.herokuapp.com/login");
         driver.findElement(By.id("username")).sendKeys("tomsmith");
         driver.findElement(By.id("password")).sendKeys("SuperSecretPassword!");
         driver.findElement(By.cssSelector("button")).click();
-        Thread.sleep(1000);
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         assertTrue("success message not present",
                 driver.findElement(By.cssSelector(".flash.success")).isDisplayed());
         //assertTrue("success message not present",

@@ -25,6 +25,11 @@ public class Login {
         driver.findElement(usernameLocator).sendKeys(username);
         driver.findElement(passwordLocator).sendKeys(password);
         driver.findElement(submitButton).click();
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     public Boolean successMessagePresent() {
