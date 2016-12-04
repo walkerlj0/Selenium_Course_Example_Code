@@ -2,6 +2,7 @@
 using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
 
+
 namespace Tests
 {
     [TestFixture]
@@ -12,7 +13,14 @@ namespace Tests
         [SetUp]
         public void SetUp()
         {
-            Driver = new FirefoxDriver();
+            //FirefoxOptions Options = new FirefoxOptions() { UseLegacyImplementation = true };
+            //Driver = new FirefoxDriver(Options);
+            var VendorDirectory = System.IO.Directory.GetParent(
+                                    System.AppDomain.CurrentDomain.BaseDirectory).
+                                        Parent.Parent.FullName
+                                            + @"\Vendor";
+            var Service = FirefoxDriverService.CreateDefaultService(VendorDirectory);
+            Driver = new FirefoxDriver(Service);
         }
 
         [TearDown]

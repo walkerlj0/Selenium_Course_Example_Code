@@ -12,7 +12,14 @@ namespace Tests
         [SetUp]
         public void SetUp()
         {
-            Driver = new FirefoxDriver();
+            //FirefoxOptions Options = new FirefoxOptions() { UseLegacyImplementation = true };
+            //Driver = new FirefoxDriver(Options);
+            var VendorDirectory = System.IO.Directory.GetParent(
+                                    System.AppDomain.CurrentDomain.BaseDirectory).
+                                        Parent.Parent.FullName
+                                            + @"\Vendor";
+            var Service = FirefoxDriverService.CreateDefaultService(VendorDirectory);
+            Driver = new FirefoxDriver(Service);
         }
 
         [TearDown]
@@ -28,6 +35,7 @@ namespace Tests
             Driver.FindElement(By.Id("username")).SendKeys("tomsmith");
             Driver.FindElement(By.Id("password")).SendKeys("SuperSecretPassword!");
             Driver.FindElement(By.CssSelector("button")).Click();
+            System.Threading.Thread.Sleep(1000);
             Assert.That(Driver.FindElement(By.CssSelector(".flash.success")).Displayed);
             //Assert.That(Driver.FindElement(By.CssSelector(".flash.successasdf")).Displayed);
         }
