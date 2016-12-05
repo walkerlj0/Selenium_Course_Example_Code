@@ -28,10 +28,10 @@ namespace Tests
             BrowserVersion          = (string)configReader.GetValue("BrowserVersion", typeof(string));
             Platform                = (string)configReader.GetValue("Platform", typeof(string));
             ApplicationBaseUrl      = (string)configReader.GetValue("ApplicationBaseUrl", typeof(string));
-            VendorDirectory         = System.IO.Directory.GetParent(
-                                        System.IO.Path.GetDirectoryName(
-                                        typeof(Tests.BaseTest).Assembly.Location)).
-                                        Parent.FullName + @"\Vendor";
+	    VendorDirectory 	    = System.IO.Directory.GetParent(
+				      	System.AppDomain.CurrentDomain.BaseDirectory).
+				  	Parent.Parent.FullName
+				    	+ @"\Vendor";
         }
 
         [SetUp]
@@ -44,10 +44,6 @@ namespace Tests
                     switch (BrowserName.ToLower())
                     {
                         case "firefox":
-			    var VendorDirectory = System.IO.Directory.GetParent(
-						    System.AppDomain.CurrentDomain.BaseDirectory).
-							Parent.Parent.FullName
-							    + @"\Vendor";
 			    var Service = FirefoxDriverService.CreateDefaultService(VendorDirectory);
 			    Driver = new FirefoxDriver(Service);
                             break;
