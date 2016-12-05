@@ -7,6 +7,8 @@ function DriverFactory() {
 }
 
 DriverFactory.prototype.build = function() {
+  var vendorDirectory = process.cwd() + '/vendor';
+  process.env.PATH = vendorDirectory + ":$PATH";
   var builder = new webdriver.Builder().forBrowser('firefox');
   this.driver = builder.build();
 };

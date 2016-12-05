@@ -8,10 +8,8 @@ function DriverFactory() {
 }
 
 DriverFactory.prototype.build = function() {
-  if (config.browser === 'chrome') {
-    var vendorDirectory = process.cwd() + '/vendor';
-    process.env.PATH = vendorDirectory + ":$PATH";
-  }
+  var vendorDirectory = process.cwd() + '/vendor';
+  process.env.PATH = vendorDirectory + ":$PATH";
   var builder = new webdriver.Builder().forBrowser(config.browser);
   this.driver = builder.build();
 };

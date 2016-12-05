@@ -21,10 +21,8 @@ DriverFactory.prototype.build = function() {
       accessKey: config.sauceAccessKey
     });
   } else if (config.host === 'localhost') {
-    if (config.browser === 'chrome') {
-      var vendorDirectory = process.cwd() + '/vendor';
-      process.env.PATH = vendorDirectory + ":$PATH";
-    }
+    var vendorDirectory = process.cwd() + '/vendor';
+    process.env.PATH = vendorDirectory + ":$PATH";
     builder = new webdriver.Builder().forBrowser(config.browser);
   }
   this.driver = builder.build();

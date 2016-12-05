@@ -10,6 +10,8 @@ test.describe('Dynamic Loading', function() {
   var dynamicLoading;
 
   test.beforeEach(function() {
+    var vendorDirectory = process.cwd() + '/vendor';
+    process.env.PATH = vendorDirectory + ":$PATH";
     driver = new webdriver.Builder().forBrowser('firefox').build();
     dynamicLoading = new DynamicLoadingPage(driver);
   });
