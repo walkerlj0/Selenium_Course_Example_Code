@@ -27,11 +27,13 @@ namespace PageObjects
 
         public bool SuccessMessagePresent()
         {
+            IsDisplayed(SuccessMessage, 1);
             return IsDisplayed(SuccessMessage);
         }
 
         public bool FailureMessagePresent()
         {
+            IsDisplayed(FailureMessage, 1);
             return IsDisplayed(FailureMessage);
         }
     }

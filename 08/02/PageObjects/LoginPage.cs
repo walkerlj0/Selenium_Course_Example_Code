@@ -22,6 +22,7 @@ namespace PageObjects
             Driver.FindElement(UsernameInput).SendKeys(username);
             Driver.FindElement(PasswordInput).SendKeys(password);
             Driver.FindElement(SubmitButton).Click();
+            System.Threading.Thread.Sleep(1000);
         }
 
         public bool SuccessMessagePresent()

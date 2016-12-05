@@ -23,6 +23,7 @@ namespace PageObjects
             Type(UsernameInput, username);
             Type(PasswordInput, password);
             Click(SubmitButton);
+            System.Threading.Thread.Sleep(1000);
         }
 
         public bool SuccessMessagePresent()
