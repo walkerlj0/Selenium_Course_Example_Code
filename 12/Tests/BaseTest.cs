@@ -32,7 +32,12 @@ namespace Tests
             switch (BrowserName.ToLower())
             {
                 case "firefox":
-                    Driver = new FirefoxDriver();
+		    var VendorDirectory = System.IO.Directory.GetParent(
+					    System.AppDomain.CurrentDomain.BaseDirectory).
+						Parent.Parent.FullName
+						    + @"\Vendor";
+		    var Service = FirefoxDriverService.CreateDefaultService(VendorDirectory);
+		    Driver = new FirefoxDriver(Service);
                     break;
                 case "chrome":
                     Driver = new ChromeDriver(VendorDirectory);
