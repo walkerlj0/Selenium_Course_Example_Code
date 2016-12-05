@@ -15,7 +15,7 @@ DriverFactory.prototype.build = function() {
     builder = new webdriver.Builder().usingServer(url);
     builder.withCapabilities({
       browserName: config.browser,
-      browserVersion: config.browserVersion,
+      'version': config.browserVersion,
       platform: config.platform,
       username: config.sauceUsername,
       accessKey: config.sauceAccessKey
