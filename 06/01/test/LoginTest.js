@@ -7,6 +7,9 @@ test.describe('Login', function() {
   var driver;
 
   test.beforeEach(function() {
+    var vendorDirectory = process.cwd() + '/vendor';
+    process.env.PATH = vendorDirectory + ":$PATH";
+    //process.env.SELENIUM_MARIONETTE=false
     driver = new webdriver.Builder().forBrowser('firefox').build();
   });
 
