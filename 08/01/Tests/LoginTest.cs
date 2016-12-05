@@ -16,8 +16,8 @@ namespace Tests
         {
             var VendorDirectory = System.IO.Directory.GetParent(
                                     System.AppDomain.CurrentDomain.BaseDirectory).
-                                        Parent.Parent.FullName
-                                            + @"\Vendor";
+                                    Parent.Parent.FullName
+                                    + @"\Vendor";
             var Service = FirefoxDriverService.CreateDefaultService(VendorDirectory);
             Driver = new FirefoxDriver(Service);
             Login = new LoginPage(Driver);

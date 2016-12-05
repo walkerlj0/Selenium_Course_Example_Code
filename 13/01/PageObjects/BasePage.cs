@@ -14,7 +14,7 @@ namespace PageObjects
             
         protected void Visit(string url)
         {
-            if (url.Contains("http"))
+            if (url.StartsWith("http"))
             {
                 Driver.Navigate().GoToUrl(url);
             } else
