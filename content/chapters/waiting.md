@@ -27,3 +27,4 @@ For more info:
 
 + [Explicit vs Implicit Waits](http://elementalselenium.com/tips/47-waiting)
 + [The case against using Implicit and Explicit Waits together](http://stackoverflow.com/questions/15164742/combining-implicit-wait-and-explicit-wait-together-results-in-unexpected-wait-ti#answer-15174978)
+

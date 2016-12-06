@@ -32,4 +32,5 @@ end
 
 For more info:
 
-[Tip 4 on Elemental Selenium](http://elementalselenium.com/tips/4-work-with-multiple-windows)
++ [Tip 4 on Elemental Selenium](http://elementalselenium.com/tips/4-work-with-multiple-windows)
+

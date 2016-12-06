@@ -14,3 +14,4 @@ For more info:
 + [Selenium's Action Builder `send_keys` documentation](https://seleniumhq.github.io/selenium/docs/api/rb/Selenium/WebDriver/ActionBuilder.html#send_keys-instance_method)
 + [A list of available keyboard keys and their trigger values](https://github.com/SeleniumHQ/selenium/blob/master/rb/lib/selenium/webdriver/common/keys.rb)
 + [Tip 61 on Elemental Selenium](http://elementalselenium.com/tips/61-keyboard-keys)
+

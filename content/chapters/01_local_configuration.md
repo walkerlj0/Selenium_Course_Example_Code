@@ -51,7 +51,10 @@ For more info:
 
 ## Safari
 
-Available out of the box as of version 2.21 of Selenium.
++ Since Selenium 2.45.0, you need to manually install the SafariDriver browser extension
++ Download it from [here](http://selenium-release.storage.googleapis.com/index.html?path=2.48/)
++ Double-click to install it
++ Click `Trust` when prompted
 
 ```ruby
 require 'selenium-webdriver'
@@ -60,5 +63,6 @@ driver = Selenium::WebDriver.for :safari
 
 For more info:
 
-+ [the Selenium wiki page for SafariDriver](https://github.com/seleniumhq/selenium/wiki/SafariDriver)
-= [Elemental Selenium tip 69](http://elementalselenium.com/tips/69-safari)
++ [SafariDriver on the Selenium Wiki](https://github.com/seleniumhq/selenium/wiki/SafariDriver)
++ [Elemental Selenium tip 69](http://elementalselenium.com/tips/69-safari)
+

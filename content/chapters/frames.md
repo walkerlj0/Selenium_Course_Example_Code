@@ -30,3 +30,4 @@ driver.switch_to.frame('mce_0_ifr')
   after_text = editor.text
 expect(after_text).not_to eql before_text
 ```
+

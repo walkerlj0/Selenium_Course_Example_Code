@@ -22,3 +22,4 @@ is_displayed? locator
 For more info:
 
 + [Selenium's list of exceptions](https://seleniumhq.github.io/selenium/docs/api/rb/Selenium/WebDriver/Error.html)
+

@@ -13,3 +13,4 @@ popup = driver.switch_to.alert
 popup.accept
 # or popup.dismiss
 ```
+

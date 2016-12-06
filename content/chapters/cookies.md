@@ -22,3 +22,4 @@ driver.manage.delete_all_cookies
 # Does not delete third-party cookies,
 # just the ones for the domain Selenium is visiting
 ```
+

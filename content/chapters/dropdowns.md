@@ -13,3 +13,4 @@ select_list = Selenium::WebDriver::Support::Select.new(dropdown)
 select_list.select_by(text: "Option 1")
 # select_list.select_by(value: "1")
 ```
+

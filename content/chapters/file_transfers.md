@@ -77,3 +77,4 @@ response = RestClient.head link, cookie: "#{cookie[:name]}=#{cookie[:value]};"
 expect(response.headers[:content_type]).to eql 'image/jpeg'
 expect(response.headers[:content_length].to_i).to > 0
 ```
+

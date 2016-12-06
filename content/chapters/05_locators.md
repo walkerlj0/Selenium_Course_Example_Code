@@ -69,3 +69,4 @@ For more info:
 + [w3schools CSS Selectors Reference](http://www.w3schools.com/cssref/css_selectors.asp)
 + [w3schools XPath Syntax Reference](http://www.w3schools.com/xpath/xpath_syntax.asp)
 + [How to verify your locators](http://bit.ly/verifyinglocators)
+

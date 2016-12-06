@@ -72,3 +72,4 @@ For more info:
 
 + [Wikipedia write-up on Xvfb](http://en.wikipedia.org/wiki/Xvfb)
 + [Tip 38 on Elemental Selenium](http://elementalselenium.com/tips/38-headless)
+

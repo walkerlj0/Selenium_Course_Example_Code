@@ -17,8 +17,8 @@ capabilities.version = '23'
 capabilities.platform = 'Windows XP'
 driver = Selenium::WebDriver.for(
   :remote,
-  :url => "http://SAUCE_USERNAME:SAUCE_ACCEESS_KEY@ondemand.saucelabs.com:80/wd/hub",
-  :desired_capabilities => capabilities)
+  url: "http://SAUCE_USERNAME:SAUCE_ACCEESS_KEY@ondemand.saucelabs.com:80/wd/hub",
+  desired_capabilities: capabilities)
 ```
 
 For more info:
@@ -50,3 +50,4 @@ end
 1. Download [Sauce Connect](https://wiki.saucelabs.com/display/DOCS/Setting+Up+Sauce+Connect)
 2. Start the Sauce Connect tunnel (e.g., `bin/sc -u YOUR_USERNAME -k YOUR_ACCESS_KEY`)
 3. Run your tests
+
