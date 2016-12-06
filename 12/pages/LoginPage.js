@@ -27,10 +27,12 @@ LoginPage.prototype.with = function(username, password) {
 };
 
 LoginPage.prototype.successMessagePresent = function() {
+  this.waitForIsDisplayed(SUCCESS_MESSAGE, 1000);
   return this.isDisplayed(SUCCESS_MESSAGE);
 };
 
 LoginPage.prototype.failureMessagePresent = function() {
+  this.waitForIsDisplayed(FAILURE_MESSAGE, 1000);
   return this.isDisplayed(FAILURE_MESSAGE);
 };
 

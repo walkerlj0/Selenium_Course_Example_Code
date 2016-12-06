@@ -1,5 +1,6 @@
 'use strict';
 var assert = require('assert');
+var sleep = require('sleep');
 
 var driver;
 var LOGIN_FORM = {id: 'login'};
@@ -20,7 +21,9 @@ function LoginPage(driver) {
 LoginPage.prototype.with = function(username, password) {
   this.driver.findElement(USERNAME_INPUT).sendKeys(username);
   this.driver.findElement(PASSWORD_INPUT).sendKeys(password);
-  this.driver.findElement(SUBMIT_BUTTON).click();
+  this.driver.findElement(SUBMIT_BUTTON).click().then(function() {
+    sleep.sleep(1);
+  });
 };
 
 LoginPage.prototype.successMessagePresent = function() {
