@@ -1,6 +1,7 @@
 # Local Configuration
 
 ## Chrome
+
 1. Download the latest ChromeDriver binary from [here](http://chromedriver.storage.googleapis.com/index.html)
 2. Add it to your path, or tell Selenium where to find it
 3. Create an instance of Chrome
@@ -19,16 +20,30 @@ For more info:
 
 ## Firefox
 
-Available out of the box.
+1. Download the latest geckodriver binary from [here](https://github.com/mozilla/geckodriver/releases/latest)
+2. Add it to your path, or tell Selenium where to find it
+3. Create an instance of Firefox
 
 ```ruby
 require 'selenium-webdriver'
-driver = Selenium::WebDriver.for :firefox
+geckodriver = File.join(Dir.pwd, 'vendor', 'geckodriver')
+driver = Selenium::WebDriver.for :firefox, driver_path: geckodriver
+```
+
+To use the legacy FirefoxDriver:
+
+1. Specify desired capabilities with `marionette` set to `false`
+2. Pass in the desired capabilities when creating an instance of Firefox
+
+```ruby
+require 'selenium-webdriver'
+driver = Selenium::WebDriver.for :firefox, desired_capabilities: { marionette: false }
 ```
 
 For more info:
 
 + [the Selenium wiki page for FirefoxDriver](https://github.com/seleniumhq/selenium/wiki/FirefoxDriver)
++ [the geckodriver documentation from Mozilla](https://github.com/mozilla/geckodriver)
 
 
 ## Internet Explorer
