@@ -1,3 +1,8 @@
+# 2.1.0 - December 6, 2016
+- Selenium 3 support
+- Updated to latest versions of supporting libraries
+- Fixed errata
+
 # 2.0.0 - November, 2015
 + Updated all assertions to use new expect syntax
 + Updated all libraries to current version
