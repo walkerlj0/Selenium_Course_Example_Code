@@ -1,7 +1,7 @@
-# 1.3.0 December 6, 2016
-- #1 Loca Config. Updated Firefox to cover geckodriver
+# 2.1.0 December 6, 2016
+- #1 Local Config. Updated Firefox to cover geckodriver
 
-# 1.2.0 November, 2015
+# 2.0.0 November, 2015
 - #1 Local Config. Removed Opera
 - #1 Local Config. Fixed broken Firefox link
 - #1 Local Config. Updated Selenium documentation links from code.google.com to github
