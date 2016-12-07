@@ -1,5 +1,12 @@
+# 1.2.0
+## December 6, 2016
+- Selenium 3 support
+- Updated to latest versions of supporting libraries
+- Refactored explicit wait functionality in BasePage class to use an override method
+- Fixed errata
+
 # 1.1.1
-### December 2015
+## December 2015
 - Chapter 4, fixed typo (Vitali Lucenco)
 
 # 1.1.0
