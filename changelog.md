@@ -1,3 +1,6 @@
+# 1.3.0 December 6, 2016
+- #1 Loca Config. Updated Firefox to cover geckodriver
+
 # 1.2.0 November, 2015
 - #1 Local Config. Removed Opera
 - #1 Local Config. Fixed broken Firefox link
