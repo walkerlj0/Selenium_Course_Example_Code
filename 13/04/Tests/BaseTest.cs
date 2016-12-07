@@ -28,7 +28,7 @@ namespace Tests
             BrowserVersion      = (string)configReader.GetValue("BrowserVersion", typeof(string));
             Platform            = (string)configReader.GetValue("Platform", typeof(string));
             ApplicationBaseUrl  = (string)configReader.GetValue("ApplicationBaseUrl", typeof(string));
-            VendorDirectory 	= System.IO.Directory.GetParent(
+            VendorDirectory     = System.IO.Directory.GetParent(
                                     System.AppDomain.CurrentDomain.BaseDirectory).
                                     Parent.Parent.FullName
                                     + @"\Vendor";

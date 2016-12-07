@@ -19,7 +19,7 @@ namespace Tests
             var configReader    = new AppSettingsReader();
             BrowserName         = (string)configReader.GetValue("BrowserName", typeof(string));
             ApplicationBaseUrl  = (string)configReader.GetValue("ApplicationBaseUrl", typeof(string));
-            VendorDirectory 	= System.IO.Directory.GetParent(
+            VendorDirectory     = System.IO.Directory.GetParent(
                                     System.AppDomain.CurrentDomain.BaseDirectory).
                                     Parent.Parent.FullName
                                     + @"\Vendor";
