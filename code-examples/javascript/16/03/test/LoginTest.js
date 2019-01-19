@@ -1,38 +1,41 @@
-'use strict';
-var test = require('selenium-webdriver/testing');
-var assert = require('assert');
-var BaseTest = require('./BaseTest');
-var LoginPage = require('../pages/LoginPage');
+const assert = require("assert");
+require("./spec_helper");
+const LoginPage = require("../pages/LoginPage");
 
-test.describe('Login', function() {
-  this.timeout(global.test_timeout);
-  var login;
-
-  test.beforeEach(function() {
-    login = new LoginPage(global.driver);
+describe("Login", function() {
+  beforeEach(async function() {
+    await LoginPage.load();
   });
 
-  test.it('with valid credentials @shallow', function() {
-    login.with('tomsmith', 'SuperSecretPassword!');
-    login.successMessagePresent().then(function(elementDisplayed) {
-      assert.equal(elementDisplayed, true, 'Success message not displayed');
-    });
+  it("with valid credentials @shallow", async function() {
+    await LoginPage.authenticate("tomsmith", "SuperSecretPassword!");
+    assert.equal(
+      await LoginPage.isSuccessMessagePresent(),
+      true,
+      "Success message not displayed"
+    );
   });
 
-  test.it('with invalid credentials @deep', function() {
-    login.with('tomsmith', 'bad password');
-    login.failureMessagePresent().then(function(elementDisplayed) {
-      assert.equal(elementDisplayed, true, 'Failure message not displayed');
-    });
-    //login.successMessagePresent().then(function(elementDisplayed) {
-    //  assert.equal(elementDisplayed, false, "Success message displayed");
-    //});
+  it("with invalid credentials @deep", async function() {
+    await LoginPage.authenticate("tomsmith", "bad password");
+    assert.equal(
+      await LoginPage.isFailureMessagePresent(),
+      true,
+      "Failure message not displayed"
+    );
+    //assert.equal(
+    //  await LoginPage.isSuccessMessagePresent(),
+    //  false,
+    //  "Success message displayed"
+    //);
   });
 
-  test.it('forced failure @shallow', function() {
-    login.with('tomsmith', 'bad password');
-    login.successMessagePresent().then(function(elementDisplayed) {
-      assert.equal(elementDisplayed, true, "Success message displayed");
-    });
+  it.skip("forced failure @shallow", async function() {
+    await LoginPage.authenticate("tomsmith", "bad password");
+    assert.equal(
+      await LoginPage.isSuccessMessagePresent(),
+      true,
+      "Success message displayed"
+    );
   });
 });

@@ -1,46 +1,47 @@
-'use strict';
-var webdriver = require('selenium-webdriver');
-var config = require('./config');
-var driver,
-    sessionId;
+const { Builder } = require("selenium-webdriver");
 
-function DriverFactory() {
-  this.build();
-}
-
-DriverFactory.prototype.build = function() {
-  var builder;
-  if (config.host === 'saucelabs') {
-    var url = 'http://ondemand.saucelabs.com:80/wd/hub';
-    builder = new webdriver.Builder().usingServer(url);
-    builder.withCapabilities({
-      browserName: config.browser,
-      browserVersion: config.browserVersion,
-      platform: config.platform,
-      username: config.sauceUsername,
-      accessKey: config.sauceAccessKey
-    });
-  } else if (config.host === 'localhost') {
-    var vendorDirectory = process.cwd() + '/vendor';
-    process.env.PATH = vendorDirectory + ":$PATH";
-    builder = new webdriver.Builder().forBrowser(config.browser);
+class DriverFactory {
+  constructor(config) {
+    this.config = config;
   }
-  this.driver = builder.build();
-  this.driver.getSession().then(function(sessionid){
-      sessionId = sessionid.id_;
-  });
-};
 
-DriverFactory.prototype.quit = function(testName, testResult) {
-  if (config.host === 'saucelabs') {
-    this.driver.executeScript('sauce:job-name=' + testName);
-    this.driver.executeScript('sauce:job-result=' + testResult);
-  }
-  this.driver.quit().then(function() {
-    if (config.host === 'saucelabs' && testResult === false) {
-      throw new Error('https://saucelabs.com/beta/tests/' + sessionId);
+  configure() {
+    let builder;
+    if (this.config.host === "saucelabs") {
+      const url = "http://ondemand.saucelabs.com:80/wd/hub";
+      builder = new Builder().usingServer(url);
+      // TODO: Sauce Options
+      builder.withCapabilities({
+        browserName: this.config.browser,
+        browserVersion: this.config.browserVersion,
+        platform: this.config.platform,
+        username: this.config.sauceUsername,
+        accessKey: this.config.sauceAccessKey
+      });
+    } else if (this.config.host === "localhost") {
+      const vendorDirectory = process.cwd() + "/vendor";
+      process.env.PATH = vendorDirectory + ":$PATH"; // TODO: Add OS detection or alt. options for Windows vs. POSIX for readers
+      builder = new Builder().forBrowser(this.config.browser);
     }
-  });
-};
+    return builder;
+  }
+
+  async build() {
+    this.driver = await this.configure().build();
+    this.sessionId = await this.driver.getSession().id_;
+    return this.driver;
+  }
+
+  async quit(testName, testResult) {
+    if (this.config.host === "saucelabs") {
+      this.driver.executeScript("sauce:job-name=" + testName);
+      this.driver.executeScript("sauce:job-result=" + testResult);
+    }
+    await this.driver.quit();
+    if (this.config.host === "saucelabs" && testResult === false) {
+      throw new Error("https://saucelabs.com/beta/tests/" + this.sessionId);
+    }
+  }
+}
 
 module.exports = DriverFactory;

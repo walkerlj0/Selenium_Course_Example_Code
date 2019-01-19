@@ -1,39 +1,41 @@
-'use strict';
-var BasePage = require('./BasePage');
-var assert = require('assert');
+const { visit, click, type, isDisplayed } = require("../lib/selenium-util");
+const assert = require("assert");
 
-var LOGIN_FORM = {id: 'login'};
-var USERNAME_INPUT = {id: 'username'};
-var PASSWORD_INPUT = {id: 'password'};
-var SUBMIT_BUTTON = {css: 'button'};
-var SUCCESS_MESSAGE = {css: '.flash.success'};
-var FAILURE_MESSAGE = {css: '.flash.error'};
+const LOGIN_FORM = { id: "login" };
+const USERNAME_INPUT = { id: "username" };
+const PASSWORD_INPUT = { id: "password" };
+const SUBMIT_BUTTON = { css: "button" };
+const SUCCESS_MESSAGE = { css: ".flash.success" };
+const FAILURE_MESSAGE = { css: ".flash.error" };
 
-function LoginPage(driver) {
-  BasePage.call(this, driver);
-  this.visit('/login');
-  this.isDisplayed(LOGIN_FORM).then(function(elementDisplayed) {
-    assert.equal(elementDisplayed, true, 'Login form not loaded');
-  });
+async function load() {
+  await visit("/login");
+  assert.equal(
+    await isDisplayed(LOGIN_FORM, 1000),
+    true,
+    "Login form not loaded"
+  );
 }
 
-LoginPage.prototype = Object.create(BasePage.prototype);
-LoginPage.prototype.constructor = LoginPage;
+async function authenticate(username, password) {
+  await type(USERNAME_INPUT, username);
+  await type(PASSWORD_INPUT, password);
+  await click(SUBMIT_BUTTON);
+}
 
-LoginPage.prototype.with = function(username, password) {
-  this.type(USERNAME_INPUT, username);
-  this.type(PASSWORD_INPUT, password);
-  this.click(SUBMIT_BUTTON);
-};
+function isSuccessMessagePresent() {
+  return isDisplayed(SUCCESS_MESSAGE, 1000);
+}
 
-LoginPage.prototype.successMessagePresent = function() {
-  this.waitForIsDisplayed(SUCCESS_MESSAGE, 1000);
-  return this.isDisplayed(SUCCESS_MESSAGE);
-};
+function isFailureMessagePresent() {
+  return isDisplayed(FAILURE_MESSAGE, 1000);
+}
 
-LoginPage.prototype.failureMessagePresent = function() {
-  this.waitForIsDisplayed(FAILURE_MESSAGE, 1000);
-  return this.isDisplayed(FAILURE_MESSAGE);
+const LoginPage = {
+  load,
+  authenticate,
+  isSuccessMessagePresent,
+  isFailureMessagePresent
 };
 
 module.exports = LoginPage;

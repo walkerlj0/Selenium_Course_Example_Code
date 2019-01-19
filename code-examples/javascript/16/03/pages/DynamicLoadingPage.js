@@ -1,23 +1,20 @@
-'use strict';
-var BasePage = require('./BasePage');
+const { visit, click, isDisplayed } = require("../lib/selenium-util");
 
-var START_BUTTON = {css: '#start button'};
-var FINISH_TEXT = {id: 'finish'};
+const START_BUTTON = { css: "#start button" };
+const FINISH_TEXT = { id: "finish" };
 
-function DynamicLoadingPage(driver) {
-  BasePage.call(this, driver);
+async function loadExample(exampleNumber) {
+  await visit("/dynamic_loading/" + exampleNumber);
+  await click(START_BUTTON);
 }
 
-DynamicLoadingPage.prototype = Object.create(BasePage.prototype);
-DynamicLoadingPage.prototype.constructor = DynamicLoadingPage;
+async function isFinishTextPresent() {
+  return isDisplayed(FINISH_TEXT, 10000);
+}
 
-DynamicLoadingPage.prototype.loadExample = function(exampleNumber) {
-  this.visit('/dynamic_loading/' + exampleNumber);
-  this.click(START_BUTTON);
-};
-
-DynamicLoadingPage.prototype.finishTextPresent = function() {
-  return this.waitForIsDisplayed(FINISH_TEXT, 10000);
+const DynamicLoadingPage = {
+  loadExample,
+  isFinishTextPresent
 };
 
 module.exports = DynamicLoadingPage;

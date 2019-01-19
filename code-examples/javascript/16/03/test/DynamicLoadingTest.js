@@ -1,28 +1,23 @@
-'use strict';
-var test = require('selenium-webdriver/testing');
-var assert = require('assert');
-var BaseTest = require('./BaseTest');
-var DynamicLoadingPage = require('../pages/DynamicLoadingPage');
+const assert = require("assert");
+require("./spec_helper");
+const DynamicLoadingPage = require("../pages/DynamicLoadingPage");
 
-test.describe('Dynamic Loading @deep', function() {
-  this.timeout(global.test_timeout);
-  var dynamicLoading;
-
-  test.beforeEach(function() {
-    dynamicLoading = new DynamicLoadingPage(global.driver);
+describe("Dynamic Loading @deep", function() {
+  it("hidden element", async function() {
+    await DynamicLoadingPage.loadExample("1");
+    assert(
+      await DynamicLoadingPage.isFinishTextPresent(),
+      true,
+      "Finish text not displayed"
+    );
   });
 
-  test.it('hidden element', function() {
-    dynamicLoading.loadExample('1');
-    dynamicLoading.finishTextPresent().then(function(elementDisplayed) {
-      assert.equal(elementDisplayed, true, 'Finish text not displayed');
-    });
-  });
-
-  test.it('rendered element', function() {
-    dynamicLoading.loadExample('2');
-    dynamicLoading.finishTextPresent().then(function(elementDisplayed) {
-      assert.equal(elementDisplayed, true, 'Finish text not displayed');
-    });
+  it("rendered element", async function() {
+    await DynamicLoadingPage.loadExample("2");
+    assert(
+      await DynamicLoadingPage.isFinishTextPresent(),
+      true,
+      "Finish text not displayed"
+    );
   });
 });
