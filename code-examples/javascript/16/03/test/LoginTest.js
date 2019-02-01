@@ -3,6 +3,8 @@ require("./spec_helper");
 const LoginPage = require("../pages/LoginPage");
 
 describe("Login", function() {
+  this.timeout(global.test_timeout);
+
   beforeEach(async function() {
     await LoginPage.load();
   });
