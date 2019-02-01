@@ -37,7 +37,6 @@ async function isDisplayed(locator, timeout) {
   } else {
     try {
       return await find(locator).isDisplayed();
-      console.log("after find.isDisplayed");
     } catch (error) {
       return false;
     }
