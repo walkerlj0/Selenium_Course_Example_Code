@@ -4,6 +4,7 @@ global.test_timeout = 60000;
 let driverFactory;
 
 beforeEach(async function() {
+  this.timeout(global.test_timeout);
   driverFactory = new DriverFactory(config);
   global.driver = await driverFactory.build();
 });
