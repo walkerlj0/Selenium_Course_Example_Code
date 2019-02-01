@@ -1,9 +1,8 @@
+const path = require("path");
 const { Builder } = require("selenium-webdriver");
 
 // TODO:
 // - Sauce Options
-// - Add OS detection or alt. options for Windows vs. POSIX for readers
-// - npm install chromedriver and geckodriver?
 // - Applitools integration
 class DriverFactory {
   constructor(config) {
@@ -25,8 +24,8 @@ class DriverFactory {
         });
         break;
       case "localhost":
-        var vendorDirectory = process.cwd() + "/vendor";
-        process.env.PATH = vendorDirectory + ":$PATH";
+        process.env.PATH +=
+          path.delimiter + path.join(__dirname, "..", "vendor");
         builder = new Builder().forBrowser(this.config.browser);
         break;
     }
