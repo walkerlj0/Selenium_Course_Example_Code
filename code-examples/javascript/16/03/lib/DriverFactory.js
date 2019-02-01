@@ -4,6 +4,7 @@ const { Builder } = require("selenium-webdriver");
 // - Sauce Options
 // - Add OS detection or alt. options for Windows vs. POSIX for readers
 // - npm install chromedriver and geckodriver?
+// - Applitools integration
 class DriverFactory {
   constructor(config) {
     this.config = config;
