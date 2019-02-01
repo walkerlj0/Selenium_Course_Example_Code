@@ -38,13 +38,13 @@ class DriverFactory {
     return this.driver;
   }
 
-  async quit(testName, testResult) {
+  async quit(testName, testPassed) {
     if (this.config.host === "saucelabs") {
       this.driver.executeScript("sauce:job-name=" + testName);
-      this.driver.executeScript("sauce:job-result=" + testResult);
+      this.driver.executeScript("sauce:job-result=" + testPassed);
     }
     await this.driver.quit();
-    if (this.config.host === "saucelabs" && testResult === false)
+    if (this.config.host === "saucelabs" && !testPassed)
       throw new Error("https://saucelabs.com/beta/tests/" + this.sessionId);
   }
 }

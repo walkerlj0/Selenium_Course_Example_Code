@@ -10,6 +10,6 @@ beforeEach(async function() {
 
 afterEach(async function() {
   const testName = this.currentTest.fullTitle();
-  const testResult = this.currentTest.state === "passed";
-  await driverFactory.quit(testName, testResult);
+  const testPassed = this.currentTest.state === "passed";
+  await driverFactory.quit(testName, testPassed);
 });
