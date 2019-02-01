@@ -1,5 +1,4 @@
 const { visit, click, type, isDisplayed } = require("../lib/selenium-util");
-const assert = require("assert");
 
 const LOGIN_FORM = { id: "login" };
 const USERNAME_INPUT = { id: "username" };
@@ -10,11 +9,8 @@ const FAILURE_MESSAGE = { css: ".flash.error" };
 
 async function load() {
   await visit("/login");
-  assert.equal(
-    await isDisplayed(LOGIN_FORM, 1000),
-    true,
-    "Login form not loaded"
-  );
+  if (await !isDisplayed(LOGIN_FORM, 1000))
+    throw new Error("Login form not loaded");
 }
 
 async function authenticate(username, password) {
