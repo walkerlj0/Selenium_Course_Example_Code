@@ -1,7 +1,7 @@
 const DriverFactory = require("../lib/DriverFactory");
 const config = require("../lib/config");
-let driverFactory;
 global.test_timeout = 60000;
+let driverFactory;
 
 beforeEach(async function() {
   driverFactory = new DriverFactory(config);
