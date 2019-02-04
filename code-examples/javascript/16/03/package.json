@@ -3,6 +3,7 @@
   "dependencies": {
     "chromedriver": "^2.45.0",
     "mocha": "5.2.0",
+    "mocha-parallel-tests": "^2.0.6-alpha.3",
     "selenium-webdriver": "4.0.0-alpha.1"
   }
 }
