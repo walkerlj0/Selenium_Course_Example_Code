@@ -1,7 +1,11 @@
-const { visit, click, isDisplayed } = require("../lib/selenium-util");
+const { set, visit, click, isDisplayed } = require("../lib/selenium-util");
 
 const START_BUTTON = { css: "#start button" };
 const FINISH_TEXT = { id: "finish" };
+
+function load(driver) {
+  set(driver);
+}
 
 async function loadExample(exampleNumber) {
   await visit("/dynamic_loading/" + exampleNumber);
@@ -13,6 +17,7 @@ async function isFinishTextPresent() {
 }
 
 const DynamicLoadingPage = {
+  load,
   loadExample,
   isFinishTextPresent
 };

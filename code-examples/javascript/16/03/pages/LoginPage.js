@@ -1,4 +1,10 @@
-const { visit, click, type, isDisplayed } = require("../lib/selenium-util");
+const {
+  set,
+  visit,
+  click,
+  type,
+  isDisplayed
+} = require("../lib/selenium-util");
 
 const LOGIN_FORM = { id: "login" };
 const USERNAME_INPUT = { id: "username" };
@@ -7,7 +13,8 @@ const SUBMIT_BUTTON = { css: "button" };
 const SUCCESS_MESSAGE = { css: ".flash.success" };
 const FAILURE_MESSAGE = { css: ".flash.error" };
 
-async function load() {
+async function load(driver) {
+  set(driver);
   await visit("/login");
   if (await !isDisplayed(LOGIN_FORM, 1000))
     throw new Error("Login form not loaded");

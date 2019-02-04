@@ -1,12 +1,10 @@
-const assert = require("assert");
 require("./spec_helper");
+const assert = require("assert");
 const LoginPage = require("../pages/LoginPage");
 
 describe("Login", function() {
-  this.timeout(global.test_timeout);
-
   beforeEach(async function() {
-    await LoginPage.load();
+    await LoginPage.load(this.driver);
   });
 
   it("with valid credentials @shallow", async function() {

@@ -3,7 +3,9 @@ require("./spec_helper");
 const DynamicLoadingPage = require("../pages/DynamicLoadingPage");
 
 describe("Dynamic Loading @deep", function() {
-  this.timeout(global.test_timeout);
+  beforeEach(function() {
+    DynamicLoadingPage.load(this.driver);
+  });
 
   it("hidden element", async function() {
     await DynamicLoadingPage.loadExample("1");
