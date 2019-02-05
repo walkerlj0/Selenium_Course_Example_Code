@@ -1,5 +1,6 @@
 const path = require("path");
 const { Builder } = require("selenium-webdriver");
+const { Eyes } = require("eyes.selenium");
 
 // TODO:
 // - Sauce Options
@@ -15,13 +16,7 @@ class DriverFactory {
       case "saucelabs":
         const url = "http://ondemand.saucelabs.com:80/wd/hub";
         builder = new Builder().usingServer(url);
-        builder.withCapabilities({
-          browserName: this.config.browser,
-          browserVersion: this.config.browserVersion,
-          platform: this.config.platform,
-          username: this.config.sauceUsername,
-          accessKey: this.config.sauceAccessKey
-        });
+        builder.withCapabilities(this.config.sauce);
         break;
       case "localhost":
         process.env.PATH +=
@@ -32,15 +27,16 @@ class DriverFactory {
     return builder;
   }
 
-  async build() {
+  async build(testName) {
+    this.testName = testName;
     this.driver = await this._configure().build();
     this.sessionId = await this.driver.getSession().id_;
     return this.driver;
   }
 
-  async quit(testName, testPassed) {
+  async quit(testPassed) {
     if (this.config.host === "saucelabs") {
-      this.driver.executeScript("sauce:job-name=" + testName);
+      this.driver.executeScript("sauce:job-name=" + this.testName);
       this.driver.executeScript("sauce:job-result=" + testPassed);
     }
     await this.driver.quit();

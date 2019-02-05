@@ -4,11 +4,11 @@ const driverFactory = new DriverFactory(config);
 let driver;
 
 beforeEach(async function() {
-  this.driver = await driverFactory.build();
+  const testName = this.currentTest.fullTitle();
+  this.driver = await driverFactory.build(testName);
 });
 
 afterEach(async function() {
-  const testName = this.currentTest.fullTitle();
   const testPassed = this.currentTest.state === "passed";
-  await driverFactory.quit(testName, testPassed);
+  await driverFactory.quit(testPassed);
 });
