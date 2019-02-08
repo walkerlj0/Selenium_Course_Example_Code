@@ -5,7 +5,9 @@ let driver;
 
 beforeEach(async function() {
   const testName = this.currentTest.fullTitle();
-  this.driver = await driverFactory.build(testName);
+  const hasEyesCommands = this.currentTest.body.match(/this.eyes/);
+  this.driver = await driverFactory.build(testName, hasEyesCommands);
+  this.eyes = driverFactory.eyes;
 });
 
 afterEach(async function() {

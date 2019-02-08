@@ -1,13 +1,12 @@
 const path = require("path");
 const { Builder } = require("selenium-webdriver");
-const { Eyes } = require("eyes.selenium");
+const { Eyes } = require("@applitools/eyes-selenium");
 
-// TODO:
-// - Sauce Options
-// - Applitools integration
 class DriverFactory {
   constructor(config) {
     this.config = config;
+    this.eyes = new Eyes();
+    this.eyes.setApiKey(config.applitools.accessKey);
   }
 
   _configure() {
@@ -27,21 +26,37 @@ class DriverFactory {
     return builder;
   }
 
-  async build(testName) {
+  async build(testName, hasEyesCommands = false) {
     this.testName = testName;
     this.driver = await this._configure().build();
-    this.sessionId = await this.driver.getSession().id_;
+    const session = await this.driver.getSession();
+    this.sessionId = session.id_;
+    if (hasEyesCommands) {
+      await this.eyes.open(
+        this.driver,
+        this.config.applitools.appName,
+        testName,
+        this.config.applitools.viewportSize
+      );
+    }
     return this.driver;
   }
 
   async quit(testPassed) {
-    if (this.config.host === "saucelabs") {
-      this.driver.executeScript("sauce:job-name=" + this.testName);
-      this.driver.executeScript("sauce:job-result=" + testPassed);
+    try {
+      if (this.config.host === "saucelabs") {
+        this.driver.executeScript("sauce:job-name=" + this.testName);
+        this.driver.executeScript("sauce:job-result=" + testPassed);
+        if (!testPassed)
+          console.log(
+            "See a video of the run at https://saucelabs.com/tests/" +
+              this.sessionId
+          );
+      }
+    } finally {
+      await this.driver.quit();
+      await this.eyes.abortIfNotClosed();
     }
-    await this.driver.quit();
-    if (this.config.host === "saucelabs" && !testPassed)
-      throw new Error("https://saucelabs.com/beta/tests/" + this.sessionId);
   }
 }
 

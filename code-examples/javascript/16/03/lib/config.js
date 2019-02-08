@@ -12,6 +12,6 @@ module.exports = {
   applitools: {
     accessKey: process.env.APPLITOOLS_API_KEY,
     appName: process.env.APP_NAME || "the-internet",
-    viewportSize: process.env.VIEWPORT_SIZE || { width: 600, height: 800 }
+    viewportSize: process.env.VIEWPORT_SIZE || { width: 1024, height: 768 }
   }
 };
