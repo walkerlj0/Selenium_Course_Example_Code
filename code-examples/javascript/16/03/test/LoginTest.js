@@ -18,7 +18,7 @@ describe("Login", function() {
     await this.eyes.close();
   });
 
-  it.only("with invalid credentials @deep", async function() {
+  it("with invalid credentials @deep", async function() {
     await LoginPage.authenticate("tomsmith", "bad password");
     await this.eyes.checkWindow("Failed login");
     assert.equal(
@@ -29,7 +29,7 @@ describe("Login", function() {
     await this.eyes.close();
   });
 
-  it.only("forced failure @shallow", async function() {
+  it("forced failure @shallow", async function() {
     await LoginPage.authenticate("tomsmith", "bad password");
     assert.equal(
       await LoginPage.isSuccessMessagePresent(),
