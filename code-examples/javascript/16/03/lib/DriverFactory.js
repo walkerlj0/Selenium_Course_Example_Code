@@ -6,7 +6,6 @@ class DriverFactory {
   constructor(config) {
     this.config = config;
     this.eyes = new Eyes();
-    this.eyes.setApiKey(config.applitools.accessKey);
   }
 
   _configure() {
@@ -32,6 +31,7 @@ class DriverFactory {
     const session = await this.driver.getSession();
     this.sessionId = session.id_;
     if (hasEyesCommands) {
+      this.eyes.setApiKey(config.applitools.accessKey);
       await this.eyes.open(
         this.driver,
         this.config.applitools.appName,
