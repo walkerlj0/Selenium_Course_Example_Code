@@ -13,6 +13,11 @@ module.exports = function (grunt) {
           command: function(testFile, testOptions) {
             return 'mocha test/'+testFile+' '+testOptions+'';
           }
+        },
+        runTestsOnCI: {
+          command: function(testFile, testOptions) {
+            return 'mocha test/'+testFile+' '+testOptions+' -R xunit > test-result-'+testFile+'.xml';
+          }
         }
       },
       parallel: {
@@ -30,13 +35,18 @@ module.exports = function (grunt) {
     grunt.registerTask('default', ['parallel']);
 
     var tag = grunt.option('tag'),
-        testOptions = '';
+        testOptions = '',
+        ci = grunt.option('ci') || 'off';
 
     if (tag) {
       testOptions = '--grep '+tag+'';
     }
 
     testFiles.forEach(function(testFile) {
+      if (ci === 'on') {
+        grunt.registerTask(testFile, ['shell:runTestsOnCI:'+testFile+':'+testOptions+'']);
+      } else {
         grunt.registerTask(testFile, ['shell:runTests:'+testFile+':'+testOptions+'']);
+      }
     });
 };

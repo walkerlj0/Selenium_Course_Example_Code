@@ -27,11 +27,4 @@ test.describe('Login', function() {
     });
   });
 
-  test.it('with invalid credentials', function() {
-    login.with('tomsmith', 'bad password');
-    login.failureMessagePresent().then(function(elementDisplayed) {
-      assert.equal(elementDisplayed, true, 'Failure message not displayed');
-    });
-  });
-
 });

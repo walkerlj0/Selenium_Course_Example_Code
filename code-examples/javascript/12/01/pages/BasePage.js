@@ -1,7 +1,8 @@
 'use strict';
 
 var driver,
-    Promise = require('selenium-webdriver').promise;
+    Promise = require('selenium-webdriver').promise,
+    Until = require('selenium-webdriver').until;
 
 function BasePage(driver) {
   this.driver = driver;
@@ -33,6 +34,24 @@ BasePage.prototype.isDisplayed = function(locator) {
     } else {
       defer.reject(error);
     }
+  });
+  return defer.promise;
+};
+
+BasePage.prototype.waitForIsDisplayed = function(locator, timeout) {
+  var defer = Promise.defer();
+  var driver = this.driver;
+  driver.wait(Until.elementLocated(locator), timeout).then(function() {
+    var element = driver.findElement(locator);
+    driver.wait(Until.elementIsVisible(element), timeout).then(function() {
+      defer.fulfill(true);
+    }, function(error) {
+      if (error.name === 'NoSuchElementError') {
+        defer.fulfill(false);
+      } else {
+        defer.reject(error);
+      }
+    });
   });
   return defer.promise;
 };

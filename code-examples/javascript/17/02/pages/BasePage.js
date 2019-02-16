@@ -2,14 +2,19 @@
 
 var driver,
     Promise = require('selenium-webdriver').promise,
-    Until = require('selenium-webdriver').until;
+    Until = require('selenium-webdriver').until,
+    config = require('../lib/config');
 
 function BasePage(driver) {
   this.driver = driver;
 }
 
 BasePage.prototype.visit = function(url) {
-  this.driver.get(url);
+  if (url.startsWith('http')) {
+    this.driver.get(url);
+  } else {
+    this.driver.get(config.baseUrl + url);
+  }
 };
 
 BasePage.prototype.find = function(locator) {

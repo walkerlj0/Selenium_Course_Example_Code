@@ -4,7 +4,7 @@ var assert = require('assert');
 var BaseTest = require('./BaseTest');
 var DynamicLoadingPage = require('../pages/DynamicLoadingPage');
 
-test.describe('Dynamic Loading @deep', function() {
+test.describe('Dynamic Loading', function() {
   this.timeout(global.test_timeout);
   var dynamicLoading;
 

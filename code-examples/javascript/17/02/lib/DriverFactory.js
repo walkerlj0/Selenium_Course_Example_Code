@@ -1,7 +1,8 @@
 'use strict';
 var webdriver = require('selenium-webdriver');
 var config = require('./config');
-var driver;
+var driver,
+    sessionId;
 
 function DriverFactory() {
   this.build();
@@ -25,10 +26,21 @@ DriverFactory.prototype.build = function() {
     builder = new webdriver.Builder().forBrowser(config.browser);
   }
   this.driver = builder.build();
+  this.driver.getSession().then(function(sessionid){
+      sessionId = sessionid.id_;
+  });
 };
 
-DriverFactory.prototype.quit = function() {
-  this.driver.quit();
+DriverFactory.prototype.quit = function(testName, testResult) {
+  if (config.host === 'saucelabs') {
+    this.driver.executeScript('sauce:job-name=' + testName);
+    this.driver.executeScript('sauce:job-result=' + testResult);
+  }
+  this.driver.quit().then(function() {
+    if (config.host === 'saucelabs' && testResult === false) {
+      console.log('https://saucelabs.com/beta/tests/' + sessionId);
+    }
+  });
 };
 
 module.exports = DriverFactory;

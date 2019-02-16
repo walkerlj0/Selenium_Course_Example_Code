@@ -1,15 +1,23 @@
 'use strict';
+var webdriver = require('selenium-webdriver');
 var test = require('selenium-webdriver/testing');
 var assert = require('assert');
-var BaseTest = require('./BaseTest');
 var LoginPage = require('../pages/LoginPage');
 
 test.describe('Login', function() {
-  this.timeout(global.testTimeout);
+  this.timeout(30000);
+  var driver;
   var login;
 
   test.beforeEach(function() {
-    login = new LoginPage(global.driver);
+    var vendorDirectory = process.cwd() + '/vendor';
+    process.env.PATH = vendorDirectory + ":$PATH";
+    driver = new webdriver.Builder().forBrowser('firefox').build();
+    login = new LoginPage(driver);
+  });
+
+  test.afterEach(function() {
+    driver.quit();
   });
 
   test.it('with valid credentials', function() {
