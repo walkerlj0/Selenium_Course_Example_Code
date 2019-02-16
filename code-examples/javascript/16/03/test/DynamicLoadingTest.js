@@ -1,27 +1,29 @@
-const assert = require("assert");
-require("./spec_helper");
-const DynamicLoadingPage = require("../pages/DynamicLoadingPage");
+const assert = require('assert')
+require('./spec_helper')
+const DynamicLoadingPage = require('../pages/DynamicLoadingPage')
 
-describe("Dynamic Loading @deep", function() {
+describe('Dynamic Loading @deep', function() {
+  let dynamicLoading
+
   beforeEach(function() {
-    DynamicLoadingPage.load(this.driver);
-  });
+    dynamicLoading = new DynamicLoadingPage(this.driver)
+  })
 
-  it("hidden element", async function() {
-    await DynamicLoadingPage.loadExample("1");
+  it('hidden element', async function() {
+    await dynamicLoading.loadExample('1')
     assert(
-      await DynamicLoadingPage.isFinishTextPresent(),
+      await dynamicLoading.isFinishTextPresent(),
       true,
-      "Finish text not displayed"
-    );
-  });
+      'Finish text not displayed'
+    )
+  })
 
-  it("rendered element", async function() {
-    await DynamicLoadingPage.loadExample("2");
+  it('rendered element', async function() {
+    await dynamicLoading.loadExample('2')
     assert(
-      await DynamicLoadingPage.isFinishTextPresent(),
+      await dynamicLoading.isFinishTextPresent(),
       true,
-      "Finish text not displayed"
-    );
-  });
-});
+      'Finish text not displayed'
+    )
+  })
+})

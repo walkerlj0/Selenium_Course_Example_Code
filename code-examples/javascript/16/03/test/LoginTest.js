@@ -1,40 +1,43 @@
-require("./spec_helper");
-const assert = require("assert");
-const LoginPage = require("../pages/LoginPage");
+require('./spec_helper')
+const assert = require('assert')
+const LoginPage = require('../pages/LoginPage')
 
-describe("Login", function() {
+describe('Login', function() {
+  let login
+
   beforeEach(async function() {
-    await LoginPage.load(this.driver);
-  });
+    login = new LoginPage(this.driver)
+    await login.load()
+  })
 
-  it("with valid credentials @shallow", async function() {
-    await LoginPage.authenticate("tomsmith", "SuperSecretPassword!");
-    await this.eyes.checkWindow("Logged in");
+  it('with valid credentials @shallow', async function() {
+    await login.authenticate('tomsmith', 'SuperSecretPassword!')
+    await this.eyes.checkWindow('Logged in')
     assert.equal(
-      await LoginPage.isSuccessMessagePresent(),
+      await login.isSuccessMessagePresent(),
       true,
-      "Success message not displayed"
-    );
-    await this.eyes.close();
-  });
+      'Success message not displayed'
+    )
+    await this.eyes.close()
+  })
 
-  it("with invalid credentials @deep", async function() {
-    await LoginPage.authenticate("tomsmith", "bad password");
-    await this.eyes.checkWindow("Failed login");
+  it('with invalid credentials @deep', async function() {
+    await login.authenticate('tomsmith', 'bad password')
+    await this.eyes.checkWindow('Failed login')
     assert.equal(
-      await LoginPage.isFailureMessagePresent(),
+      await login.isFailureMessagePresent(),
       true,
-      "Failure message not displayed"
-    );
-    await this.eyes.close();
-  });
+      'Failure message not displayed'
+    )
+    await this.eyes.close()
+  })
 
-  it("forced failure @shallow", async function() {
-    await LoginPage.authenticate("tomsmith", "bad password");
+  it.only('forced failure @shallow', async function() {
+    await login.authenticate('tomsmith', 'bad password')
     assert.equal(
-      await LoginPage.isSuccessMessagePresent(),
+      await login.isSuccessMessagePresent(),
       true,
-      "Success message displayed"
-    );
-  });
-});
+      'Success message displayed'
+    )
+  })
+})
