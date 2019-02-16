@@ -13,22 +13,24 @@ describe('Login', function() {
       path.delimiter + path.join(__dirname, '..', 'vendor')
     process.env.PATH += vendorDirectory
     driver = await new Builder().forBrowser('firefox').build()
-    eyes = new Eyes()
-    eyes.setApiKey(process.env.APPLITOOLS_API_KEY)
-    await eyes.open(driver, 'the-internet', this.currentTest.fullTitle(), {
-      width: 1024,
-      height: 768,
-    })
+    const hasEyesCommands = this.currentTest.body.match(/eyes\./)
+    if (hasEyesCommands) {
+      eyes = new Eyes()
+      eyes.setApiKey(process.env.APPLITOOLS_API_KEY)
+      await eyes.open(driver, 'the-internet', this.currentTest.fullTitle(), {
+        width: 1024,
+        height: 768,
+      })
+    }
   })
 
   afterEach(async function() {
     await driver.quit()
-    await eyes.abortIfNotClosed()
+    if (eyes) await eyes.abortIfNotClosed()
   })
 
   it('with valid credentials', async function() {
     await driver.get('http://the-internet.herokuapp.com/login')
-    await eyes.checkWindow('Login')
     await driver.findElement({ id: 'username' }).sendKeys('tomsmith')
     await driver
       .findElement({ id: 'password' })

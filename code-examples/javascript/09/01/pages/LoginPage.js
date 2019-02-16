@@ -1,27 +1,26 @@
-'use strict';
-var sleep = require('sleep');
+const USERNAME_INPUT = { id: 'username' }
+const PASSWORD_INPUT = { id: 'password' }
+const SUBMIT_BUTTON = { css: 'button' }
+const SUCCESS_MESSAGE = { css: '.flash.success' }
 
-var driver;
-var USERNAME_INPUT = {id: 'username'};
-var PASSWORD_INPUT = {id: 'password'};
-var SUBMIT_BUTTON = {css: 'button'};
-var SUCCESS_MESSAGE = {css: '.flash.success'};
+class LoginPage {
+  constructor(driver) {
+    this.driver = driver
+  }
 
-function LoginPage(driver) {
-  this.driver = driver;
-  this.driver.get('http://the-internet.herokuapp.com/login');
+  async load() {
+    await this.driver.get('http://the-internet.herokuapp.com/login')
+  }
+
+  async authenticate(username, password) {
+    await this.driver.findElement(USERNAME_INPUT).sendKeys(username)
+    await this.driver.findElement(PASSWORD_INPUT).sendKeys(password)
+    await this.driver.findElement(SUBMIT_BUTTON).click()
+  }
+
+  async successMessagePresent() {
+    return await this.driver.findElement(SUCCESS_MESSAGE).isDisplayed()
+  }
 }
 
-LoginPage.prototype.with = function(username, password) {
-  this.driver.findElement(USERNAME_INPUT).sendKeys(username);
-  this.driver.findElement(PASSWORD_INPUT).sendKeys(password);
-  this.driver.findElement(SUBMIT_BUTTON).click().then(function() {
-    sleep.sleep(1);
-  });
-};
-
-LoginPage.prototype.successMessagePresent = function() {
-  return this.driver.findElement(SUCCESS_MESSAGE).isDisplayed();
-};
-
-module.exports = LoginPage;
+module.exports = LoginPage

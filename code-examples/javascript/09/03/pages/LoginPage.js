@@ -1,37 +1,34 @@
-'use strict';
-var assert = require('assert');
-var sleep = require('sleep');
+const LOGIN_FORM = { id: 'login' }
+const USERNAME_INPUT = { id: 'username' }
+const PASSWORD_INPUT = { id: 'password' }
+const SUBMIT_BUTTON = { css: 'button' }
+const SUCCESS_MESSAGE = { css: '.flash.success' }
+const FAILURE_MESSAGE = { css: '.flash.error' }
 
-var driver;
-var LOGIN_FORM = {id: 'login'};
-var USERNAME_INPUT = {id: 'username'};
-var PASSWORD_INPUT = {id: 'password'};
-var SUBMIT_BUTTON = {css: 'button'};
-var SUCCESS_MESSAGE = {css: '.flash.success'};
-var FAILURE_MESSAGE = {css: '.flash.error'};
+class LoginPage {
+  constructor(driver) {
+    this.driver = driver
+  }
 
-function LoginPage(driver) {
-  this.driver = driver;
-  this.driver.get('http://the-internet.herokuapp.com/login');
-  this.driver.findElement(LOGIN_FORM).isDisplayed().then(function(elementDisplayed) {
-    assert.equal(elementDisplayed, true, 'Login form not loaded');
-  });
+  async load() {
+    await this.driver.get('http://the-internet.herokuapp.com/login')
+    if (await !this.driver.findElement(LOGIN_FORM).isDisplayed())
+      throw new Error('Login form not loaded')
+  }
+
+  async authenticate(username, password) {
+    await this.driver.findElement(USERNAME_INPUT).sendKeys(username)
+    await this.driver.findElement(PASSWORD_INPUT).sendKeys(password)
+    await this.driver.findElement(SUBMIT_BUTTON).click()
+  }
+
+  async successMessagePresent() {
+    return await this.driver.findElement(SUCCESS_MESSAGE).isDisplayed()
+  }
+
+  async failureMessagePresent() {
+    return await this.driver.findElement(FAILURE_MESSAGE).isDisplayed()
+  }
 }
 
-LoginPage.prototype.with = function(username, password) {
-  this.driver.findElement(USERNAME_INPUT).sendKeys(username);
-  this.driver.findElement(PASSWORD_INPUT).sendKeys(password);
-  this.driver.findElement(SUBMIT_BUTTON).click().then(function() {
-    sleep.sleep(1);
-  });
-};
-
-LoginPage.prototype.successMessagePresent = function() {
-  return this.driver.findElement(SUCCESS_MESSAGE).isDisplayed();
-};
-
-LoginPage.prototype.failureMessagePresent = function() {
-  return this.driver.findElement(FAILURE_MESSAGE).isDisplayed();
-};
-
-module.exports = LoginPage;
+module.exports = LoginPage
