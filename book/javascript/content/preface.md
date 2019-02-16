@@ -30,9 +30,9 @@ All of the code examples from the book are available in an accompanying zip file
 
 ## How To Read This Book
 
-Chapters 1 through 5 focus on the things you need to consider when it comes to test strategy, programming language selection, and good test design. Chapter 6 is where we first start to code. From there, the examples build upon each other through chapter 16.
+Chapters 1 through 5 focus on the things you need to consider when it comes to test strategy, programming language selection, and good test design. Chapter 6 is where we first start to code. From there, the examples build upon each other through chapter 17.
 
-Chapter 17 paints a picture of the Selenium landscape so you're better able to find information on your own.
+Chapter 18 paints a picture of the Selenium landscape so you're better able to find information on your own.
 
 ## Feedback
 
