@@ -24,21 +24,23 @@ class DriverFactory {
     return builder
   }
 
+  _openEyes(testName) {
+    this.eyes = new Eyes()
+    this.eyes.setApiKey(this.config.applitools.accessKey)
+    await this.eyes.open(
+      this.driver,
+      this.config.applitools.appName,
+      this.testName,
+      this.config.applitools.viewportSize
+    )
+  }
+
   async build(testName, hasEyesCommands = false) {
     this.testName = testName
     this.driver = await this._configure().build()
     const session = await this.driver.getSession()
     this.sessionId = session.id_
-    if (hasEyesCommands) {
-      this.eyes = new Eyes()
-      this.eyes.setApiKey(this.config.applitools.accessKey)
-      await this.eyes.open(
-        this.driver,
-        this.config.applitools.appName,
-        testName,
-        this.config.applitools.viewportSize
-      )
-    }
+    if (hasEyesCommands) this._openEyes()
     return this.driver
   }
 

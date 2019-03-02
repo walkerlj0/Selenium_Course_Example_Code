@@ -1,40 +1,50 @@
-'use strict';
-var webdriver = require('selenium-webdriver');
-var test = require('selenium-webdriver/testing');
-var assert = require('assert');
-var LoginPage = require('../pages/LoginPage');
+const { Builder } = require('selenium-webdriver')
+const { Eyes } = require('@applitools/eyes-selenium')
+const path = require('path')
+const assert = require('assert')
+const LoginPage = require('../pages/LoginPage')
 
-test.describe('Login', function() {
-  this.timeout(30000);
-  var driver;
-  var login;
+describe('Login', function() {
+  this.timeout(30000)
+  let driver
+  let eyes
+  let login
 
-  test.beforeEach(function() {
-    var vendorDirectory = process.cwd() + '/vendor';
-    process.env.PATH = vendorDirectory + ":$PATH";
-    driver = new webdriver.Builder().forBrowser('firefox').build();
-    login = new LoginPage(driver);
-  });
+  beforeEach(async function() {
+    const vendorDirectory =
+      path.delimiter + path.join(__dirname, '..', 'vendor')
+    process.env.PATH += vendorDirectory
+    driver = await new Builder().forBrowser('firefox').build()
+    const hasEyesCommands = this.currentTest.body.match(/eyes\./)
+    if (hasEyesCommands) {
+      eyes = new Eyes()
+      eyes.setApiKey(process.env.APPLITOOLS_API_KEY)
+      await eyes.open(driver, 'the-internet', this.currentTest.fullTitle(), {
+        width: 1024,
+        height: 768,
+      })
+    }
+    login = new LoginPage(driver)
+    await login.load()
+  })
 
-  test.afterEach(function() {
-    driver.quit();
-  });
+  afterEach(async function() {
+    await driver.quit()
+    if (eyes) await eyes.abortIfNotClosed()
+  })
 
-  test.it('with valid credentials', function() {
-    login.with('tomsmith', 'SuperSecretPassword!');
-    login.successMessagePresent().then(function(elementDisplayed) {
-      assert.equal(elementDisplayed, true, 'Success message not displayed');
-    });
-  });
+  it('with valid credentials', async function() {
+    await login.authenticate('tomsmith', 'SuperSecretPassword!')
+    assert(await login.successMessagePresent(), 'Success message not displayed')
+    await eyes.checkWindow('Logged in')
+    await eyes.close()
+  })
 
-  test.it('with invalid credentials', function() {
-    login.with('tomsmith', 'bad password');
-    login.failureMessagePresent().then(function(elementDisplayed) {
-      assert.equal(elementDisplayed, true, 'Failure message not displayed');
-    });
-    //login.successMessagePresent().then(function(elementDisplayed) {
-    //  assert.equal(elementDisplayed, false, "Success message displayed");
-    //});
-  });
-
-});
+  it('with invalid credentials', async function() {
+    await login.authenticate('tomsmith', 'bad password')
+    assert(await login.failureMessagePresent(), 'Failure message not displayed')
+    //assert(await !login.successMessagePresent(), 'Success message displayed')
+    await eyes.checkWindow('Incomplete Login')
+    await eyes.close()
+  })
+})

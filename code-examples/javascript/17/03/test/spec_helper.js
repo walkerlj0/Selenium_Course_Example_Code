@@ -1,7 +1,6 @@
 const DriverFactory = require("../lib/DriverFactory");
 const config = require("../lib/config");
 const driverFactory = new DriverFactory(config);
-let driver;
 
 beforeEach(async function() {
   const testName = this.currentTest.fullTitle();

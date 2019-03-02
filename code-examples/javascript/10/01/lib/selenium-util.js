@@ -1,4 +1,3 @@
-const Until = require('selenium-webdriver').until
 const config = require('./config')
 
 function setDriver(driver) {

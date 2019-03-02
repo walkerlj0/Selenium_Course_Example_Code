@@ -1,36 +1,39 @@
-'use strict';
-var webdriver = require('selenium-webdriver');
-var test = require('selenium-webdriver/testing');
-var assert = require('assert');
-var DynamicLoadingPage = require('../pages/DynamicLoadingPage');
+const { Builder } = require('selenium-webdriver')
+const path = require('path')
+const assert = require('assert')
+const DynamicLoadingPage = require('../pages/DynamicLoadingPage')
 
-test.describe('Dynamic Loading', function() {
-  this.timeout(30000);
-  var driver;
-  var dynamicLoading;
+describe('Dynamic Loading', function() {
+  this.timeout(30000)
+  let dynamicLoading
 
-  test.beforeEach(function() {
-    var vendorDirectory = process.cwd() + '/vendor';
-    process.env.PATH = vendorDirectory + ":$PATH";
-    driver = new webdriver.Builder().forBrowser('firefox').build();
-    dynamicLoading = new DynamicLoadingPage(driver);
-  });
+  beforeEach(async function() {
+    const vendorDirectory =
+      path.delimiter + path.join(__dirname, '..', 'vendor')
+    process.env.PATH += vendorDirectory
+    driver = await new Builder().forBrowser('firefox').build()
+    dynamicLoading = new DynamicLoadingPage(driver)
+  })
 
-  test.afterEach(function() {
-    driver.quit();
-  });
+  afterEach(async function() {
+    await driver.quit()
+  })
 
-  test.it('hidden element', function() {
-    dynamicLoading.loadExample('1');
-    dynamicLoading.finishTextPresent().then(function(elementDisplayed) {
-      assert.equal(elementDisplayed, true, 'Finish text not displayed');
-    });
-  });
+  it('hidden element', async function() {
+    await dynamicLoading.loadExample('1')
+    assert(
+      await dynamicLoading.isFinishTextPresent(),
+      true,
+      'Finish text not displayed'
+    )
+  })
 
-  test.it('rendered element', function() {
-    dynamicLoading.loadExample('2');
-    dynamicLoading.finishTextPresent().then(function(elementDisplayed) {
-      assert.equal(elementDisplayed, true, 'Finish text not displayed');
-    });
-  });
-});
+  it('rendered element', async function() {
+    await dynamicLoading.loadExample('2')
+    assert(
+      await dynamicLoading.isFinishTextPresent(),
+      true,
+      'Finish text not displayed'
+    )
+  })
+})

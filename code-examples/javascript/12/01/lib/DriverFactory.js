@@ -1,20 +1,28 @@
-'use strict';
-var webdriver = require('selenium-webdriver');
-var driver;
+const path = require('path')
+const { Builder } = require('selenium-webdriver')
+const { Eyes } = require('@applitools/eyes-selenium')
 
-function DriverFactory() {
-  this.build();
+class DriverFactory {
+  async _openEyes(testName) {
+    this.eyes = new Eyes()
+    this.eyes.setApiKey(process.env.APPLITOOLS_API_KEY)
+    await this.eyes.open(this.driver, 'the-internet', testName, {
+      width: 1024,
+      height: 768,
+    })
+  }
+
+  async build(testName, hasEyesCommands = false) {
+    process.env.PATH += path.delimiter + path.join(__dirname, '..', 'vendor')
+    this.driver = await new Builder().forBrowser('firefox').build()
+    if (hasEyesCommands) await this._openEyes(testName)
+    return this.driver
+  }
+
+  async quit() {
+    await this.driver.quit()
+    if (this.eyes) await this.eyes.abortIfNotClosed()
+  }
 }
 
-DriverFactory.prototype.build = function() {
-  var vendorDirectory = process.cwd() + '/vendor';
-  process.env.PATH = vendorDirectory + ":$PATH";
-  var builder = new webdriver.Builder().forBrowser('firefox');
-  this.driver = builder.build();
-};
-
-DriverFactory.prototype.quit = function() {
-  this.driver.quit();
-};
-
-module.exports = DriverFactory;
+module.exports = DriverFactory
