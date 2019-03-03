@@ -30,11 +30,11 @@ class LoginPage {
     await click(SUBMIT_BUTTON)
   }
 
-  isSuccessMessagePresent() {
+  successMessagePresent() {
     return isDisplayed(SUCCESS_MESSAGE, 1000)
   }
 
-  isFailureMessagePresent() {
+  failureMessagePresent() {
     return isDisplayed(FAILURE_MESSAGE, 1000)
   }
 }

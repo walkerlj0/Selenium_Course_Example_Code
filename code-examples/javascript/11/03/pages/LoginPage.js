@@ -19,7 +19,7 @@ class LoginPage {
   }
 
   async load() {
-    await visit('/login')
+    await visit('http://the-internet.herokuapp.com/login')
     if (await !isDisplayed(LOGIN_FORM, 1000))
       throw new Error('Login form not loaded')
   }
@@ -30,11 +30,11 @@ class LoginPage {
     await click(SUBMIT_BUTTON)
   }
 
-  isSuccessMessagePresent() {
+  successMessagePresent() {
     return isDisplayed(SUCCESS_MESSAGE, 1000)
   }
 
-  isFailureMessagePresent() {
+  failureMessagePresent() {
     return isDisplayed(FAILURE_MESSAGE, 1000)
   }
 }

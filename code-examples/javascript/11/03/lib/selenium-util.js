@@ -1,16 +1,11 @@
 const Until = require('selenium-webdriver').until
-const config = require('./config')
 
 function setDriver(driver) {
   this.driver = driver
 }
 
 async function visit(url) {
-  if (url.startsWith('http')) {
-    await this.driver.get(url)
-  } else {
-    await this.driver.get(config.baseUrl + url)
-  }
+  await this.driver.get(url)
 }
 
 function find(locator) {
@@ -24,14 +19,6 @@ async function click(locator) {
 async function type(locator, inputText) {
   await find(locator).sendKeys(inputText)
 }
-
-//async function isDisplayed(locator) {
-//  try {
-//    return await find(locator).isDisplayed()
-//  } catch (error) {
-//    return false
-//  }
-//}
 
 async function isDisplayed(locator, timeout) {
   if (timeout) {

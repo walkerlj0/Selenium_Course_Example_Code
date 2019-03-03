@@ -9,7 +9,7 @@ class DynamicLoadingPage {
   }
 
   async loadExample(exampleNumber) {
-    await visit('/dynamic_loading/' + exampleNumber)
+    await visit('http://the-internet.herokuapp.com/dynamic_loading/' + exampleNumber)
     await click(START_BUTTON)
   }
 
