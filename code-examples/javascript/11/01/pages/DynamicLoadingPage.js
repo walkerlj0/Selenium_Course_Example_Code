@@ -9,14 +9,14 @@ class DynamicLoadingPage extends Page {
   }
 
   async loadExample(exampleNumber) {
-    await visit(
+    await this.visit(
       'http://the-internet.herokuapp.com/dynamic_loading/' + exampleNumber
     )
-    await click(START_BUTTON)
+    await this.click(START_BUTTON)
   }
 
   async isFinishTextPresent() {
-    return isDisplayed(FINISH_TEXT, 10000)
+    return this.isDisplayed(FINISH_TEXT, 10000)
   }
 }
 

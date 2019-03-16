@@ -23,7 +23,7 @@ class Page {
 
   //async function isDisplayed(locator) {
   //  try {
-  //    return await find(locator).isDisplayed()
+  //    return await this.find(locator).isDisplayed()
   //  } catch (error) {
   //    return false
   //  }

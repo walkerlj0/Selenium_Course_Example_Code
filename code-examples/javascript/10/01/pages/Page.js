@@ -20,7 +20,7 @@ class Page {
   }
 
   async function isDisplayed(locator) {
-    return await find(locator).isDisplayed()
+    return await this.find(locator).isDisplayed()
   }
 }
 
