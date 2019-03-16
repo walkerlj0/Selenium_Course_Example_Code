@@ -1,10 +1,4 @@
-const {
-  setDriver,
-  visit,
-  click,
-  type,
-  isDisplayed,
-} = require('../lib/selenium-util')
+const Page = require('./Page')
 
 const LOGIN_FORM = { id: 'login' }
 const USERNAME_INPUT = { id: 'username' }
@@ -13,9 +7,9 @@ const SUBMIT_BUTTON = { css: 'button' }
 const SUCCESS_MESSAGE = { css: '.flash.success' }
 const FAILURE_MESSAGE = { css: '.flash.error' }
 
-class LoginPage {
+class LoginPage extends Page {
   constructor(driver) {
-    setDriver(driver)
+    super(driver)
   }
 
   async load() {

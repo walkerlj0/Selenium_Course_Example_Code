@@ -1,11 +1,11 @@
-const { setDriver, visit, click, isDisplayed } = require('../lib/selenium-util')
+const Page = require('./Page')
 
 const START_BUTTON = { css: '#start button' }
 const FINISH_TEXT = { id: 'finish' }
 
-class DynamicLoadingPage {
+class DynamicLoadingPage extends Page {
   constructor(driver) {
-    setDriver(driver)
+    super(driver)
   }
 
   async loadExample(exampleNumber) {

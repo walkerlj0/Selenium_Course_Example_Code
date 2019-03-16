@@ -19,10 +19,15 @@ describe('Login', function() {
     if (hasEyesCommands) {
       eyes = new Eyes()
       eyes.setApiKey(process.env.APPLITOOLS_API_KEY)
-      await eyes.open(driver, 'the-internet', this.currentTest.fullTitle(), {
-        width: 1024,
-        height: 768,
-      })
+      driver = await eyes.open(
+        driver,
+        'the-internet',
+        this.currentTest.fullTitle(),
+        {
+          width: 1024,
+          height: 768,
+        }
+      )
     }
     login = new LoginPage(driver)
     await login.load()
