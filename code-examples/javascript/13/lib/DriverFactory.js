@@ -1,9 +1,12 @@
 const path = require('path')
 const { Builder } = require('selenium-webdriver')
 const { Eyes } = require('@applitools/eyes-selenium')
-const config = require('./config')
 
 class DriverFactory {
+  constructor(config) {
+    this.config = config
+  }
+
   async _openEyes(testName) {
     this.eyes = new Eyes()
     this.eyes.setApiKey(process.env.APPLITOOLS_API_KEY)
@@ -15,7 +18,7 @@ class DriverFactory {
 
   async build(testName, hasEyesCommands = false) {
     process.env.PATH += path.delimiter + path.join(__dirname, '..', 'vendor')
-    this.driver = await new Builder().forBrowser(config.browser).build()
+    this.driver = await new Builder().forBrowser(this.config.browser).build()
     if (hasEyesCommands) this.driver = await this._openEyes(testName)
     return this.driver
   }
