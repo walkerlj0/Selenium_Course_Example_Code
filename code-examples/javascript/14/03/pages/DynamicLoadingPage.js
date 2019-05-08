@@ -1,23 +1,21 @@
-'use strict';
-var BasePage = require('./BasePage');
+const Page = require('./Page')
 
-var START_BUTTON = {css: '#start button'};
-var FINISH_TEXT = {id: 'finish'};
+const START_BUTTON = { css: '#start button' }
+const FINISH_TEXT = { id: 'finish' }
 
-function DynamicLoadingPage(driver) {
-  BasePage.call(this, driver);
+class DynamicLoadingPage extends Page {
+  constructor(driver) {
+    super(driver)
+  }
+
+  async loadExample(exampleNumber) {
+    await this.visit('/dynamic_loading/' + exampleNumber)
+    await this.click(START_BUTTON)
+  }
+
+  async isFinishTextPresent() {
+    return this.isDisplayed(FINISH_TEXT, 10000)
+  }
 }
 
-DynamicLoadingPage.prototype = Object.create(BasePage.prototype);
-DynamicLoadingPage.prototype.constructor = DynamicLoadingPage;
-
-DynamicLoadingPage.prototype.loadExample = function(exampleNumber) {
-  this.visit('/dynamic_loading/' + exampleNumber);
-  this.click(START_BUTTON);
-};
-
-DynamicLoadingPage.prototype.finishTextPresent = function() {
-  return this.waitForIsDisplayed(FINISH_TEXT, 10000);
-};
-
-module.exports = DynamicLoadingPage;
+module.exports = DynamicLoadingPage

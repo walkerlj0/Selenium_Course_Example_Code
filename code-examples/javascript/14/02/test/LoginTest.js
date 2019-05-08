@@ -1,32 +1,26 @@
-'use strict';
-var test = require('selenium-webdriver/testing');
-var assert = require('assert');
-var BaseTest = require('./BaseTest');
-var LoginPage = require('../pages/LoginPage');
+require('./spec_helper')
+const assert = require('assert')
+const LoginPage = require('../pages/LoginPage')
 
-test.describe('Login', function() {
-  this.timeout(global.testTimeout);
-  var login;
+describe('Login', function() {
+  let login
 
-  test.beforeEach(function() {
-    login = new LoginPage(global.driver);
-  });
+  beforeEach(async function() {
+    login = new LoginPage(this.driver)
+    await login.load()
+  })
 
-  test.it('with valid credentials', function() {
-    login.with('tomsmith', 'SuperSecretPassword!');
-    login.successMessagePresent().then(function(elementDisplayed) {
-      assert.equal(elementDisplayed, true, 'Success message not displayed');
-    });
-  });
+  it('with valid credentials', async function() {
+    await login.authenticate('tomsmith', 'SuperSecretPassword!')
+    assert(await login.successMessagePresent(), 'Success message not displayed')
+    await this.eyes.checkWindow('Logged in')
+    await this.eyes.close()
+  })
 
-  test.it('with invalid credentials', function() {
-    login.with('tomsmith', 'bad password');
-    login.failureMessagePresent().then(function(elementDisplayed) {
-      assert.equal(elementDisplayed, true, 'Failure message not displayed');
-    });
-    //login.successMessagePresent().then(function(elementDisplayed) {
-    //  assert.equal(elementDisplayed, false, "Success message displayed");
-    //});
-  });
-
-});
+  it('with invalid credentials', async function() {
+    await login.authenticate('tomsmith', 'bad password')
+    assert(await login.failureMessagePresent(), 'Failure message not displayed')
+    await this.eyes.checkWindow('Incomplete Login')
+    await this.eyes.close()
+  })
+})

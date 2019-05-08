@@ -1,46 +1,61 @@
-'use strict';
-var webdriver = require('selenium-webdriver');
-var config = require('./config');
-var driver,
-    sessionId;
+const path = require('path')
+const { Builder } = require('selenium-webdriver')
+const { Eyes } = require('@applitools/eyes-selenium')
 
-function DriverFactory() {
-  this.build();
+class DriverFactory {
+  constructor(config) {
+    this.config = config
+  }
+
+  _configure() {
+    let builder = new Builder()
+    switch (this.config.host) {
+      case 'saucelabs':
+        const url = 'http://ondemand.saucelabs.com:80/wd/hub'
+        builder.usingServer(url)
+        builder.withCapabilities(this.config.sauce)
+        break
+      case 'localhost':
+        process.env.PATH +=
+          path.delimiter + path.join(__dirname, '..', 'vendor')
+        builder.forBrowser(this.config.browser)
+        break
+    }
+    return builder
+  }
+
+  async _openEyes(testName) {
+    this.eyes = new Eyes()
+    this.eyes.setApiKey(process.env.APPLITOOLS_API_KEY)
+    return await this.eyes.open(this.driver, 'the-internet', testName, {
+      width: 1024,
+      height: 768,
+    })
+  }
+
+  async build(testName, hasEyesCommands = false) {
+    this.testName = testName
+    process.env.PATH += path.delimiter + path.join(__dirname, '..', 'vendor')
+    this.driver = await this._configure().build()
+    const { id_ } = await this.driver.getSession()
+    this.sessionId = id_
+    if (hasEyesCommands) this.driver = await this._openEyes(testName)
+    return this.driver
+  }
+
+  async quit(testPassed) {
+    if (this.config.host === 'saucelabs') {
+      this.driver.executeScript('sauce:job-name=' + this.testName)
+      this.driver.executeScript('sauce:job-result=' + testPassed)
+      if (!testPassed)
+        console.log(
+          'See a video of the run at https://saucelabs.com/tests/' +
+            this.sessionId
+        )
+    }
+    await this.driver.quit()
+    if (this.eyes) await this.eyes.abortIfNotClosed()
+  }
 }
 
-DriverFactory.prototype.build = function() {
-  var builder;
-  if (config.host === 'saucelabs') {
-    var url = 'http://ondemand.saucelabs.com:80/wd/hub';
-    builder = new webdriver.Builder().usingServer(url);
-    builder.withCapabilities({
-      browserName: config.browser,
-      browserVersion: config.browserVersion,
-      platform: config.platform,
-      username: config.sauceUsername,
-      accessKey: config.sauceAccessKey
-    });
-  } else if (config.host === 'localhost') {
-    var vendorDirectory = process.cwd() + '/vendor';
-    process.env.PATH = vendorDirectory + ":$PATH";
-    builder = new webdriver.Builder().forBrowser(config.browser);
-  }
-  this.driver = builder.build();
-  this.driver.getSession().then(function(sessionid){
-      sessionId = sessionid.id_;
-  });
-};
-
-DriverFactory.prototype.quit = function(testName, testResult) {
-  if (config.host === 'saucelabs') {
-    this.driver.executeScript('sauce:job-name=' + testName);
-    this.driver.executeScript('sauce:job-result=' + testResult);
-  }
-  this.driver.quit().then(function() {
-    if (config.host === 'saucelabs' && testResult === false) {
-      console.log('https://saucelabs.com/beta/tests/' + sessionId);
-    }
-  });
-};
-
-module.exports = DriverFactory;
+module.exports = DriverFactory

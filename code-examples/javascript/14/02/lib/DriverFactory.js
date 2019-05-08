@@ -1,37 +1,53 @@
-'use strict';
-var webdriver = require('selenium-webdriver');
-var config = require('./config');
-var driver;
+const path = require('path')
+const { Builder } = require('selenium-webdriver')
+const { Eyes } = require('@applitools/eyes-selenium')
 
-function DriverFactory() {
-  this.build();
+class DriverFactory {
+  constructor(config) {
+    this.config = config
+  }
+
+  _configure() {
+    let builder = new Builder()
+    switch (this.config.host) {
+      case 'saucelabs':
+        const url = 'http://ondemand.saucelabs.com:80/wd/hub'
+        builder.usingServer(url)
+        builder.withCapabilities(this.config.sauce)
+        break
+      case 'localhost':
+        process.env.PATH +=
+          path.delimiter + path.join(__dirname, '..', 'vendor')
+        builder.forBrowser(this.config.browser)
+        break
+    }
+    return builder
+  }
+
+  async _openEyes(testName) {
+    this.eyes = new Eyes()
+    this.eyes.setApiKey(process.env.APPLITOOLS_API_KEY)
+    return await this.eyes.open(this.driver, 'the-internet', testName, {
+      width: 1024,
+      height: 768,
+    })
+  }
+
+  async build(testName, hasEyesCommands = false) {
+    this.testName = testName
+    process.env.PATH += path.delimiter + path.join(__dirname, '..', 'vendor')
+    this.driver = await this._configure().build()
+    if (hasEyesCommands) this.driver = await this._openEyes(testName)
+    return this.driver
+  }
+
+  async quit() {
+    if (this.config.host === 'saucelabs') {
+      this.driver.executeScript('sauce:job-name=' + this.testName)
+    }
+    await this.driver.quit()
+    if (this.eyes) await this.eyes.abortIfNotClosed()
+  }
 }
 
-DriverFactory.prototype.build = function() {
-  var builder;
-  if (config.host === 'saucelabs') {
-    var url = 'http://ondemand.saucelabs.com:80/wd/hub';
-    builder = new webdriver.Builder().usingServer(url);
-    builder.withCapabilities({
-      browserName: config.browser,
-      browserVersion: config.browserVersion,
-      platform: config.platform,
-      username: config.sauceUsername,
-      accessKey: config.sauceAccessKey
-    });
-  } else if (config.host === 'localhost') {
-    var vendorDirectory = process.cwd() + '/vendor';
-    process.env.PATH = vendorDirectory + ":$PATH";
-    builder = new webdriver.Builder().forBrowser(config.browser);
-  }
-  this.driver = builder.build();
-};
-
-DriverFactory.prototype.quit = function(testName) {
-  if (config.host === 'saucelabs') {
-    this.driver.executeScript('sauce:job-name=' + testName);
-  }
-  this.driver.quit();
-};
-
-module.exports = DriverFactory;
+module.exports = DriverFactory

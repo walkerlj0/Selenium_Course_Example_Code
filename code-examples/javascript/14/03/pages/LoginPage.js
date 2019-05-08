@@ -1,39 +1,36 @@
-'use strict';
-var BasePage = require('./BasePage');
-var assert = require('assert');
+const Page = require('./Page')
 
-var LOGIN_FORM = {id: 'login'};
-var USERNAME_INPUT = {id: 'username'};
-var PASSWORD_INPUT = {id: 'password'};
-var SUBMIT_BUTTON = {css: 'button'};
-var SUCCESS_MESSAGE = {css: '.flash.success'};
-var FAILURE_MESSAGE = {css: '.flash.error'};
+const LOGIN_FORM = { id: 'login' }
+const USERNAME_INPUT = { id: 'username' }
+const PASSWORD_INPUT = { id: 'password' }
+const SUBMIT_BUTTON = { css: 'button' }
+const SUCCESS_MESSAGE = { css: '.flash.success' }
+const FAILURE_MESSAGE = { css: '.flash.error' }
 
-function LoginPage(driver) {
-  BasePage.call(this, driver);
-  this.visit('/login');
-  this.isDisplayed(LOGIN_FORM).then(function(elementDisplayed) {
-    assert.equal(elementDisplayed, true, 'Login form not loaded');
-  });
+class LoginPage extends Page {
+  constructor(driver) {
+    super(driver)
+  }
+
+  async load() {
+    await this.visit('/login')
+    if (await !this.isDisplayed(LOGIN_FORM, 1000))
+      throw new Error('Login form not loaded')
+  }
+
+  async authenticate(username, password) {
+    await this.type(USERNAME_INPUT, username)
+    await this.type(PASSWORD_INPUT, password)
+    await this.click(SUBMIT_BUTTON)
+  }
+
+  successMessagePresent() {
+    return this.isDisplayed(SUCCESS_MESSAGE, 1000)
+  }
+
+  failureMessagePresent() {
+    return this.isDisplayed(FAILURE_MESSAGE, 1000)
+  }
 }
 
-LoginPage.prototype = Object.create(BasePage.prototype);
-LoginPage.prototype.constructor = LoginPage;
-
-LoginPage.prototype.with = function(username, password) {
-  this.type(USERNAME_INPUT, username);
-  this.type(PASSWORD_INPUT, password);
-  this.click(SUBMIT_BUTTON);
-};
-
-LoginPage.prototype.successMessagePresent = function() {
-  this.waitForIsDisplayed(SUCCESS_MESSAGE, 1000);
-  return this.isDisplayed(SUCCESS_MESSAGE);
-};
-
-LoginPage.prototype.failureMessagePresent = function() {
-  this.waitForIsDisplayed(FAILURE_MESSAGE, 1000);
-  return this.isDisplayed(FAILURE_MESSAGE);
-};
-
-module.exports = LoginPage;
+module.exports = LoginPage
