@@ -1,10 +1,4 @@
-const {
-  setDriver,
-  visit,
-  click,
-  type,
-  isDisplayed,
-} = require('../lib/selenium-util')
+const Page = require('./Page')
 
 const LOGIN_FORM = { id: 'login' }
 const USERNAME_INPUT = { id: 'username' }
@@ -13,29 +7,29 @@ const SUBMIT_BUTTON = { css: 'button' }
 const SUCCESS_MESSAGE = { css: '.flash.success' }
 const FAILURE_MESSAGE = { css: '.flash.error' }
 
-class LoginPage {
+class LoginPage extends Page {
   constructor(driver) {
-    setDriver(driver)
+    super(driver)
   }
 
   async load() {
-    await visit('/login')
-    if (await !isDisplayed(LOGIN_FORM, 1000))
+    await this.visit('/login')
+    if (await !this.isDisplayed(LOGIN_FORM, 1000))
       throw new Error('Login form not loaded')
   }
 
   async authenticate(username, password) {
-    await type(USERNAME_INPUT, username)
-    await type(PASSWORD_INPUT, password)
-    await click(SUBMIT_BUTTON)
+    await this.type(USERNAME_INPUT, username)
+    await this.type(PASSWORD_INPUT, password)
+    await this.click(SUBMIT_BUTTON)
   }
 
-  isSuccessMessagePresent() {
-    return isDisplayed(SUCCESS_MESSAGE, 1000)
+  successMessagePresent() {
+    return this.isDisplayed(SUCCESS_MESSAGE, 1000)
   }
 
-  isFailureMessagePresent() {
-    return isDisplayed(FAILURE_MESSAGE, 1000)
+  failureMessagePresent() {
+    return this.isDisplayed(FAILURE_MESSAGE, 1000)
   }
 }
 

@@ -1,11 +1,11 @@
-const assert = require('assert')
 require('./spec_helper')
+const assert = require('assert')
 const DynamicLoadingPage = require('../pages/DynamicLoadingPage')
 
 describe('Dynamic Loading @deep', function() {
   let dynamicLoading
 
-  beforeEach(function() {
+  beforeEach(async function() {
     dynamicLoading = new DynamicLoadingPage(this.driver)
   })
 

@@ -12,26 +12,17 @@ describe('Login', function() {
 
   it('with valid credentials @shallow', async function() {
     await login.authenticate('tomsmith', 'SuperSecretPassword!')
+    assert(await login.successMessagePresent(), 'Success message not displayed')
     await this.eyes.checkWindow('Logged in')
-    assert.equal(
-      await login.isSuccessMessagePresent(),
-      true,
-      'Success message not displayed'
-    )
     await this.eyes.close()
   })
 
   it('with invalid credentials @deep', async function() {
     await login.authenticate('tomsmith', 'bad password')
-    await this.eyes.checkWindow('Failed login')
-    assert.equal(
-      await login.isFailureMessagePresent(),
-      true,
-      'Failure message not displayed'
-    )
+    assert(await login.failureMessagePresent(), 'Failure message not displayed')
+    await this.eyes.checkWindow('Incomplete Login')
     await this.eyes.close()
   })
-
   it.only('forced failure @shallow', async function() {
     await login.authenticate('tomsmith', 'bad password')
     assert.equal(
