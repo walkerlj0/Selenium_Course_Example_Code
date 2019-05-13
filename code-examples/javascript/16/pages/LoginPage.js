@@ -1,4 +1,4 @@
-const Page = require('./Page')
+const BasePage = require('./BasePage')
 
 const LOGIN_FORM = { id: 'login' }
 const USERNAME_INPUT = { id: 'username' }
@@ -7,7 +7,7 @@ const SUBMIT_BUTTON = { css: 'button' }
 const SUCCESS_MESSAGE = { css: '.flash.success' }
 const FAILURE_MESSAGE = { css: '.flash.error' }
 
-class LoginPage extends Page {
+class LoginPage extends BasePage {
   constructor(driver) {
     super(driver)
   }

@@ -1,6 +1,6 @@
 const Until = require('selenium-webdriver').until
 
-class Page {
+class BasePage {
   constructor(driver) {
     this.driver = driver
   }
@@ -47,4 +47,4 @@ class Page {
   }
 }
 
-module.exports = Page
+module.exports = BasePage

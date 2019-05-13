@@ -1,9 +1,9 @@
-const Page = require('./Page')
+const BasePage = require('./BasePage')
 
 const START_BUTTON = { css: '#start button' }
 const FINISH_TEXT = { id: 'finish' }
 
-class DynamicLoadingPage extends Page {
+class DynamicLoadingPage extends BasePage {
   constructor(driver) {
     super(driver)
   }

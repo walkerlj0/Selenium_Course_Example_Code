@@ -1,4 +1,4 @@
-class Page {
+class BasePage {
   constructor(driver) {
     this.driver = driver
   }
@@ -20,8 +20,12 @@ class Page {
   }
 
   async function isDisplayed(locator) {
-    return await this.find(locator).isDisplayed()
+    try {
+      return await this.find(locator).isDisplayed()
+    } catch (error) {
+      return false
+    }
   }
 }
 
-module.exports = Page
+module.exports = BasePage

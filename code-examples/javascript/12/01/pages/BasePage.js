@@ -1,17 +1,12 @@
 const Until = require('selenium-webdriver').until
-const config = require('../lib/config')
 
-class Page {
+class BasePage {
   constructor(driver) {
     this.driver = driver
   }
 
   async visit(url) {
-    if (url.startsWith('http')) {
-      await this.driver.get(url)
-    } else {
-      await this.driver.get(config.baseUrl + url)
-    }
+    await this.driver.get(url)
   }
 
   find(locator) {
@@ -44,4 +39,4 @@ class Page {
   }
 }
 
-module.exports = Page
+module.exports = BasePage
