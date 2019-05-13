@@ -48,7 +48,7 @@ class DriverFactory {
       this.driver.executeScript('sauce:job-name=' + this.testName)
       this.driver.executeScript('sauce:job-result=' + testPassed)
       if (!testPassed)
-        throw new Error('See a video of the run at https://saucelabs.com/beta/tests/' + this.sessionId);
+        throw new Error('See a video of the run at https://saucelabs.com/tests/' + this.sessionId);
     }
     await this.driver.quit()
     if (this.eyes) await this.eyes.abortIfNotClosed()
