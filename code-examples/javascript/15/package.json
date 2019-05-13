@@ -1,9 +1,9 @@
 {
   "name": "selenium-guidebook-examples",
   "dependencies": {
-    "@applitools/eyes-selenium": "^4.7.0",
-    "mocha": "6.0.2",
-    "mocha-parallel-tests": "^2.0.6-alpha.3",
-    "selenium-webdriver": "4.0.0-alpha.1",
+    "@applitools/eyes-selenium": "^4.16.0",
+    "mocha": "^6.1.4",
+    "mocha-parallel-tests": "^2.1.0",
+    "selenium-webdriver": "^4.0.0-alpha.1",
   }
 }
