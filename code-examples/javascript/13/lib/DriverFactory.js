@@ -7,19 +7,20 @@ class DriverFactory {
     this.config = config
   }
 
-  async _openEyes(testName) {
+  async _openEyes() {
     this.eyes = new Eyes()
     this.eyes.setApiKey(process.env.APPLITOOLS_API_KEY)
-    return await this.eyes.open(this.driver, 'the-internet', testName, {
+    return await this.eyes.open(this.driver, 'the-internet', this.testName, {
       width: 1024,
       height: 768,
     })
   }
 
   async build(testName, hasEyesCommands = false) {
+    this.testName = testName
     process.env.PATH += path.delimiter + path.join(__dirname, '..', 'vendor')
     this.driver = await new Builder().forBrowser(this.config.browser).build()
-    if (hasEyesCommands) this.driver = await this._openEyes(testName)
+    if (hasEyesCommands) this.driver = await this._openEyes()
     return this.driver
   }
 

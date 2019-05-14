@@ -24,10 +24,10 @@ class DriverFactory {
     return builder
   }
 
-  async _openEyes(testName) {
+  async _openEyes() {
     this.eyes = new Eyes()
     this.eyes.setApiKey(process.env.APPLITOOLS_API_KEY)
-    return await this.eyes.open(this.driver, 'the-internet', testName, {
+    return await this.eyes.open(this.driver, 'the-internet', this.testName, {
       width: 1024,
       height: 768,
     })
