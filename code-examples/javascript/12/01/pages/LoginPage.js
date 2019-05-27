@@ -13,23 +13,23 @@ class LoginPage extends BasePage {
   }
 
   async load() {
-    await visit('http://the-internet.herokuapp.com/login')
-    if (await !isDisplayed(LOGIN_FORM, 1000))
+    await this.visit('http://the-internet.herokuapp.com/login')
+    if (await !this.isDisplayed(LOGIN_FORM, 1000))
       throw new Error('Login form not loaded')
   }
 
   async authenticate(username, password) {
-    await type(USERNAME_INPUT, username)
-    await type(PASSWORD_INPUT, password)
-    await click(SUBMIT_BUTTON)
+    await this.type(USERNAME_INPUT, username)
+    await this.type(PASSWORD_INPUT, password)
+    await this.click(SUBMIT_BUTTON)
   }
 
   successMessagePresent() {
-    return isDisplayed(SUCCESS_MESSAGE, 1000)
+    return this.isDisplayed(SUCCESS_MESSAGE, 1000)
   }
 
   failureMessagePresent() {
-    return isDisplayed(FAILURE_MESSAGE, 1000)
+    return this.isDisplayed(FAILURE_MESSAGE, 1000)
   }
 }
 

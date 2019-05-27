@@ -25,10 +25,6 @@ describe('Login', function() {
   })
   it.only('forced failure @shallow', async function() {
     await login.authenticate('tomsmith', 'bad password')
-    assert.equal(
-      await login.isSuccessMessagePresent(),
-      true,
-      'Success message displayed'
-    )
+    assert.equal(false, true)
   })
 })

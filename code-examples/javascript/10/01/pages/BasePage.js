@@ -19,7 +19,7 @@ class BasePage {
     await this.find(locator).sendKeys(inputText)
   }
 
-  async function isDisplayed(locator) {
+  async isDisplayed(locator) {
     return await this.find(locator).isDisplayed()
   }
 }
