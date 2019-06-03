@@ -62,41 +62,43 @@ There are numerous parameters that we can use at run time. You can see a full li
 
 Now let's wire up a simple test script to use our new Grid.
 
-First we'll need to pull in our requisite libraries (`import unittest` for our test framework and `from selenium import webdriver` to drive the browser), declare our test class, and wire up some test `setUp` and `tearDown` methods.
+```javascript
+// filename: test/grid.spec.js
+const assert = require("assert");
+const { Builder, By } = require("selenium-webdriver");
 
-```python
-# filename: grid.py
-import unittest
-from selenium import webdriver
+describe("Grid", function() {
+  let driver;
 
+  beforeEach(async function() {
+    const url = "http://localhost:4444/wd/hub";
+    const caps = {
+      browserName: "chrome"
+    };
+    driver = await new Builder()
+      .usingServer(url)
+      .withCapabilities(caps)
+      .build();
+  });
 
-class Grid(unittest.TestCase):
+  afterEach(async function() {
+    await driver.quit();
+  });
 
-    def setUp(self):
-        url = 'http://localhost:4444/wd/hub'
-        desired_caps = {}
-        desired_caps['browserName'] = 'firefox'
-        self.driver = webdriver.Remote(url, desired_caps)
-
-    def tearDown(self):
-        self.driver.quit()
-
-    def test_page_loaded(self):
-        driver = self.driver
-        driver.get('http://the-internet.herokuapp.com')
-        assert driver.title == 'The Internet'
-
-if __name__ == "__main__":
-    unittest.main()
+  it("hello world", async function() {
+    await driver.get("http://the-internet.herokuapp.com/");
+    assert((await driver.getTitle()) === "The Internet");
+  });
+});
 ```
 
-Notice in `setUp` we're using Selenium Remote (e.g., `webdriver.Remote`) to connect to the grid. And we are telling the grid which browser we want to use with a `desired_caps` dictionary (e.g., `desired_caps['browserName'] = 'firefox'`).
+Notice in `beforeEach` we're using a URL to connect to the grid (e.g., `usingServer(url)`). And we are telling the grid which browser we want to use with a `caps` object (caps is short for capabilities).
 
 You can see a full list of the available Selenium `Capabilities` options [here](https://github.com/SeleniumHQ/selenium/wiki/DesiredCapabilities).
 
 ## Expected Behavior
 
-When we save this file and run it (e.g., `python grid.py` from the command-line) here is what will happen:
+When we save this file and run it (e.g., `mocha` from the command-line) here is what will happen:
 
 + test connects to the grid hub
 + hub determines which node has the necessary browser/platform combination
