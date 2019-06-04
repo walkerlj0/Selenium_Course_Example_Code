@@ -10,39 +10,41 @@ Let's step through a couple of examples to demonstrate.
 
 ## An Example
 
-First we'll need to pull in our requisite libraries (`import unittest` for our test framework and `from selenium import webdriver` to drive the browser), declare our test class, and wire up some test `setUp` and `tearDown` methods.
+First we'll need to pull in our requisite libraries, declare our test class, and wire up some test setup and teardown methods.
 
-```python
-# filename: new_window.py
-import unittest
-from selenium import webdriver
+```javacript
+// filename: test/multiple-windows.spec.js
+const assert = require("assert");
+const { Builder, By, Key } = require("selenium-webdriver");
 
+describe("Multiple Windows", function() {
+  let driver;
 
-class Windows(unittest.TestCase):
+  beforeEach(async function() {
+    driver = await new Builder().forBrowser("chrome").build();
+  });
 
-    def setUp(self):
-        self.driver = webdriver.Firefox()
-
-    def tearDown(self):
-        self.driver.quit()
-# ...
+  afterEach(async function() {
+    await driver.quit();
+  });
+// ...
 ```
 
 Now let's write a test that exercises new window functionality from an application. In this case, we'll be using [the new window example](http://the-internet.herokuapp.com/windows) found on [the-internet](https://github.com/tourdedave/the-internet).
 
-```python
-# filename: new_window.py
-# ...
-    def test_example_1(self):
-        driver = self.driver
-        driver.get('http://the-internet.herokuapp.com/windows')
-        driver.find_element_by_css_selector('.example a').click()
-        driver.switch_to_window(driver.window_handles[0])
-        assert driver.title != "New Window", "title should not be New Window"
-        driver.switch_to_window(driver.window_handles[-1])
-        assert driver.title == "New Window", "title should be New Window"
-
-# ...
+```javacript
+// filename: test/multiple-windows.spec.js
+// ...
+  it("non-deterministic switching", async function() {
+    await driver.get("http://the-internet.herokuapp.com/windows");
+    await driver.findElement(By.css(".example a")).click();
+    const windowHandles = await driver.getAllWindowHandles();
+    await driver.switchTo().window(windowHandles[0]);
+    assert((await driver.getTitle()) !== "New Window");
+    await driver.switchTo().window(windowHandles[windowHandles.length - 1]);
+    assert((await driver.getTitle()) === "New Window");
+  });
+// ...
 ```
 
 After loading the page we click the link which spawns a new window. We then grab the window handles (a.k.a. unique identifier strings which represent each open browser window) and switch between them based on their order (assuming that the first one is the originating window, and that the last one is the new window). We round this test out by performing a simple check against the title of the page to make sure Selenium is focused on the correct window.
@@ -53,33 +55,32 @@ Here's a more resilient approach. One that will work across all browsers.
 
 ## A Better Example
 
-```python
-# filename: new_window.py
-# ...
-    def test_example_2(self):
-        driver = self.driver
-        driver.get('http://the-internet.herokuapp.com/windows')
-
-        first_window = driver.window_handles[0]
-        driver.find_element_by_css_selector('.example a').click()
-        all_windows = driver.window_handles
-        for window in all_windows:
-            if window != first_window:
-                new_window = window
-        driver.switch_to_window(first_window)
-        assert driver.title != "New Window", "title should not be New Window"
-        driver.switch_to_window(new_window)
-        assert driver.title == "New Window", "title should be New Window"
-
-if __name__ == "__main__":
-    unittest.main()
+```javacript
+// filename: test/multiple-windows.spec.js
+// ...
+  it("browser agnostic switching", async function() {
+    await driver.get("http://the-internet.herokuapp.com/windows");
+    const windowHandlesBefore = await driver.getAllWindowHandles();
+    await driver.findElement(By.css(".example a")).click();
+    const windowHandlesAfter = await driver.getAllWindowHandles();
+    const newWindow = windowHandlesAfter.find(
+      handle => !windowHandlesBefore.includes(handle)
+    );
+    await driver.switchTo().window(windowHandlesBefore[0]);
+    assert((await driver.getTitle()) !== "New Window");
+    await driver.switchTo().window(newWindow);
+    assert((await driver.getTitle()) === "New Window");
+  });
+});
 ```
 
-After loading the page we store the window handle in a variable (e.g., `first_window`) and then proceed with clicking the new window link.
+After loading the page we store the window handles in a variable (e.g., `windowHandlesBefore`) and then proceed with clicking the new window link.
 
-Now that we have two windows open we grab all of the window handles and search through them to find the new window handle (e.g., the handle that doesn't match the first one we've already stored). We store the result in another variable (e.g., `new_window`) and then switch between the windows. Each time checking the page title to make sure the correct window is in focus.
+Now that we have two windows open we grab all of the window handles again (e.g., `windowHandlesAfter`) and search through them to find the new window handle (e.g., the handle that's in the new window handle collection but not the initial one). We store the result in another variable (e.g., `newWindow`) and then switch between the windows. Each time checking the page title to make sure the correct window is in focus.
 
 ## Expected Behavior
+
+When we save this file and run it (e.g., `mocha` from the command-line) here is what will happen:
 
 + Open the browser
 + Visit the page
