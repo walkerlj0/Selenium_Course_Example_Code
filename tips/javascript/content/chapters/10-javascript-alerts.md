@@ -14,51 +14,51 @@ Let's dig in with an example.
 
 Our example application is available [here](http://the-internet.herokuapp.com/javascript_alerts) on [the-internet](http://github.com/tourdedave/the-internet). It has various JavaScript Alerts available (e.g., an alert, a confirmation, and a prompt). Let's demonstrate testing a confirmation dialog (e.g., a prompt which asks the user to click `Ok` or `Cancel`).
 
-First, we'll include our requisite libraries, declare the test class, and wire up some simple `setUp` and `tearDown` methods.
+First, we'll include our requisite libraries, declare the test class, and wire up some simple setup and teardown methods.
 
-```python
-# filename: javascript_alerts.py
-import unittest
-from selenium import webdriver
+```javascript
+// filename: test/js-alerts.spec.js
+const assert = require("assert");
+const { Builder, By, Key } = require("selenium-webdriver");
 
+describe("JS Alerts", function() {
+  let driver;
 
-class JavaScriptAlerts(unittest.TestCase):
+  beforeEach(async function() {
+    driver = await new Builder().forBrowser("chrome").build();
+  });
 
-    def setUp(self):
-        self.driver = webdriver.Firefox()
-
-    def tearDown(self):
-        self.driver.quit()
-# ...
+  afterEach(async function() {
+    await driver.quit();
+  });
+// ...
 ```
 
 Now let's write our test.
 
-```python
-# filename: javascript_alerts.py
-# ...
-    def test_example_1(self):
-        driver = self.driver
-        driver.get('http://the-internet.herokuapp.com/javascript_alerts')
-        driver.find_elements_by_tag_name('button')[1].click()
-        popup = driver.switch_to.alert
-        popup.accept()
-        result = driver.find_element_by_id('result').text
-        assert result == 'You clicked: Ok'
-
-if __name__ == "__main__":
-    unittest.main()
+```javascript
+// filename: test/js-alerts.spec.js
+// ...
+  it("general use", async function() {
+    await driver.get("http://the-internet.herokuapp.com/javascript_alerts");
+    await driver.findElement(By.css("ul > li:nth-child(2) > button")).click();
+    const popup = await driver.switchTo().alert();
+    popup.accept();
+    const result = await driver.findElement(By.id("result")).getText();
+    assert(result == "You clicked: Ok");
+  });
+});
 ```
 
-A quick glance at the page's markup shows that there are no unique IDs on the buttons. So to click on the second button (to trigger the JavaScript confirmation dialog) we find all of the buttons on the page using `find_elements` and click on the second one. Since `find_elements` returns a list of all found elements, we can assume that the first item can be selected using `[0]` (since lists in Python start counting at `0`). So the second item would be `[1]`.
+A quick glance at the page's markup shows that there are no unique IDs on the buttons. So to click on the second button (to trigger the JavaScript confirmation dialog) we need a mildly clever locator which targets the second item in the unordered list.
 
-After click the button to trigger the JavaScript Alert we use Selenium's `switch_to.alert` method to focus on the JavaScript pop-up and use `.accept()` to click `Ok`. If we wanted to click `Cancel` we would have used `.dismiss()`.
+After we click the button to trigger the JavaScript Alert we use Selenium's `switchTo().alert()` to focus on the JavaScript pop-up and use `.accept()` to click `Ok` (if we wanted to click `Cancel` we would have used `.dismiss()`).
 
 After accepting the alert, our main browser window will automatically regain focus and the page will display the result that we chose. This text is what we use for our assertion, making sure that the words `You clicked: Ok` are displayed on the page.
 
 ## Expected Behavior
 
-When we save this file and run it (e.g., `python javascript_alerts.py` from the command-line) here is what will happen:
+When we save this file and run it (e.g., `mocha` from the command-line) here is what will happen:
 
 + Open the browser
 + Load the page
