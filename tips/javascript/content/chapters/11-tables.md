@@ -8,11 +8,11 @@ But when the table has no helpful, semantic markup (e.g. easy to use `id` or `cl
 
 ## A Solution
 
-You can easily traverse a table through the use of [CSS Pseudo-classes](http://www.w3schools.com/css/css_pseudo_classes.asp).
+You can easily traverse a table through the use of [CSS pseudo-classes](https://developer.mozilla.org/en-US/docs/Web/CSS/pseudo-classes).
 
-But keep in mind that if you care about older browsers (e.g., Internet Explorer 8, et al), then this approach won't work on them. In those cases your best bet is to find a workable solution for the short term and get a front-end developer to update the table with helpful attributes.
+But keep in mind that if you care about older browsers (e.g., Internet Explorer, et al), then this approach won't work on them. In those cases your best bet is to find a workable solution for the short term and get a front-end developer to update the table with helpful attributes.
 
-## A quick primer on Tables and CSS Pseudo-classes
+## A quick primer on Tables and CSS pseudo-classes
 
 Understanding the broad strokes of an HTML table's structure goes a long way in writing effective automation against it. So here's a quick primer.
 
@@ -28,7 +28,7 @@ Columns are made up of cells which are...
 + a header (e.g., `<th>`)
 + one or more standard cells (e.g., `<td>` -- which is short for __table data__)
 
-CSS Pseudo-classes work by walking through the structure of an object and targeting a specific part of it based on a relative number (e.g. the __third__ `<td>` cell from a row in the table body). This works well with tables since we can grab all instances of a target (e.g. the third `<td>` cell from each `<tr>` in the table body) and use it in our test -- which would give us all of the data for the third column.
+CSS pseudo-classes work by walking through the structure of an object and targeting a specific part of it based on a relative number (e.g. the __third__ `<td>` cell from a row in the table body). This works well with tables since we can grab all instances of a target (e.g. the third `<td>` cell from each `<tr>` in the table body) and use it in our test -- which would give us all of the data for the third column.
 
 Let's step through some examples for a common set of table functionality like sorting columns in ascending and descending order.
 
@@ -36,23 +36,24 @@ Let's step through some examples for a common set of table functionality like so
 
 __NOTE: You can see the application under test [here](http://the-internet.herokuapp.com/tables). It's an example from [the-internet](https://github.com/tourdedave/the-internet). In the example there are 2 tables. We will start with the first table and then work with the second.__
 
-We kick things off by pulling in our requisite libraries (`import unittest` for our test framework and `from selenium import webdriver` to drive the browser), declare our test class, and wire up some test `setUp` and `tearDown` methods.
+We kick things off by pulling in our requisite libraries, declare our test class, and wire up some test setup and teardown methods.
 
-```python
-# filename: tables.py
-import unittest
-from selenium import webdriver
+```javascript
+// filename: test/tables.spec.js
+const assert = require("assert");
+const { Builder, By, Key } = require("selenium-webdriver");
 
+describe("Tables", function() {
+  let driver;
 
-class Tables(unittest.TestCase):
+  beforeEach(async function() {
+    driver = await new Builder().forBrowser("chrome").build();
+  });
 
-    def setUp(self):
-        self.driver = webdriver.Firefox()
-
-    def tearDown(self):
-        self.driver.quit()
-
-# ...
+  afterEach(async function() {
+    await driver.quit();
+  });
+// ...
 ```
 
 Here is the markup from the first table example we're working with. Note that it does not have any `id` or `class` attributes.
@@ -85,74 +86,91 @@ Here is the markup from the first table example we're working with. Note that it
 
 There are 6 columns (`Last Name`, `First Name`, `Email`, `Due`, `Web Site`, and `Action`). Each one is sortable by clicking on the column header. The first click should sort them in ascending order, the second click in descending order.
 
-There is a small sampling of data in the table to work with (4 rows worth). So we should be able to sort the data, grab it, and confirm that it sorted correctly. So lets do that in our first test with the `Due` column using a CSS Pseudo Class.
+There is a small sampling of data in the table to work with (4 rows worth). So we should be able to sort the data, grab it, and confirm that it sorted correctly. So lets do that in our first test with the `Due` column using a CSS pseudo Class.
 
-```python
-# filename: tables.py
-# ...
-    def test_sort_number_column_in_ascending_order_with_limited_locators(self):
-        driver = self.driver
-        driver.get('http://the-internet.herokuapp.com/tables')
-        driver.find_element_by_css_selector('#table1 thead tr th:nth-of-type(4)').click()
-        due_column = driver.find_elements_by_css_selector('#table1 tbody tr td:nth-of-type(4)')
-        dues = [float(due.text.replace('$','')) for due in due_column]
-        assert dues == sorted(dues)
-
-# ...
+```javascript
+// filename: test/tables.spec.js
+// ...
+  it("should sort number column in ascending order", async function() {
+    await driver.get("http://the-internet.herokuapp.com/tables");
+    await driver
+      .findElement(By.css("#table1 thead tr th:nth-of-type(4)"))
+      .click();
+    const due_column = await driver.findElements(
+      By.css("#table1 tbody tr td:nth-of-type(4)")
+    );
+    let dues = [];
+    for (const entry in due_column) {
+      const text = await due_column[entry].getText();
+      dues.push(Number(text.replace("$", "")));
+    }
+    assert(dues === dues.sort());
+  });
+// ...
 ```
 
-After loading the page we find and click the column heading that we want with a CSS Pseudo-class (e.g. `#table1 thead tr th:nth-of-type(4)`). This locator targets the 4th `<th>` element in the table heading section (e.g., `<thead>`) (which is the `Due` column heading).
+After loading the page we find and click the column heading that we want with a CSS pseudo-class (e.g. `#table1 thead tr th:nth-of-type(4)`). This locator targets the 4th `<th>` element in the table heading section (e.g., `<thead>`) (which is the `Due` column heading).
 
-We then use another pseudo-class to find all `<td>` elements within the `Due` column by looking for the 4th `<td>` of each row in the table body. Once we have them we grab each of their text values, clean them up (`.replace('$','')`), convert them to a number (`flat()`), and store them all in a list called `dues`. We then compare this collection to a sorted version of itself to see if they match. If they do, then the `Due` column was sorted in ascending order and the test will pass.
+We then use another pseudo-class to find all `<td>` elements within the `Due` column by looking for the 4th `<td>` of each row in the table body. Once we have them we grab each of their text values, clean them up (`.replace('$','')`), convert them to a number (`Number()`), and store them all in a array called `dues`. We then compare this collection to a sorted version of itself to see if they match. If they do, then the `Due` column was sorted in ascending order and the test will pass.
 
 If we wanted to test for descending order, we would need to click the `Due` heading twice after loading the page. Other than that the code is identical except for the assertion which is checking the same thing but reversing the sort order.
 
-```python
-# filename: tables.py
-# ...
-    def test_sort_number_column_in_descending_order_with_limited_locators(self):
-        driver = self.driver
-        driver.get('http://the-internet.herokuapp.com/tables')
-        driver.find_element_by_css_selector('#table1 thead tr th:nth-of-type(4)').click()
-        driver.find_element_by_css_selector('#table1 thead tr th:nth-of-type(4)').click()
-        due_column = driver.find_elements_by_css_selector('#table1 tbody tr td:nth-of-type(4)')
-        dues = [float(due.text.replace('$','')) for due in due_column]
-        assert dues == sorted(dues, reverse=True)
-
-# ...
+```javascript
+// filename: test/tables.spec.js
+// ...
+  it("should sort number column in descending order", async function() {
+    await driver.get("http://the-internet.herokuapp.com/tables");
+    await driver
+      .findElement(By.css("#table1 thead tr th:nth-of-type(4)"))
+      .click();
+    await driver
+      .findElement(By.css("#table1 thead tr th:nth-of-type(4)"))
+      .click();
+    const due_column = await driver.findElements(
+      By.css("#table1 tbody tr td:nth-of-type(4)")
+    );
+    let dues = [];
+    for (const entry in due_column) {
+      const text = await due_column[entry].getText();
+      dues.push(Number(text.replace("$", "")));
+    }
+    assert(dues === dues.sort().reverse());
+  });
+// ...
 ```
 
 We can easily use this approach to test a different column (e.g., one that doesn't deal with numbers) and see that it gets sorted correctly too. Here's a test that exercises the `Email` column.
 
-```python
-# filename: tables.py
-# ...
-    def test_sort_text_column_in_ascending_order_with_limited_locators(self):
-        driver = self.driver
-        driver.get('http://the-internet.herokuapp.com/tables')
-        driver.find_element_by_css_selector('#table1 thead tr th:nth-of-type(3)').click()
-        email_column = driver.find_elements_by_css_selector('#table1 tbody tr td:nth-of-type(3)')
-        emails = [email.text for email in email_column]
-        assert emails == sorted(emails)
-
-# ...
+```javascript
+// filename: test/tables.spec.js
+// ...
+  it("should sort text column in ascending", async function() {
+    await driver.get("http://the-internet.herokuapp.com/tables");
+    await driver
+      .findElement(By.css("#table1 thead tr th:nth-of-type(3)"))
+      .click();
+    const email_column = await driver.findElements(
+      By.css("#table1 tbody tr td:nth-of-type(3)")
+    );
+    let emails = [];
+    for (const entry in email_column) {
+      emails.push(await email_column[entry].getText());
+    }
+    assert(emails === emails.sort());
+  });
+// ...
 ```
 
 The mechanism for this is the same as before, except that we don't need to clean the text up or convert it before performing our assertion.
 
-## But What About Older Browsers?
+## But What About Better Locators?
 
-Now we have some working tests that will load the page and check sorting for a couple of columns in both ascending and descending order. Great! But if we run these again an older browser (e.g., Internet Explorer 8, etc.) it will throw an exception stating `Unable to find element`. This is because older browsers don't support CSS Pseudo-classes.
-
-You've come a long way, so it's best to get value out of what you've just written. To do that you can run these tests on __current browsers__ and submit a request to your front-end developers to update the table markup with some semantic `class` attributes. Later, when these new locators have been implemented on the page, you can revisit these tests and update them accordingly.
-
-Here is markup of what our original table would look like with some helpful attributes added in. It's also the markup from the second table on [our application under test](http://the-internet.herokuapp.com/tables).
+Here is what the markup of our original table would look like with some helpful attributes added in. It's also the markup from the second table on [our application under test](http://the-internet.herokuapp.com/tables).
 
 ```html
 <table id="table2" class="tablesorter">
     <thead>
-      <tr>
-        <th><span class='last-name'>Last Name</span></th>
+      <tr> <th><span class='last-name'>Last Name</span></th>
         <th><span class='first-name'>First Name</span></th>
         <th><span class='email'>Email</span></th>
         <th><span class='dues'>Due</span></th>
@@ -176,26 +194,28 @@ Here is markup of what our original table would look like with some helpful attr
 
 With these new attributes the locators in our sorting tests become a lot simpler and more expressive. Let's write a new `Due` ascending order test to demonstrate.
 
-```python
-# filename: tables.py
-# ...
-    def test_sort_number_column_in_ascending_order_with_helpful_locators(self):
-        driver = self.driver
-        driver.get('http://the-internet.herokuapp.com/tables')
-        driver.find_element_by_css_selector('#table2 thead .dues').click()
-        due_column = driver.find_elements_by_css_selector('#table2 tbody .dues')
-        dues = [float(due.text.replace('$','')) for due in due_column]
-        assert dues == sorted(dues)
-
-if __name__ == "__main__":
-    unittest.main()
+```javascript
+// filename: test/tables.spec.js
+// ...
+  it("sort number column in ascending order with helpful locators", async function() {
+    await driver.get("http://the-internet.herokuapp.com/tables");
+    driver.findElement(By.css("#table2 thead .dues")).click();
+    const due_column = await driver.findElements(By.css("#table2 tbody .dues"));
+    let dues = [];
+    for (const entry in due_column) {
+      const text = await due_column[entry].getText();
+      dues.push(Number(text.replace("$", "")));
+    }
+    assert(dues === dues.sort());
+  });
+});
 ```
 
-Not only will these selectors work in current _and_ older browsers, but they are also more resilient to changes in the table layout since they are not using hard-coded numbers that rely on the column order.
+Not only will these selectors work in current _and_ legacy browsers, but they are also more resilient to changes in the table layout since they are not using hard-coded numbers that rely on the column order.
 
 ## Expected Behavior
 
-When we save this file and run it (e.g., `python tables.py` from the command-line) here is what will happen:
+When we save this file and run it (e.g., `mocha` from the command-line) here is what will happen:
 
 + Browser opens
 + Load the page
@@ -206,8 +226,8 @@ When we save this file and run it (e.g., `python tables.py` from the command-lin
 
 ## Outro
 
-CSS Pseudo-classes are a great resource and unlock a lot of potential for your tests. They enable a bit of CSS gymnastics but that's only assuming you've come up with a test strategy that rules out older browsers. If you don't have a test strategy or are curious to see how yours compares, check out [tip 18](http://elementalselenium.com/tips/18-what-to-test).
+Oftentimes you'll need to automate something which is lacking in reliable, semantic locators, but with CSS pseudo-classes you can cover a lot of ground in your tests by enabling a bit of CSS gymnastics.
 
-For more info on CSS Pseudo-classes see [this write-up by Sauce Labs](https://saucelabs.com/resources/selenium/css-selectors), and maybe [the W3C spec for CSS3](http://www.w3.org/TR/css3-selectors/#structural-pseudos) if you're feeling adventurous. And for a more in-depth walk-through on HTML Table design check out Treehouse's write-up [here](http://blog.teamtreehouse.com/how-to-code-sortable-tabular-data-with-jquery).
+But you can greatly simplify test automation efforts by adding some helpful attributes to key elements in the application under test.
 
 Happy Testing!
