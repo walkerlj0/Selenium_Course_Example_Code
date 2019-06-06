@@ -14,42 +14,49 @@ Let's dig in with an example.
 
 ## An Example
 
-Let's start by pulling in our requisite libraries for interacting with the operating system (e.g., `import os`), creating a temporary directory and cleaning it up, using our testing framework (e.g., `import unittest`), and driving the browser with Selenium (e.g., `from selenium import webdriver`).
+Let's start by pulling in our requisite libraries.
 
-```python
-# filename: download.py
-import os
-import time
-import shutil
-import tempfile
-import unittest
-from selenium import webdriver
-
-# ...
+```javascript
+// filename: test/download.spec.js
+const assert = require("assert");
+const { Builder, By, Key } = require("selenium-webdriver");
+const firefox = require("selenium-webdriver/firefox");
+const fs = require("fs");
+const path = require("path");
+// ...
 ```
 
-Now to create a test class and add our test's setup.
+Now to create a setup method for our test.
 
-```python
-# filename: download.py
-class Download(unittest.TestCase):
+```javascript
+// filename: test/download.spec.js
+// ...
+describe("File download", function() {
+  let driver;
+  const tmpDir = path.join(__dirname, "tmp");
 
-    def setUp(self):
-        self.download_dir = tempfile.mkdtemp()
+  beforeEach(async function() {
+    if (!fs.existsSync(tmpDir)) fs.mkdirSync(tmpDir);
+    let options = new firefox.Options()
+      .setPreference("browser.download.dir", tmpDir)
+      .setPreference("browser.download.folderList", 2)
+      .setPreference(
+        "browser.helperApps.neverAsk.saveToDisk",
+        "images/jpeg, application/pdf, application/octet-stream"
+      )
+      .setPreference("pdfjs.disabled", true);
 
-        profile = webdriver.FirefoxProfile()
-        profile.set_preference("browser.download.dir", self.download_dir)
-        profile.set_preference("browser.download.folderList", 2)
-        profile.set_preference(
-            "browser.helperApps.neverAsk.saveToDisk",
-            "images/jpeg, application/pdf, application/octet-stream")
-        profile.set_preference("pdfjs.disabled", True)
-        self.driver = webdriver.Firefox(firefox_profile=profile)
-
-# ...
+    driver = await new Builder()
+      .forBrowser("firefox")
+      .setFirefoxOptions(options)
+      .build();
+  });
+// ...
 ```
 
-Our `setUp(self):` method is where the magic is happening in this example. In it we're creating a uniquely named temp directory (e.g., `self.download_dir = tempfile.mkdtemp()`), configuring a browser profile object (for Firefox in this case), and plying it with the necessary configuration parameters to make it automatically download the file where we want (e.g., in the newly created temp directory).
+After declaring our test suite, we declare two variables. One for the Selenium instance (e.g., `driver`) and the other for the temporary directory where we'll want to automatically download files to (e.g., `tmpDir`). In it we're storing the absolute path to the current working directory, plus the name `tmp`.
+
+In the setup method (e.g., `beforeEach`) we create this directory if it's not already there, and then create a new browser options object (for Firefox in this case), specifying the necessary configuration parameters to make it automatically download the file where we want (e.g., in the newly created temp directory).
 
 Here's a breakdown of each of the browser preferences being set:
 
@@ -58,51 +65,50 @@ Here's a breakdown of each of the browser preferences being set:
 + `browser.helperApps.neverAsk.saveToDisk` tells Firefox when not to prompt for a file download. It accepts a string of [the file's MIME type](http://en.wikipedia.org/wiki/Internet_media_type). If you want to specify more than one, you do it with a comma-separated string (which we've done).
 + `pdfjs.disabled` is for when downloading PDFs. This overrides the sensible default in Firefox that previews PDFs in the browser. It accepts a boolean.
 
-This profile object is then passed into our instance of Selenium (e.g., `self.driver = webdriver.Firefox(firefox_profile=profile`).
+We then hand the options object on to Selenium as part of the incantation to create a new browser instance.
 
 Now let's take care of our test's teardown.
 
-```python
-# filename: download.py
-# ...
-  def tearDown(self):
-      self.driver.quit()
-      shutil.rmtree(self.download_dir)
-# ...
+```javascript
+// filename: test/download.spec.js
+// ...
+  function cleanupTmpDir() {
+    if (fs.existsSync(tmpDir)) {
+      const files = fs.readdirSync(tmpDir).map(file => path.join(tmpDir, file));
+      files.forEach(file => fs.unlinkSync(file));
+      fs.rmdirSync(tmpDir);
+    }
+  }
+
+  afterEach(async function() {
+    await driver.quit();
+    cleanupTmpDir();
+  });
+// ...
 ```
 
-In `tearDown(self):` we close the browser instance and then clean up the temp directory by deleting it, which will recursively delete the files in the folder before deleting it.
+In the teardown (e.g., `beforeEach`) we close the browser instance and then clean up the temp directory by deleting its contents, and then the directory itself.
 
 Now to wire up our test.
 
-```python
-# filename: download.py
-# ...
-    def test_example_1(self):
-        driver = self.driver
-        driver.get('http://the-internet.herokuapp.com/download')
-        download_link = driver.find_element_by_css_selector('.example a')
-        download_link.click()
-
-        time.sleep(1.0)  # necessary for slow download speeds
-
-        files = os.listdir(self.download_dir)
-        files = [os.path.join(self.download_dir, f)
-                 for f in files]  # add directory to each filename
-        assert len(files) > 0, "no files were downloaded"
-        assert os.path.getsize(files[0]) > 0, "downloaded file was empty"
-
-if __name__ == "__main__":
-    unittest.main()
+```javascript
+// filename: test/download.spec.js
+// ...
+  it("should automatically download to local disk", async function() {
+    await driver.get("http://the-internet.herokuapp.com/download");
+    await driver.findElement(By.css(".example a")).click();
+    const files = fs.readdirSync(tmpDir).map(file => path.join(tmpDir, file));
+    assert(files.length);
+    assert(fs.statSync(files[0]).size);
+  });
+});
 ```
 
-After visiting the page we find the first download link and click it. The click triggers an automatic download to the temp directory created in `setUp()`. We need to wait for the download to finish, so we add a brief sleep (e.g., `time.sleep(1.0)`). After the file downloads, we perform some rudimentary checks to make sure the unique temp directory isn't empty and then check the file to see that it isn't empty either.
-
-The last two lines of the file are so the file can be executed directly from the command-line.
+After visiting the page we find the first download link and click it. The click triggers an automatic download to the temp directory. After the file downloads, we perform some rudimentary checks to make sure the temp directory contains files and the first file in the directory is not empty.
 
 ## Expected Behavior
 
-When we save this file and run it (e.g., `python download.py` from the command-line) this is what will happen:
+When we save this file and run it (e.g., `mocha` from the command-line) this is what will happen:
 
 + Create a uniquely named temp directory in the present working directory
 + Open the browser
@@ -116,6 +122,6 @@ When we save this file and run it (e.g., `python download.py` from the command-l
 
 ## Outro
 
-A similar approach can be applied to some other browsers with varying configurations. But downloading files this way is not sustainable or recommended. Mark Collin articulates this point well in his prominent write-up about it [here](http://ardesco.lazerycode.com/index.php/2012/07/how-to-download-files-with-selenium-and-why-you-shouldnt/). In a future tip I'll cover a more reliable, faster, and scalable browser agnostic approach to downloading files. Stay tuned.
+A similar approach can be applied to some other browsers with varying configurations.
 
 Happy Testing!
