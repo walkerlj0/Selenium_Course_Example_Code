@@ -12,51 +12,56 @@ Let's dig in with an example.
 
 ## An Example
 
-Let's start by importing our requisite libraries (`import unittest` for our test framework, `from selenium import webdriver` to drive the browser, and `import sys` to determine when there's a test failure), declare our test class, and wire up some test `setUp` and `tearDown` methods.
+Let's start by importing our requisite libraries and wire up some setup and teardown methods.
 
-```python
-# filename: screenshot.py
-import sys
-import unittest
-from selenium import webdriver
+```javascript
+// filename: test/screenshot.spec.js
+const assert = require("assert");
+const { Builder, By } = require("selenium-webdriver");
+const fs = require("fs");
+const path = require("path");
 
+describe("Screenshot", function() {
+  let driver;
 
-class ScreenShotOnFailure(unittest.TestCase):
+  beforeEach(async function() {
+    driver = await new Builder().forBrowser("chrome").build();
+  });
 
-    def setUp(self):
-        self.driver = webdriver.Firefox()
-
-    def tearDown(self):
-        if sys.exc_info()[0]:
-            self.driver.save_screenshot("failshot_%s.png" % self._testMethodName)
-        self.driver.quit()
-# ...
+  afterEach(async function() {
+    if (this.currentTest.state !== "passed") {
+      const testName = this.currentTest.fullTitle().replace(/\s/g, "-");
+      const fileName = path.join(__dirname, `screenshot_${testName}.jpg`);
+      fs.writeFileSync(fileName, await driver.takeScreenshot(), "base64");
+    }
+    await driver.quit();
+  });
+// ...
 ```
 
-In `tearDown` we check to see if `sys.exc_info()[0]` exists. If it does, then there's been a test failure and we capture a screenshot through the help of Selenium's `.save_screenshot` method. `.save_screenshot` accepts a filename as a string (e.g., `'failshot.png'`). To make the filename unique we use the test method name (e.g., `self._testMethodName`). When this command executes it will save an image file to the local system in the current working directory.
+In `afterEach` we check to see if the test was unsuccessful (e.g., `this.currenTest.state !== "passed"`). If not, then the test has either failed or errored and we capture a screenshot through the help of Selenium's `.takeScreenshot()` function. To save it to disk, we use `fs` and its `writeFileSync` function. It takes the full path to save to, the payload (e.g., the screenshot), and the encoding (which for the image is `"base64"`).
+
+To make the filename unique we use the test name after cleaning it up (by replacing spaces with `-`). When this command executes it will save an image file (e.g., `screenshot_Screenshot-on-failure.jpg`) to the local system in the current working directory.
 
 Now to wire up a test which will fail.
 
-```python
-# filename: screenshot.py
-# ...
-    def test_example_1(self):
-        driver = self.driver
-        driver.get('http://the-internet.herokuapp.com')
-        assert driver.title == 'blah blah blah'
-
-if __name__ == "__main__":
-    unittest.main()
+```javascript
+// filename: test/screenshot.spec.js
+// ...
+  it("on failure", async function() {
+    await driver.get("http://the-internet.herokuapp.com");
+    assert(true === false);
+  });
+});
 ```
 
 ## Expected Behavior
 
-When we save this file and run it (`python screenshot.py` from the command-line) here is what will happen:
+When we save this file and run it (`mocha` from the command-line) here is what will happen:
 
 + Open the browser
 + Load the homepage of [the-internet](http://github.com/tourdedave/the-internet)
-+ Check the text of the page header and fail
-+ Output a failure message in the terminal
++ Fail on the assertion
 + Capture a screenshot in the current working directory
 + Close the browser
 
