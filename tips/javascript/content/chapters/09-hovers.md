@@ -6,7 +6,7 @@ If you need to work with mouse hovers in your tests it may not be obvious how to
 
 ## A Solution
 
-By leveraging Selenium's Action Builder (a.k.a. [ActionChains](http://seleniumhq.github.io/selenium/docs/api/py/_modules/selenium/webdriver/common/action_chains.html) in the Python Selenium bindings) we can handle more complex user interactions like hovers. This is done by telling Selenium which element we want to move the mouse to, and then performing what we need to after.
+By leveraging Selenium's [Actions](https://seleniumhq.github.io/selenium/docs/api/javascript/module/selenium-webdriver/lib/input_exports_Actions.html) we can handle more complex user interactions like hovers. This is done by telling Selenium which element we want to move the mouse to, and then performing what we need to after.
 
 Let's dig in with an example.
 
@@ -16,50 +16,51 @@ Our example application is available [here](http://the-internet.herokuapp.com/ho
 
 Let's write a test that will hover over the first avatar and make sure that this additional information appears.
 
-First we'll include our requisite libraries, declare the test class, and wire up some simple `setUp` and `tearDown` methods.
+First we'll include our requisite libraries, declare the test class, and wire up some simple setup and teardown methods.
 
-```python
-# filename: hovers.py
-import unittest
-from selenium import webdriver
-from selenium.webdriver.common.action_chains import ActionChains
+```javascript
+// filename: test/hovers.spec.js
+const assert = require("assert");
+const { Builder, By, Key } = require("selenium-webdriver");
 
+describe("Hovers", function() {
+  let driver;
 
-class Hovers(unittest.TestCase):
+  beforeEach(async function() {
+    driver = await new Builder().forBrowser("firefox").build();
+  });
 
-    def setUp(self):
-        self.driver = webdriver.Firefox()
-
-    def tearDown(self):
-        self.driver.quit()
-
-# ...
+  afterEach(async function() {
+    await driver.quit();
+  });
+// ...
 ```
 
 Now let's write our test.
 
-```python
-# filename: hovers.py
-# ...
-    def test_example_1(self):
-        driver = self.driver
-        driver.get('http://the-internet.herokuapp.com/hovers')
-        avatar = driver.find_element_by_class_name('figure')
-        ActionChains(driver).move_to_element(avatar).perform()
-        avatar_caption = driver.find_element_by_class_name('figcaption')
-        assert avatar_caption.is_displayed()
-
-if __name__ == "__main__":
-    unittest.main()
+```javascript
+// filename: test/hovers.spec.js
+// ...
+  it("displays caption on hover", async function() {
+    await driver.get("http://the-internet.herokuapp.com/hovers");
+    const avatar = await driver.findElement(By.css(".figure"));
+    await driver
+      .actions({ bridge: true })
+      .move({ origin: avatar })
+      .perform();
+    const caption = await driver.findElement(By.css(".figcaption"));
+    assert(caption.isDisplayed());
+  });
+});
 ```
 
-After loading the page we find the first avatar and store it in a variable (`avatar`). We then use the `.move_to_element` method and feed it the avatar variable (which triggers the hover).
+After loading the page we find the first avatar and store it in a variable (`avatar`). We then use the `.move` function and feed it the avatar variable (which triggers the hover).
 
-We then check to see if the additional user information is displayed with `.is_displayed` in our assertion.
+We then check to see if the additional user information is displayed with `.isDisplayed` in our assertion.
 
 ## Expected Behavior
 
-When we save this file and run it (e.g., `python hover.py` from the command-line) here is what will happen:
+When we save this file and run it (e.g., `mocha` from the command-line) here is what will happen:
 
 + Open the browser
 + Visit the page
