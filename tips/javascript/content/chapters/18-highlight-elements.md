@@ -14,56 +14,55 @@ Let's take a look at an example.
 
 ## An Example
 
-For our initial setup let's pull in our requisite libraries (`import unittest` for our test framework, `from selenium import webdriver` to drive the browser, and `import time` to add a delay in our script so we're able to see the notification messages), declare our test class, and wire up some test `setUp` and `tearDown` methods.
+For our initial setup let's pull in our requisite libraries, declare our test class, and wire up some setup and teardown methods.
 
-```python
-# filename: highlight_elements.py
-import unittest
-from selenium import webdriver
-import time
+```javascript
+// filename: test/highlight-elements.spec.js
+const assert = require("assert");
+const { Builder, By, Key } = require("selenium-webdriver");
 
+describe("Highlight elements", function() {
+  let driver;
 
-class HighlightElements(unittest.TestCase):
+  beforeEach(async function() {
+    driver = await new Builder().forBrowser("firefox").build();
+  });
 
-    def setUp(self):
-        self.driver = webdriver.Firefox()
-
-    def tearDown(self):
-        self.driver.quit()
-
-# ...
+  afterEach(async function() {
+    await driver.quit();
+  });
+// ...
 ```
 
-Now let's create a `highlight` helper method that will accept a Selenium WebDriver `element` and a time to wait (e.g., `duration`) as arguments.
+Now let's create a `highlight` helper function that will accept a found `element` from Selenium and a time to wait (e.g., `duration`) as arguments.
 
-By setting a duration, we can control how long to highlight an element on the page before reverting the styling back. And we can make this an optional argument by setting a default value for it (e.g., 3 seconds).
+By setting a duration, we can control how long to highlight an element on the page before reverting the styling back. We can also make this an optional argument by setting a default value for it (e.g., 3 seconds).
 
-```python
-# filename: highlight_elements.py
-# ...
-    def highlight(self, element, duration=3):
-        driver = self.driver
+```javascript
+// filename: test/highlight-elements.spec.js
+// ...
+  async function highlight(element, duration = 2000) {
+    // store original style so it can be reset later
+    const originalStyle = await element.getAttribute("style");
 
-        # Store original style so it can be reset later
-        original_style = element.get_attribute("style")
+    // style element with callout (e.g., dashed red border)
+    await driver.executeScript(
+      "arguments[0].setAttribute(arguments[1], arguments[2])",
+      element,
+      "style",
+      "border: 2px solid red; border-style: dashed;"
+    );
 
-        # Style element with dashed red border
-        driver.execute_script(
-            "arguments[0].setAttribute(arguments[1], arguments[2])",
-            element,
-            "style",
-            "border: 2px solid red; border-style: dashed;")
-
-        # Keep element highlighted for a spell and then revert
-        if (duration > 0):
-            time.sleep(duration)
-            driver.execute_script(
-                "arguments[0].setAttribute(arguments[1], arguments[2])",
-                element,
-                "style",
-                original_style)
-
-# ...
+    // keep element highlighted for the duration and then revert
+    await driver.sleep(duration);
+    await driver.executeScript(
+      "arguments[0].setAttribute(arguments[1], arguments[2])",
+      element,
+      "style",
+      originalStyle
+    );
+  }
+// ...
 ```
 
 There are three things going on here.
@@ -72,25 +71,23 @@ There are three things going on here.
 2. We change the style of the element so it visually stands out (e.g., a red dashed border)
 3. We revert the style of the element back after 3 seconds
 
-We're accomplishing the style change through JavaScript's `setAttribute` function. And we're executing it with Selenium's `execute_script` command.
+We're accomplishing the style change through JavaScript's `setAttribute` function. And we're executing it with Selenium's `executeScript` command.
 
-Now to use this in our test is simple, we just prepend a `find_element` command with a call to the `highlight` method.
+Now to use this in our test is simple, we just prepend a `findElement` command with a call to the `highlight` method.
 
-```python
-# filename: highlight_element.py
-# ...
-    def test_example_1(self):
-        driver = self.driver
-        driver.get('http://the-internet.herokuapp.com/large')
-        self.highlight(driver.find_element_by_id('sibling-2.3'))
-
-if __name__ == "__main__":
-    unittest.main()
+```javascript
+// filename: test/highlight-elements.spec.js
+// ...
+  it("highlights target element", async function() {
+    await driver.get("http://the-internet.herokuapp.com/large");
+    await highlight(await driver.findElement(By.id("sibling-2.3")));
+  });
+});
 ```
 
 ## Expected Behavior
 
-When we save this file and run it (e.g., `python highlight_elements.py` from the command-line) here is what will happen.
+When we save this file and run it (e.g., `mocha` from the command-line) here is what will happen.
 
 - Browser opens
 - Load the page
@@ -102,8 +99,6 @@ When we save this file and run it (e.g., `python highlight_elements.py` from the
 
 ## Outro
 
-If you wanted to take this a step further, you could leverage this approach along with an interactive debugger. You can read more about how to do that [here in Brian's other guest post](http://elementalselenium.com/tips/14-interactive-prompts-revisited).
-
-Alternatively, you could verify your locators by using a browser plugin like FireFinder. You can read more about how to do that in [tip 35](http://elementalselenium.com/tips/verifying-locators).
+Alternatively, you could use the developer tools and inspect the locators in a test one at a time for debugging. This approach is more helpful if you want to have some kind of real time review of what's happening as your tests run.
 
 Happy Testing!
