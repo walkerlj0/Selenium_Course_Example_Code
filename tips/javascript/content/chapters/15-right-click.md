@@ -6,63 +6,60 @@ Sometimes you'll run into an app that has functionality hidden behind a right-cl
 
 ## A Solution
 
-By leveraging Selenium's Action Builder (a.k.a. [ActionChains](http://seleniumhq.github.io/selenium/docs/api/py/webdriver/selenium.webdriver.common.action_chains.html?highlight=actionchains#selenium.webdriver.common.action_chains.ActionChains) in the Selenium Python bindings) we can issue a right-click command (a.k.a. a [`context_click`](http://seleniumhq.github.io/selenium/docs/api/py/webdriver/selenium.webdriver.common.action_chains.html?highlight=actionchains#selenium.webdriver.common.action_chains.ActionChains.context_click)).
+By leveraging Selenium's [Actions](https://seleniumhq.github.io/selenium/docs/api/javascript/module/selenium-webdriver/lib/input_exports_Actions.html) we can issue a right-click command (a.k.a. a [`contextClick`](https://seleniumhq.github.io/selenium/docs/api/javascript/module/selenium-webdriver/lib/input_exports_Actions.html#contextClick)).
 
-We can then select an option from the menu by traversing it with keyboard arrow keys (which we can issue with the Action Builder's [`send_keys`](http://seleniumhq.github.io/selenium/docs/api/py/webdriver/selenium.webdriver.common.action_chains.html?highlight=actionchains#selenium.webdriver.common.action_chains.ActionChains.send_keys) command).
-
-__NOTE: For a full write-up on working with keyboard keys in Selenium, see [Chapter 17](#chapter17).__
+You could then select an option from the menu by traversing it with keyboard keys (if a system dialog) or through `findElement` (if a rendered element). It depends on how the application under test has implemented it.
 
 Let's dig in with an example.
 
 ## An Example
 
-Let's start by pulling in our requisite libraries, declare the test class, and wire up some simple `setUp` and `tearDown` methods.
+Let's start by pulling in our requisite libraries, declare the test class, and wire up some simple setup and teardown methods.
 
-```python
-# filename: right_click.py
-import unittest
-from selenium import webdriver
-from selenium.webdriver.common.action_chains import ActionChains
-from selenium.webdriver.common.keys import Keys
+```javascript
+// filename: test/right-click.spec.js
+const assert = require("assert");
+const { Builder, By, Key } = require("selenium-webdriver");
 
+describe("Right click", function() {
+  let driver;
 
-class RightClick(unittest.TestCase):
+  beforeEach(async function() {
+    driver = await new Builder().forBrowser("firefox").build();
+  });
 
-    def setUp(self):
-        self.driver = webdriver.Firefox()
-
-    def tearDown(self):
-        self.driver.quit()
-# ...
+  afterEach(async function() {
+    await driver.quit();
+  });
+// ...
 ```
 
 Now we're ready to write our test.
 
-We'll use an example from [the-internet](https://github.com/tourdedave/the-internet) that will render a custom context menu when we right-click on a specific area of the page ([link](http://the-internet.herokuapp.com/context_menu)). Clicking the context menu will trigger a JavaScript alert which will say `You selected a context menu`. We'll grab this text and use it to assert that the menu was actually triggered.
+We'll use an example from [the-internet](https://github.com/tourdedave/the-internet) that will trigger a JavaScript alert when when we right-click on a specific area of the page ([link](http://the-internet.herokuapp.com/context_menu)). It will say `You selected a context menu`. We'll grab this text and use it to assert that the menu was actually triggered.
 
-```python
-# filename: right_click.py
-# ...
-    def test_example_1(self):
-        driver = self.driver
-        driver.get('http://the-internet.herokuapp.com/context_menu')
-        menu_area = driver.find_element_by_id('hot-spot')
-        ActionChains(driver).context_click(
-            menu_area).send_keys(
-            Keys.ARROW_DOWN).send_keys(
-            Keys.ARROW_DOWN).send_keys(
-            Keys.ARROW_DOWN).send_keys(
-            Keys.ENTER).perform()
-        alert = driver.switch_to.alert
-        assert alert.text == 'You selected a context menu'
-
-if __name__ == "__main__":
-    unittest.main()
+```javascript
+// filename: test/right-click.spec.js
+// ...
+  it("displays browser context menu", async function() {
+    await driver.get("http://the-internet.herokuapp.com/context_menu");
+    const menuArea = await driver.findElement(By.id("hot-spot"));
+    await driver
+      .actions({ bridge: true })
+      .contextClick(menuArea)
+      .perform();
+    const alertText = await driver
+      .switchTo()
+      .alert()
+      .getText();
+    assert(alertText === "You selected a context menu");
+  });
+});
 ```
 
 ## Expected Behavior
 
-When we save this file and run it (e.g., `python right_click.py`) from the command-line) here is what will happen:
+When we save this file and run it (e.g., `mocha`) from the command-line) here is what will happen:
 
 + Open the browser and visit the page
 + Find and right-click the area which will render a custom context menu
@@ -73,7 +70,5 @@ When we save this file and run it (e.g., `python right_click.py`) from the comma
 + Close the browser
 
 ## Outro
-
-To learn more about context menus, you can read [this write-up from the Tree House blog](http://blog.teamtreehouse.com/building-html5-context-menus). And for more thorough examples on working with keyboard keys and JavaScript alerts in your Selenium tests, check out Chapters [16](#chapter16) and [17](#chapter17).
 
 Happy Testing!
