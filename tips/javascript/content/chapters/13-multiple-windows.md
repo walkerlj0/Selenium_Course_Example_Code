@@ -12,7 +12,7 @@ Let's step through a couple of examples to demonstrate.
 
 First we'll need to pull in our requisite libraries, declare our test class, and wire up some test setup and teardown methods.
 
-```javacript
+```javascript
 // filename: test/multiple-windows.spec.js
 const assert = require("assert");
 const { Builder, By, Key } = require("selenium-webdriver");
@@ -32,7 +32,7 @@ describe("Multiple Windows", function() {
 
 Now let's write a test that exercises new window functionality from an application. In this case, we'll be using [the new window example](http://the-internet.herokuapp.com/windows) found on [the-internet](https://github.com/tourdedave/the-internet).
 
-```javacript
+```javascript
 // filename: test/multiple-windows.spec.js
 // ...
   it("non-deterministic switching", async function() {
@@ -55,7 +55,7 @@ Here's a more resilient approach. One that will work across all browsers.
 
 ## A Better Example
 
-```javacript
+```javascript
 // filename: test/multiple-windows.spec.js
 // ...
   it("browser agnostic switching", async function() {
