@@ -22,15 +22,6 @@ First we'll include our requisite libraries, declare the test class, and wire up
 
 ```javascript
 // filename: test/keyboard-keys.spec.js
-// ...
-```
-
-Now we can wire up our test.
-
-Let's use an example from [the-internet](https://github.com/tourdedave/the-internet) that will display what key has been pressed ([link](http://the-internet.herokuapp.com/key_presses)). We'll use the result text that gets displayed to perform our assertion.
-
-```javascript
-// filename: test/keyboard-keys.spec.js
 const assert = require("assert");
 const { Builder, By, Key } = require("selenium-webdriver");
 
@@ -44,7 +35,15 @@ describe("Keyboard Keys", function() {
   afterEach(async function() {
     await driver.quit();
   });
+// ...
+```
 
+Now we can wire up our test.
+
+Let's use an example from [the-internet](https://github.com/tourdedave/the-internet) that will display what key has been pressed ([link](http://the-internet.herokuapp.com/key_presses)). We'll use the result text that gets displayed to perform our assertion.
+
+```javascript
+// filename: test/keyboard-keys.spec.js
   it("send keys", async function() {
     await driver.get("http://the-internet.herokuapp.com/key_presses");
     await driver.findElement(By.id("target")).sendKeys(Key.SPACE);
