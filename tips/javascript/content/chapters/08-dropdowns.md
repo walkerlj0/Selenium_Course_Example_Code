@@ -86,9 +86,7 @@ While this works, there is a simpler way to do this.
 
 Similar to the first example, we are selecting a dropdown list option by its text. But instead of first finding the dropdown list, we instead employ a more robust locator (e.g., XPath) to find an element within the dropdown list that contains our target text -- and click it.
 
-We then determine what has been selected in the dropdown list by using one more powerful locator (e.g., a CSS selector). This time, looking to see which option has the `selected` attribute, and grabbing its text.
-
-We use this found text to assert that the correct item was chosen.
+We then determine what has been selected in the dropdown list by using one more powerful locator (e.g., a CSS selector). This time, looking to see which option has the `selected` attribute, and grabbing its text. We use this found text to assert that the correct item was chosen.
 
 ## Expected Behavior
 
