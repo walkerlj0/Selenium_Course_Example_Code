@@ -110,11 +110,11 @@ When we save this file and run it (e.g., `mocha` from the command-line) here is 
 
 If you're looking to set up Selenium Grid to work with Internet Explorer or Chrome, be sure to read up on how to set them up since there is additional configuration required for each. And if you run into issues, be sure to check out the browser driver documentation for the browser you're working with:
 
-+ [ChromeDriver](https://github.com/SeleniumHQ/selenium/wiki/ChromeDriver)
-+ [EdgeDriver](https://developer.microsoft.com/en-us/microsoft-edge/platform/documentation/dev-guide/tools/webdriver/)
-+ [FirefoxDriver](https://github.com/SeleniumHQ/selenium/wiki/FirefoxDriver)
++ [ChromeDriver](https://sites.google.com/a/chromium.org/chromedriver/)
++ [EdgeDriver](https://docs.microsoft.com/en-us/microsoft-edge/webdriver)
++ [geckodriver (Firefox)](https://github.com/mozilla/geckodriver)
 + [InternetExplorerDriver](https://github.com/SeleniumHQ/selenium/wiki/InternetExplorerDriver)
-+ [SafariDriver](https://github.com/SeleniumHQ/selenium/wiki/SafariDriver)
++ [SafariDriver](https://developer.apple.com/documentation/webkit/testing_with_webdriver_in_safari)
 
 Also, it's worth noting that while Selenium Grid is a great option for scaling your test infrastructure, it by itself will NOT give you parallelization. That is to say, it can handle as many connections as you throw at it (within reason), but you will still need to find a way to execute your tests in parallel.
 
