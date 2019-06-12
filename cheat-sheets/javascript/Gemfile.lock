@@ -2,10 +2,10 @@ GEM
   remote: https://rubygems.org/
   specs:
     RedCloth (4.2.9)
-    coderay (1.1.1)
+    coderay (1.1.2)
     docverter (1.0.1)
       rest-client (~> 1.7)
-    domain_name (0.5.20160615)
+    domain_name (0.5.20180417)
       unf (>= 0.0.5, < 1.0.0)
     gimli (0.5.9)
       RedCloth (~> 4.2.7)
@@ -15,23 +15,21 @@ GEM
       optiflag (~> 0.7)
       redcarpet (~> 3.2)
       wkhtmltopdf-binary (~> 0.9.9.3)
-    github-markup (1.4.0)
-    http-cookie (1.0.2)
+    github-markup (1.7.0)
+    http-cookie (1.0.3)
       domain_name (~> 0.5)
-    mime-types (2.99.2)
+    mime-types (2.99.3)
     mini_portile2 (2.1.0)
-    my_ebook_pub (0.4.0)
+    my_ebook_pub (0.5.1)
       docverter (~> 1.0.1)
       gimli (~> 0.5.7)
       pygments.rb (~> 0.6.3)
       redcarpet (~> 3.2.2)
     netrc (0.11.0)
-    nokogiri (1.6.8)
+    nokogiri (1.6.8.1)
       mini_portile2 (~> 2.1.0)
-      pkg-config (~> 1.1.7)
     optiflag (0.7)
-    pkg-config (1.1.7)
-    posix-spawn (0.3.11)
+    posix-spawn (0.3.13)
     pygments.rb (0.6.3)
       posix-spawn (~> 0.3.6)
       yajl-ruby (~> 1.2.0)
@@ -42,9 +40,9 @@ GEM
       netrc (~> 0.7)
     unf (0.1.4)
       unf_ext
-    unf_ext (0.0.7.2)
+    unf_ext (0.0.7.6)
     wkhtmltopdf-binary (0.9.9.3)
-    yajl-ruby (1.2.1)
+    yajl-ruby (1.2.3)
 
 PLATFORMS
   ruby
@@ -53,4 +51,4 @@ DEPENDENCIES
   my_ebook_pub
 
 BUNDLED WITH
-   1.11.2
+   1.16.3
