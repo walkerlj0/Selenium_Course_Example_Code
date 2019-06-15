@@ -37,7 +37,6 @@ class DriverFactory {
 
   async build(testName, hasEyesCommands = false) {
     this.testName = testName
-    process.env.PATH += path.delimiter + path.join(__dirname, '..', 'vendor')
     this.driver = await this._configure().build()
     if (hasEyesCommands) this.driver = await this._openEyes()
     return this.driver
