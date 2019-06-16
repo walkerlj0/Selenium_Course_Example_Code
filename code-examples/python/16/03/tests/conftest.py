@@ -47,7 +47,8 @@ def driver(request):
     config.baseurl = request.config.getoption("--baseurl")
     config.host = request.config.getoption("--host").lower()
     config.browser = request.config.getoption("--browser").lower()
-    config.browserversion = request.config.getoption("--browserversion").lower()
+    config.browserversion = request.config.getoption(
+        "--browserversion").lower()
     config.platform = request.config.getoption("--platform").lower()
 
     if config.host == "saucelabs":
@@ -55,8 +56,10 @@ def driver(request):
         _desired_caps["browserName"] = config.browser
         _desired_caps["version"] = config.browserversion
         _desired_caps["platform"] = config.platform
-        _desired_caps["name"] = request.cls.__name__ + "." + request.function.__name__
-        _credentials = os.environ["SAUCE_USERNAME"] + ":" + os.environ["SAUCE_ACCESS_KEY"]
+        _desired_caps["name"] = request.cls.__name__ + \
+            "." + request.function.__name__
+        _credentials = os.environ["SAUCE_USERNAME"] + \
+            ":" + os.environ["SAUCE_ACCESS_KEY"]
         _url = "http://" + _credentials + "@ondemand.saucelabs.com:80/wd/hub"
         driver_ = webdriver.Remote(_url, _desired_caps)
     if config.host == "localhost":
@@ -67,7 +70,8 @@ def driver(request):
             else:
                 driver_ = webdriver.Firefox()
         elif config.browser == "chrome":
-            _chromedriver = os.path.join(os.getcwd() + 'vendor', 'chromedriver')
+            _chromedriver = os.path.join(
+                os.getcwd() + 'vendor', 'chromedriver')
             if os.path.isfile(_chromedriver):
                 driver_ = webdriver.Chrome(_chromedriver)
             else:
@@ -78,7 +82,9 @@ def driver(request):
             if config.host == "saucelabs":
                 if request.node.result_call.failed:
                     driver_.execute_script("sauce:job-result=failed")
-                    raise AssertionError("http://saucelabs.com/beta/tests/" + driver_.session_id)
+                    raise AssertionError(
+                        "http://saucelabs.com/beta/tests/" +
+                        driver_.session_id)
                 elif request.node.result_call.passed:
                     driver_.execute_script("sauce:job-result=passed")
         finally:
