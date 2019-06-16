@@ -27,16 +27,17 @@ def pytest_addoption(parser):
                      help="the operating system to run your tests on (saucelabs only)")
 
 
+"""
+Grab a test's outcome and store the result as an
+attribute on the request.node object that's accessible
+in a fixture
+
+e.g.,
+request.node.result_call.failed
+request.node.result_call.passed
+"""
 @pytest.hookimpl(tryfirst=True, hookwrapper=True)
 def pytest_runtest_makereport(item, call):
-    """
-    grab the test outcome and store the result
-    add the result for each phase of a call ("setup", "call", and "teardown")
-    as an attribute to the request.node object in a fixture
-    e.g.,
-        request.node.result_call.failed
-        request.node.result_call.passed
-    """
     outcome = yield
     result = outcome.get_result()
     setattr(item, "result_" + result.when, result)
