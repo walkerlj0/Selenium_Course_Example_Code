@@ -14,4 +14,4 @@ class DynamicLoadingPage(BasePage):
         self._click(self._start_button)
 
     def finish_text_present(self):
-        return self._wait_for_is_displayed(self._finish_text, 10)
+        return self._is_displayed(self._finish_text, 10)
