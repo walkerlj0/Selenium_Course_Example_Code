@@ -1,5 +1,5 @@
 from selenium.webdriver.common.by import By
-from base_page import BasePage
+from . base_page import BasePage
 
 
 class LoginPage(BasePage):
@@ -21,9 +21,9 @@ class LoginPage(BasePage):
         self._click(self._submit_button)
 
     def success_message_present(self):
-        self._wait_for_is_displayed(self._success_message, 1)
+        self._is_displayed(self._success_message, 1)
         return self._is_displayed(self._success_message)
 
     def failure_message_present(self):
-        self._wait_for_is_displayed(self._failure_message, 1)
+        self._is_displayed(self._failure_message, 1)
         return self._is_displayed(self._failure_message)

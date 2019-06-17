@@ -1,7 +1,7 @@
 import pytest
-from selenium import webdriver
-import config
 import os
+from selenium import webdriver
+from . import config
 
 
 def pytest_addoption(parser):
@@ -22,10 +22,17 @@ def driver(request):
 
     if config.browser == "firefox":
         _geckodriver = os.path.join(os.getcwd(), 'vendor', 'geckodriver')
-        driver_ = webdriver.Firefox(executable_path=_geckodriver)
+        if os.path.isfile(_geckodriver):
+            driver_ = webdriver.Firefox(executable_path=_geckodriver)
+        else:
+            driver_ = webdriver.Firefox()
     elif config.browser == "chrome":
-        _chromedriver = os.path.join(os.getcwd() + 'vendor', 'chromedriver')
-        driver_ = webdriver.Chrome(_chromedriver)
+        _chromedriver = os.path.join(
+            os.getcwd() + 'vendor', 'chromedriver')
+        if os.path.isfile(_chromedriver):
+            driver_ = webdriver.Chrome(_chromedriver)
+        else:
+            driver_ = webdriver.Chrome()
 
     def quit():
         driver_.quit()

@@ -1,4 +1,5 @@
 import pytest
+import os
 from selenium import webdriver
 from pages import dynamic_loading_page
 
@@ -8,7 +9,10 @@ class TestDynamicLoading():
     @pytest.fixture
     def dynamic_loading(self, request):
         _geckodriver = os.path.join(os.getcwd(), 'vendor', 'geckodriver')
-        driver_ = webdriver.Firefox(executable_path=_geckodriver)
+        if os.path.isfile(_geckodriver):
+            driver_ = webdriver.Firefox(executable_path=_geckodriver)
+        else:
+            driver_ = webdriver.Firefox()
 
         def quit():
             driver_.quit()

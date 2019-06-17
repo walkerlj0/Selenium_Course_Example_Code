@@ -1,7 +1,7 @@
 import pytest
+import os
 from selenium import webdriver
 from . import config
-import os
 
 
 def pytest_addoption(parser):

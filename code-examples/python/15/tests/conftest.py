@@ -1,7 +1,7 @@
 import pytest
-from selenium import webdriver
-import config
 import os
+from selenium import webdriver
+from . import config
 
 
 def pytest_addoption(parser):
@@ -27,16 +27,17 @@ def pytest_addoption(parser):
                      help="the operating system to run your tests on (saucelabs only)")
 
 
+"""
+Grab a test's outcome and store the result as an
+attribute on the request.node object that's accessible
+in a fixture
+
+e.g.,
+request.node.result_call.failed
+request.node.result_call.passed
+"""
 @pytest.hookimpl(tryfirst=True, hookwrapper=True)
 def pytest_runtest_makereport(item, call):
-    """
-    grab the test outcome and store the result
-    add the result for each phase of a call ("setup", "call", and "teardown")
-    as an attribute to the request.node object in a fixture
-    e.g.,
-        request.node.result_call.failed
-        request.node.result_call.passed
-    """
     outcome = yield
     result = outcome.get_result()
     setattr(item, "result_" + result.when, result)
@@ -47,7 +48,8 @@ def driver(request):
     config.baseurl = request.config.getoption("--baseurl")
     config.host = request.config.getoption("--host").lower()
     config.browser = request.config.getoption("--browser").lower()
-    config.browserversion = request.config.getoption("--browserversion").lower()
+    config.browserversion = request.config.getoption(
+        "--browserversion").lower()
     config.platform = request.config.getoption("--platform").lower()
 
     if config.host == "saucelabs":
@@ -55,17 +57,26 @@ def driver(request):
         _desired_caps["browserName"] = config.browser
         _desired_caps["version"] = config.browserversion
         _desired_caps["platform"] = config.platform
-        _desired_caps["name"] = request.cls.__name__ + "." + request.function.__name__
-        _credentials = os.environ["SAUCE_USERNAME"] + ":" + os.environ["SAUCE_ACCESS_KEY"]
+        _desired_caps["name"] = request.cls.__name__ + \
+            "." + request.function.__name__
+        _credentials = os.environ["SAUCE_USERNAME"] + \
+            ":" + os.environ["SAUCE_ACCESS_KEY"]
         _url = "http://" + _credentials + "@ondemand.saucelabs.com:80/wd/hub"
         driver_ = webdriver.Remote(_url, _desired_caps)
     if config.host == "localhost":
         if config.browser == "firefox":
             _geckodriver = os.path.join(os.getcwd(), 'vendor', 'geckodriver')
-            driver_ = webdriver.Firefox(executable_path=_geckodriver)
+            if os.path.isfile(_geckodriver):
+                driver_ = webdriver.Firefox(executable_path=_geckodriver)
+            else:
+                driver_ = webdriver.Firefox()
         elif config.browser == "chrome":
-            _chromedriver = os.path.join(os.getcwd() + 'vendor', 'chromedriver')
-            driver_ = webdriver.Chrome(_chromedriver)
+            _chromedriver = os.path.join(
+                os.getcwd() + 'vendor', 'chromedriver')
+            if os.path.isfile(_chromedriver):
+                driver_ = webdriver.Chrome(_chromedriver)
+            else:
+                driver_ = webdriver.Chrome()
 
     def quit():
         try:
