@@ -20,4 +20,5 @@ class LoginPage():
                                  self._submit_button["value"]).click()
 
     def success_message_present(self):
-        return self.driver.find_element(self._success_message["by"], self._success_message["value"]).is_displayed()
+        return self.driver.find_element(
+            self._success_message["by"], self._success_message["value"]).is_displayed()

@@ -20,9 +20,9 @@ class TestLogin():
         request.addfinalizer(quit)
         return driver_
 
-
     def test_valid_credentials(self, driver):
         driver.get("http://the-internet.herokuapp.com/login")
         driver.find_element(By.ID, "username").send_keys("tomsmith")
-        driver.find_element(By.ID, "password").send_keys("SuperSecretPassword!")
+        driver.find_element(By.ID, "password").send_keys(
+            "SuperSecretPassword!")
         driver.find_element(By.CSS_SELECTOR, "button").click()
