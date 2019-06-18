@@ -21,9 +21,7 @@ class LoginPage(BasePage):
         self._click(self._submit_button)
 
     def success_message_present(self):
-        self._is_displayed(self._success_message, 1)
-        return self._is_displayed(self._success_message)
+        return self._is_displayed(self._success_message, 1)
 
     def failure_message_present(self):
-        self._is_displayed(self._failure_message, 1)
-        return self._is_displayed(self._failure_message)
+        return self._is_displayed(self._failure_message, 1)
