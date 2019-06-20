@@ -27,13 +27,13 @@ class ScreenShotOnFailure(unittest.TestCase):
         self.driver = webdriver.Firefox()
 
     def tearDown(self):
-        if sys.exc_info()[0]:
+        if self._outcome.errors:
             self.driver.save_screenshot("failshot_%s.png" % self._testMethodName)
         self.driver.quit()
 # ...
 ```
 
-In `tearDown` we check to see if `sys.exc_info()[0]` exists. If it does, then there's been a test failure and we capture a screenshot through the help of Selenium's `.save_screenshot` method. `.save_screenshot` accepts a filename as a string (e.g., `'failshot.png'`). To make the filename unique we use the test method name (e.g., `self._testMethodName`). When this command executes it will save an image file to the local system in the current working directory.
+In `tearDown` we check to see if `self._outcome.errors` contains anything. If it does, then there's been a test failure and we capture a screenshot through the help of Selenium's `.save_screenshot` method. `.save_screenshot` accepts a filename as a string (e.g., `'failshot.png'`). To make the filename unique we use the test method name (e.g., `self._testMethodName`). When this command executes it will save an image file to the local system in the current working directory.
 
 Now to wire up a test which will fail.
 

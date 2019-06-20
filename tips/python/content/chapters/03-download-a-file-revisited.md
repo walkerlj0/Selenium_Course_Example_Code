@@ -16,13 +16,13 @@ Let's dig with an example.
 
 ## An Example
 
-To start things off let's pull in our requisite libraries (`import unittest` for our test framework, `from selenium import webdriver` to drive the browser, and `import httplib` for our HTTP library), declare our test class, and wire up some test `setUp` and `tearDown` methods.
+To start things off let's pull in our requisite libraries (`import unittest` for our test framework, `from selenium import webdriver` to drive the browser, and `import http.client` for our HTTP library), declare our test class, and wire up some test `setUp` and `tearDown` methods.
 
 ```python
 # filename: file_download_revisited.py
 import unittest
 from selenium import webdriver
-import httplib # Use http.client if using Python 3.x.x
+import http.client # Use httplib if using Python 2.x.x
 
 
 class FileDownloadRevisited(unittest.TestCase):
@@ -47,7 +47,7 @@ It's just a simple matter of visiting the page with download links, grabbing a U
         driver.get('http://the-internet.herokuapp.com/download')
         download_link = driver.find_element_by_css_selector('.example a').get_attribute('href')
 
-        connection = httplib.HTTPConnection('the-internet.herokuapp.com')
+        connection = http.client.HTTPConnection('the-internet.herokuapp.com')
         connection.request('HEAD', download_link)
         response = connection.getresponse()
         content_type = response.getheader('Content-type')
@@ -64,7 +64,7 @@ Once we receive the response we can check its header for the `Content-type` and 
 
 ## Expected Behavior
 
-When you save this and run it (e.g., `python file_download_revisited.py` from the command-line) here is what will will happen:
+When you save this and run it (e.g., `python3 file_download_revisited.py` from the command-line) here is what will will happen:
 
 + Open the browser
 + Load the page
@@ -79,3 +79,5 @@ When you save this and run it (e.g., `python file_download_revisited.py` from th
 Compared to the browser specific configuration with Selenium this is hands down a leaner, faster, and more maintainable approach. But unfortunately it only works with files served up from a flat URL. So if you're trying to test file downloads that are generated in-memory as part of the browser session (a.k.a. not accessible from a URL) then you'll need to reach for the browser specific Selenium configuration.
 
 Happy Testing!
+
+

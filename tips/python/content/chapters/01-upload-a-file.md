@@ -72,7 +72,7 @@ The two lines at the end of the file are so the file can be executed directly fr
 
 ## Expected Behavior
 
-When we save this file and run it (e.g., `python upload.py` from the command-line) this is what will happen:
+When we save this file and run it (e.g., `python3 upload.py` from the command-line) this is what will happen:
 
 + Open the browser
 + Visit the upload form page
@@ -86,3 +86,5 @@ When we save this file and run it (e.g., `python upload.py` from the command-lin
 This approach will work across all browsers. If you want to use it with a remote instance (e.g., on Selenium Grid or Sauce Labs) then you'll want to have a look at [`file_detector`](http://seleniumhq.github.io/selenium/docs/api/py/webdriver_remote/selenium.webdriver.remote.webdriver.html?highlight=detect#selenium.webdriver.remote.webdriver.WebDriver.file_detector).
 
 Happy Testing!
+
+

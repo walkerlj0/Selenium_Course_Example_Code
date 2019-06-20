@@ -24,6 +24,7 @@ import shutil
 import tempfile
 import unittest
 from selenium import webdriver
+from selenium.webdriver.firefox.options import Options
 
 # ...
 ```
@@ -37,6 +38,7 @@ class Download(unittest.TestCase):
     def setUp(self):
         self.download_dir = tempfile.mkdtemp()
 
+        options = Options()
         profile = webdriver.FirefoxProfile()
         profile.set_preference("browser.download.dir", self.download_dir)
         profile.set_preference("browser.download.folderList", 2)
@@ -44,7 +46,8 @@ class Download(unittest.TestCase):
             "browser.helperApps.neverAsk.saveToDisk",
             "images/jpeg, application/pdf, application/octet-stream")
         profile.set_preference("pdfjs.disabled", True)
-        self.driver = webdriver.Firefox(firefox_profile=profile)
+        options.profile = profile
+        self.driver = webdriver.Firefox(options=options)
 
 # ...
 ```
@@ -58,7 +61,7 @@ Here's a breakdown of each of the browser preferences being set:
 + `browser.helperApps.neverAsk.saveToDisk` tells Firefox when not to prompt for a file download. It accepts a string of [the file's MIME type](http://en.wikipedia.org/wiki/Internet_media_type). If you want to specify more than one, you do it with a comma-separated string (which we've done).
 + `pdfjs.disabled` is for when downloading PDFs. This overrides the sensible default in Firefox that previews PDFs in the browser. It accepts a boolean.
 
-This profile object is then passed into our instance of Selenium (e.g., `self.driver = webdriver.Firefox(firefox_profile=profile`).
+This profile object is then passed into our instance of Selenium (e.g., `self.driver = webdriver.Firefox(options=options`).
 
 Now let's take care of our test's teardown.
 
@@ -102,7 +105,7 @@ The last two lines of the file are so the file can be executed directly from the
 
 ## Expected Behavior
 
-When we save this file and run it (e.g., `python download.py` from the command-line) this is what will happen:
+When we save this file and run it (e.g., `python3 download.py` from the command-line) this is what will happen:
 
 + Create a uniquely named temp directory in the present working directory
 + Open the browser
@@ -116,6 +119,8 @@ When we save this file and run it (e.g., `python download.py` from the command-l
 
 ## Outro
 
-A similar approach can be applied to some other browsers with varying configurations. But downloading files this way is not sustainable or recommended. Mark Collin articulates this point well in his prominent write-up about it [here](http://ardesco.lazerycode.com/index.php/2012/07/how-to-download-files-with-selenium-and-why-you-shouldnt/). In a future tip I'll cover a more reliable, faster, and scalable browser agnostic approach to downloading files. Stay tuned.
+A similar approach can be applied to some other browsers with varying configurations.
 
 Happy Testing!
+
+
