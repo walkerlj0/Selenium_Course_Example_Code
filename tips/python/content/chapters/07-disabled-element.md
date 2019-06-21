@@ -60,7 +60,7 @@ And since we grabbed all of the dropdown list options, we can easily test the op
 
 ## Expected Behavior
 
-When we save this file and run it (e.g., `python disabled_elements.py` from the command-line) here is what will happen:
+When we save this file and run it (e.g., `python3 disabled_elements.py` from the command-line) here is what will happen:
 
 + Open a browser
 + Visit the page

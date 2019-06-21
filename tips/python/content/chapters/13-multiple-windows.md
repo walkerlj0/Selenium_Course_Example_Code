@@ -81,6 +81,8 @@ Now that we have two windows open we grab all of the window handles and search t
 
 ## Expected Behavior
 
+When we save this file and run it (e.g., `python3 frames.py` from the command-line) here is what will happen:
+
 + Open the browser
 + Visit the page
 + Find the window handle for the current window

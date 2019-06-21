@@ -8,9 +8,9 @@ But when the table has no helpful, semantic markup (e.g. easy to use `id` or `cl
 
 ## A Solution
 
-You can easily traverse a table through the use of [CSS Pseudo-classes](http://www.w3schools.com/css/css_pseudo_classes.asp).
+You can easily traverse a table through the use of [CSS Pseudo-classes](https://developer.mozilla.org/en-US/docs/Web/CSS/pseudo-classes).
 
-But keep in mind that if you care about older browsers (e.g., Internet Explorer 8, et al), then this approach won't work on them. In those cases your best bet is to find a workable solution for the short term and get a front-end developer to update the table with helpful attributes.
+But keep in mind that if you care about older browsers (e.g., Internet Explorer, et al), then this approach won't work on them. In those cases your best bet is to find a workable solution for the short term and get a front-end developer to update the table with helpful attributes.
 
 ## A quick primer on Tables and CSS Pseudo-classes
 
@@ -195,7 +195,7 @@ Not only will these selectors work in current _and_ older browsers, but they are
 
 ## Expected Behavior
 
-When we save this file and run it (e.g., `python tables.py` from the command-line) here is what will happen:
+When we save this file and run it (e.g., `python3 tables.py` from the command-line) here is what will happen:
 
 + Browser opens
 + Load the page
@@ -206,8 +206,8 @@ When we save this file and run it (e.g., `python tables.py` from the command-lin
 
 ## Outro
 
-CSS Pseudo-classes are a great resource and unlock a lot of potential for your tests. They enable a bit of CSS gymnastics but that's only assuming you've come up with a test strategy that rules out older browsers. If you don't have a test strategy or are curious to see how yours compares, check out [tip 18](http://elementalselenium.com/tips/18-what-to-test).
+Oftentimes you'll need to automate something which is lacking in reliable, semantic locators, but with CSS pseudo-classes you can cover a lot of ground in your tests by enabling a bit of CSS gymnastics.
 
-For more info on CSS Pseudo-classes see [this write-up by Sauce Labs](https://saucelabs.com/resources/selenium/css-selectors), and maybe [the W3C spec for CSS3](http://www.w3.org/TR/css3-selectors/#structural-pseudos) if you're feeling adventurous. And for a more in-depth walk-through on HTML Table design check out Treehouse's write-up [here](http://blog.teamtreehouse.com/how-to-code-sortable-tabular-data-with-jquery).
+But you can greatly simplify test automation efforts by adding some helpful attributes to key elements in the application under test.
 
 Happy Testing!

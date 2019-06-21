@@ -51,7 +51,7 @@ if __name__ == "__main__":
 
 ## Expected Behavior
 
-When we save this file and run it (`python screenshot.py` from the command-line) here is what will happen:
+When we save this file and run it (`python3 screenshot.py` from the command-line) here is what will happen:
 
 + Open the browser
 + Load the homepage of [the-internet](http://github.com/tourdedave/the-internet)

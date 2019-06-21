@@ -58,7 +58,7 @@ After accepting the alert, our main browser window will automatically regain foc
 
 ## Expected Behavior
 
-When we save this file and run it (e.g., `python javascript_alerts.py` from the command-line) here is what will happen:
+When we save this file and run it (e.g., `python3 javascript_alerts.py` from the command-line) here is what will happen:
 
 + Open the browser
 + Load the page

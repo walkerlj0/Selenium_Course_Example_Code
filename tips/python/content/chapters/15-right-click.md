@@ -6,11 +6,11 @@ Sometimes you'll run into an app that has functionality hidden behind a right-cl
 
 ## A Solution
 
-By leveraging Selenium's Action Builder (a.k.a. [ActionChains](http://seleniumhq.github.io/selenium/docs/api/py/webdriver/selenium.webdriver.common.action_chains.html?highlight=actionchains#selenium.webdriver.common.action_chains.ActionChains) in the Selenium Python bindings) we can issue a right-click command (a.k.a. a [`context_click`](http://seleniumhq.github.io/selenium/docs/api/py/webdriver/selenium.webdriver.common.action_chains.html?highlight=actionchains#selenium.webdriver.common.action_chains.ActionChains.context_click)).
+By leveraging Selenium's Action Builder (a.k.a. [ActionChains](https://selenium-python.readthedocs.io/api.html#module-selenium.webdriver.common.action_chains) in the Selenium Python bindings) we can issue a right-click command (a.k.a. a [`context_click`](https://selenium-python.readthedocs.io/api.html#selenium.webdriver.common.action_chains.ActionChains.context_click)).
 
-We can then select an option from the menu by traversing it with keyboard arrow keys (which we can issue with the Action Builder's [`send_keys`](http://seleniumhq.github.io/selenium/docs/api/py/webdriver/selenium.webdriver.common.action_chains.html?highlight=actionchains#selenium.webdriver.common.action_chains.ActionChains.send_keys) command).
+We can then select an option from the menu by traversing it with keyboard arrow keys (which we can issue with the Action Builder's [`send_keys`](https://selenium-python.readthedocs.io/api.html#selenium.webdriver.common.action_chains.ActionChains.send_keys) command).
 
-__NOTE: For a full write-up on working with keyboard keys in Selenium, see [Chapter 17](#chapter17).__
+__NOTE: For a full write-up on working with keyboard keys in Selenium, see [Chapter 14](#chapter14).__
 
 Let's dig in with an example.
 
@@ -38,7 +38,7 @@ class RightClick(unittest.TestCase):
 
 Now we're ready to write our test.
 
-We'll use an example from [the-internet](https://github.com/tourdedave/the-internet) that will render a custom context menu when we right-click on a specific area of the page ([link](http://the-internet.herokuapp.com/context_menu)). Clicking the context menu will trigger a JavaScript alert which will say `You selected a context menu`. We'll grab this text and use it to assert that the menu was actually triggered.
+We'll use an example from [the-internet](https://github.com/tourdedave/the-internet) that will trigger a JavaScript alert when when we right-click on a specific area of the page ([link](http://the-internet.herokuapp.com/context_menu)). It will say `You selected a context menu`. We'll grab this text and use it to assert that the menu was actually triggered.
 
 ```python
 # filename: right_click.py
@@ -47,12 +47,7 @@ We'll use an example from [the-internet](https://github.com/tourdedave/the-inter
         driver = self.driver
         driver.get('http://the-internet.herokuapp.com/context_menu')
         menu_area = driver.find_element_by_id('hot-spot')
-        ActionChains(driver).context_click(
-            menu_area).send_keys(
-            Keys.ARROW_DOWN).send_keys(
-            Keys.ARROW_DOWN).send_keys(
-            Keys.ARROW_DOWN).send_keys(
-            Keys.ENTER).perform()
+        ActionChains(driver).context_click(menu_area).perform()
         alert = driver.switch_to.alert
         assert alert.text == 'You selected a context menu'
 
@@ -62,18 +57,15 @@ if __name__ == "__main__":
 
 ## Expected Behavior
 
-When we save this file and run it (e.g., `python right_click.py`) from the command-line) here is what will happen:
+When we save this file and run it (e.g., `python3 right_click.py`) from the command-line) here is what will happen:
 
 + Open the browser and visit the page
 + Find and right-click the area which will render a custom context menu
-+ Select the context menu option with keyboard keys
 + JavaScript alert appears
 + Grab the text of the JavaScript alert
 + Assert that the text from the alert is what we expect
 + Close the browser
 
 ## Outro
-
-To learn more about context menus, you can read [this write-up from the Tree House blog](http://blog.teamtreehouse.com/building-html5-context-menus). And for more thorough examples on working with keyboard keys and JavaScript alerts in your Selenium tests, check out Chapters [16](#chapter16) and [17](#chapter17).
 
 Happy Testing!

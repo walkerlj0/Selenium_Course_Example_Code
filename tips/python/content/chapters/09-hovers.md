@@ -59,7 +59,7 @@ We then check to see if the additional user information is displayed with `.is_d
 
 ## Expected Behavior
 
-When we save this file and run it (e.g., `python hover.py` from the command-line) here is what will happen:
+When we save this file and run it (e.g., `python3 hover.py` from the command-line) here is what will happen:
 
 + Open the browser
 + Visit the page

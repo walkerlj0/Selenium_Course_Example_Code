@@ -126,7 +126,7 @@ shell returned 1
 
 ## Expected Behavior
 
-When we save and run the file (e.g., `python checkboxes.py` from the command-line) here is what will happen:
+When we save and run the file (e.g., `python3 checkboxes.py` from the command-line) here is what will happen:
 
 + Open the browser
 + Visit the page

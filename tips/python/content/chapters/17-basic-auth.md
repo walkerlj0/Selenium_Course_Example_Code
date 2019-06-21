@@ -84,7 +84,7 @@ __NOTE: If your application serves both HTTP and HTTPS pages from behind Basic A
 
 ## Expected Behavior
 
-When you save the first example and run it (e.g., `python basic_auth_1.py`), here is what will happen:
+When you save the first example and run it (e.g., `python3 basic_auth_1.py`), here is what will happen:
 
 + Open the browser
 + Visit the page using Basic Auth
@@ -92,7 +92,7 @@ When you save the first example and run it (e.g., `python basic_auth_1.py`), her
 + Assert that the text is what we expect
 + Close the browser
 
-And when you save the second example and run it (e.g., `python basic_auth_2.py`), here is what will happen:
+And when you save the second example and run it (e.g., `python3 basic_auth_2.py`), here is what will happen:
 
 + Open the browser
 + Visit the page using Basic Auth in the setup

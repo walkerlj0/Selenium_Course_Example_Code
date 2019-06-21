@@ -95,7 +95,7 @@ __NOTE: In addition to selecting by text, you can also select by value.__
 
 ## Expected Behavior
 
-If you save this file with either of these examples and run it (e.g., `python dropdown.py` from the command-line) here is what will happen:
+If you save this file with either of these examples and run it (e.g., `python3 dropdown.py` from the command-line) here is what will happen:
 
 + Open the browser
 + Visit the example application

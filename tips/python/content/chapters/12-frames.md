@@ -94,7 +94,7 @@ Here is what that looks like in practice.
 
 ## Expected Behavior
 
-If we save the file and run it (e.g., `python frames.py` from the command-line) here is what will happen:
+If we save the file and run it (e.g., `python3 frames.py` from the command-line) here is what will happen:
 
 <u>Example 1</u>
 

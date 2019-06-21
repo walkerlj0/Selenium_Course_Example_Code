@@ -90,7 +90,7 @@ if __name__ == "__main__":
 
 ## Expected Behavior
 
-When we save this file and run it (e.g., `python highlight_elements.py` from the command-line) here is what will happen.
+When we save this file and run it (e.g., `python3 highlight_elements.py` from the command-line) here is what will happen.
 
 - Browser opens
 - Load the page
@@ -102,8 +102,6 @@ When we save this file and run it (e.g., `python highlight_elements.py` from the
 
 ## Outro
 
-If you wanted to take this a step further, you could leverage this approach along with an interactive debugger. You can read more about how to do that [here in Brian's other guest post](http://elementalselenium.com/tips/14-interactive-prompts-revisited).
-
-Alternatively, you could verify your locators by using a browser plugin like FireFinder. You can read more about how to do that in [tip 35](http://elementalselenium.com/tips/verifying-locators).
+Alternatively, you could use the developer tools and inspect the locators in a test one at a time for debugging. This approach is more helpful if you want to have some kind of real time review of what's happening as your tests run.
 
 Happy Testing!
