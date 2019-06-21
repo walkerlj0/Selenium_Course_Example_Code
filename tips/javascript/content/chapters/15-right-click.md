@@ -63,7 +63,6 @@ When we save this file and run it (e.g., `mocha`) from the command-line) here is
 
 + Open the browser and visit the page
 + Find and right-click the area which will render a custom context menu
-+ Select the context menu option with keyboard keys
 + JavaScript alert appears
 + Grab the text of the JavaScript alert
 + Assert that the text from the alert is what we expect
