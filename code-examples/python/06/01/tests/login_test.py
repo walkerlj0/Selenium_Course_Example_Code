@@ -15,8 +15,10 @@ class TestLogin():
             driver_ = webdriver.Firefox(service=_service)
         else:
             driver_ = webdriver.Firefox()
+        
         def quit():
             driver_.quit()
+        
         request.addfinalizer(quit)
         return driver_
 
