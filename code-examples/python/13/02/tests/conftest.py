@@ -58,7 +58,8 @@ def driver(request):
             else:
                 driver_ = webdriver.Firefox()
         elif config.browser == "chrome":
-            _chromedriver = os.path.join(os.getcwd() + 'vendor', 'chromedriver')
+            _chromedriver = os.path.join(
+                os.getcwd() + 'vendor', 'chromedriver')
             if os.path.isfile(_chromedriver):
                 _service = ChromeService(executable_path=_geckodriver)
                 driver_ = webdriver.Chrome(service=_service)

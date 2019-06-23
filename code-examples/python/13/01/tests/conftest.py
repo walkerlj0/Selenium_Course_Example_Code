@@ -37,7 +37,7 @@ def driver(request):
     config.browserversion = request.config.getoption(
         "--browserversion").lower()
     config.platform = request.config.getoption("--platform").lower()
-    
+
     if config.host == "saucelabs":
         _desired_caps = {}
         _desired_caps["browserName"] = config.browser
@@ -56,15 +56,16 @@ def driver(request):
             else:
                 driver_ = webdriver.Firefox()
         elif config.browser == "chrome":
-            _chromedriver = os.path.join(os.getcwd() + 'vendor', 'chromedriver')
+            _chromedriver = os.path.join(
+                os.getcwd() + 'vendor', 'chromedriver')
             if os.path.isfile(_chromedriver):
                 _service = ChromeService(executable_path=_geckodriver)
                 driver_ = webdriver.Chrome(service=_service)
             else:
                 driver_ = webdriver.Chrome()
-    
+
     def quit():
         driver_.quit()
-    
+
     request.addfinalizer(quit)
     return driver_

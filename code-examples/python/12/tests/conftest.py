@@ -21,7 +21,7 @@ def pytest_addoption(parser):
 def driver(request):
     config.baseurl = request.config.getoption("--baseurl")
     config.browser = request.config.getoption("--browser").lower()
-    
+
     if config.browser == "firefox":
         _geckodriver = os.path.join(os.getcwd(), 'vendor', 'geckodriver')
         if os.path.isfile(_geckodriver):
@@ -36,9 +36,9 @@ def driver(request):
             driver_ = webdriver.Chrome(service=_service)
         else:
             driver_ = webdriver.Chrome()
-    
+
     def quit():
         driver_.quit()
-    
+
     request.addfinalizer(quit)
     return driver_
