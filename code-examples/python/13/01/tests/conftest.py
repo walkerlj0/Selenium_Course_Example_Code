@@ -1,6 +1,8 @@
 import pytest
 import os
 from selenium import webdriver
+from selenium.webdriver.firefox.service import Service as FirefoxService
+from selenium.webdriver.chrome.service import Service as ChromeService
 from . import config
 
 
@@ -35,7 +37,7 @@ def driver(request):
     config.browserversion = request.config.getoption(
         "--browserversion").lower()
     config.platform = request.config.getoption("--platform").lower()
-
+    
     if config.host == "saucelabs":
         _desired_caps = {}
         _desired_caps["browserName"] = config.browser
@@ -49,19 +51,20 @@ def driver(request):
         if config.browser == "firefox":
             _geckodriver = os.path.join(os.getcwd(), 'vendor', 'geckodriver')
             if os.path.isfile(_geckodriver):
+                _service = FirefoxService(executable_path=_geckodriver)
                 driver_ = webdriver.Firefox(executable_path=_geckodriver)
             else:
                 driver_ = webdriver.Firefox()
         elif config.browser == "chrome":
-            _chromedriver = os.path.join(
-                os.getcwd() + 'vendor', 'chromedriver')
+            _chromedriver = os.path.join(os.getcwd() + 'vendor', 'chromedriver')
             if os.path.isfile(_chromedriver):
-                driver_ = webdriver.Chrome(_chromedriver)
+                _service = ChromeService(executable_path=_geckodriver)
+                driver_ = webdriver.Chrome(service=_service)
             else:
                 driver_ = webdriver.Chrome()
-
+    
     def quit():
         driver_.quit()
-
+    
     request.addfinalizer(quit)
     return driver_

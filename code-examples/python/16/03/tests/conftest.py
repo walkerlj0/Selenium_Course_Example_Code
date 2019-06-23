@@ -65,7 +65,7 @@ def driver(request):
             ":" + os.environ["SAUCE_ACCESS_KEY"]
         _url = "http://" + _credentials + "@ondemand.saucelabs.com:80/wd/hub"
         driver_ = webdriver.Remote(_url, _desired_caps)
-    if config.host == "localhost":
+    elif config.host == "localhost":
         if config.browser == "firefox":
             _geckodriver = os.path.join(os.getcwd(), 'vendor', 'geckodriver')
             if os.path.isfile(_geckodriver):

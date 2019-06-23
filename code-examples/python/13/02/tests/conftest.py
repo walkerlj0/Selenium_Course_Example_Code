@@ -1,6 +1,8 @@
 import pytest
 import os
 from selenium import webdriver
+from selenium.webdriver.firefox.service import Service as FirefoxService
+from selenium.webdriver.chrome.service import Service as ChromeService
 from . import config
 
 
@@ -47,18 +49,19 @@ def driver(request):
             ":" + os.environ["SAUCE_ACCESS_KEY"]
         _url = "http://" + _credentials + "@ondemand.saucelabs.com:80/wd/hub"
         driver_ = webdriver.Remote(_url, _desired_caps)
-    if config.host == "localhost":
+    elif config.host == "localhost":
         if config.browser == "firefox":
             _geckodriver = os.path.join(os.getcwd(), 'vendor', 'geckodriver')
             if os.path.isfile(_geckodriver):
+                _service = FirefoxService(executable_path=_geckodriver)
                 driver_ = webdriver.Firefox(executable_path=_geckodriver)
             else:
                 driver_ = webdriver.Firefox()
         elif config.browser == "chrome":
-            _chromedriver = os.path.join(
-                os.getcwd() + 'vendor', 'chromedriver')
+            _chromedriver = os.path.join(os.getcwd() + 'vendor', 'chromedriver')
             if os.path.isfile(_chromedriver):
-                driver_ = webdriver.Chrome(_chromedriver)
+                _service = ChromeService(executable_path=_geckodriver)
+                driver_ = webdriver.Chrome(service=_service)
             else:
                 driver_ = webdriver.Chrome()
 

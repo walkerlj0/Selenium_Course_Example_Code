@@ -1,6 +1,8 @@
 import pytest
 import os
 from selenium import webdriver
+from selenium.webdriver.firefox.service import Service as FirefoxService
+from selenium.webdriver.chrome.service import Service as ChromeService
 from . import config
 
 
@@ -19,23 +21,24 @@ def pytest_addoption(parser):
 def driver(request):
     config.baseurl = request.config.getoption("--baseurl")
     config.browser = request.config.getoption("--browser").lower()
-
+    
     if config.browser == "firefox":
         _geckodriver = os.path.join(os.getcwd(), 'vendor', 'geckodriver')
         if os.path.isfile(_geckodriver):
-            driver_ = webdriver.Firefox(executable_path=_geckodriver)
+            _service = FirefoxService(executable_path=_geckodriver)
+            driver_ = webdriver.Firefox(service=_service)
         else:
             driver_ = webdriver.Firefox()
     elif config.browser == "chrome":
-        _chromedriver = os.path.join(
-            os.getcwd() + 'vendor', 'chromedriver')
+        _chromedriver = os.path.join(os.getcwd() + 'vendor', 'chromedriver')
         if os.path.isfile(_chromedriver):
-            driver_ = webdriver.Chrome(_chromedriver)
+            _service = ChromeService(executable_path=_geckodriver)
+            driver_ = webdriver.Chrome(service=_service)
         else:
             driver_ = webdriver.Chrome()
-
+    
     def quit():
         driver_.quit()
-
+    
     request.addfinalizer(quit)
     return driver_
