@@ -87,7 +87,7 @@ def driver(request):
                 if request.node.result_call.failed:
                     driver_.execute_script("sauce:job-result=failed")
                     raise AssertionError(
-                        "http://saucelabs.com/beta/tests/" +
+                        "http://saucelabs.com/tests/" +
                         driver_.session_id)
                 elif request.node.result_call.passed:
                     driver_.execute_script("sauce:job-result=passed")

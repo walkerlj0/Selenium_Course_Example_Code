@@ -86,7 +86,7 @@ def driver(request):
             if config.host == "saucelabs":
                 if request.node.result_call.failed:
                     driver_.execute_script("sauce:job-result=failed")
-                    print "http://saucelabs.com/beta/tests/" + driver_.session_id
+                    print "http://saucelabs.com/tests/" + driver_.session_id
                 elif request.node.result_call.passed:
                     driver_.execute_script("sauce:job-result=passed")
         finally:
