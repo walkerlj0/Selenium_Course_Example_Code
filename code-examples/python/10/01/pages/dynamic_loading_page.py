@@ -10,7 +10,7 @@ class DynamicLoadingPage(BasePage):
         self.driver = driver
 
     def load_example(self, example_number):
-        self._visit("/dynamic_loading/" + example_number)
+        self._visit("http://the-internet.herokuapp.com/dynamic_loading/" + example_number)
         self._click(self._start_button)
 
     def finish_text_present(self):
