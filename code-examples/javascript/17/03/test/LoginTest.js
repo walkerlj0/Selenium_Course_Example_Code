@@ -20,10 +20,9 @@ describe('Login', function() {
   it('with invalid credentials @deep', async function() {
     await login.authenticate('tomsmith', 'bad password')
     assert(await login.failureMessagePresent(), 'Failure message not displayed')
-    await this.eyes.checkWindow('Incomplete Login')
-    await this.eyes.close()
   })
-  it.only('forced failure @shallow', async function() {
+
+  it('forced failure @shallow', async function() {
     await login.authenticate('tomsmith', 'bad password')
     assert.equal(false, true)
   })

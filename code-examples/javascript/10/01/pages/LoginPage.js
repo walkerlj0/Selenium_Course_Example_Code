@@ -14,7 +14,7 @@ class LoginPage extends BasePage {
 
   async load() {
     await this.visit('http://the-internet.herokuapp.com/login')
-    if (await !this.isDisplayed(LOGIN_FORM))
+    if (!(await this.isDisplayed(LOGIN_FORM)))
       throw new Error('Login form not loaded')
   }
 

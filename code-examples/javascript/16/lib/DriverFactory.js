@@ -31,7 +31,10 @@ class DriverFactory {
       this.driver,
       'the-internet',
       this.testName,
-      this.config.viewportSize
+      {
+        width: this.config.viewportWidth,
+        height: this.config.viewportHeight,
+      }
     )
   }
 

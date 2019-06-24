@@ -20,8 +20,5 @@ describe('Login', function() {
   it('with invalid credentials', async function() {
     await login.authenticate('tomsmith', 'bad password')
     assert(await login.failureMessagePresent(), 'Failure message not displayed')
-    //assert(await !login.isSuccessMessagePresent(), 'Success message displayed')
-    await this.eyes.checkWindow('Incomplete Login')
-    await this.eyes.close()
   })
 })
