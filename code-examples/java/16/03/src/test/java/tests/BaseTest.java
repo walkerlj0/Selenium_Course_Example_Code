@@ -5,7 +5,6 @@ import org.junit.rules.ExternalResource;
 import org.junit.rules.TestRule;
 import org.junit.rules.TestWatcher;
 import org.junit.runner.Description;
-import org.junit.runner.RunWith;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -15,7 +14,7 @@ import java.net.URL;
 import com.saucelabs.saucerest.SauceREST;
 import static tests.Config.*;
 
-public class Base {
+public class BaseTest {
 
     protected WebDriver driver;
     private String testName;
@@ -29,9 +28,9 @@ public class Base {
         protected void before() throws Throwable {
             if (host.equals("saucelabs")) {
                 DesiredCapabilities capabilities = new DesiredCapabilities();
-                capabilities.setCapability("browserName", browser);
-                capabilities.setCapability("version", browserVersion);
-                capabilities.setCapability("platform", platform);
+                capabilities.setCapability("browserName", browserName);
+                capabilities.setCapability("browserVersion", browserVersion);
+                capabilities.setCapability("platformName", platformName);
                 capabilities.setCapability("name", testName);
                 String sauceUrl = String.format("http://%s:%s@ondemand.saucelabs.com:80/wd/hub",
                         sauceUser, sauceKey);
@@ -39,11 +38,11 @@ public class Base {
                 sessionId = ((RemoteWebDriver) driver).getSessionId().toString();
                 sauceClient = new SauceREST(sauceUser, sauceKey);
             } else if (host.equals("localhost")) {
-                if (browser.equals("firefox")) {
+                if (browserName.equals("firefox")) {
                     System.setProperty("webdriver.gecko.driver",
                             System.getProperty("user.dir") + "/vendor/geckodriver");
                     driver = new FirefoxDriver();
-                } else if (browser.equals("chrome")) {
+                } else if (browserName.equals("chrome")) {
                     System.setProperty("webdriver.chrome.driver",
                             System.getProperty("user.dir") + "/vendor/chromedriver");
                     driver = new ChromeDriver();

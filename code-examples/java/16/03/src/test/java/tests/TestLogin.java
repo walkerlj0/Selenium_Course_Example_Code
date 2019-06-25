@@ -7,7 +7,7 @@ import org.junit.experimental.categories.Category;
 import pageobjects.Login;
 import tests.groups.Shallow;
 
-public class TestLogin extends Base {
+public class TestLogin extends BaseTest {
 
     private Login login;
 
