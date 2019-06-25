@@ -14,7 +14,7 @@ import java.net.URL;
 import com.saucelabs.saucerest.SauceREST;
 import static tests.Config.*;
 
-public class Base {
+public class BaseTest {
 
     protected WebDriver driver;
     private String testName;

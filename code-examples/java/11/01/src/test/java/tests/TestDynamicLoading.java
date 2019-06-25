@@ -5,7 +5,7 @@ import org.junit.Before;
 import static org.junit.Assert.*;
 import pageobjects.DynamicLoading;
 
-public class TestDynamicLoading extends Base {
+public class TestDynamicLoading extends BaseTest {
 
     private DynamicLoading dynamicLoading;
 

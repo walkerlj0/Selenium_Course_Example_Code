@@ -8,7 +8,7 @@ import org.junit.experimental.categories.Category;
 import tests.groups.Deep;
 
 @Category(Deep.class)
-public class TestDynamicLoading extends Base {
+public class TestDynamicLoading extends BaseTest {
 
     private DynamicLoading dynamicLoading;
 

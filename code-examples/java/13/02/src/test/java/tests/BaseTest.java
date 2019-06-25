@@ -2,17 +2,22 @@ package tests;
 
 import org.junit.Rule;
 import org.junit.rules.ExternalResource;
+import org.junit.rules.TestRule;
+import org.junit.rules.TestWatcher;
+import org.junit.runner.Description;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
+import java.lang.Override;
 import java.net.URL;
 import static tests.Config.*;
 
-public class Base {
+public class BaseTest {
 
     protected WebDriver driver;
+    private String testName;
 
     @Rule
     public ExternalResource resource = new ExternalResource() {
@@ -24,6 +29,7 @@ public class Base {
                 capabilities.setCapability("browserNameName", browserName);
                 capabilities.setCapability("version", browserVersion);
                 capabilities.setCapability("platformName", platformName);
+                capabilities.setCapability("name", testName);
                 String sauceUrl = String.format("http://%s:%s@ondemand.saucelabs.com:80/wd/hub",
                         sauceUser, sauceKey);
                 driver = new RemoteWebDriver(new URL(sauceUrl), capabilities);
@@ -45,6 +51,14 @@ public class Base {
             driver.quit();
         }
 
+    };
+
+    @Rule
+    public TestRule watcher = new TestWatcher() {
+        @Override
+        protected void starting(Description description) {
+            testName = description.getDisplayName();
+        }
     };
 
 }

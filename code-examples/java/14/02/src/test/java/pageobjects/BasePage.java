@@ -7,11 +7,11 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import static tests.Config.*;
 
-public class Base {
+public class BasePage {
 
     private WebDriver driver;
 
-    public Base(WebDriver driver) {
+    public BasePage(WebDriver driver) {
         this.driver = driver;
     }
 

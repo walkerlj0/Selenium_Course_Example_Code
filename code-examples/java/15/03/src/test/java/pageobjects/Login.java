@@ -4,7 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import static org.junit.Assert.assertTrue;
 
-public class Login extends Base {
+public class Login extends BasePage {
 
     By loginFormLocator = By.id("login");
     By usernameLocator  = By.id("username");

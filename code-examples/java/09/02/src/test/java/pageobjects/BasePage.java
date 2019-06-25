@@ -4,11 +4,11 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public class Base {
+public class BasePage {
 
     private WebDriver driver;
 
-    public Base(WebDriver driver) {
+    public BasePage(WebDriver driver) {
         this.driver = driver;
     }
 
@@ -29,7 +29,11 @@ public class Base {
     }
 
     public Boolean isDisplayed(By locator) {
-        return find(locator).isDisplayed();
+        try {
+            return find(locator).isDisplayed();
+        } catch (org.openqa.selenium.NoSuchElementException exception) {
+            return false;
+        }
     }
 
 }

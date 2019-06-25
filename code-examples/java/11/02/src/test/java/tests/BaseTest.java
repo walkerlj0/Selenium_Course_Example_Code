@@ -5,7 +5,7 @@ import org.junit.rules.ExternalResource;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
-public class Base {
+public class BaseTest {
 
     protected WebDriver driver;
 

@@ -5,17 +5,22 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import static tests.Config.*;
 
-public class Base {
+public class BasePage {
 
     private WebDriver driver;
 
-    public Base(WebDriver driver) {
+    public BasePage(WebDriver driver) {
         this.driver = driver;
     }
 
     public void visit(String url) {
-        driver.get(url);
+       if (url.contains("http"))  {
+           driver.get(url);
+       } else {
+           driver.get(baseUrl + url);
+       }
     }
 
     public WebElement find(By locator) {

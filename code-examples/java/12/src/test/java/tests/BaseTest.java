@@ -7,7 +7,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import static tests.Config.*;
 
-public class Base {
+public class BaseTest {
 
     protected WebDriver driver;
 
