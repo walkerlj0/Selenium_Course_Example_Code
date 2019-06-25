@@ -26,19 +26,19 @@ public class Base {
         protected void before() throws Throwable {
             if (host.equals("saucelabs")) {
                 DesiredCapabilities capabilities = new DesiredCapabilities();
-                capabilities.setCapability("browserName", browser);
+                capabilities.setCapability("browserNameName", browserName);
                 capabilities.setCapability("version", browserVersion);
-                capabilities.setCapability("platform", platform);
+                capabilities.setCapability("platformName", platformName);
                 capabilities.setCapability("name", testName);
                 String sauceUrl = String.format("http://%s:%s@ondemand.saucelabs.com:80/wd/hub",
                         sauceUser, sauceKey);
                 driver = new RemoteWebDriver(new URL(sauceUrl), capabilities);
             } else if (host.equals("localhost")) {
-                if (browser.equals("firefox")) {
+                if (browserName.equals("firefox")) {
                     System.setProperty("webdriver.gecko.driver",
                             System.getProperty("user.dir") + "/vendor/geckodriver");
                     driver = new FirefoxDriver();
-                } else if (browser.equals("chrome")) {
+                } else if (browserName.equals("chrome")) {
                     System.setProperty("webdriver.chrome.driver",
                             System.getProperty("user.dir") + "/vendor/chromedriver");
                     driver = new ChromeDriver();

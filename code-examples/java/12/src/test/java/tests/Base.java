@@ -16,11 +16,11 @@ public class Base {
 
         @Override
         protected void before() throws Throwable {
-            if (browser.equals("firefox")) {
+            if (browserName.equals("firefox")) {
                 System.setProperty("webdriver.gecko.driver",
                         System.getProperty("user.dir") + "/vendor/geckodriver");
                 driver = new FirefoxDriver();
-            } else if (browser.equals("chrome")) {
+            } else if (browserName.equals("chrome")) {
                 System.setProperty("webdriver.chrome.driver",
                         System.getProperty("user.dir") + "/vendor/chromedriver");
                 driver = new ChromeDriver();
