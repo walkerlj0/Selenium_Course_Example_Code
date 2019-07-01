@@ -25,6 +25,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxProfile;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.assertThat;
 import java.io.File;
@@ -45,13 +46,15 @@ public class Download {
         folder = new File(UUID.randomUUID().toString());
         folder.mkdir();
 
+        FirefoxOptions options = new FirefoxOptions();
         FirefoxProfile profile = new FirefoxProfile();
         profile.setPreference("browser.download.dir", folder.getAbsolutePath());
         profile.setPreference("browser.download.folderList", 2);
         profile.setPreference("browser.helperApps.neverAsk.saveToDisk",
                 "image/jpeg, application/pdf, application/octet-stream");
         profile.setPreference("pdfjs.disabled", true);
-        driver = new FirefoxDriver(profile);
+        options.setProfile(profile);
+        driver = new FirefoxDriver(options);
     }
 
     @After
@@ -64,7 +67,7 @@ public class Download {
     }
 ```
 
-Our `setUp()` method is where the magic is happening in this example. In it we're creating a uniquely named temp directory, configuring a browser profile object (for Firefox in this case), and plying it with the necessary configuration parameters to make it automatically download the file where we want (e.g., the newly created temp directory).
+Our `setUp()` method is where the magic is happening in this example. In it we're creating a uniquely named temp directory and configuring a browser profile object (for Firefox in this case). We are plying the profile object with the necessary configuration parameters to make Firefox automatically download the file where we want (e.g., the newly created temp directory). We then wrap the profile object inside of an "options" object that we pass on when creating the instance of Firefox.
 
 Here's a breakdown of each of the browser preferences being set:
 
@@ -133,8 +136,8 @@ When you save this file and run it (e.g., `mvn clean test` from the command-line
 
 ## Outro
 
-A similar approach can be applied to some other browsers with varying configurations. But downloading files this way is not sustainable or recommended. Mark Collin articulates this point well in his prominent write-up about it [here](http://ardesco.lazerycode.com/index.php/2012/07/how-to-download-files-with-selenium-and-why-you-shouldnt/).
-
-In the next tip I'll cover a more reliable, faster, and scalable browser agnostic approach to downloading files.
+A similar approach can be applied to some other browsers with varying configurations.
 
 Happy Testing!
+
+

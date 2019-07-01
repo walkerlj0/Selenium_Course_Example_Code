@@ -93,3 +93,5 @@ When you save this and run it (e.g., `mvn clean install` from the command-line) 
 Compared to the browser specific configuration with Selenium this is hands-down a leaner, faster, and more maintainable approach.
 
 Happy Testing!
+
+

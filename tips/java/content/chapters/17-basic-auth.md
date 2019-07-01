@@ -126,3 +126,5 @@ And when you save the second example and run it (e.g., `mvn clean test`), here i
 Hopefully this tip will help save you from getting tripped by Basic Auth when you come across it.
 
 Happy Testing!
+
+

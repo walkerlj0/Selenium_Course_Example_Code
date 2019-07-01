@@ -25,7 +25,7 @@ Selenium Grid comes built into the Selenium Standalone Server. So to get started
 Then we need to start the hub.
 
 ```sh
-> java -jar selenium-server-standalone-2.48.2.jar -role hub
+> java -jar selenium-server-standalone.jar -role hub
 19:05:12.718 INFO - Launching Selenium Grid hub
 ...
 ```
@@ -33,7 +33,7 @@ Then we need to start the hub.
 After that we can register nodes to it.
 
 ```sh
-> java -jar selenium-server-standalone-2.48.2.jar -role node -hub http://localhost:4444/grid/register
+> java -jar selenium-server-standalone.jar -role node -hub http://localhost:4444/grid/register
 19:05:57.880 INFO - Launching a Selenium Grid node
 ...
 ```
@@ -47,13 +47,13 @@ Now that the grid is running we can view the available browsers by visiting our 
 To refine the list of available browsers, we can specify an additional `-browser` parameter when registering the node. For instance, if we wanted to only offer Safari on a node, we could specify it with `-browser browserName=safari`, which would look like this:
 
 ```sh
-java -jar selenium-server-standalone-2.48.2.jar -role node -browser browserName=safari -hub http://localhost:4444/grid/register
+java -jar selenium-server-standalone.jar -role node -browser browserName=safari -hub http://localhost:4444/grid/register
 ```
 
 We could also repeat this parameter again if we wanted to explicitly specify more than one browser.
 
 ```sh
-java -jar selenium-server-standalone-2.48.2.jar -role node -browser browserName=safari -browser browserName=chrome -browser browserName=firefox -hub http://localhost:4444/grid/register
+java -jar selenium-server-standalone.jar -role node -browser browserName=safari -browser browserName=chrome -browser browserName=firefox -hub http://localhost:4444/grid/register
 ```
 
 There are numerous parameters that we can use at run time. You can see a full list [here](https://github.com/SeleniumHQ/selenium/wiki/Grid2#optional-parameters).
@@ -79,7 +79,8 @@ public class Grid {
 
     @Before
     public void setUp() throws Exception {
-        DesiredCapabilities capabilities = DesiredCapabilities.firefox();
+        DesiredCapabilities capabilities = new DesiredCapabilities();
+        capabilities.setBrowserName("firefox");
         String url = "http://localhost:4444/wd/hub";
         driver = new RemoteWebDriver(new URL(url), capabilities);
     }
@@ -98,7 +99,7 @@ public class Grid {
 }
 ```
 
-Notice in this configuration we're using Selenium Remote (e.g., `new RemoteWebDriver()`) to connect to the grid. And we are telling the grid which browser we want to use with `desiredCapabilities` (e.g., `desiredCapabilities.firefox();`).
+Notice in this configuration we're using Selenium Remote (e.g., `new RemoteWebDriver()`) to connect to the grid. And we are telling the grid which browser we want to use with `setBrowserName` (e.g., `capabilities.setBrowser("firefox");`).
 
 You can see a full list of the available Selenium `Capabilities` options [here](https://github.com/SeleniumHQ/selenium/wiki/DesiredCapabilities).
 
@@ -117,11 +118,14 @@ When you save this file and run it (e.g., `mvn clean test` from the command-line
 
 If you're looking to set up Selenium Grid to work with Internet Explorer or Chrome, be sure to read up on how to set them up since there is additional configuration required for each. And if you run into issues, be sure to check out the browser driver documentation for the browser you're working with:
 
-+ [ChromeDriver](https://github.com/SeleniumHQ/selenium/wiki/ChromeDriver)
-+ [FirefoxDriver](https://github.com/SeleniumHQ/selenium/wiki/FirefoxDriver)
++ [ChromeDriver](https://sites.google.com/a/chromium.org/chromedriver/)
++ [EdgeDriver](https://docs.microsoft.com/en-us/microsoft-edge/webdriver)
++ [geckodriver (Firefox)](https://github.com/mozilla/geckodriver)
 + [InternetExplorerDriver](https://github.com/SeleniumHQ/selenium/wiki/InternetExplorerDriver)
-+ [SafariDriver](https://github.com/SeleniumHQ/selenium/wiki/SafariDriver)
++ [SafariDriver](https://developer.apple.com/documentation/webkit/testing_with_webdriver_in_safari)
 
 Also, it's worth noting that while Selenium Grid is a great option for scaling your test infrastructure, it by itself will NOT give you parallelization. That is to say, it can handle as many connections as you throw at it (within reason), but you will still need to find a way to execute your tests in parallel.
 
 Happy Testing!
+
+

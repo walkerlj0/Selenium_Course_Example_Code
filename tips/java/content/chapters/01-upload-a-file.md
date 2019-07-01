@@ -93,3 +93,5 @@ When we save this file and run it (e.g., `mvn clean test` from the command-line)
 This approach will work across all browsers. But if you want to use it with a remote instance (e.g., a Selenium Grid or Sauce Labs), then you'll want to have a look at [`setFileDetector`](https://seleniumhq.github.io/selenium/docs/api/java/org/openqa/selenium/remote/RemoteWebDriver.html#setFileDetector-org.openqa.selenium.remote.FileDetector-). You can see a write-up on it from Sauce Labs [here](https://saucelabs.com/resources/articles/selenium-file-upload).
 
 Happy Testing!
+
+

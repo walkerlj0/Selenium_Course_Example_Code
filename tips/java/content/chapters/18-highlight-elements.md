@@ -111,3 +111,5 @@ When you save this file and run it (e.g., `mvn clean test` from the command-line
 This approach can be handy when trying to debug your test. Alternatively, you could verify your locators by using a browser plugin like FireFinder. You can read more about how to do that in [tip 35](http://elementalselenium.com/tips/verifying-locators).
 
 Happy Testing!
+
+

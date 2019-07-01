@@ -46,9 +46,10 @@ Now let's write a test that exercises new window functionality from an applicati
 // filename: MultipleWindows.java
 // ...
     @Test
-    public void multipleWindows() {
+    public void multipleWindows() throws InterruptedException {
         driver.get("http://the-internet.herokuapp.com/windows");
         driver.findElement(By.cssSelector(".example a")).click();
+        Thread.sleep(2000);
         Object[] allWindows = driver.getWindowHandles().toArray();
         driver.switchTo().window(allWindows[0].toString());
         assertThat(driver.getTitle(), is(not("New Window")));
@@ -58,7 +59,7 @@ Now let's write a test that exercises new window functionality from an applicati
 // ...
 ```
 
-After loading the page we click the link which spawns a new window. We then grab the window handles (a.k.a. unique identifier strings which represent each open browser window) and switch between them based on their order (assuming that the first one is the originating window, and that the second one is the new window). We round this test out by performing a simple check against the title of the page to make sure Selenium is focused on the correct window.
+After loading the page we click the link which spawns a new window. We wait for the new window to open and then grab the window handles (a.k.a. unique identifier strings which represent each open browser window) and switch between them based on their order (assuming that the first one is the originating window, and that the second one is the new window). We round this test out by performing a simple check against the title of the page to make sure Selenium is focused on the correct window.
 
 While this may seem like a good approach, it can present problems later. That's because the order of the window handles is not consistent across all browsers. Some return it in the order opened, others _alphabetically_.
 
@@ -70,11 +71,12 @@ Here's a more resilient approach. One that will work across all browsers.
 // filename: MultipleWindows.java
 // ...
     @Test
-    public void multipleWindowsRedux() {
+    public void multipleWindowsRedux() throws InterruptedException {
         driver.get("http://the-internet.herokuapp.com/windows");
         String firstWindow = driver.getWindowHandle();
         String newWindow = "";
         driver.findElement(By.cssSelector(".example a")).click();
+        Thread.sleep(2000);
         Set<String> allWindows = driver.getWindowHandles();
 
         for (String window : allWindows) {
@@ -113,3 +115,5 @@ If you save this file and run it (e.g., `mvn clean test` from the command-line) 
 Hat tip to [Jim Evans](https://twitter.com/jimevansmusic) for providing the info for this tip.
 
 Happy Testing!
+
+

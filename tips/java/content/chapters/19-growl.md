@@ -66,6 +66,9 @@ Next we'll need to visit the page we want to display notifications on and do som
         // Use jQuery to add jquery-growl styles to the page
         js.executeScript("$('head').append('<link rel=\"stylesheet\" href=\"http://the-internet.herokuapp.com/css/jquery.growl.css\" type=\"text/css\" />');");
 
+        // Add small delay for jquery-growl loading
+        Thread.sleep(1000);
+
         // jquery-growl w/ no frills
         js.executeScript("$.growl({ title: 'GET', message: '/' });");
 // ...
@@ -105,3 +108,5 @@ In order to use this approach, you will need to load jQuery Growl on every page 
 I'd like to give a big thanks to Jon Austen ([Twitter](https://twitter.com/austenjt), [GitHub](https://github.com/djangofan)) for giving me the idea to use jQuery Growl.
 
 Happy Testing!
+
+

@@ -74,4 +74,7 @@ When you save this file and run it (e.g., `mvn clean test` from the command-line
 ## Outro
 
 Hopefully this tip has helped make the simple task of seeing if an element is enabled or disabled more approachable.
+
 Happy Testing!
+
+

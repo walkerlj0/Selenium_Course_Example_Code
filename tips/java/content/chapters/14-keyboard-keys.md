@@ -61,7 +61,7 @@ Let's use an example from [the-internet](https://github.com/tourdedave/the-inter
     @Test
     public void uploadFile() throws Exception {
         driver.get("http://the-internet.herokuapp.com/key_presses");
-        driver.findElement(By.id("content")).sendKeys(Keys.SPACE);
+        driver.findElement(By.id("target")).sendKeys(Keys.SPACE);
         assertThat(driver.findElement(By.id("result")).getText(), is("You entered: SPACE"));
 // ...
 ```
@@ -98,3 +98,5 @@ When you save this file and run it (e.g. `mvn clean test` from the command-line)
 If you have a specific element that you want to issue key presses to, then finding the element first is the way to go. But if you don't have a receiving element, or you need to string together multiple key presses, then the action builder is what you should reach for.
 
 Happy Testing!
+
+

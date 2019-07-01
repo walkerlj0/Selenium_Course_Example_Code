@@ -135,3 +135,5 @@ When you save and run the file (e.g., `mvn clean test` from the command-line) he
 Attribute lookups are meant for pulling information out of the page for review. While they work in this circumstance, you're better off using a selected lookup. But the approach you choose will depend on how the checkboxes you're testing are constructed. 
 
 Happy Testing!
+
+
