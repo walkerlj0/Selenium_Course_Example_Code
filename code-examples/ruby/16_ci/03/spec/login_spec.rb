@@ -1,7 +1,7 @@
 require_relative 'spec_helper'
 require_relative '../pages/login'
 
-describe 'Login', depth: 'shallow' do
+describe 'Login', :shallow do
 
   before(:each) do
     @login = Login.new(@driver)
@@ -9,17 +9,17 @@ describe 'Login', depth: 'shallow' do
 
   it 'succeeded' do
     @login.with('tomsmith', 'SuperSecretPassword!')
-    @login.success_message?.should be_displayed
+    expect(@login.success_message?).to be_truthy
   end
 
   it 'failed' do
     @login.with('asdf', 'asdf')
-    @login.failure_message?.should be_displayed
+    expect(@login.failure_message?).to be_truthy
   end
 
   it 'forced failure' do
     @login.with('asdf', 'asdf')
-    @login.failure_message?.should_not be_displayed
+    expect(@login.failure_message?).to be_falsey
   end
 
 end

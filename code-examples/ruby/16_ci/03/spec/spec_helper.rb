@@ -1,46 +1,38 @@
 require 'selenium-webdriver'
-require_relative 'support/matchers'
+require_relative 'config'
 
-RSpec.configure do |config|
+RSpec.configure do |c|
+  include Config
 
-  config.before(:each) do
-    case ENV['host']
+  c.before do |example|
+    case config[:host]
     when 'saucelabs'
-      caps = Selenium::WebDriver::Remote::Capabilities.send(ENV['browser'])
-      caps.version = ENV['browser_version']
-      caps.platform = ENV['operating_system']
-      caps[:name] = example.metadata[:full_description]
-
+      caps = Selenium::WebDriver::Remote::Capabilities.send(config[:browser_name])
+      caps[:browser_version] = config[:browser_version]
+      caps[:platform_name] = config[:platform_name]
+      url = "http://#{config[:sauce_username]}:#{config[:sauce_access_key]}@ondemand.saucelabs.com:80/wd/hub"
       @driver = Selenium::WebDriver.for(
         :remote,
-        url: "http://#{ENV['SAUCE_USERNAME']}:#{ENV['SAUCE_ACCESS_KEY']}@ondemand.saucelabs.com:80/wd/hub",
+        url: url,
         desired_capabilities: caps)
-    else
-      case ENV['browser']
-      when 'firefox'
-        @driver = Selenium::WebDriver.for :firefox
-      when 'chrome'
-        Selenium::WebDriver::Chrome::Service.executable_path = File.join(Dir.pwd, 'vendor/chromedriver')
-        @driver = Selenium::WebDriver.for :chrome
-      end
-    end
-    if ENV['host'] == 'saucelabs'
-      $job_message = "Watch a video of the test at https://saucelabs.com/tests/#{@driver.session_id}"
-    else
-      $job_message = ""
+    when 'localhost'
+      @driver = Selenium::WebDriver.for config[:browser_name].to_sym
     end
   end
 
-  config.after(:each) do
-    if ENV['host'] == 'saucelabs'
-      if example.exception.nil?
-        SauceWhisk::Jobs.pass_job @driver.session_id
-      else
-        SauceWhisk::Jobs.fail_job @driver.session_id
+  c.after do |example|
+    begin
+      if config[:host] == 'saucelabs'
+        test_passed = example.exception.nil?
+        @driver.execute_script("sauce:job-name=#{example.full_description}")
+        @driver.execute_script("sauce:job-result=#{test_passed}")
+        if !test_passed
+          puts "Watch a video of the test at https://saucelabs.com/tests/#{@driver.session_id}"
+        end
       end
+    ensure
+      @driver.quit
     end
-
-    @driver.quit
   end
 
 end
