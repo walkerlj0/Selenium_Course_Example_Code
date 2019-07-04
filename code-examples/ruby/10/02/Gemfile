@@ -1,0 +1,6 @@
+source 'https://rubygems.org'
+
+ruby '2.6.3'
+
+gem 'rspec', '~>3.8.0'
+gem 'selenium-webdriver', '~>4.0.0.alpha.2'
