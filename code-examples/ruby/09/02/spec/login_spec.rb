@@ -3,8 +3,13 @@ require_relative 'login'
 describe 'Login' do
 
   before(:each) do
-    @driver = Selenium::WebDriver.for :firefox
-    ENV['base_url'] = 'http://the-internet.herokuapp.com'
+    driver_path = File.join(Dir.pwd, 'vendor', 'geckodriver')
+    if File.file? driver_path
+      service = Selenium::WebDriver::Service.firefox(path: driver_path)
+      @driver = Selenium::WebDriver.for :firefox, service: service
+    else
+      @driver = Selenium::WebDriver.for :firefox
+    end
     @login = Login.new(@driver)
   end
 

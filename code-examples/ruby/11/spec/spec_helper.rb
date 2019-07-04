@@ -1,12 +1,18 @@
 require 'selenium-webdriver'
 
-RSpec.configure do |config|
+RSpec.configure do |c|
 
-  config.before(:each) do
-    @driver = Selenium::WebDriver.for :firefox
+  c.before do |example|
+    driver_path = File.join(Dir.pwd, 'vendor', 'geckodriver')
+    if File.file? driver_path
+      service = Selenium::WebDriver::Service.firefox(path: driver_path)
+      @driver = Selenium::WebDriver.for :firefox, service: service
+    else
+      @driver = Selenium::WebDriver.for :firefox
+    end
   end
 
-  config.after(:each) do
+  c.after do |example|
     @driver.quit
   end
 

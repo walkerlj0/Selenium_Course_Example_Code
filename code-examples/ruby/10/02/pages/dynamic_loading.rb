@@ -5,12 +5,8 @@ class DynamicLoading < BasePage
   START_BUTTON = { css: '#start button' }
   FINISH_TEXT = { id: 'finish' }
 
-  def initialize(driver)
-    super
-    visit '/dynamic_loading/1'
-  end
-
-  def start
+  def load(example_number)
+    visit 'http://the-internet.herokuapp.com/dynamic_loading/' + example_number
     click START_BUTTON
   end
 

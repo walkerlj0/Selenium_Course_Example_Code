@@ -1,40 +1,48 @@
 require 'selenium-webdriver'
+require_relative 'config'
 
-RSpec.configure do |config|
+RSpec.configure do |c|
+  include Config
 
-  config.before(:each) do
-    case ENV['host']
-    when 'saucelabs'
-      caps = Selenium::WebDriver::Remote::Capabilities.send(ENV['browser'])
-      caps.version = ENV['browser_version']
-      caps.platform = ENV['operating_system']
-      caps[:name] = example.metadata[:full_description]
-
+  c.before do |example|
+    case config[:host] when 'saucelabs'
+      caps = Selenium::WebDriver::Remote::Capabilities.send(config[:browser_name])
+      caps[:browser_version] = config[:browser_version]
+      caps[:platform_name] = config[:platform_name]
+      url = "http://#{config[:sauce_username]}:#{config[:sauce_access_key]}@ondemand.saucelabs.com:80/wd/hub"
       @driver = Selenium::WebDriver.for(
         :remote,
-        url: "http://#{ENV['SAUCE_USERNAME']}:#{ENV['SAUCE_ACCESS_KEY']}@ondemand.saucelabs.com:80/wd/hub",
+        url: url,
         desired_capabilities: caps)
-    else
-      case ENV['browser']
+    when 'localhost'
+      case config[:browser_name]
       when 'firefox'
-        @driver = Selenium::WebDriver.for :firefox
+        driver_path = File.join(Dir.pwd, 'vendor', 'geckodriver')
+        if File.file? driver_path
+          service = Selenium::WebDriver::Service.firefox(path: driver_path)
+        end
       when 'chrome'
-        Selenium::WebDriver::Chrome::Service.executable_path = File.join(Dir.pwd, 'vendor/chromedriver')
-        @driver = Selenium::WebDriver.for :chrome
+        driver_path = File.join(Dir.pwd, 'vendor', 'chromedriver')
+        if File.file? driver_path
+          service = Selenium::WebDriver::Service.chrome(path: driver_path)
+        end
+      end
+      if service
+        @driver = Selenium::WebDriver.for config[:browser_name].to_sym, service: service
+      else
+        @driver = Selenium::WebDriver.for config[:browser_name].to_sym
       end
     end
   end
 
-  config.after(:each) do
-    if ENV['host'] == 'saucelabs'
-      if example.exception.nil?
-        SauceWhisk::Jobs.pass_job @driver.session_id
-      else
-        SauceWhisk::Jobs.fail_job @driver.session_id
+  c.after do |example|
+    begin
+      if config[:host] == 'saucelabs'
+        @driver.execute_script("sauce:job-name=#{example.full_description}")
       end
+    ensure
+      @driver.quit
     end
-
-    @driver.quit
   end
 
 end

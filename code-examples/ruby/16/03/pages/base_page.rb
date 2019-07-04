@@ -8,7 +8,11 @@ class BasePage
   end
 
   def visit(url_path)
-    @driver.get config[:base_url] + url_path
+    if url_path.start_with? 'http'
+      @driver.get url_path
+    else
+      @driver.get config[:base_url] + url_path
+    end
   end
 
   def find(locator)

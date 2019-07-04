@@ -7,7 +7,7 @@ class Login
 
   def initialize(driver)
     @driver = driver
-    @driver.get ENV['base_url'] + '/login'
+    @driver.get 'http://the-internet.herokuapp.com/login'
   end
 
   def with(username, password)

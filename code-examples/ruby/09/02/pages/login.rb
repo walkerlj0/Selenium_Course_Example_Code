@@ -10,7 +10,7 @@ class Login < BasePage
 
   def initialize(driver)
     super
-    visit '/login'
+    visit 'http://the-internet.herokuapp.com/login'
     is_displayed?(LOGIN_FORM).should == true
   end
 

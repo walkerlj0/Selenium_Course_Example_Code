@@ -6,8 +6,8 @@ class BasePage
     @driver = driver
   end
 
-  def visit(url_path)
-    @driver.get ENV['base_url'] + url_path
+  def visit(url)
+    @driver.get url
   end
 
   def find(locator)
@@ -18,8 +18,8 @@ class BasePage
     find(locator).send_keys text
   end
 
-  def submit(locator)
-    find(locator).submit
+  def click(locator)
+    find(locator).click
   end
 
   def is_displayed?(locator)
@@ -28,10 +28,6 @@ class BasePage
     rescue Selenium::WebDriver::Error::NoSuchElementError
       false
     end
-  end
-
-  def click(locator)
-    find(locator).click
   end
 
   def wait_for(seconds = 15)
