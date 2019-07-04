@@ -2,3 +2,4 @@
 tmp/
 .ruby-version
 Gemfile.lock
+.DS_Store

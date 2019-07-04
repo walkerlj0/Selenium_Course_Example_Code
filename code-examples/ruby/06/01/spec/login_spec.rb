@@ -4,8 +4,12 @@ describe 'Login' do
 
   before(:each) do
     driver_path = File.join(Dir.pwd, 'vendor', 'geckodriver')
-    service = Selenium::WebDriver::Service.firefox(path: driver_path)
-    @driver = Selenium::WebDriver.for :firefox, service: service
+    if File.file? driver_path
+      service = Selenium::WebDriver::Service.firefox(path: driver_path)
+      @driver = Selenium::WebDriver.for :firefox, service: service
+    else
+      @driver = Selenium::WebDriver.for :firefox
+    end
   end
 
   after(:each) do
