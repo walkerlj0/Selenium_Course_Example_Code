@@ -3,7 +3,9 @@ require 'selenium-webdriver'
 describe 'Login' do
 
   before(:each) do
-    @driver = Selenium::WebDriver.for :firefox
+    driver_path = File.join(Dir.pwd, 'vendor', 'geckodriver')
+    service = Selenium::WebDriver::Service.firefox(path: driver_path)
+    @driver = Selenium::WebDriver.for :firefox, service: service
   end
 
   after(:each) do
