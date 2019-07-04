@@ -1,8 +1,16 @@
 def launch_in_parallel
   tags      = ENV['TAG']
   processes = ENV['PROCESSES']
-  ci        = "--format RspecJunitFormatter --out tmp/result#{ENV['TEST_ENV_NUMBER']}.xml" if ENV['CI']
-  system("parallel_rspec #{'-n ' + processes if processes} --test-options '--order random #{'--tag ' + tags if tags} #{ci if ci}' spec")
+  ci        = "--format RspecJunitFormatter " +
+              "--out tmp/result#{ENV['TEST_ENV_NUMBER']}.xml" if ENV['CI']
+  system(
+    "parallel_rspec " + 
+    "#{'-n ' + processes if processes} " +
+    "--test-options '--order random " + 
+    "#{'--tag ' + tags if tags} " +
+    "#{ci if ci}' " +
+    "spec"
+  )
 end
 
 desc 'Run tests locally'
