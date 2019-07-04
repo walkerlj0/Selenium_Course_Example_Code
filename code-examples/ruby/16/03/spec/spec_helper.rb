@@ -16,7 +16,15 @@ RSpec.configure do |c|
         url: url,
         desired_capabilities: caps)
     when 'localhost'
-      @driver = Selenium::WebDriver.for config[:browser_name].to_sym
+      case config[:browser_name]
+      when 'firefox'
+        driver_path = File.join(Dir.pwd, 'vendor', 'geckodriver')
+        service = Selenium::WebDriver::Service.firefox(path: driver_path)
+      when 'chrome'
+        driver_path = File.join(Dir.pwd, 'vendor', 'chromedriver')
+        service = Selenium::WebDriver::Service.chrome(path: driver_path)
+      end
+      @driver = Selenium::WebDriver.for config[:browser_name].to_sym, service: service
     end
   end
 
