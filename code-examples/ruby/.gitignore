@@ -1,0 +1,4 @@
+*.log
+tmp/
+.ruby-version
+Gemfile.lock
