@@ -1,7 +1,7 @@
 require_relative 'spec_helper'
 require_relative '../pages/login'
 
-describe 'Login' do
+describe 'Login', :shallow do
 
   before(:each) do
     @login = Login.new(@driver)
