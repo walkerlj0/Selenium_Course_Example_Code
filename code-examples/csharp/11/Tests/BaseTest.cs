@@ -2,41 +2,31 @@
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
-using PageObjects;
 
 namespace Tests
 {
     [TestFixture]
-    class DynamicLoadingTest : BaseTest
+    class BaseTest
     {
         protected IWebDriver Driver;
+        public static string BaseUrl;
         private static string VendorDirectory;
-        DynamicLoadingPage DynamicLoading;
 
         [SetUp]
-        public new void SetUp()
+        protected void SetUp()
         {
+            BaseUrl         = System.Environment.GetEnvironmentVariable("BASE_URL") ?? "http://the-internet.herokuapp.com";
             VendorDirectory = System.IO.Directory.GetParent(
                                 System.AppContext.BaseDirectory).
                                 Parent.Parent.Parent.FullName
                                 + @"/vendor";
             var Service = FirefoxDriverService.CreateDefaultService(VendorDirectory);
             Driver = new FirefoxDriver(Service);
-            DynamicLoading = new DynamicLoadingPage(Driver);
         }
-
-        [Test]
-        public void ElementHidden()
+        [TearDown]
+        protected void TearDown()
         {
-            DynamicLoading.LoadExample(1);
-            Assert.That(DynamicLoading.FinishTextPresent);
-        }
-
-        [Test]
-        public void ElementRendered()
-        {
-            DynamicLoading.LoadExample(2);
-            Assert.That(DynamicLoading.FinishTextPresent);
+            Driver.Quit();
         }
     }
 }

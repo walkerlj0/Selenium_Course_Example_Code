@@ -1,5 +1,4 @@
 ﻿using OpenQA.Selenium;
-using OpenQA.Selenium.Support.UI;
 
 namespace PageObjects
 {
@@ -9,9 +8,9 @@ namespace PageObjects
 
         protected BasePage(IWebDriver driver)
         {
-            this.Driver = driver;
+            Driver = driver;
         }
-
+            
         protected void Visit(string url)
         {
             Driver.Navigate().GoToUrl(url);

@@ -19,7 +19,7 @@ namespace PageObjects
                 Driver.Navigate().GoToUrl(url);
             } else
             {
-                Driver.Navigate().GoToUrl(Tests.BaseTest.ApplicationBaseUrl + url);
+                Driver.Navigate().GoToUrl(Tests.BaseTest.BaseUrl + url);
             }
         }
 

@@ -1,9 +1,10 @@
 ﻿using System;
-using System.Configuration;
-using OpenQA.Selenium;
 using NUnit.Framework;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.IE;
+using OpenQA.Selenium.Edge;
 using OpenQA.Selenium.Remote;
 
 namespace Tests
@@ -12,57 +13,86 @@ namespace Tests
     class BaseTest
     {
         protected IWebDriver Driver;
-        public static string ApplicationBaseUrl;
-        private static string BrowserName;
+        public static string BaseUrl;
         private static string VendorDirectory;
         private static string Host;
+        private static string BrowserName;
         private static string BrowserVersion;
-        private static string Platform;
-
-        private void LoadConfigValues()
-        {
-            var configReader    = new AppSettingsReader();
-            Host                = (string)configReader.GetValue("Host", typeof(string));
-            BrowserName         = (string)configReader.GetValue("BrowserName", typeof(string));
-            BrowserVersion      = (string)configReader.GetValue("BrowserVersion", typeof(string));
-            Platform            = (string)configReader.GetValue("Platform", typeof(string));
-            ApplicationBaseUrl  = (string)configReader.GetValue("ApplicationBaseUrl", typeof(string));
-            VendorDirectory 	= System.IO.Directory.GetParent(
-                                    System.AppDomain.CurrentDomain.BaseDirectory).
-                                    Parent.Parent.FullName
-                                    + @"\Vendor";
-        }
+        private static string PlatformName;
 
         [SetUp]
         protected void SetUp()
         {
-            LoadConfigValues();
+            BaseUrl         = System.Environment.GetEnvironmentVariable("BASE_URL") ?? "http://the-internet.herokuapp.com";
+            Host            = System.Environment.GetEnvironmentVariable("HOST") ?? "saucelabs";
+            BrowserName     = System.Environment.GetEnvironmentVariable("BROWSER_NAME") ?? "ie";
+            BrowserVersion  = System.Environment.GetEnvironmentVariable("BROWSER_VERSION") ?? "10.0";
+            PlatformName    = System.Environment.GetEnvironmentVariable("PLATFORM_NAME") ?? "Windows 8";
+            VendorDirectory = System.IO.Directory.GetParent(
+                                System.AppContext.BaseDirectory).
+                                Parent.Parent.Parent.FullName
+                                + @"/vendor";
+            var sauceUsername = System.Environment.GetEnvironmentVariable("SAUCE_USERNAME");
+            var sauceAccessKey = System.Environment.GetEnvironmentVariable("SAUCE_ACCESS_KEY");
+            var url = new Uri($"http://{sauceUsername}:{sauceAccessKey}@ondemand.saucelabs.com:80/wd/hub");
             switch (Host.ToLower())
             {
                 case "localhost":
                     switch (BrowserName.ToLower())
                     {
                         case "firefox":
+                        {
                             var Service = FirefoxDriverService.CreateDefaultService(VendorDirectory);
                             Driver = new FirefoxDriver(Service);
                             break;
+                        }
                         case "chrome":
-                            Driver = new ChromeDriver(VendorDirectory);
+                        {
+                            var Service = ChromeDriverService.CreateDefaultService(VendorDirectory);
+                            Driver = new ChromeDriver(Service);
                             break;
+                        }
                     }
                     break;
                 case "saucelabs":
-                    DesiredCapabilities caps = new DesiredCapabilities();
-                    caps.SetCapability(CapabilityType.BrowserName, BrowserName);
-                    caps.SetCapability(CapabilityType.Version, BrowserVersion);
-                    caps.SetCapability(CapabilityType.Platform, Platform);
-                    caps.SetCapability("username", System.Environment.GetEnvironmentVariable("SAUCE_USERNAME"));
-                    caps.SetCapability("accessKey", System.Environment.GetEnvironmentVariable("SAUCE_ACCESS_KEY"));
-                    Driver = new RemoteWebDriver(new Uri("http://ondemand.saucelabs.com:80/wd/hub"), caps);
+                    switch (BrowserName.ToLower())
+                    {
+                        case "chrome":
+                        {
+                            ChromeOptions options = new ChromeOptions();
+                            options.PlatformName = PlatformName;
+                            options.BrowserVersion = BrowserVersion;
+                            Driver = new RemoteWebDriver(url, options.ToCapabilities());
+                            break;
+                        }
+                        case "edge":
+                        {
+                            EdgeOptions options = new EdgeOptions();
+                            options.PlatformName = PlatformName;
+                            options.BrowserVersion = BrowserVersion;
+                            Driver = new RemoteWebDriver(url, options.ToCapabilities());
+                            break;
+                        }
+                        case "firefox":
+                        {
+                            ChromeOptions options = new ChromeOptions();
+                            options.PlatformName = PlatformName;
+                            options.BrowserVersion = BrowserVersion;
+                            Driver = new RemoteWebDriver(url, options.ToCapabilities());
+                            break;
+                        }
+                        case "ie":
+                        {
+                            InternetExplorerOptions options = new InternetExplorerOptions();
+                            options.PlatformName = PlatformName;
+                            options.BrowserVersion = BrowserVersion;
+                            Driver = new RemoteWebDriver(url, options.ToCapabilities());
+                            break;
+                        }
+                    }
                     break;
             }
         }
-
         [TearDown]
         protected void TearDown()
         {

@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using System;
+using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
 using PageObjects;
@@ -6,27 +7,22 @@ using PageObjects;
 namespace Tests
 {
     [TestFixture]
-    class LoginTest
+    class LoginTest : BaseTest
     {
-        IWebDriver Driver;
+        protected IWebDriver Driver;
+        private static string VendorDirectory;
         LoginPage Login;
 
         [SetUp]
-        public void SetUp()
+        public new void SetUp()
         {
-            var VendorDirectory = System.IO.Directory.GetParent(
-                                    System.AppDomain.CurrentDomain.BaseDirectory).
-                                    Parent.Parent.FullName
-                                    + @"\Vendor";
+            VendorDirectory = System.IO.Directory.GetParent(
+                                System.AppContext.BaseDirectory).
+                                Parent.Parent.Parent.FullName
+                                + @"/vendor";
             var Service = FirefoxDriverService.CreateDefaultService(VendorDirectory);
             Driver = new FirefoxDriver(Service);
             Login = new LoginPage(Driver);
-        }
-
-        [TearDown]
-        public void TearDown()
-        {
-            Driver.Quit();
         }
 
         [Test]
@@ -37,7 +33,7 @@ namespace Tests
         }
 
         [Test]
-        public void BadPasswordProvided()
+        public void InvalidAccount()
         {
             Login.With("tomsmith", "bad password");
             Assert.That(Login.FailureMessagePresent);

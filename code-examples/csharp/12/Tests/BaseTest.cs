@@ -1,6 +1,6 @@
-﻿using System.Configuration;
-using OpenQA.Selenium;
+﻿using System;
 using NUnit.Framework;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Chrome;
 
@@ -10,37 +10,35 @@ namespace Tests
     class BaseTest
     {
         protected IWebDriver Driver;
-        public static string ApplicationBaseUrl;
-        private static string BrowserName;
+        public static string BaseUrl;
         private static string VendorDirectory;
-
-        private void LoadConfigValues()
-        {
-            var configReader    = new AppSettingsReader();
-            BrowserName         = (string)configReader.GetValue("BrowserName", typeof(string));
-            ApplicationBaseUrl  = (string)configReader.GetValue("ApplicationBaseUrl", typeof(string));
-            VendorDirectory     = System.IO.Directory.GetParent(
-                                    System.AppDomain.CurrentDomain.BaseDirectory).
-                                    Parent.Parent.FullName
-                                    + @"\Vendor";
-        }
+        private static string BrowserName;
 
         [SetUp]
         protected void SetUp()
         {
-            LoadConfigValues();
+            BaseUrl         = System.Environment.GetEnvironmentVariable("BASE_URL") ?? "http://the-internet.herokuapp.com";
+            BrowserName     = System.Environment.GetEnvironmentVariable("BROWSER_NAME") ?? "firefox";
+            VendorDirectory = System.IO.Directory.GetParent(
+                                System.AppContext.BaseDirectory).
+                                Parent.Parent.Parent.FullName
+                                + @"/vendor";
             switch (BrowserName.ToLower())
             {
                 case "firefox":
+                {
                     var Service = FirefoxDriverService.CreateDefaultService(VendorDirectory);
                     Driver = new FirefoxDriver(Service);
                     break;
+                }
                 case "chrome":
-                    Driver = new ChromeDriver(VendorDirectory);
+                {
+                    var Service = ChromeDriverService.CreateDefaultService(VendorDirectory);
+                    Driver = new ChromeDriver(Service);
                     break;
+                }
             }
         }
-
         [TearDown]
         protected void TearDown()
         {

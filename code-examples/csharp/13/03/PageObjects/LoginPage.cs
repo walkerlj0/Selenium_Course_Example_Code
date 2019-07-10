@@ -12,7 +12,7 @@ namespace PageObjects
         By SuccessMessage = By.CssSelector(".flash.success");
         By FailureMessage = By.CssSelector(".flash.error");
 
-        public LoginPage(IWebDriver driver) : base(driver)
+        public LoginPage(IWebDriver driver)
         {
             Visit("/login");
             Assert.That(IsDisplayed(LoginForm));
@@ -27,13 +27,11 @@ namespace PageObjects
 
         public bool SuccessMessagePresent()
         {
-            IsDisplayed(SuccessMessage, 1);
             return IsDisplayed(SuccessMessage);
         }
 
         public bool FailureMessagePresent()
         {
-            IsDisplayed(FailureMessage, 1);
             return IsDisplayed(FailureMessage);
         }
     }

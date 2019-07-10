@@ -44,8 +44,8 @@ namespace PageObjects
         protected bool IsDisplayed(By locator, int maxWaitTime)
         {
             try {
-                WebDriverWait Wait = new WebDriverWait(Driver, System.TimeSpan.FromSeconds(maxWaitTime));
-                Wait.Until(ExpectedConditions.ElementIsVisible(locator));
+                WebDriverWait wait = new WebDriverWait(Driver, System.TimeSpan.FromSeconds(maxWaitTime));
+                wait.Until(ExpectedConditions.ElementIsVisible(locator));
                 return true;
             } catch(OpenQA.Selenium.WebDriverTimeoutException) {
                 return false;

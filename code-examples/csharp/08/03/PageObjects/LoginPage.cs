@@ -3,9 +3,8 @@ using NUnit.Framework;
 
 namespace PageObjects
 {
-    class LoginPage
+    class LoginPage : BasePage
     {
-        IWebDriver Driver;
         By LoginForm = By.Id("login");
         By UsernameInput = By.Id("username");
         By PasswordInput = By.Id("password");
@@ -15,7 +14,6 @@ namespace PageObjects
 
         public LoginPage(IWebDriver driver)
         {
-            Driver = driver;
             Driver.Navigate().GoToUrl("http://the-internet.herokuapp.com/login");
             Assert.That(Driver.FindElement(LoginForm).Displayed);
         }
@@ -25,7 +23,6 @@ namespace PageObjects
             Driver.FindElement(UsernameInput).SendKeys(username);
             Driver.FindElement(PasswordInput).SendKeys(password);
             Driver.FindElement(SubmitButton).Click();
-            System.Threading.Thread.Sleep(1000);
         }
 
         public bool SuccessMessagePresent()

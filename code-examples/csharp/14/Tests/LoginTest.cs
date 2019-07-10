@@ -23,7 +23,7 @@ namespace Tests
         }
 
         [Test]
-        public void BadPasswordProvided()
+        public void InvalidAccount()
         {
             Login.With("tomsmith", "bad password");
             Assert.That(Login.FailureMessagePresent);

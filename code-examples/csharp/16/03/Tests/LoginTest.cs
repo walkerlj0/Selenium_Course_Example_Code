@@ -25,7 +25,7 @@ namespace Tests
 
         [Test]
         [Category("Deep")]
-        public void BadPasswordProvided()
+        public void InvalidAccount()
         {
             Login.With("tomsmith", "bad password");
             Assert.That(Login.FailureMessagePresent);

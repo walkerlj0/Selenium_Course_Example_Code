@@ -2,9 +2,8 @@
 
 namespace PageObjects
 {
-    class LoginPage
+    class LoginPage : BasePage
     {
-        IWebDriver Driver;
         By UsernameInput = By.Id("username");
         By PasswordInput = By.Id("password");
         By SubmitButton = By.CssSelector("button");
@@ -13,7 +12,6 @@ namespace PageObjects
 
         public LoginPage(IWebDriver driver)
         {
-            Driver = driver;
             Driver.Navigate().GoToUrl("http://the-internet.herokuapp.com/login");
         }
 
@@ -22,7 +20,6 @@ namespace PageObjects
             Driver.FindElement(UsernameInput).SendKeys(username);
             Driver.FindElement(PasswordInput).SendKeys(password);
             Driver.FindElement(SubmitButton).Click();
-            System.Threading.Thread.Sleep(1000);
         }
 
         public bool SuccessMessagePresent()
