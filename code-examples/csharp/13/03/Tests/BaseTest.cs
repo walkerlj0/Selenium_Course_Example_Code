@@ -96,26 +96,17 @@ namespace Tests
         protected void TearDown()
         {
             if (Host.Equals("saucelabs"))
-                {
-                  var testName = TestContext.CurrentContext.Test.Name;
-                  bool testPassed = TestContext.CurrentContext.Result.Outcome.Status.ToString() == "Passed";
-                try
-                {
-                    ((IJavaScriptExecutor)Driver).ExecuteScript("sauce:job-name=" + testName);
-                    ((IJavaScriptExecutor)Driver).ExecuteScript("sauce:job-result=" + (testPassed ? "passed" : "failed"));
-                    if(!testPassed)
-                    {
-                        TestContext.WriteLine($"See a job at https://saucelabs.com/tests/{((RemoteWebDriver)Driver).SessionId}");
-                    }
-                }    
-                finally
-                {
-                    Driver.Quit();
-                }
-            } else
             {
-                Driver.Quit();
+                var testName = TestContext.CurrentContext.Test.Name;
+                bool testPassed = TestContext.CurrentContext.Result.Outcome.Status.ToString() == "Passed";
+                ((IJavaScriptExecutor)Driver).ExecuteScript("sauce:job-name=" + testName);
+                ((IJavaScriptExecutor)Driver).ExecuteScript("sauce:job-result=" + (testPassed ? "passed" : "failed"));
+                if(!testPassed)
+                {
+                    TestContext.WriteLine($"See a job at https://saucelabs.com/tests/{((RemoteWebDriver)Driver).SessionId}");
+                }
             }
+            Driver.Quit();
         }
     }
 }

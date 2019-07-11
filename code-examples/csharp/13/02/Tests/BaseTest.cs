@@ -96,20 +96,11 @@ namespace Tests
         protected void TearDown()
         {
             if (Host.Equals("saucelabs"))
-                {
-                  var testName = TestContext.CurrentContext.Test.Name;
-                try
-                {
-                    ((IJavaScriptExecutor)Driver).ExecuteScript("sauce:job-name=" + testName);
-                }    
-                finally
-                {
-                    Driver.Quit();
-                }
-            } else
             {
-                Driver.Quit();
+                var testName = TestContext.CurrentContext.Test.Name;
+                ((IJavaScriptExecutor)Driver).ExecuteScript("sauce:job-name=" + testName);
             }
+            Driver.Quit();
         }
     }
 }

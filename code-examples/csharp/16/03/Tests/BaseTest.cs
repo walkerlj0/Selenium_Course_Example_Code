@@ -95,12 +95,12 @@ namespace Tests
         [TearDown]
         protected void TearDown()
         {
-            if (Host.Equals("saucelabs"))
+            try
+            {
+                if (Host.Equals("saucelabs"))
                 {
                   var testName = TestContext.CurrentContext.Test.Name;
                   bool testPassed = TestContext.CurrentContext.Result.Outcome.Status.ToString() == "Passed";
-                try
-                {
                     ((IJavaScriptExecutor)Driver).ExecuteScript("sauce:job-name=" + testName);
                     ((IJavaScriptExecutor)Driver).ExecuteScript("sauce:job-result=" + (testPassed ? "passed" : "failed"));
                     if(!testPassed)
@@ -108,11 +108,8 @@ namespace Tests
                         throw new System.Exception("https://saucelabs.com/tests/" + ((RemoteWebDriver)Driver).SessionId);
                     }
                 }    
-                finally
-                {
-                    Driver.Quit();
-                }
-            } else
+            }
+            finally
             {
                 Driver.Quit();
             }
