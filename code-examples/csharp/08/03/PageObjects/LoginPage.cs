@@ -1,5 +1,4 @@
 ﻿using OpenQA.Selenium;
-using NUnit.Framework;
 
 namespace PageObjects
 {
@@ -15,7 +14,10 @@ namespace PageObjects
         public LoginPage(IWebDriver driver)
         {
             Driver.Navigate().GoToUrl("http://the-internet.herokuapp.com/login");
-            Assert.That(Driver.FindElement(LoginForm).Displayed);
+            if (!Driver.FindElement(LoginForm).Displayed)
+            {
+                throw new System.Exception("Page not ready");
+            }
         }
 
         public void With(string username, string password)
