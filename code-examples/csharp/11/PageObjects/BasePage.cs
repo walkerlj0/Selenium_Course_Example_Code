@@ -51,7 +51,7 @@ namespace PageObjects
         {
             try {
                 WebDriverWait wait = new WebDriverWait(Driver, System.TimeSpan.FromSeconds(maxWaitTime));
-                wait.Until(ExpectedConditions.ElementIsVisible(locator));
+                wait.Until(driver => driver.FindElement(locator).Displayed);
                 return true;
             } catch(OpenQA.Selenium.WebDriverTimeoutException) {
                 return false;

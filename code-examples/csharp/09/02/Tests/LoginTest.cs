@@ -17,9 +17,9 @@ namespace Tests
         public new void SetUp()
         {
             VendorDirectory = System.IO.Directory.GetParent(
-                                System.AppContext.BaseDirectory).
-                                Parent.Parent.Parent.FullName
-                                + @"/vendor";
+                System.AppContext.BaseDirectory).
+                Parent.Parent.Parent.FullName
+                + @"/vendor";
             var Service = FirefoxDriverService.CreateDefaultService(VendorDirectory);
             Driver = new FirefoxDriver(Service);
             Login = new LoginPage(Driver);
@@ -37,6 +37,7 @@ namespace Tests
         {
             Login.With("tomsmith", "bad password");
             Assert.That(Login.FailureMessagePresent);
+            //Assert.That(!Login.SuccessMessagePresent);
         }
     }
 }
