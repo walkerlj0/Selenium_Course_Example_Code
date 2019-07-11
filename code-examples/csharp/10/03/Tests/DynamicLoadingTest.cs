@@ -9,17 +9,16 @@ namespace Tests
     [TestFixture]
     class DynamicLoadingTest : BaseTest
     {
+        private static string VendorDirectory = System.IO.Directory.GetParent(
+            System.AppContext.BaseDirectory).
+            Parent.Parent.Parent.FullName
+            + @"/vendor";
         protected IWebDriver Driver;
-        private static string VendorDirectory;
         DynamicLoadingPage DynamicLoading;
 
         [SetUp]
         public new void SetUp()
         {
-            VendorDirectory = System.IO.Directory.GetParent(
-                                System.AppContext.BaseDirectory).
-                                Parent.Parent.Parent.FullName
-                                + @"/vendor";
             var Service = FirefoxDriverService.CreateDefaultService(VendorDirectory);
             Driver = new FirefoxDriver(Service);
             DynamicLoading = new DynamicLoadingPage(Driver);

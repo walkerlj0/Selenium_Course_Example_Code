@@ -12,9 +12,12 @@ namespace Tests
     [TestFixture]
     class BaseTest
     {
+        private static string VendorDirectory = System.IO.Directory.GetParent(
+            System.AppContext.BaseDirectory).
+            Parent.Parent.Parent.FullName
+            + @"/vendor";
         protected IWebDriver Driver;
         public static string BaseUrl;
-        private static string VendorDirectory;
         private static string Host;
         private static string BrowserName;
         private static string BrowserVersion;
@@ -28,10 +31,6 @@ namespace Tests
             BrowserName     = System.Environment.GetEnvironmentVariable("BROWSER_NAME") ?? "ie";
             BrowserVersion  = System.Environment.GetEnvironmentVariable("BROWSER_VERSION") ?? "10.0";
             PlatformName    = System.Environment.GetEnvironmentVariable("PLATFORM_NAME") ?? "Windows 8";
-            VendorDirectory = System.IO.Directory.GetParent(
-                                System.AppContext.BaseDirectory).
-                                Parent.Parent.Parent.FullName
-                                + @"/vendor";
             var sauceUsername = System.Environment.GetEnvironmentVariable("SAUCE_USERNAME");
             var sauceAccessKey = System.Environment.GetEnvironmentVariable("SAUCE_ACCESS_KEY");
             var url = new Uri($"http://{sauceUsername}:{sauceAccessKey}@ondemand.saucelabs.com:80/wd/hub");
