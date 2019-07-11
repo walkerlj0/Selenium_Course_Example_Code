@@ -1,15 +1,5 @@
-# 1.0.1
-## November 2015
-- 13/02 thru 16/03. Added missing @Override to the starting method in tests/Base.java (Mark Winspear)
-- Updated selenium-java from 2.45.0 to 2.48.2
-- Updated junit from 4.11 to 4.12
-- Updated saucerest from 1.0.17 to 1.0.27
-- Updated maven-surefire-plugin from 2.18.1 to 2.19
-- 11/02 thru 16/03. Ported Config.java from an interface to a static class (Benjamin Limb)
-- 14/01 thru 16/03. Updated random order execution to use Maven Surefire's built-in functionality (removing random-jUnit)
-- 13/04 thru 16/03. Updated Sauce Connect from 4.3.6 to 4.3.11
-- 13/01 thru 16/03. Updated ChromeDriver from 2.14 to 2.20
-
-# 1.0.0
-## March 2015
-- It's alive!
+# 4.0.0
+## July 2019
+- Updated to Selenium 4.0.0 alpha and NUnit 3.11.0
+- Moved away from static config files, in favor of environment variables for runtime configuration
+- Examples built and tested on a non-Windows machine natively (!)
