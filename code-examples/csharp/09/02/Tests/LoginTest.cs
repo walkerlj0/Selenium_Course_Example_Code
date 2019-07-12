@@ -36,7 +36,7 @@ namespace Tests
         {
             Login.With("tomsmith", "bad password");
             Assert.That(Login.FailureMessagePresent);
-            //Assert.That(!Login.SuccessMessagePresent);
+            //Assert.That(Login.SuccessMessagePresent, Is.False);
         }
     }
 }
