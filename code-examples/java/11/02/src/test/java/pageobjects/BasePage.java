@@ -6,6 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import static tests.Config.*;
+import java.time.Duration;
 
 public class BasePage {
 
@@ -14,8 +15,7 @@ public class BasePage {
     public BasePage(WebDriver driver) {
         this.driver = driver;
     }
-
-    public void visit(String url) {
+public void visit(String url) {
        if (url.contains("http"))  {
            driver.get(url);
        } else {
@@ -45,7 +45,7 @@ public class BasePage {
 
     public Boolean isDisplayed(By locator, Integer timeout) {
         try {
-            WebDriverWait wait = new WebDriverWait(driver, timeout);
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeout));
             wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
         } catch (org.openqa.selenium.TimeoutException exception) {
             return false;

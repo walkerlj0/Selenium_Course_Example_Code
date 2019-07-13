@@ -24,11 +24,6 @@ public class Login extends BasePage {
         type(username, usernameLocator);
         type(password, passwordLocator);
         click(submitButton);
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
     }
 
     public Boolean successMessagePresent() {

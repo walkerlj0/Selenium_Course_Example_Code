@@ -3,9 +3,9 @@ require_relative 'base_page'
 class Login < BasePage
 
   LOGIN_FORM  = { id: 'login' }
-    USERNAME_INPUT = { id: 'username' }
-    PASSWORD_INPUT = { id: 'password' }
-    SUBMIT_BUTTON  = { css: 'button'  }
+  USERNAME_INPUT = { id: 'username' }
+  PASSWORD_INPUT = { id: 'password' }
+  SUBMIT_BUTTON  = { css: 'button'  }
   SUCCESS_MESSAGE = { css: '.flash.success' }
   FAILURE_MESSAGE = { css: '.flash.error'   }
 

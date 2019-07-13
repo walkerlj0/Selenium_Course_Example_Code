@@ -74,7 +74,7 @@ namespace Tests
                         }
                         case "firefox":
                         {
-                            ChromeOptions options = new ChromeOptions();
+                            FirefoxOptions options = new FirefoxOptions();
                             options.PlatformName = PlatformName;
                             options.BrowserVersion = BrowserVersion;
                             Driver = new RemoteWebDriver(url, options.ToCapabilities());

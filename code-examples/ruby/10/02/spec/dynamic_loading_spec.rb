@@ -1,4 +1,4 @@
-require_relative 'dynamic_loading'
+require_relative '../pages/dynamic_loading'
 
 describe 'Dynamic Loading' do
 
@@ -19,7 +19,7 @@ describe 'Dynamic Loading' do
 
   it 'Example 1: Hidden Element' do
     @dynamic_loading.load('1')
-    @dynamic_loading.finish_text_present?.should be_true
+    expect(@dynamic_loading.finish_text_present?).to be_truthy
   end
 
 end

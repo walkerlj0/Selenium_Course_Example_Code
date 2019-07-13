@@ -20,9 +20,9 @@ describe 'Login' do
     @driver.get 'http://the-internet.herokuapp.com/login'
     @driver.find_element(id: 'username').send_keys('tomsmith')
     @driver.find_element(id: 'password').send_keys('SuperSecretPassword!')
-    @driver.find_element(id: 'login').submit
-    @driver.find_element(class: 'flash success').displayed?.should be_true
-    #@driver.find_element(class: 'flash successasdf').displayed?.should be_true
+    @driver.find_element(css: 'button').click
+    expect(@driver.find_element(css: '.flash.success').displayed?).to be_truthy
+    #expect(@driver.find_element(css: '.flash.successasdf').displayed?).to be_truthy
   end
 
 end

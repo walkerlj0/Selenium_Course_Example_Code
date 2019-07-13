@@ -7,7 +7,7 @@ using PageObjects;
 namespace Tests
 {
     [TestFixture]
-    class LoginTest : BaseTest
+    class LoginTest
     {
         private static string VendorDirectory = System.IO.Directory.GetParent(
             System.AppContext.BaseDirectory).
@@ -22,6 +22,12 @@ namespace Tests
             var Service = FirefoxDriverService.CreateDefaultService(VendorDirectory);
             Driver = new FirefoxDriver(Service);
             Login = new LoginPage(Driver);
+        }
+
+        [TearDownj
+        protected void TearDown()
+        {
+            Driver.Quit();
         }
 
         [Test]

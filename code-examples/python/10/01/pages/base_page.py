@@ -1,6 +1,6 @@
 from selenium.common.exceptions import NoSuchElementException, TimeoutException
 from selenium.webdriver.support import expected_conditions
-from selenium.webdriver.support._wait import WebDriverWait
+from selenium.webdriver.support.wait import WebDriverWait
 
 
 class BasePage():

@@ -2,8 +2,9 @@
 
 namespace PageObjects
 {
-    class LoginPage : BasePage
+    class LoginPage
     {
+        IWebDriver Driver;
         By LoginForm = By.Id("login");
         By UsernameInput = By.Id("username");
         By PasswordInput = By.Id("password");
@@ -13,6 +14,7 @@ namespace PageObjects
 
         public LoginPage(IWebDriver driver)
         {
+            Driver = driver;
             Driver.Navigate().GoToUrl("http://the-internet.herokuapp.com/login");
             if (!Driver.FindElement(LoginForm).Displayed)
             {

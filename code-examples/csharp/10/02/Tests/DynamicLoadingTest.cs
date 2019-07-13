@@ -24,6 +24,12 @@ namespace Tests
             DynamicLoading = new DynamicLoadingPage(Driver);
         }
 
+        [TearDownj
+        protected void TearDown()
+        {
+            Driver.Quit();
+        }
+
         [Test]
         public void ElementHidden()
         {

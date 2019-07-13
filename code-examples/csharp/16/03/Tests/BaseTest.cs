@@ -74,7 +74,7 @@ namespace Tests
                         }
                         case "firefox":
                         {
-                            ChromeOptions options = new ChromeOptions();
+                            FirefoxOptions options = new FirefoxOptions();
                             options.PlatformName = PlatformName;
                             options.BrowserVersion = BrowserVersion;
                             Driver = new RemoteWebDriver(url, options.ToCapabilities());
@@ -95,24 +95,18 @@ namespace Tests
         [TearDown]
         protected void TearDown()
         {
-            try
+            if (Host.Equals("saucelabs"))
             {
-                if (Host.Equals("saucelabs"))
+                var testName = TestContext.CurrentContext.Test.Name;
+                bool testPassed = TestContext.CurrentContext.Result.Outcome.Status.ToString() == "Passed";
+                ((IJavaScriptExecutor)Driver).ExecuteScript("sauce:job-name=" + testName);
+                ((IJavaScriptExecutor)Driver).ExecuteScript("sauce:job-result=" + (testPassed ? "passed" : "failed"));
+                if(!testPassed)
                 {
-                  var testName = TestContext.CurrentContext.Test.Name;
-                  bool testPassed = TestContext.CurrentContext.Result.Outcome.Status.ToString() == "Passed";
-                    ((IJavaScriptExecutor)Driver).ExecuteScript("sauce:job-name=" + testName);
-                    ((IJavaScriptExecutor)Driver).ExecuteScript("sauce:job-result=" + (testPassed ? "passed" : "failed"));
-                    if(!testPassed)
-                    {
-                        throw new System.Exception("https://saucelabs.com/tests/" + ((RemoteWebDriver)Driver).SessionId);
-                    }
-                }    
-            }
-            finally
-            {
-                Driver.Quit();
-            }
+                    TestContext.WriteLine($"See a job at https://saucelabs.com/tests/{((RemoteWebDriver)Driver).SessionId}");
+                }
+            }    
+            Driver.Quit();
         }
     }
 }

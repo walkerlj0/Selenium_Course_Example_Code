@@ -37,10 +37,8 @@ public class TestLogin extends BaseTest {
     @Test
     @Category(Shallow.class)
     public void forcedFailure() {
-        login.with("tomsmithasdf", "SuperSecretPassword!");
-
-        assertTrue("success message wasn't present after logging in",
-                login.successMessagePresent());
+        login.with("tomsmith", "bad password");
+        assertTrue(login.successMessagePresent());
     }
 
 }

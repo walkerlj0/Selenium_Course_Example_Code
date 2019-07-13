@@ -4,8 +4,7 @@ def launch_in_parallel
   system(
     "parallel_rspec " + 
     "#{'-n ' + processes if processes} " +
-    "--test-options '--order random " + 
-    "#{'--tag ' + tags if tags} " +
+    "--test-options '--order random " + "#{'--tag ' + tags if tags}' " +
     "spec"
   )
 end

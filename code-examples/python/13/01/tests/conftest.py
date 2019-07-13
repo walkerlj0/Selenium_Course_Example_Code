@@ -41,8 +41,8 @@ def driver(request):
     if config.host == "saucelabs":
         _desired_caps = {}
         _desired_caps["browserName"] = config.browser
-        _desired_caps["version"] = config.browserversion
-        _desired_caps["platform"] = config.platform
+        _desired_caps["browserVersion"] = config.browserversion
+        _desired_caps["platformName"] = config.platform
         _credentials = os.environ["SAUCE_USERNAME"] + \
             ":" + os.environ["SAUCE_ACCESS_KEY"]
         _url = "http://" + _credentials + "@ondemand.saucelabs.com:80/wd/hub"

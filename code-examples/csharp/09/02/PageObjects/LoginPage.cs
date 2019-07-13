@@ -11,7 +11,7 @@ namespace PageObjects
         By SuccessMessage = By.CssSelector(".flash.success");
         By FailureMessage = By.CssSelector(".flash.error");
 
-        public LoginPage(IWebDriver driver)
+        public LoginPage(IWebDriver driver) : base(driver)
         {
             Visit("http://the-internet.herokuapp.com/login");
             if (!IsDisplayed(LoginForm))

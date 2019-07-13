@@ -7,8 +7,8 @@ module.exports = {
   sauce: {
     username: process.env.SAUCE_USERNAME,
     accessKey: process.env.SAUCE_ACCESS_KEY,
-    platform: process.env.PLATFORM || 'Windows 7',
-    browserName: process.env.BROWSER || 'internet explorer',
-    version: process.env.BROWSER_VERSION || '11.0',
+    browserName: process.env.BROWSER_NAME || 'internet explorer',
+    browserVersion: process.env.BROWSER_VERSION || '11.0',
+    platformName: process.env.PLATFORM_NAME || 'Windows 7',
   },
 }

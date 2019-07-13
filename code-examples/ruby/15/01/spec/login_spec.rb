@@ -9,12 +9,12 @@ describe 'Login', :shallow do
 
   it 'succeeded' do
     @login.with('tomsmith', 'SuperSecretPassword!')
-    @login.success_message_present?.should be_true
+    expect(@login.success_message_present?).to be_truthy
   end
 
   it 'failed' do
     @login.with('asdf', 'asdf')
-    @login.failure_message_present?.should be_true
+    expect(@login.failure_message_present?).to be_truthy
   end
 
 end

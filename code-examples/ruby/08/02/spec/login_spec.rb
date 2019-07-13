@@ -1,5 +1,5 @@
 require 'selenium-webdriver'
-require_relative 'login'
+require_relative '../pages/login'
 
 describe 'Login' do
 
@@ -20,13 +20,13 @@ describe 'Login' do
 
   it 'succeeded' do
     @login.with('tomsmith', 'SuperSecretPassword!')
-    @login.success_message_present?.should be_true
+    expect(@login.success_message_present?).to be_truthy
   end
 
   it 'failed' do
     @login.with('asdf', 'asdf')
-    @login.failure_message_present?.should be_true
-    #@login.success_message_present?.should be_false
+    expect(@login.failure_message_present?).to be_truthy
+    #expect(@login.success_message_present?).to be_falsey
   end
 
 end
