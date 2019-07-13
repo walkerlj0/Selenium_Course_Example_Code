@@ -39,3 +39,5 @@ Chapter 18 paints a picture of the Selenium landscape so you're better able to f
 If you find an error in the book (e.g., grammar issue, code issue, etc.) or have questions/feedback -- please feel free to e-mail me at <hello@seleniumguidebook.com>.
 
 If you submit something and I end up using it in a future version of the book I'll give you a shout-out in the Acknowledgements.
+
+
