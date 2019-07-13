@@ -1,12 +1,12 @@
 # Acknowledgements
 
-It all started with a notion - write things down. That way when I was asked a question, rather than explain the answer poorly, I could just give someone a coherent, detailed explanation of how I solved a certain problem that they're facing right now with Selenium. It started as a couple of blog posts, quickly turned into a weekly tip newsletter, and not-too-long after that it became a book. This book.
+It all started with a notion - write things down. That way when I was asked a question, rather than explain the answer poorly, I could just give someone a coherent, detailed explanation of how I solved a certain problem that they're facing right now with Selenium.
 
-The early access edition of The Selenium Guidebook first came out 3 years ago, and since then it's been read by hundreds of people. I'm humbled by the interest and the feedback that's been given over the years.
+It started as a couple of blog posts, quickly turned into a weekly tip newsletter, and not-too-long after that it became a book. This book. The Ruby edition is where it all started. Since then it's evolved into five editions -- one for each of the officially supported programming languages in the Selenium project.
 
-I'd like to thank Matt Allen, Donald Bialer, Katy Burns, Sergey Franchuk, Brian Goad, Jonathan Lipps, Mary Ann May-Pumphrey, Jimi Odeyemi, Kent O'Driscoll, Matthew Pickle, Ken Pier (you will be missed), Jason Riley, Dmytro Shpakovskyi, and Ilkka Urtti. Each of you have contributed something truly helpful to make the book better than what it was way back when. THANK YOU!
+As the adage goes, I stand on the shoulders of giants. Thanks to everyone who's helped me along the way, and to the contributors of the Selenium project.
 
-I'd also like to thank you, the reader. I hope you find it useful in your daily work.
+And thanks for reading! I hope you find it useful in your daily work.
 
 
 Cheers,  
