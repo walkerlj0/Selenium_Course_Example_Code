@@ -102,6 +102,7 @@ Alternatively, we can achieve the same thing without forging a cookie. Instead w
     {
         Driver.Navigate().GoToUrl("http://the-internet.herokuapp.com/abtest?optimizely_opt_out=true");
         Driver.SwitchTo().Alert().Dismiss();
+        Thread.Sleep(1000); // to account for tranition to page load start
         string HeadingText = Driver.FindElement(By.TagName("h3")).Text;
         Assert.That(HeadingText.StartsWith("No A/B Test"));
     }
@@ -112,7 +113,7 @@ By appending `?optimizely_opt_out=true` to the URL we achieve the same outcome a
 
 ## Expected Behavior
 
-When you save this file and run it (e.g., `nunit3-console.exe .\ABTestOptOut.sln` from the command-line) here is what will happen:
+When you save this file and run it (e.g., `dotnet test` from the command-line) here is what will happen:
 
 + Open the browser
 + Opt-out of the split tests (either by cookie or appended URL)
@@ -124,3 +125,5 @@ When you save this file and run it (e.g., `nunit3-console.exe .\ABTestOptOut.sln
 ## Outro
 
 Happy Testing!
+
+

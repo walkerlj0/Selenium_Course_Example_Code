@@ -229,7 +229,7 @@ Not only will these selectors work in current _and_ older browsers, but they are
 
 ## Expected Behavior
 
-When you save this file and run it (e.g., `nunit3-console.exe .\Tables.sln` from the command-line) here is what will happen:
+When you save this file and run it (e.g., `dotnet test` from the command-line) here is what will happen:
 
 + Open the browser
 + Load the page
@@ -245,3 +245,5 @@ CSS Pseudo-classes are a great resource and can unlock a lot of potential for yo
 For more info on CSS Pseudo-classes see [this write-up by Sauce Labs](https://saucelabs.com/resources/selenium/css-selectors), and maybe [the W3C spec CSS3](http://www.w3.org/TR/css3-selectors/#structural-pseudos) if you're feeling adventurous. And for a more in-depth walk-through on HTML Table design check out Treehouse's write-up [here](http://blog.teamtreehouse.com/how-to-code-sortable-tabular-data-with-jquery).
 
 Happy Testing!
+
+

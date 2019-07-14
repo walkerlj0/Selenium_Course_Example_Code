@@ -102,7 +102,7 @@ As an aside, in addition to selecting by text you can also select by value.
 
 ## Expected Behavior
 
-When you save this file and run it (e.g., `nunit3-console.exe .\Dropdown.sln` from the command-line) here is what will happen for either example:
+When you save this file and run it (e.g., `dotnet test` from the command-line) here is what will happen for either example:
 
 + Open the browser
 + Visit the example application
@@ -118,3 +118,5 @@ Hopefully this tip will help you breeze through selecting items from a dropdown 
 Thanks to Jonathan Taylor for contributing the initial C# code for this tip!
 
 Happy Testing!
+
+

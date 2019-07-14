@@ -62,7 +62,7 @@ Now to wire up our test.
     public void UploadFileFromDisk()
     {
         string File = "SomeFile.txt";
-        string FilePath = @"C:\Temp\" + File;
+        string FilePath = System.Environment.CurrentDirectory + $"/../../../{File}";
 
         Driver.Navigate().GoToUrl("http://the-internet.herokuapp.com/upload");
         Driver.FindElement(By.Id("file-upload")).SendKeys(FilePath);
@@ -74,15 +74,15 @@ Now to wire up our test.
 }
 ```
 
-We create an `UploadFileFromDisk()` method and add a `[Test]` attribute so it is run as a test. In it we leverage a file from local disk by specifying the file (e.g., `SomeFile.txt`) and its path (e.g., currently set to `C:\Temp\`, adapt as needed to suit your needs).
+We create an `UploadFileFromDisk()` method and add a `[Test]` attribute so it is run as a test. In it we leverage a file from local disk by specifying the file (e.g., `SomeFile.txt`) and its path (relative to the current working directory).
 
-__NOTE: The value for `FilePath` starts with a `@` symbol. This denotes that what follows after it is a string literal. If we didn't have it, we would need to escape our backslashes (e.g, `"C:\\Temp\\").__
+__NOTE: The value for `FilePath` uses a `$` symbol. This denotes that what follows after it is a string containing a variable (a.k.a. interpolation).__
 
 Next we visit the page with the upload form, input the string value of `FilePath` (e.g., the full path to the file plus the filename with its extension), and submit the form. After the file is uploaded to the page it will display the filename it just processed. We use this text to perform our assertion (making sure the uploaded file is what we expect).
 
 ## Expected Behavior
 
-When we save this file and run it (e.g., `nunit3-console.exe .\FileUpload.sln` from the command-line) here is what will happen:
+When we save this file and run it (e.g., `dotnet test` from the command-line) here is what will happen:
 
 + Open the browser
 + Visit the upload form page
@@ -98,3 +98,5 @@ This approach will work across all browsers. If you want to use it with a remote
 Thanks to Jonathan Taylor for contributing the initial C# code for this tip!
 
 Happy Testing!
+
+

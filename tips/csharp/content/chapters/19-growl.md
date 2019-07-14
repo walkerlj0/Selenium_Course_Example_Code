@@ -70,6 +70,7 @@ Next we'll need to visit the page we want to display notifications on and do som
         JSDriver.ExecuteScript("$('head').append(\"<link rel='stylesheet' " +
           "href='http://the-internet.herokuapp.com/css/jquery.growl.css' " +
           "type='text/css' />\");");
+        Thread.Sleep(1000);
 
         // trigger a plain jQuery Growl notification to display on the page
         JSDriver.ExecuteScript("$.growl({ title: 'GET', message: '/' });");
@@ -93,7 +94,7 @@ The `Thread.Sleep(5000);` is there for demonstration purposes. It will keep the 
 
 ## Expected Behavior
 
-When you save this file and run it (e.g., `nunit3-console.exe .\Growl.sln` from the command-line) this is what will happen:
+When you save this file and run it (e.g., `dotnet test` from the command-line) this is what will happen:
 
 + Browser opens
 + Visit the page
@@ -110,3 +111,5 @@ In order to use this approach you will need to load jQuery Growl on every page y
 I'd like to give a big thanks to Jon Austen ([Twitter](https://twitter.com/austenjt), [GitHub](https://github.com/djangofan), [Blog](http://jonausten.info/)) for giving me the idea to use jQuery Growl with Selenium.
 
 Happy Testing!
+
+

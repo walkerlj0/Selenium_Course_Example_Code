@@ -38,21 +38,24 @@ public class FileDownload
     [SetUp]
     public void SetUp()
     {
-        FolderPath = @"C:\Temp\" + System.Guid.NewGuid().ToString();
+        FolderPath = System.Environment.CurrentDirectory + 
+          $"/../../../{System.Guid.NewGuid().ToString()}";
         Directory.CreateDirectory(FolderPath);
 
         FirefoxProfile Profile = new FirefoxProfile();
-        profile.SetPreference("browser.download.dir", FolderPath);
-        profile.SetPreference("browser.download.folderList", 2);
-        profile.SetPreference("browser.helperApps.neverAsk.saveToDisk",
+        Profile.SetPreference("browser.download.dir", FolderPath);
+        Profile.SetPreference("browser.download.folderList", 2);
+        Profile.SetPreference("browser.helperApps.neverAsk.saveToDisk",
                               "image/jpeg, application/pdf, application/octet-stream");
-        profile.SetPreference("pdfjs.disabled", true);
-        Driver = new FirefoxDriver(Profile);
+        Profile.SetPreference("pdfjs.disabled", true);
+        FirefoxOptions Options = new FirefoxOptions();
+        Options.Profile = Profile;
+        Driver = new FirefoxDriver(Options);
     }
 // ...
 ```
 
-Our `SetUp()` method is where the magic is happening in this example. In it we're creating a uniquely named temp directory (e.g., `System.Guid.NewGuid().ToString();`), configuring a browser profile object (for Firefox in this case), and plying it with the necessary configuration parameters to make it automatically download the file where we want (e.g., in the newly created temp directory).
+Our `SetUp()` method is where the magic is happening in this example. In it we're creating a uniquely named temp directory in the current working directory (e.g., `System.Guid.NewGuid().ToString();`), configuring a browser profile object (for Firefox in this case), plying it with the necessary configuration parameters to make it automatically download the file where we want (e.g., in the newly created temp directory), and wrapping it in an options object we pass on when creating the instance of Selenium.
 
 Here's a breakdown of each of the browser preferences being set:
 
@@ -105,7 +108,7 @@ After visiting the page we find the first download link and click it. The click 
 
 ## Expected Behavior
 
-When you save this file and run it (e.g., `nunit3-console.exe .\FileDownload.sln` from the command-line) here is will happen:
+When you save this file and run it (e.g., `dotnet test` from the command-line) here is will happen:
 
 + Create a uniquely named temp directory in the present working directory
 + Open the browser
@@ -124,3 +127,5 @@ A similar approach can be applied to some other browsers with varying configurat
 Thanks to Jonathan Taylor for contributing the initial C# code for this tip!
 
 Happy Testing!
+
+

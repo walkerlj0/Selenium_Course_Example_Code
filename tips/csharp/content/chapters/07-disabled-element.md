@@ -61,7 +61,7 @@ After visiting the page we find the dropdown list with the `SelectElement` funct
 
 ## Expected Behavior
 
-When you save this file and run it (e.g., `nunit3-console.exe .\DisabledElements.sln` from the command-line) here is what will happen:
+When you save this file and run it (e.g., `dotnet test` from the command-line) here is what will happen:
 
 + Open a browser
 + Visit the page
@@ -74,3 +74,5 @@ When you save this file and run it (e.g., `nunit3-console.exe .\DisabledElements
 Hopefully this tip has helped make the simple task of seeing if an element is enabled or disabled more approachable.
 
 Happy Testing!
+
+

@@ -67,7 +67,7 @@ After accepting the alert our browser window will automatically regain focus and
 
 ## Expected Behavior
 
-When you save this file and run it (e.g., `nunit3-console.exe .\JavaScriptAlerts.sln` from the command-line) here is what will happen:
+When you save this file and run it (e.g., `dotnet test` from the command-line) here is what will happen:
 
 + Open the browser
 + Load the page
@@ -81,3 +81,5 @@ When you save this file and run it (e.g., `nunit3-console.exe .\JavaScriptAlerts
 ## Outro
 
 Happy Testing!
+
+

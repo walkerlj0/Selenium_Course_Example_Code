@@ -123,7 +123,7 @@ In this case, when referencing the return value it's a simple matter of checking
 
 ## Expected Behavior
 
-When you save and run the test file (e.g., `nunit3-console.exe .\Checkboxes.sln` from the command-line) here is what will happen:
+When you save and run the test file (e.g., `dotnet test` from the command-line) here is what will happen:
 
 + Open the browser
 + Visit the page
@@ -136,3 +136,5 @@ When you save and run the test file (e.g., `nunit3-console.exe .\Checkboxes.sln`
 Attribute lookups are meant for pulling information out of the page for review. While they work in this circumstance you're better off using a selected lookup. But the approach you choose will depend on how the checkboxes you're testing are constructed.
 
 Happy Testing!
+
+

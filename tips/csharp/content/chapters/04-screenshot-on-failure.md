@@ -20,7 +20,6 @@ using NUnit.Framework;
 using NUnit.Framework.Interfaces;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
-using System.Drawing.Imaging;
 
 public class Screenshot
 {
@@ -50,12 +49,11 @@ Notice in the teardown we have a conditional statement before we call `Driver.Qu
 // ...
     private void TakeScreenshot()
     {
-        string SaveLocation = @"C:\Temp\" +
-                               "failshot_" +
-                               TestContext.CurrentContext.Test.FullName +
-                               ".png";
+        string TestName     = TestContext.CurrentContext.Test.FullName;
+        string SaveLocation = System.Environment.CurrentDirectory + 
+          $"/../../../failshot_{TestName}.png";
         ITakesScreenshot ScreenshotDriver = (ITakesScreenshot) Driver;
-        ScreenshotDriver.GetScreenshot().SaveAsFile(SaveLocation, ImageFormat.Png);
+        ScreenshotDriver.GetScreenshot().SaveAsFile(SaveLocation);
     }
 // ...
 ```
@@ -80,14 +78,16 @@ Now let's wire up our test with a forced failure.
 
 ## Expected Behavior
 
-When you save this file and run it (`nunit3-console.exe .\Screenshot.sln` from the command-line) here is what will happen:
+When you save this file and run it (`dotnet test` from the command-line) here is what will happen:
 
 + Open the browser
 + Visit the page
 + Test Fails
-+ Selenium Captures a screenshot in `C:\Temp` with the name `failshot_Screenshot.ScreenShotOnFailure.png`
++ Selenium Captures a screenshot in the current working directory with the name `failshot_Screenshot.ScreenShotOnFailure.png`
 + Close the browser
 
 ## Outro
 
 Happy Testing!
+
+

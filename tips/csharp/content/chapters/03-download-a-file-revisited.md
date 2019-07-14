@@ -69,7 +69,7 @@ Once we receive the response we check its header for the content type (e.g., `As
 
 ## Expected Behavior
 
-When you save this and run it (e.g., `nunit3-console.exe .\FileDownloadRevisited.sln` from the command-line) here is what will will happen:
+When you save this and run it (e.g., `dotnet test` from the command-line) here is what will will happen:
 
 + Open the browser
 + Load the page
@@ -85,3 +85,5 @@ When you save this and run it (e.g., `nunit3-console.exe .\FileDownloadRevisited
 Compared to the browser specific configuration with Selenium this is hands-down a leaner, faster, and more maintainable approach. But if you are dealing with file downloads that are getting rendered in-memory within the browser (rather than being served by a flat URL) then the browser specific configuration is the better approach.
 
 Happy Testing!
+
+

@@ -66,7 +66,7 @@ After visiting the page we find the first avatar and store it in a variable (`Av
 
 ## Expected Behavior
 
-When you save this file and run it (e.g., `nunit3-console.exe .\Hovers.sln` from the command-line) here is what will happen:
+When you save this file and run it (e.g., `dotnet test` from the command-line) here is what will happen:
 
 + Open the browser
 + Visit the page
@@ -77,3 +77,5 @@ When you save this file and run it (e.g., `nunit3-console.exe .\Hovers.sln` from
 ## Outro
 
 Happy Testing!
+
+

@@ -17,7 +17,7 @@ First let's include our requisite classes for our test framework (e.g., `NUnit.F
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
-using System.Collections.Generic;
+using System.Threading;
 
 public class MultipleWindows
 {
@@ -77,6 +77,7 @@ Here's a more resilient approach. One that will work across all browsers.
         string SecondWindow = "";
 
         Driver.FindElement(By.CssSelector(".example a")).Click();
+        Thread.Sleep(1000); // to account for window loading time
 
         var Windows = Driver.WindowHandles;
         foreach(var Window in Windows)
@@ -100,7 +101,7 @@ Now that we have two windows open we grab all of the window handles and search t
 
 ## Expected Behavior
 
-If you save this file and run it (e.g., `nunit3-console.exe .\MultipleWindows.sln` from the command-line) here is what will happen for either example.
+If you save this file and run it (e.g., `dotnet test` from the command-line) here is what will happen for either example.
 
 + Open the browser
 + Visit the page
@@ -114,3 +115,5 @@ If you save this file and run it (e.g., `nunit3-console.exe .\MultipleWindows.sl
 Hat tip to [Jim Evans](https://twitter.com/jimevansmusic) for providing the info for this tip, and Jonathan Taylor for the initial code contribution.
 
 Happy Testing!
+
+

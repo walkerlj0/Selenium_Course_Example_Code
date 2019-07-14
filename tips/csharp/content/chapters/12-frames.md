@@ -47,14 +47,14 @@ Now onto our test. In it we'll step through [an example of nested frames](http:/
     public void NestedFrames()
     {
         Driver.Navigate().GoToUrl("http://the-internet.herokuapp.com/nested_frames");
-        Driver.SwitchTo().Frame("frame-top");
-        Driver.SwitchTo().Frame("frame-middle");
+        Driver.SwitchTo().Frame(Driver.FindElement(By.Name("frame-top")));
+        Driver.SwitchTo().Frame(Driver.FindElement(By.Name("frame-middle")));
         Assert.That(Driver.FindElement(By.Id("content")).Text.Equals("MIDDLE"));
     }
 // ...
 ```
 
-With Selenium's [`.SwitchTo()`](http://seleniumhq.github.io/selenium/docs/api/dotnet/html/M_OpenQA_Selenium_IWebDriver_SwitchTo.htm) method we can easily switch to the frame we want. When using it for frames (e.g., `Driver.SwitchTo().Frame();`) it accepts either an ID or name attribute. But in order to get the text of the middle frame (e.g., a frame nested within another frame), we need to switch to the parent frame (e.g., the top frame) first _and then_ switch to the child frame (e.g., the middle frame).
+With Selenium's [`.SwitchTo()`](http://seleniumhq.github.io/selenium/docs/api/dotnet/html/M_OpenQA_Selenium_IWebDriver_SwitchTo.htm) method we can easily switch to the frame we want. When using it for frames (e.g., `Driver.SwitchTo().Frame();`) it accepts a found element. But in order to get the text of the middle frame (e.g., a frame nested within another frame), we need to switch to the parent frame (e.g., the top frame) first _and then_ switch to the child frame (e.g., the middle frame).
 
 Once we've done that we're able to find the element we need, grab its text, and assert that it's what we expect.
 
@@ -71,7 +71,7 @@ Here is a more likely example you'll run into -- working with a WYSIWYG Editor l
     public void Iframes()
     {
         Driver.Navigate().GoToUrl("http://the-internet.herokuapp.com/tinymce");
-        Driver.SwitchTo().Frame("mce_0_ifr");
+        Driver.SwitchTo().Frame(Driver.FindElement(By.Id("mce_0_ifr")));
         IWebElement Editor = Driver.FindElement(By.Id("tinymce"));
         string StartText = Editor.Text;
         Editor.Clear();
@@ -104,7 +104,7 @@ Here is what that looks like in practice.
 
 ## Expected Behavior
 
-When you save this file and run it (e.g., `nunit3-console.exe .\Frames.sln` from the command-line) here is what will happen:
+When you save this file and run it (e.g., `dotnet test` from the command-line) here is what will happen:
 
 <u>Example 1</u>
 
@@ -135,3 +135,5 @@ Now you're ready to handily defeat frames when they cross your path.
 Thanks to Jonathan Taylor for contributing the initial C# code for this tip!
 
 Happy Testing!
+
+

@@ -94,7 +94,7 @@ Now to use this in our test is a simple matter to finding an element and passing
 
 ## Expected Behavior
 
-When you save this file and run it (e.g., `nunit3-console.exe .\HighlightElements.sln` from the command-line) here is what will happen.
+When you save this file and run it (e.g., `dotnet test` from the command-line) here is what will happen.
 
 + Open the browser
 + Load the page
@@ -106,6 +106,6 @@ When you save this file and run it (e.g., `nunit3-console.exe .\HighlightElement
 
 ## Outro
 
-This approach can be handy when trying to debug your test. Alternatively, you could verify your locators in-browser with a plugin like FireFinder, or through the JavaScript console. You can read more about how to do that in [tip 35](/tips/verifying-locators).
-
 Happy Testing!
+
+

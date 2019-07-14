@@ -66,6 +66,7 @@ Now let's wire up a simple test to use our new Grid.
 // filename: Grid.cs
 using NUnit.Framework;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Remote;
 using System;
 
@@ -76,10 +77,9 @@ public class Grid
     [SetUp]
     public void SetUp()
     {
-        DesiredCapabilities Capabilities = new DesiredCapabilities();
-        Capabilities.SetCapability(CapabilityType.BrowserName, "firefox");
+        var Options = new FirefoxOptions();
         string GridURL = "http://localhost:4444/wd/hub";
-        Driver = new RemoteWebDriver(new Uri(GridURL), Capabilities);
+        Driver = new RemoteWebDriver(new Uri(GridURL), Options.ToCapabilities());
     }
 
     [TearDown]
@@ -97,13 +97,11 @@ public class Grid
 }
 ```
 
-Notice in this configuration we're using Selenium Remote (e.g., `new RemoteWebDriver()`) to connect to the grid. And we are telling the grid which browser we want to use with `DesiredCapabilities` (e.g., `DesiredCapabilities.SetCapability(CapabilityType.BrowserName, "firefox");`).
-
-You can see a full list of the available Selenium `Capabilities` options [here](https://github.com/SeleniumHQ/selenium/wiki/DesiredCapabilities).
+Notice in this configuration we're using Selenium Remote (e.g., `new RemoteWebDriver()`) to connect to the grid. And we are telling the grid which browser we want to use with a browser options object (e.g., `var Options = new FirefoxOptions()`). We then pass this on to the `RemoteWebDriver` and convert it to desired capabilities (e.g., `Options.ToCapabilities()`).
 
 ## Expected Behavior
 
-After standing up your own grid, when you save this file and run it (e.g., `nunit3-console.exe .\Grid.sln` from the command-line) here is what will happen:
+After standing up your own grid, when you save this file and run it (e.g., `dotnet test` from the command-line) here is what will happen:
 
 + Connect to the Grid Hub
 + Hub determines which node has the necessary browser/platform combination
@@ -116,11 +114,14 @@ After standing up your own grid, when you save this file and run it (e.g., `nuni
 
 If you're looking to set up Selenium Grid to work with Internet Explorer or Chrome, be sure to read up on how to set them up since there is additional configuration required for each. And if you run into issues be sure to check out the browser driver documentation for the browser you're working with:
 
-+ [ChromeDriver](https://github.com/SeleniumHQ/selenium/wiki/ChromeDriver)
-+ [FirefoxDriver](https://github.com/SeleniumHQ/selenium/wiki/FirefoxDriver)
++ [ChromeDriver](https://sites.google.com/a/chromium.org/chromedriver/)
++ [EdgeDriver](https://docs.microsoft.com/en-us/microsoft-edge/webdriver)
++ [geckodriver (Firefox)](https://github.com/mozilla/geckodriver)
 + [InternetExplorerDriver](https://github.com/SeleniumHQ/selenium/wiki/InternetExplorerDriver)
-+ [SafariDriver](https://github.com/SeleniumHQ/selenium/wiki/SafariDriver)
++ [SafariDriver](https://developer.apple.com/documentation/webkit/testing_with_webdriver_in_safari)
 
 Also, it's worth noting that while Selenium Grid is a great option for scaling your test infrastructure, it by itself will NOT give you parallelization. It can handle as many connections as you throw at it (within reason), but you will still need to find a way to execute your tests in parallel.
 
 Happy Testing!
+
+

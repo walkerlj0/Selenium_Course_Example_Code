@@ -56,14 +56,7 @@ Clicking the context menu item will trigger a JavaScript alert which will say `Y
         Driver.Navigate().GoToUrl("http://the-internet.herokuapp.com/context_menu");
         IWebElement MenuArea = Driver.FindElement(By.Id("hot-spot"));
         Actions Builder = new Actions(Driver);
-        Builder.ContextClick(MenuArea)
-            .SendKeys(Keys.ArrowDown)
-            .SendKeys(Keys.ArrowDown)
-            .SendKeys(Keys.ArrowDown)
-            .SendKeys(Keys.ArrowDown)
-            .SendKeys(Keys.ArrowDown)
-            .SendKeys(Keys.Enter)
-            .Perform();
+        Builder.ContextClick(MenuArea).Perform();
         IAlert Alert = Driver.SwitchTo().Alert();
         Assert.That(Alert.Text.Equals("You selected a context menu"));
     }
@@ -72,12 +65,11 @@ Clicking the context menu item will trigger a JavaScript alert which will say `Y
 
 ## Expected Behavior
 
-When you save this file and run it (e.g., `nunit3-console.exe .\RightClick.sln` from the command-line) here is what will happen.
+When you save this file and run it (e.g., `dotnet test` from the command-line) here is what will happen.
 
 + Open the browser
 + Visit the page
 + Find and right-click the area of the page that renders a custom context menu
-+ Navigate to the context menu option with keyboard keys and select it
 + JavaScript alert appears
 + Grab the text of the JavaScript alert
 + Assert that the text from the alert is what we expect
@@ -88,3 +80,5 @@ When you save this file and run it (e.g., `nunit3-console.exe .\RightClick.sln` 
 To learn more about context menus check out [this write-up from the Tree House blog](http://blog.teamtreehouse.com/building-html5-context-menus).
 
 Happy Testing!
+
+

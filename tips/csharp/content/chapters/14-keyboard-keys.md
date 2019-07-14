@@ -59,7 +59,7 @@ Let's use an example from [the-internet](https://github.com/tourdedave/the-inter
     {
         Driver.Navigate().GoToUrl("http://the-internet.herokuapp.com/key_presses");
 
-        Driver.FindElement(By.Id("content")).SendKeys(Keys.Space);
+        Driver.FindElement(By.Id("target")).SendKeys(Keys.Space);
         Assert.That(Driver.FindElement(By.Id("result")).Text.Equals("You entered: SPACE"));
 // ...
 ```
@@ -80,7 +80,7 @@ Alternatively, we can issue a key press without finding the element by using the
 
 ## Expected Behavior
 
-When you save this file and run it (e.g. `nunit3-console.exe .\KeyboardKeys.sln` from the command-line) here is what will happen:
+When you save this file and run it (e.g. `dotnet test` from the command-line) here is what will happen:
 
 + Open the browser
 + Visit the page
@@ -95,3 +95,5 @@ When you save this file and run it (e.g. `nunit3-console.exe .\KeyboardKeys.sln`
 If you have a specific element that you want to issue key presses to, then finding the element first is the way to go. But if you don't have a receiving element, or you need to string together multiple key presses, then the action builder is what you should reach for.
 
 Happy Testing!
+
+
