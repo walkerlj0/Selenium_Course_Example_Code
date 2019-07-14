@@ -29,13 +29,14 @@ def setup
   @download_dir = File.join(Dir.pwd, UUID.new.generate)
   FileUtils.mkdir_p @download_dir
 
-  # Firefox
   profile = Selenium::WebDriver::Firefox::Profile.new
   profile['browser.download.dir'] = @download_dir
-  profile['browser.download.folderList'] = 2
-  profile['browser.helperApps.neverAsk.saveToDisk'] = 'images/jpeg, application/pdf, application/octet-stream'
-  profile['pdfjs.disabled'] = true
-  @driver = Selenium::WebDriver.for :firefox, profile: profile
+  profile['browser.download.folderList'] = 2 # the last folder specified for download
+  profile['browser.helperApps.neverAsk.saveToDisk'] = 'image/jpeg, application/pdf, application/octet-stream'
+  profile['pdfjs.disabled'] = true # need to set with PDFs or else it will view them in the browser
+  options = Selenium::WebDriver::Firefox::Options.new
+  options.profile = profile
+  @driver = Selenium::WebDriver.for(:firefox, options: options)
 end
 ```
 
@@ -48,7 +49,7 @@ We're also configuring a browser profile object (for Firefox in this case) and p
 + `browser.helperApps.neverAsk.saveToDisk` tells Firefox when not to prompt for a file download. It accepts a string of [the file's MIME type](http://en.wikipedia.org/wiki/Internet_media_type). If you want to specify more than one, you do it with a comma-separated string.
 + `pdfjs.disabled` is for when downloading PDFs. This overrides the sensible default in Firefox that previews PDFs in the browser. It accepts a boolean.
 
-This profile object is then passed into our instance of Selenium.
+This profile object is then stored in a options object and passed into our instance of Selenium.
 
 Now let's add some `teardown` and `run` methods.
 
@@ -104,4 +105,5 @@ A similar approach can be applied to some other browsers with varying configurat
 In a future tip I'll cover a more reliable, faster, and scalable browser agnostic approach to downloading files.
 
 Until then, Happy Testing!
+
 

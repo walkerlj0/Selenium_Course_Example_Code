@@ -55,6 +55,9 @@ run do
   # Step 3: use jQuery to add jquery-growl styles to the page
   @driver.execute_script("$('head').append('<link rel=\"stylesheet\" href=\"http://the-internet.herokuapp.com/css/jquery.growl.css\" type=\"text/css\" />');")
 
+  # add delay for resource loading
+  sleep 1
+
   # Step 4: display a message with jquery-growl
   @driver.execute_script("$.growl({ title: 'GET', message: '/' });")
 

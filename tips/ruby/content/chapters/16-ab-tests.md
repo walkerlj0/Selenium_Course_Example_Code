@@ -83,6 +83,7 @@ Here we are navigating to the main page of the site first and then adding the op
 run do
   @driver.get 'http://the-internet.herokuapp.com/abtest?optimizely_opt_out=true'
   @driver.switch_to.alert.dismiss
+  sleep 1 # to account for the document load to start
   expect(@driver.find_element(css: 'h3').text).to eql('No A/B Test')
 end
 ```

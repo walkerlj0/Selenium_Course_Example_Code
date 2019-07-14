@@ -67,8 +67,9 @@ run do
 
   first_window = @driver.window_handle
   @driver.find_element(css: '.example a').click
+  sleep 2 # to account for new window loading
   all_windows = @driver.window_handles
-  new_window = all_windows.select { |this_window| this_window != first_window }
+  new_window = all_windows.find { |this_window| this_window != first_window }
 
   @driver.switch_to.window(first_window)
   expect(@driver.title).not_to eql 'New Window'

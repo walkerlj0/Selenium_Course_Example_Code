@@ -51,7 +51,7 @@ Let's use an example from [the-internet](https://github.com/tourdedave/the-inter
 ```ruby
 run do
   @driver.get 'http://the-internet.herokuapp.com/key_presses'
-  @driver.find_element(class: 'example').send_keys :space
+  @driver.find_element(id: 'target').send_keys :space
   expect(@driver.find_element(id: 'result').text).to eql('You entered: SPACE')
 end
 ```

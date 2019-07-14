@@ -41,13 +41,15 @@ Now onto our test. In it we'll step through [an example of nested frames](http:/
 ```ruby
 run do
   @driver.get 'http://the-internet.herokuapp.com/nested_frames'
-  @driver.switch_to.frame('frame-top')
-  @driver.switch_to.frame('frame-middle')
+  frame_top = @driver.find_element(name: 'frame-top')
+  @driver.switch_to.frame(frame_top)
+  frame_middle = @driver.find_element(name: 'frame-middle')
+  @driver.switch_to.frame(frame_middle)
   expect(@driver.find_element(id: 'content').text).to eql 'MIDDLE'
 end
 ```
 
-With Selenium's [`.switch_to.frame`](https://seleniumhq.github.io/selenium/docs/api/rb/Selenium/WebDriver/TargetLocator.html#frame-instance_method) method we can easily switch to the frame we want. It accepts either an ID or name attribute. But in order to get the text of the middle frame (e.g., a frame nested within another frame), we need to switch to the parent frame (e.g., the top frame) _and then_ switch to the child frame (e.g., the middle frame).
+With Selenium's [`.switch_to.frame`](https://seleniumhq.github.io/selenium/docs/api/rb/Selenium/WebDriver/TargetLocator.html#frame-instance_method) method we can easily switch to the frame we want. It accepts a found element. But in order to get the text of the middle frame (e.g., a frame nested within another frame), we need to switch to the parent frame (e.g., the top frame) _and then_ switch to the child frame (e.g., the middle frame).
 
 Once we've done that we're able to find the element we need, grab it's text, and assert that it's what we expect.
 
@@ -62,7 +64,7 @@ Here is a more likely example you'll run into -- working with a WYSIWYG Editor l
 
 run do
   @driver.get 'http://the-internet.herokuapp.com/tinymce'
-  @driver.switch_to.frame('mce_0_ifr')
+  @driver.switch_to.frame(@driver.find_element(id: 'mce_0_ifr'))
   editor = @driver.find_element(id: 'tinymce')
   before_text = editor.text
   editor.clear
