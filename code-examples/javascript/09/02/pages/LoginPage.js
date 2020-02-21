@@ -1,30 +1,35 @@
+const BasePage = require('./BasePage')
+
+const LOGIN_FORM = { id: 'login' }
 const USERNAME_INPUT = { id: 'username' }
 const PASSWORD_INPUT = { id: 'password' }
 const SUBMIT_BUTTON = { css: 'button' }
 const SUCCESS_MESSAGE = { css: '.flash.success' }
 const FAILURE_MESSAGE = { css: '.flash.error' }
 
-class LoginPage {
+class LoginPage extends BasePage {
   constructor(driver) {
-    this.driver = driver
+    super(driver)
   }
 
   async load() {
-    await this.driver.get('http://the-internet.herokuapp.com/login')
+    await this.visit('http://the-internet.herokuapp.com/login')
+    if (!(await this.isDisplayed(LOGIN_FORM)))
+      throw new Error('Login form not loaded')
   }
 
   async authenticate(username, password) {
-    await this.driver.findElement(USERNAME_INPUT).sendKeys(username)
-    await this.driver.findElement(PASSWORD_INPUT).sendKeys(password)
-    await this.driver.findElement(SUBMIT_BUTTON).click()
+    await this.type(USERNAME_INPUT, username)
+    await this.type(PASSWORD_INPUT, password)
+    await this.click(SUBMIT_BUTTON)
   }
 
-  async successMessagePresent() {
-    return await this.driver.findElement(SUCCESS_MESSAGE).isDisplayed()
+  successMessagePresent() {
+    return this.isDisplayed(SUCCESS_MESSAGE)
   }
 
-  async failureMessagePresent() {
-    return await this.driver.findElement(FAILURE_MESSAGE).isDisplayed()
+  failureMessagePresent() {
+    return this.isDisplayed(FAILURE_MESSAGE)
   }
 }
 

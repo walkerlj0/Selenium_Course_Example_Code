@@ -2,7 +2,7 @@ require('./spec_helper')
 const assert = require('assert')
 const DynamicLoadingPage = require('../pages/DynamicLoadingPage')
 
-describe('Dynamic Loading', function() {
+describe('Dynamic Loading @deep', function() {
   let dynamicLoading
 
   beforeEach(async function() {

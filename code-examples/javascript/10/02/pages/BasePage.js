@@ -1,3 +1,5 @@
+const Until = require('selenium-webdriver').until
+
 class BasePage {
   constructor(driver) {
     this.driver = driver
@@ -19,11 +21,20 @@ class BasePage {
     await this.find(locator).sendKeys(inputText)
   }
 
-  async isDisplayed(locator) {
-    try {
-      return await this.find(locator).isDisplayed()
-    } catch (error) {
-      return false
+  async isDisplayed(locator, timeout) {
+    if (timeout) {
+      await this.driver.wait(Until.elementLocated(locator), timeout)
+      await this.driver.wait(
+        Until.elementIsVisible(this.find(locator)),
+        timeout
+      )
+      return true
+    } else {
+      try {
+        return await this.find(locator).isDisplayed()
+      } catch (error) {
+        return false
+      }
     }
   }
 }

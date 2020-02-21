@@ -1,0 +1,8 @@
+{
+  "name": "selenium-guidebook-examples",
+  "dependencies": {
+    "mocha": "^6.1.4",
+    "mocha-parallel-tests": "^2.0.6-alpha.3",
+    "selenium-webdriver": "^4.0.0-alpha.1"
+  }
+}
