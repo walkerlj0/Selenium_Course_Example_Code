@@ -26,7 +26,7 @@ public class BaseTest {
         protected void before() throws Throwable {
             if (host.equals("saucelabs")) {
                 MutableCapabilities capabilities = new MutableCapabilities();
-                capabilities.setCapability("browserNameName", browserName);
+                capabilities.setCapability("browserName", browserName);
                 capabilities.setCapability("version", browserVersion);
                 capabilities.setCapability("platform", platformName);
                 capabilities.setCapability("name", testName);
