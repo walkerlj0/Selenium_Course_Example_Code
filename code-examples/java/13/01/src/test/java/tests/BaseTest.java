@@ -24,7 +24,7 @@ public class BaseTest {
                 MutableCapabilities capabilities = new MutableCapabilities();
                 capabilities.setCapability("browserNameName", browserName);
                 capabilities.setCapability("version", browserVersion);
-                capabilities.setCapability("platformName", platformName);
+                capabilities.setCapability("platform", platformName);
                 String sauceUrl = String.format("https://%s:%s@ondemand.saucelabs.com/wd/hub",
                         sauceUser, sauceKey);
                 driver = new RemoteWebDriver(new URL(sauceUrl), capabilities);
