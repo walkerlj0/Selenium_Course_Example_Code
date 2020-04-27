@@ -46,7 +46,7 @@ public class BasePage {
 
     public Boolean isDisplayed(By locator, Integer timeout) {
         try {
-            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeout));
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeout).getSeconds());
             wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
         } catch (org.openqa.selenium.TimeoutException exception) {
             return false;

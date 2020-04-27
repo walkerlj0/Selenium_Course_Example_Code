@@ -5,10 +5,10 @@ import org.junit.rules.ExternalResource;
 import org.junit.rules.TestRule;
 import org.junit.rules.TestWatcher;
 import org.junit.runner.Description;
+import org.openqa.selenium.MutableCapabilities;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import java.lang.Override;
 import java.net.URL;
@@ -25,12 +25,12 @@ public class BaseTest {
         @Override
         protected void before() throws Throwable {
             if (host.equals("saucelabs")) {
-                DesiredCapabilities capabilities = new DesiredCapabilities();
-                capabilities.setCapability("browserNameName", browserName);
+                MutableCapabilities capabilities = new MutableCapabilities();
+                capabilities.setCapability("browserName", browserName);
                 capabilities.setCapability("version", browserVersion);
-                capabilities.setCapability("platformName", platformName);
+                capabilities.setCapability("platform", platformName);
                 capabilities.setCapability("name", testName);
-                String sauceUrl = String.format("http://%s:%s@ondemand.saucelabs.com:80/wd/hub",
+                String sauceUrl = String.format("https://%s:%s@ondemand.saucelabs.com/wd/hub",
                         sauceUser, sauceKey);
                 driver = new RemoteWebDriver(new URL(sauceUrl), capabilities);
             } else if (host.equals("localhost")) {

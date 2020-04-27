@@ -1,3 +1,6 @@
+**/Gemfile
+**/Gemfile.lock
+**/.ruby-version
 .DS_Store
 node_modules/
 geckodriver
