@@ -10,7 +10,7 @@ My goal in writing this is to provide you with the materials I wish existed when
 
 This book focuses on the latest stable version of Selenium 4 (a.k.a. Selenium WebDriver) and its use to test desktop browsers.
 
-Record and Playback tools like [Selenium IDE](https://www.seleniumhq.org/selenium-ide/) are a great option nowadays (no, really). But they will not be covered in this book. Instead, an approach of writing well factored tests, in code, is the focus of this book.
+Record and Playback tools like [Selenium IDE](https://www.seleniumhq.org/selenium-ide/) are a great option to understand the ins and outs of Selenium, but they will not be covered in this book because test suites created with Record and Playback tools do not scale well. Instead, an approach of writing well factored tests, in code, is the focus of this book.
 
 ## Who This Book Is For
 
@@ -20,7 +20,7 @@ That is to say, this book is for anyone who wants to use computers for what they
 
 ## About The Examples In This Book
 
-The examples in this book are written in JavaScript, but the strategies and patterns used are applicable regardless of your technical stack.
+The examples in this book are written in Python 3, but the strategies and patterns used are applicable regardless of your technical stack.
 
 The tests in this book are written to exercise functionality from an open-source project I created and maintain called the-internet -- available [here on GitHub](https://github.com/tourdedave/the-internet) and viewable [here on Heroku](http://the-internet.herokuapp.com/).
 
