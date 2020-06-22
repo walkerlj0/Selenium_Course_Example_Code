@@ -6,9 +6,9 @@ describe('Login', function() {
   let driver
 
   beforeEach(async function() {
-    const vendorDirectory =
+    /*const vendorDirectory =
       path.delimiter + path.join(__dirname, '..', 'vendor')
-    process.env.PATH += vendorDirectory
+    process.env.PATH += vendorDirectory */
     driver = await new Builder().forBrowser('firefox').build()
   })
 
