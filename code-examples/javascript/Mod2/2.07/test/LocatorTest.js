@@ -15,14 +15,14 @@ describe('Locate', function() {
    it('check red button text' , async function() {
     await driver.get('https://the-internet.herokuapp.com/challenging_dom')
     await driver
-        .findElement(  )
+        .findElement(By.className('button success'))
         .click()
     await driver
-        .findElement(    )
+        .findElement(By.className('button'))
         .click()
         // Return the text of the red button id=button alert contains 'foo', 'bar', 'baz', or 'qux'
     var redButtonMessage = await driver
-        .findElement(By.css('.button.alert'))
+        .findElement(By.className('button alert'))
         .getText()
     console.log(redButtonMessage)
     }) 

@@ -1,3 +1,4 @@
+
 // filename: test/LoginTest.js
 const { Builder } = require('selenium-webdriver') 
 const path = require('path')
@@ -27,8 +28,7 @@ describe('Login', function() {
             .sendKeys('SuperSecretPassword!')
         await driver.findElement({ css: 'button' }).click()
         assert(
-            await driver.findElement({ css: '.flash.success'          
-            }).isDisplayed(), 'Success message not displayed'
+            await driver.findElement({ css: '.flash.success' }).isDisplayed(), 'Success message not displayed'
         )
     }) 
 })
