@@ -1,3 +1,4 @@
+// filename: pages/LoginPage.js
 const USERNAME_INPUT = { id: 'username' }
 const PASSWORD_INPUT = { id: 'password' }
 const SUBMIT_BUTTON = { css: 'button' }
