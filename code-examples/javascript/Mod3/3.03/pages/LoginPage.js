@@ -1,9 +1,10 @@
-const LOGIN_FORM = { id: 'login' }
+// filename: pages/LoginPage.js
 const USERNAME_INPUT = { id: 'username' }
 const PASSWORD_INPUT = { id: 'password' }
 const SUBMIT_BUTTON = { css: 'button' }
 const SUCCESS_MESSAGE = { css: '.flash.success' }
-const FAILURE_MESSAGE = { css: '.flash.error' }
+const FAILURE_MESSAGE = {css: '.flash.error'}
+const LOGIN_FORM = { id: 'login' }
 
 class LoginPage {
   constructor(driver) {
@@ -12,8 +13,8 @@ class LoginPage {
 
   async load() {
     await this.driver.get('http://the-internet.herokuapp.com/login')
-    if (!(await this.driver.findElement(LOGIN_FORM).isDisplayed()))
-      throw new Error('Login form not loaded')
+      if (!(await this.driver.findElement(LOGIN_FORM).isDisplayed()))
+      throw new Error('Login form not loaded') 
   }
 
   async authenticate(username, password) {
@@ -25,7 +26,6 @@ class LoginPage {
   async successMessagePresent() {
     return await this.driver.findElement(SUCCESS_MESSAGE).isDisplayed()
   }
-
   async failureMessagePresent() {
     return await this.driver.findElement(FAILURE_MESSAGE).isDisplayed()
   }
