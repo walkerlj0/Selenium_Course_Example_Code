@@ -15,8 +15,6 @@ class LoginPage {
     await this.driver.get('http://the-internet.herokuapp.com/login')
     if (!(await this.driver.findElement(LOGIN_FORM).isDisplayed()))
       throw new Error('Login form not loaded')
-  
-
   }
 
   async authenticate(username, password) {
