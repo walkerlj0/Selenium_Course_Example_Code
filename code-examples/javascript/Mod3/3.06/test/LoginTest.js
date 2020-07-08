@@ -24,18 +24,12 @@ describe('Login', function() {
     it('with valid credentials', async function() {
     await login.authenticate('tomsmith', 'SuperSecretPassword!')
     assert(await login.successMessagePresent(), 'Success message not displayed')
-  })
+    })
   
-  it('with invalid credentials', async function() {
-    await login.authenticate('tomsmith', 'SuperSecretPassword!')
-    assert(!(await login.failureMessagePresent()), 'Failure message is not displayed')
-    // assert(!(await login.successMessagePresent()), 'Success message not displayed')
-  })
-  it('rendered element', async function() {
-    await dynamicLoading.loadExample('2')
-    assert(await dynamicLoading.isFinishTextPresent(), true, 'Finish text not displayed'
-    )
-  })
-
+    it('with invalid credentials', async function() {
+      await login.authenticate('tomsmith', 'SuperSecretPassword!')
+      assert(!(await login.failureMessagePresent()), 'Failure message is not displayed')
+      // assert(!(await login.successMessagePresent()), 'Success message not displayed')
+    })
 
 })
