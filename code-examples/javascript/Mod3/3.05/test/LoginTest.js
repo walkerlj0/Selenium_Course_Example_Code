@@ -26,9 +26,9 @@ describe('Login', function() {
     assert(await login.successMessagePresent(), 'Success message not displayed')
   })
   
-  it('with invalid credentials', async function() {
+  it('not invalid credentials', async function() {
     await login.authenticate('tomsmith', 'SuperSecretPassword!')
-    //assert(await login.failureMessagePresent(), 'Failure message not displayed')
-    assert(!(await login.successMessagePresent()), 'Success message displayed')
+    assert(!(await login.failureMessagePresent()), 'Failure message displayed')
+    //assert(!(await login.successMessagePresent()), 'Success message displayed')
   })
 })

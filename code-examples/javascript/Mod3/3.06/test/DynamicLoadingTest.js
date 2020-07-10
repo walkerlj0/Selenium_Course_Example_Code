@@ -10,10 +10,10 @@ describe('Dynamic Loading', function() {
 
   beforeEach(async function() {
     const vendorDirectory =
-      path.delimiter + path.join(__dirname, '..', 'vendor')
-    process.env.PATH += vendorDirectory
-    driver = await new Builder().forBrowser('firefox').build()
-    dynamicLoading = new DynamicLoadingPage(driver)
+      // path.delimiter + path.join(__dirname, '..', 'vendor')
+      // process.env.PATH += vendorDirectory
+      driver = await new Builder().forBrowser('firefox').build()
+      dynamicLoading = new DynamicLoadingPage(driver)
   })
 
   afterEach(async function() {
