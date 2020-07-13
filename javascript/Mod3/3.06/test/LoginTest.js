@@ -24,12 +24,11 @@ describe('Login', function() {
     it('with valid credentials', async function() {
     await login.authenticate('tomsmith', 'SuperSecretPassword!')
     assert(await login.successMessagePresent(), 'Success message not displayed')
-    })
+  })
   
-    it('not invalid credentials', async function() {
-      await login.authenticate('tomsmith', 'SuperSecretPassword!')
-      assert(!(await login.failureMessagePresent()), 'Failure message displayed')
-      //assert(!(await login.successMessagePresent()), 'Success message displayed')
-    })
+  it('not invalid credentials', async function() {
+    await login.authenticate('tomsmith', 'SuperSecretPassword!')
+    assert(!(await login.failureMessagePresent()), 'Failure message displayed')
+  })
 
 })

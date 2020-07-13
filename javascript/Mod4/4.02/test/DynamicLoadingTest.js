@@ -4,11 +4,11 @@ require('./spec_helper')
 //const path = require('path')
 const assert = require('assert')
 const DynamicLoadingPage = require('../pages/DynamicLoadingPage')
+const DriverFactory = require('../lib/DriverFactory')
 
 describe('Dynamic Loading', function() {
   //this.timeout(30000)
   let dynamicLoading
-
   beforeEach(async function() {
     //const vendorDirectory =
       // path.delimiter + path.join(__dirname, '..', 'vendor')

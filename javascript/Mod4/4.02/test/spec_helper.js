@@ -4,9 +4,9 @@ const driverFactory = new DriverFactory()
 
 beforeEach(async function() {
   await driverFactory.build()
-  this.driver = DriverFactory.driver
+  this.driver = driverFactory.driver
 })
 
 afterEach(async function() {
-  await DriverFactory.quit()
+  await driverFactory.quit()
 })

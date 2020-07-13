@@ -1,6 +1,6 @@
 // filename: test/DynamicLoadingTest.js
 const { Builder } = require('selenium-webdriver')
-const path = require('path')
+//const path = require('path')
 const assert = require('assert')
 const DynamicLoadingPage = require('../pages/DynamicLoadingPage')
 
