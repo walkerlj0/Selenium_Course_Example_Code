@@ -5,7 +5,7 @@ const { Builder } = require('selenium-webdriver')
 class DriverFactory {
   async build() {
     //process.env.PATH += path.delimiter + path.join(__dirname, '..', 'vendor')
-    this.driver = await new Builder().forBrowser('chrome').build()
+    this.driver = await new Builder().forBrowser(this.config.browser).build()
   }
 
   async quit() {
