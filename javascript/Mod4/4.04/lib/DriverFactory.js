@@ -1,6 +1,6 @@
 // filename: lib/DriverFactory.js
 //const path = require('path')
-const config = require('../lib/config')
+// const config = require('../lib/config')
 const { Builder } = require('selenium-webdriver')
 
 class DriverFactory {
