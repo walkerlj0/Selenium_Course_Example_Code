@@ -7,7 +7,7 @@ module.exports = {
       username: process.env.SAUCE_USERNAME,
       accessKey: process.env.SAUCE_ACCESS_KEY,
       browserName: process.env.BROWSER_NAME || 'internet explorer',
-      browserVersion: process.env.BROWSER_VERSION || "11.0"
+      browserVersion: process.env.BROWSER_VERSION || "11.0",
       platformName: process.env.PLATFORM_NAME || "Windows 7",
     },
   }
