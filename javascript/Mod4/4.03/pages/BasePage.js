@@ -1,5 +1,4 @@
 // filename: pages/BasePage.js
-const config = require('../lib/config')
 const Until = require('selenium-webdriver').until
 
 class BasePage {
@@ -8,11 +7,7 @@ class BasePage {
     }
   
     async visit(url) {
-      if (url.startsWith('http')) {
-        await this.driver.get(url)
-      } else {
-        await this.driver.get(config.baseUrl + url)
-      }
+      await this.driver.get(url)
     }
   
     find(locator) {
@@ -43,7 +38,6 @@ class BasePage {
         }
       }
     }
-    
   }
   
 module.exports = BasePage

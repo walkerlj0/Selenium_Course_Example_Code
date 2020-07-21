@@ -1,7 +1,6 @@
 // filename: test/spec_helper.js
 const DriverFactory = require('../lib/DriverFactory')
-const config = require('../lib/config')
-const driverFactory = new DriverFactory(config)
+const driverFactory = new DriverFactory()
 
 beforeEach(async function() {
   await driverFactory.build()

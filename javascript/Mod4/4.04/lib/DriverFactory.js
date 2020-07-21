@@ -1,30 +1,12 @@
 // filename: lib/DriverFactory.js
-//const path = require('path')
-// const config = require('../lib/config')
+// const path = require('path')
 const { Builder } = require('selenium-webdriver')
+const config = require('../lib/config.js')
 
 class DriverFactory {
-  constructor(config) {
-    this.config = config
-  }
-  _configure() {
-    let builder = new Builder()
-    switch (this.config.host) {
-      case 'saucelabs':
-        const url = 'https://ondemand.saucelabs.com/wd/hub'
-        builder.usingServer(url)
-        builder.withCapabilities(this.config.sauce)
-        break
-      case 'localhost':
-        // process.env.PATH +=
-        //   path.delimiter + path.join(__dirname, '..', 'vendor')
-        builder.forBrowser(this.config.browser)
-        break
-    }
-    return builder
-  }
   async build() {
-    this.driver = await this._configure().build()
+    //process.env.PATH += path.delimiter + path.join(__dirname, '..', 'vendor')
+    this.driver = await new Builder().forBrowser(config.browser).build()
   }
 
   async quit() {

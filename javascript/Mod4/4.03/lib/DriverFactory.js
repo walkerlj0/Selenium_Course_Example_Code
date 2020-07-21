@@ -1,12 +1,11 @@
 // filename: lib/DriverFactory.js
-//const path = require('path')
-const config = require('../lib/config')
+// const path = require('path')
 const { Builder } = require('selenium-webdriver')
 
 class DriverFactory {
   async build() {
     //process.env.PATH += path.delimiter + path.join(__dirname, '..', 'vendor')
-    this.driver = await new Builder().forBrowser(config.browser).build()
+    this.driver = await new Builder().forBrowser('firefox').build()
   }
 
   async quit() {
