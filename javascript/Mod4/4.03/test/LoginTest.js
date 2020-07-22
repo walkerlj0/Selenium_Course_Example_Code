@@ -14,7 +14,7 @@ describe('Login', function() {
 
     beforeEach(async function() { 
     //driver = await new Builder().forBrowser('firefox').build()
-    login = new LoginPage(driver)
+    login = new LoginPage(this.driver)
     await login.load()
     })
 
