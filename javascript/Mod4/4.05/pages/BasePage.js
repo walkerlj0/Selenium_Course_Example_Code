@@ -1,6 +1,7 @@
 // filename: pages/BasePage.js
-const Until = require('selenium-webdriver').until
 const config = require('../lib/config')
+const Until = require('selenium-webdriver').until
+
 class BasePage {
     constructor(driver) {
       this.driver = driver
@@ -42,6 +43,7 @@ class BasePage {
         }
       }
     }
+    
   }
   
 module.exports = BasePage

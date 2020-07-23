@@ -10,9 +10,7 @@ class DynamicLoadingPage extends BasePage {
   }
 
   async loadExample(exampleNumber) {
-    await this.visit(
-      '/dynamic_loading/' + exampleNumber
-    )
+    await this.visit('/dynamic_loading/' + exampleNumber)
     await this.click(START_BUTTON)
   }
 
