@@ -1,11 +1,8 @@
 // filename: test/LoginTest.js
 require('./spec_helper')
-//const path = require('path')
 const assert = require('assert')
 const LoginPage = require('../pages/LoginPage')
 
-
-//describe is a method from Mocha
 describe('Login', function() { 
 
     let login
