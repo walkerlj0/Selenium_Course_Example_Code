@@ -1,4 +1,4 @@
-const path = require('path')
+// const path = require('path')
 const { Builder } = require('selenium-webdriver')
 
 class DriverFactory {
@@ -10,13 +10,13 @@ class DriverFactory {
     let builder = new Builder()
     switch (this.config.host) {
       case 'saucelabs':
-        const url = 'http://ondemand.saucelabs.com:80/wd/hub'
+        const url = 'http://ondemand.saucelabs.com/wd/hub'
         builder.usingServer(url)
         builder.withCapabilities(this.config.sauce)
         break
       case 'localhost':
-        process.env.PATH +=
-          path.delimiter + path.join(__dirname, '..', 'vendor')
+        // process.env.PATH +=
+        //   path.delimiter + path.join(__dirname, '..', 'vendor')
         builder.forBrowser(this.config.browser)
         break
     }

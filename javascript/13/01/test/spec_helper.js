@@ -1,9 +1,9 @@
 const DriverFactory = require('../lib/DriverFactory')
-const config = require('../lib/config')
+const config = require('../lib/config.js')
 const driverFactory = new DriverFactory(config)
 
 beforeEach(async function() {
-  await driverFactory.build(testName)
+  await driverFactory.build()
   this.driver = driverFactory.driver
 })
 

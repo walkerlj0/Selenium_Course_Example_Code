@@ -16,7 +16,7 @@
     "mocha": "^8.0.1",
     "chromedriver": "83.0.0",
     "selenium-webdriver": "4.0.0-alpha.7",
-    "mocha-parallel-tests": "2.3.0" 
+    "mocha-parallel-tests": "2.3.0"
   },
   "mocha":{
     "timeout": 30000
