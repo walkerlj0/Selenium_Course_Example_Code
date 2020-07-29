@@ -6,8 +6,9 @@ import org.junit.Test;
 import org.junit.Before;
 import org.junit.After;
 import org.openqa.selenium.By;
+import org.openqa.selenium.MutableCapabilities;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.chrome.ChromeBrowser;
 
 public class TestLogin {
 
@@ -17,7 +18,12 @@ public class TestLogin {
     public void setUp() {
 //        System.setProperty("webdriver.gecko.driver",
 //                System.getProperty("user.dir") + "/vendor/geckodriver");
-        driver = new FirefoxDriver();
+        MutableCapabilities sauceOptions = new MutableCapabilities();
+        ChromeOptions browserOptions = new ChromeOptions();
+        browserOptions.setExperimentalOption("w3c", true);
+        browserOptions.setCapability("platformName", "macOS 10.15");
+        browserOptions.setCapability("browserVersion", "latest-1");
+        browserOptions.setCapability("sauce:options", sauceOptions);
     }
 
     @Test
