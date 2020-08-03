@@ -20,7 +20,7 @@ public class TestLogin {
 //                System.getProperty("user.dir") + "/vendor/geckodriver");
         MutableCapabilities sauceOptions = new MutableCapabilities();
         ChromeOptions browserOptions = new ChromeOptions();
-        browserOptions.setExperimentalOption("w3c", true);
+//        browserOptions.setExperimentalOption("w3c", true);
         browserOptions.setCapability("platformName", "macOS 10.15");
         browserOptions.setCapability("browserVersion", "latest-1");
         browserOptions.setCapability("sauce:options", sauceOptions);
