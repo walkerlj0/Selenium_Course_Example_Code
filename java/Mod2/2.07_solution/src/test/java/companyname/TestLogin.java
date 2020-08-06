@@ -5,11 +5,9 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
-import org.openqa.selenium.MutableCapabilities;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-
 import static org.junit.Assert.assertTrue;
 
 public class TestLogin {
@@ -18,15 +16,9 @@ public class TestLogin {
 
     @Before
     public void setUp() {
-//        System.setProperty("webdriver.gecko.driver",
-//                System.getProperty("user.dir") + "/vendor/geckodriver");
-        MutableCapabilities sauceOptions = new MutableCapabilities();
+        System.setProperty("webdriver.chrome.driver", "/Users/lindsaywalker/Documents/chromedriver");
         ChromeOptions browserOptions = new ChromeOptions();
-//        browserOptions.setExperimentalOption("w3c", true); // Don't need to have this anymore
-        browserOptions.setCapability("platformName", "Windows 10");
-        browserOptions.setCapability("browserVersion", "latest-1");
-        browserOptions.setCapability("sauce:options", sauceOptions);
-        driver = new ChromeDriver(browserOptions);
+        driver = new ChromeDriver(/*browserOptions*/);
     }
 
     @Test

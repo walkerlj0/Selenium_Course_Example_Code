@@ -23,10 +23,10 @@ public class TestLocator {
     @Test
     public void locator_test() {
         driver.get("http://the-internet.herokuapp.com/challenging_dom");
-        driver.findElement(By.  ("  ")).click();
-        driver.findElement(By.  ("  ")).click();
+        driver.findElement(By.cssSelector(".button.success")).click();
+        driver.findElement(By.cssSelector(".button")).click();
         // Return the text of the red button id=button alert contains 'foo', 'bar', 'baz', or 'qux'
-        String redButtonMessage = driver.findElement(        ).getText();
+        String redButtonMessage = driver.findElement(By.cssSelector(".button.alert")).getText();
         System.out.println("The button reads: " + redButtonMessage);
 
 }
