@@ -1,0 +1,28 @@
+{
+  "name": "seleniumjs",
+  "version": "1.0.0",
+  "description": "First Files created allongside Selenium JS guide p.24",
+  "main": "index.js",
+  "directories": {
+    "test": "mocha"
+  },
+  "scripts": {
+    "test": "mocha --parallel test/*Test.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "geckodriver": "^1.19.1",
+    "mocha": "^8.0.1",
+    "chromedriver": "83.0.0",
+    "selenium-webdriver": "4.0.0-alpha.7"
+  },
+  "mocha": {
+    "timeout": 30000
+  },
+  "devDependencies": {
+    "mocha": "^8.1.0",
+    "mocha-parallel-tests": "^2.3.0"
+  }
+
+}

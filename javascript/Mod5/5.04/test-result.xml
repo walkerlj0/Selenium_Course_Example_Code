@@ -1,0 +1,18 @@
+
+> seleniumjs@1.0.0 test /Users/lindsaywalker/SeleniumJS
+> mocha --parallel test/*Test.js "xunit" "test/DynamicLoadingTest.js" "test/LoginTest.js"
+
+
+
+  Login
+    ✓ with valid credentials @shallow (5688ms)
+    ✓ not invalid credentials @deep (8296ms)
+
+
+  Dynamic Loading @deep
+    ✓ hidden element (9867ms)
+    ✓ rendered element (10374ms)
+
+
+  4 passing (43s)
+
