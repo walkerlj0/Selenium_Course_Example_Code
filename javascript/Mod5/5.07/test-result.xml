@@ -1,0 +1,7 @@
+
+> seleniumjs@1.0.0 test /Users/lindsaywalker/SeleniumJS
+> mocha --parallel test/*Test.js "--grep" "@shallow" "--" "-R" "xunit" "test/DynamicLoadingTest.js" "test/LoginTest.js"
+
+<testsuite name="Mocha Tests" tests="1" failures="0" errors="0" skipped="0" timestamp="Wed, 12 Aug 2020 16:01:22 GMT" time="21.667">
+<testcase classname="Login" name="with valid credentials @shallow" time="7.046"/>
+</testsuite>
