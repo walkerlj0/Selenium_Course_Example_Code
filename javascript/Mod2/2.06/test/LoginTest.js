@@ -1,7 +1,6 @@
 // filename: test/LoginTest.js
 const { Builder } = require('selenium-webdriver') 
 const path = require('path')
-const assert = require('assert')
 
 //describe is a method from Mocha
 describe('Login', function() { 
@@ -26,9 +25,5 @@ describe('Login', function() {
             .findElement({ id: 'password' })
             .sendKeys('SuperSecretPassword!')
         await driver.findElement({ css: 'button' }).click()
-        assert(
-            await driver.findElement({ css: '.flash.success'          
-            }).isDisplayed(), 'Success message not displayed'
-        )
     }) 
 })
