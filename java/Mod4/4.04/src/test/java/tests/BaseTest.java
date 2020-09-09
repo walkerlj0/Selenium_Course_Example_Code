@@ -8,7 +8,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
-import static tests.Config.browser;
+import static tests.Config.browserName;
 
 public class BaseTest {
 
@@ -19,25 +19,16 @@ public class BaseTest {
 
         @Override
         protected void before() throws Throwable {
-            if (browser.equals("chrome")) {
+            if (browserName.equals("chrome")) {
                 System.setProperty("webdriver.chrome.driver", "src/test/java/drivers/chromedriver");
                 ChromeOptions browserOptions = new ChromeOptions();
                 driver = new ChromeDriver();
-            } else if (browser.equals("firefox")) {
+            } else if (browserName.equals("firefox")) {
                 System.setProperty("webdriver.gecko.driver",
                         System.getProperty("webdriver.gecko.driver", "src/test/java/drivers/geckodriver"));
                 driver = new FirefoxDriver();
             }
         }
-
-//                if (browser.equals("firefox")) {
-//                    System.setProperty("webdriver.gecko.driver",
-//                            System.getProperty("webdriver.gecko.driver", "src/test/java/drivers/geckodriver"));
-//                    driver = new FirefoxDriver();
-//                } else if (browser.equals("chrome")) {
-//                    System.setProperty("webdriver.chrome.driver", "src/test/java/drivers/chromedriver");
-//                    ChromeOptions browserOptions = new ChromeOptions();
-//                }
 
         @Override
         protected void after() {
