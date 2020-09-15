@@ -50,7 +50,7 @@ public class BaseTest {
                 capabilities.setCapability("browserName", browserName);
                 capabilities.setCapability("browserVersion", browserVersion);
                 capabilities.setCapability("platformName", platformName);
-                capabilities.setCapability("name", testName);
+                capabilities.setCapability("name", name.getMethodName());
                 capabilities.setCapability("sauce:options", sauceOptions);
                 String sauceUrl = String.format("https://ondemand.saucelabs.com/wd/hub");
                 driver = new RemoteWebDriver(new URL(sauceUrl), capabilities);
