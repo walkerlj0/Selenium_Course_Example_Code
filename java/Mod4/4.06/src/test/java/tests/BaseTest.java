@@ -3,14 +3,9 @@ package tests;
 
 import org.junit.Rule;
 import org.junit.rules.ExternalResource;
-import org.junit.rules.TestName;
 import org.junit.rules.TestRule;
 import org.junit.rules.TestWatcher;
 import org.junit.runner.Description;
-import com.saucelabs.saucebindings.Browser;
-import com.saucelabs.saucebindings.SauceOptions;
-import com.saucelabs.saucebindings.SaucePlatform;
-import com.saucelabs.saucebindings.SauceSession;
 import org.openqa.selenium.MutableCapabilities;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -25,17 +20,7 @@ import static tests.Config.*;
 public class BaseTest {
 
     protected WebDriver driver;
-//    private String testName;
-    public SauceSession session;
-
-    @Rule
-    public SauceTestWatcher testWatcher = new SauceTestWatcher();
-
-    @Rule
-    public TestName name = new TestName() {
-        public String getMethodName() {
-            return String.format("%s", super.getMethodName());
-        }
+    private String testName;
 
     @Rule
     public ExternalResource resource = new ExternalResource() {
@@ -46,11 +31,11 @@ public class BaseTest {
                 MutableCapabilities sauceOptions = new MutableCapabilities();
                 sauceOptions.setCapability("username", sauceUser);
                 sauceOptions.setCapability("accessKey", sauceKey);
+                sauceOptions.setCapability("name", testName);
                 MutableCapabilities capabilities = new MutableCapabilities();
                 capabilities.setCapability("browserName", browserName);
                 capabilities.setCapability("browserVersion", browserVersion);
                 capabilities.setCapability("platformName", platformName);
-                capabilities.setCapability("name", name.getMethodName());
                 capabilities.setCapability("sauce:options", sauceOptions);
                 String sauceUrl = String.format("https://ondemand.saucelabs.com/wd/hub");
                 driver = new RemoteWebDriver(new URL(sauceUrl), capabilities);
@@ -74,11 +59,11 @@ public class BaseTest {
 
     };
 
-//    @Rule
-//    public TestRule watcher = new TestWatcher() {
-//        @Override
-//        protected void starting(Description description) {
-//            testName = description.getDisplayName();
-//        }
-//    };
+    @Rule
+    public TestRule watcher = new TestWatcher() {
+        @Override
+        protected void starting(Description description) {
+            testName = description.getDisplayName();
+        }
+    };
 }
