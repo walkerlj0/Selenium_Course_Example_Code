@@ -1,6 +1,8 @@
 // filename: tests/BaseTest.java
 package tests;
 
+import com.saucelabs.saucerest.DataCenter;
+import com.saucelabs.saucerest.SauceREST;
 import org.junit.Rule;
 import org.junit.rules.ExternalResource;
 import org.junit.rules.TestRule;
@@ -21,6 +23,8 @@ public class BaseTest {
 
     protected WebDriver driver;
     private String testName;
+    private String sessionId;
+    private SauceREST sauceClient;
 
     @Rule
     public ExternalResource resource = new ExternalResource() {
@@ -39,6 +43,9 @@ public class BaseTest {
                 capabilities.setCapability("sauce:options", sauceOptions);
                 String sauceUrl = String.format("https://ondemand.saucelabs.com/wd/hub");
                 driver = new RemoteWebDriver(new URL(sauceUrl), capabilities);
+                sessionId = ((RemoteWebDriver) driver).getSessionId().toString();
+                sauceClient = new SauceREST(sauceUser, sauceKey, DataCenter.US;
+
             } else if (host.equals("localhost")) {
                 if (browserName.equals("firefox")) {
                     System.setProperty("webdriver.gecko.driver",
@@ -65,5 +72,21 @@ public class BaseTest {
         protected void starting(Description description) {
             testName = description.getDisplayName();
         }
+
+        @Override
+        protected void failed(Throwable throwable, Description description) {
+            if (host.equals("saucelabs")) {
+                sauceClient.jobFailed(sessionId);
+                System.out.println(String.format("https://saucelabs.com/tests/%s", sessionId));
+            }
+        }
+
+        @Override
+        protected void succeeded(Description description) {
+            if (host.equals("saucelabs")) {
+                sauceClient.jobPassed(sessionId);
+            }
+        }
     };
 }
+
