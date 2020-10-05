@@ -6,7 +6,6 @@ import static org.junit.Assert.assertTrue;
 
 public class Login extends Base {
 
-    private WebDriver driver;
     By usernameLocator  = By.id("username");
     By passwordLocator  = By.id("password");
     By submitButton     = By.cssSelector("button");
