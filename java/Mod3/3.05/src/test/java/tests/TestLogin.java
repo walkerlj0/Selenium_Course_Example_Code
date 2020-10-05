@@ -28,15 +28,15 @@ public class TestLogin {
         assertTrue("success message not present",
                 login.successMessagePresent());
     }
-//    @Test
-//    public void failed() {
-//        login.with("tomsmith", "bad password");
-//        assertTrue("failure message wasn't present after providing bogus credentials",
-//                login.failureMessagePresent());
-//    }
-
     @Test
     public void failed() {
+        login.with("tomsmith", "bad password");
+        assertTrue("failure message wasn't present after providing bogus credentials",
+                login.failureMessagePresent());
+    }
+
+    @Test
+    public void failed2() {
         login.with("tomsmith", "bad password");
         assertFalse("success message was present after providing bogus credentials",
                 login.successMessagePresent());
