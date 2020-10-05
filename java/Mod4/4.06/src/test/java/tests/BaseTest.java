@@ -45,7 +45,7 @@ public class BaseTest {
                 String sauceUrl = String.format("https://ondemand.saucelabs.com/wd/hub");
                 driver = new RemoteWebDriver(new URL(sauceUrl), capabilities);
                 sessionId = ((RemoteWebDriver) driver).getSessionId().toString();
-                sauceClient = new SauceREST(sauceUser, sauceKey, DataCenter.US;
+                sauceClient = new SauceREST(sauceUser, sauceKey, DataCenter.US);
 
             } else if (host.equals("localhost")) {
                 if (browserName.equals("firefox")) {
