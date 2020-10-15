@@ -18,7 +18,7 @@ public class BaseTest {
     public ExternalResource resource = new ExternalResource() {
 
         @Override
-        protected void before() throws Throwable {
+        protected void before() throws Exception {
             if (browserName.equals("chrome")) {
                 System.setProperty("webdriver.chrome.driver", "src/test/java/drivers/chromedriver");
                 ChromeOptions browserOptions = new ChromeOptions();

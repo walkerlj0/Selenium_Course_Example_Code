@@ -30,7 +30,7 @@ public class BaseTest {
     public ExternalResource resource = new ExternalResource() {
 
         @Override
-        protected void before() throws Throwable {
+        protected void before() throws Exception{
             if (host.equals("saucelabs")) {
                 MutableCapabilities sauceOptions = new MutableCapabilities();
                 sauceOptions.setCapability("username", sauceUser);
@@ -105,4 +105,3 @@ public class BaseTest {
         }
     };
 }
-

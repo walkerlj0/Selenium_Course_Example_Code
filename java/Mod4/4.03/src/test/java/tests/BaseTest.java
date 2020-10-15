@@ -15,7 +15,7 @@ public class BaseTest {
     public ExternalResource resource = new ExternalResource() {
 
         @Override
-        protected void before() throws Throwable {
+        protected void before() throws Exception {
             System.setProperty("webdriver.chrome.driver", "/Users/lindsaywalker/Documents/chromedriver");
             ChromeOptions browserOptions = new ChromeOptions();
             driver = new ChromeDriver();

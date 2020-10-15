@@ -21,5 +21,4 @@ sauce: {
       "tunnelIdentifier": process.env.SAUCE_TUNNEL,
     }
   },
-
 }
