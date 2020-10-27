@@ -27,8 +27,8 @@ describe('Login', function() {
             .sendKeys('SuperSecretPassword!')
         await driver.findElement({ css: 'button' }).click()
         assert(
-            await driver.findElement({ css: '.flash.success'          
-            }).isDisplayed(), 'Success message not displayed'
+            !(await driver.findElement({ css: '.flash.success'          
+            }).isDisplayed(), 'Success message not displayed')
         )
     }) 
 })
