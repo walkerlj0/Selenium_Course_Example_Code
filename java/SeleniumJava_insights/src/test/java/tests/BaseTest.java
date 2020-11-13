@@ -8,6 +8,10 @@ import org.junit.rules.ExternalResource;
 import org.junit.rules.TestRule;
 import org.junit.rules.TestWatcher;
 import org.junit.runner.Description;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
+import org.junit.runners.Parameterized.Parameter;
+import org.junit.runners.Parameterized.Parameters;
 import org.openqa.selenium.MutableCapabilities;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -21,20 +25,51 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.safari.SafariOptions;
 
 import java.net.URL;
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.Date;
 
-import static tests.Config.*;
+import static tests.Config.host;
+import static tests.Config.sauceKey;
+import static tests.Config.sauceTunnel;
+import static tests.Config.sauceUser;
 
+@RunWith(Parameterized.class)
 public class BaseTest {
 
+    @Parameters
+    public static Collection<Object[]> data() {
+        return Arrays.asList(
+          new Object[][] {
+            { BrowserType.FIREFOX, "82", "Windows 10" },
+            { BrowserType.FIREFOX, "82", "macOS 10.15" },
+            { BrowserType.SAFARI, "13.1", "macOS 10.15" },
+            { BrowserType.SAFARI, "12", "macOS 10.14" },
+            { BrowserType.EDGE, "18", "Windows 10" },
+            { BrowserType.EDGE, "86", "Windows 10" },
+            { BrowserType.EDGE, "86", "macOS 10.15" },
+            { BrowserType.CHROME, "86", "Windows 10" },
+            { BrowserType.CHROME, "86", "macOS 10.15" },
+            { BrowserType.IE, "11", "Windows 10" }
+          }
+        );
+    }
+
+    @Parameter
+    public String browserName;
+    @Parameter(1)
+    public String browserVersion;
+    @Parameter(2)
+    public String platformName;
+
     protected WebDriver driver;
-    private String testName;
+
     private String sessionId;
     private SauceREST sauceClient;
+    private String testName;
 
     @Rule
     public ExternalResource resource = new ExternalResource() {
-
         @Override
         protected void before() throws Exception {
             String sauceUrl = "https://ondemand.us-west-1.saucelabs.com/wd/hub";
