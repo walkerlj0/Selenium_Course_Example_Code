@@ -17,8 +17,8 @@ public class TestLogin {
     @Before
     public void setUp() {
         System.setProperty("webdriver.chrome.driver", "/Users/lindsaywalker/Documents/chromedriver");
-        ChromeOptions browserOptions = new ChromeOptions();
-        driver = new ChromeDriver(/*browserOptions*/);
+        ChromeOptions options = new ChromeOptions();
+        driver = new ChromeDriver();
     }
 
     @Test

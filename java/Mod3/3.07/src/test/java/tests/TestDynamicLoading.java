@@ -18,9 +18,10 @@ public class TestDynamicLoading {
 
     @Before
     public void setUp() {
-        System.setProperty("webdriver.chrome.driver", "/Users/lindsaywalker/Documents/chromedriver");
+        System.setProperty("webdriver.chrome.driver", "<insert path to chromedriver here>");
         ChromeOptions browserOptions = new ChromeOptions();
-        driver = new ChromeDriver();
+        browserOptions.setCapability("browserVersion", "86.0");
+        driver = new ChromeDriver(browserOptions);
         dynamicLoading = new DynamicLoading(driver);
     }
 

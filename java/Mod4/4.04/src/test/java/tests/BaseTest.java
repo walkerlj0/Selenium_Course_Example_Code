@@ -22,7 +22,8 @@ public class BaseTest {
             if (browserName.equals("chrome")) {
                 System.setProperty("webdriver.chrome.driver", "src/test/java/drivers/chromedriver");
                 ChromeOptions browserOptions = new ChromeOptions();
-                driver = new ChromeDriver();
+                browserOptions.setCapability("browserVersion", "86.0");
+                driver = new ChromeDriver(browserOptions);
             } else if (browserName.equals("firefox")) {
                 System.setProperty("webdriver.gecko.driver",
                         System.getProperty("webdriver.gecko.driver", "src/test/java/drivers/geckodriver"));

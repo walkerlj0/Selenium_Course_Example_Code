@@ -11,18 +11,5 @@ import org.openqa.selenium.chrome.ChromeOptions;
 
 public class TestLogin {
 
-    private WebDriver driver;
 
-    @Before
-    public void setUp() {
-        System.setProperty("webdriver.chrome.driver", "/Users/lindsaywalker/Documents/chromedriver");
-        ChromeOptions browserOptions = new ChromeOptions();
-        driver = new ChromeDriver(/*browserOptions*/);
-    }
-
-
-    @After
-    public void tearDown() {
-        driver.quit();
-    }
 }
