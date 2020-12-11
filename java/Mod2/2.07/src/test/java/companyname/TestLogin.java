@@ -18,7 +18,8 @@ public class TestLogin {
     public void setUp() {
         System.setProperty("webdriver.chrome.driver", "/Users/lindsaywalker/Documents/chromedriver");
         ChromeOptions options = new ChromeOptions();
-        driver = new ChromeDriver();
+        browserOptions.setCapability("browserVersion", "86.0");
+        driver = new ChromeDriver(browserOptions);
     }
 
     @Test
