@@ -9,7 +9,7 @@ class LoginPage():
     _failure_message = {"by": By.CSS_SELECTOR, "value": ".flash.error"}
 
     def __init__(self, driver):
-        self.driver = driver
+        self.dpytestiver = driver
         self.driver.get("http://the-internet.herokuapp.com/login")
 
     def with_(self, username, password):
