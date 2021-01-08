@@ -1,2 +1,0 @@
-pytest == 4.6.3
-selenium == 4.0.0a1
