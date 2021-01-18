@@ -36,7 +36,7 @@ To download the base project, including the set of .jar files with dependencies,
 
 <img src="assets/ADV1.03A.png" alt="New base branch" width="750"/>
 
-If you are familiar with using GitHub, you can fork the project, then use `git clone &lt;URL to repo>` in the directory you wish to store it.
+If you are familiar with using GitHub, you can fork the project, then use `git clone URL-to-repo` in the directory you wish to store it.
 
 
 
