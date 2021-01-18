@@ -45,7 +45,7 @@ If you are familiar with using GitHub, you can fork the project, then use `git c
 
 <img src="assets/ADV1.03B.png" alt="Fork the new base branch" width="750"/>
 
-*   In Terminal, run the command `git clone your-git-branch` to create a local version of the repository. Copy the link from the repository you just created.
+*   In Terminal, run the command `git clone git@github.com:you/your-git-branch` to create a local version of the repository. Copy the link from the repository you just created.
 
 <img src="assets/ADV1.03C.png" alt="Dcopy the branch name" width="750"/>
 
@@ -59,7 +59,7 @@ If you do not want to work with Git and would instead prefer to simply download 
 <img src="assets/ADV1.03D.png" alt="Download the zip file" width="750"/>
 
 
-Once you have a copy of the repository on your local maching, open your project with IntelliJ. Open the IntelliJ IDE, choose **Open** and navigate to where you created your local repository.
+Once you have a copy of the repository on your local machine, open your project with IntelliJ. Open the IntelliJ IDE, choose **Open** and navigate to where you created your local repository.
 
 You should see a project with the following structure. Ensure that you are on the branch **new_base:**
 
@@ -69,7 +69,7 @@ You should see a project with the following structure. Ensure that you are on th
 Next, we will add our first elements for a test that can run both locally, and on Sauce Labs.
 
 
-## Managing Drivers
+### Managing Drivers
 
 There are three ways to manage a test. You can either check the version of the browser that you have on your machine (e.g. Chrome 86) then manually find and install the compatible driver. Doing it this way, you have to create either a Path variable (Option 1) or set the location to this driver in the code and place your driver there (Option 2) You will be using a third option.
 
