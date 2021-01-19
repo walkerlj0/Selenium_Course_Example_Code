@@ -1,83 +1,64 @@
-package test.java;
+package test.java.com.saucelabs.advancedselenium;
 
+import com.saucelabs.saucebindings.JobVisibility;
 import com.saucelabs.saucebindings.SauceOptions;
 import com.saucelabs.saucebindings.SauceSession;
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.junit.After;
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.rules.TestName;
-import org.openqa.selenium.MutableCapabilities;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Assertions; //added with test
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.RemoteWebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.net.MalformedURLException;
-import java.net.URL;
+import java.util.Collections;
 
 public class SauceLabsTest {
     RemoteWebDriver driver = null;
     SauceSession session = null;
 
-    @Rule
-    public TestName name = new TestName() {
-        public String getMethodName() {
-            return String.format("%s", super.getMethodName());
-        }
-    };
-
-    @Test
-    public void remoteDriver() throws MalformedURLException {
-        MutableCapabilities sauceOpts = new MutableCapabilities();
-        sauceOpts.setCapability("name", System.getenv("SAUCE_USERNAME") + " - " + name.getMethodName());
-        sauceOpts.setCapability("username", System.getenv("SAUCE_USERNAME"));
-        sauceOpts.setCapability("accessKey", System.getenv("SAUCE_ACCESS_KEY"));
-
+    @BeforeEach
+    public void togglePlatform() {
         ChromeOptions chromeOptions = new ChromeOptions();
-        chromeOptions.setCapability("sauce:options", sauceOpts);
-
-        URL url = new URL("https://ondemand.us-west-1.saucelabs.com/wd/hub");
-        driver = new RemoteWebDriver(url, chromeOptions);
-    }
-
-    @Test
-    public void sauceBindings() {
-        ChromeOptions chromeOptions = new ChromeOptions();
-
-        SauceOptions sauceOptions = new SauceOptions(chromeOptions);
-        sauceOptions.setName(System.getenv("SAUCE_USERNAME") + " - " + name.getMethodName());
-
-        session = new SauceSession(sauceOptions);
-        driver = session.start();
-    }
-
-    @Test
-    public void togglePlatform() throws MalformedURLException {
-        ChromeOptions chromeOptions = new ChromeOptions();
-
-        if (System.getenv("SELENIUM_PLATFORM") == null) {
+        chromeOptions.setExperimentalOption("excludeSwitches", //added, allows popups
+                Collections.singletonList("disable-popup-blocking")); //added allows popups
+        if (System.getenv("SELENIUM_PLATFORM") == null) { // this will run a local chromedriver by default
             WebDriverManager.chromedriver().setup();
             driver = new ChromeDriver(chromeOptions);
         } else if (System.getenv("SELENIUM_PLATFORM").equals("SAUCE")) {
             SauceOptions sauceOptions = new SauceOptions(chromeOptions);
+            sauceOptions.setJobVisibility(JobVisibility.PUBLIC)// Sets the job on SL to publicly viewable
             SauceSession sauceSession = new SauceSession(sauceOptions);
             driver = sauceSession.start();
         }
-//        else if (System.getenv("SELENIUM_PLATFORM").equals("GRID")) {
-//            URL url = new URL("https://remote-grid-machine-url/wd/hub");
-//            driver = new RemoteWebDriver(url, chromeOptions);
-//        }
         else {
-            WebDriverManager.chromedriver().setup();
-            driver = new ChromeDriver(chromeOptions);
+            throw new RuntimeException("You have no environment variable set that specifies the local or remote host");
         }
     }
 
-    @After
+    @Test
+        public void exampleTest() {
+
+        /driver.get("https://www.saucedemo.com");
+        By locator = By.className("btn_action");
+        WebDriverWait wait = new WebDriverWait(driver, 30);
+        wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(locator));
+        WebElement element = driver.findElement(locator);
+        element.click();
+        Assertions.assertEquals("Swag Labs", driver.getTitle());
+
+    }
+
+    @AfterEach
     public void endSession() {
-        if (session != null) {
+        if (session != null) { // this will be null if you run locally
             session.stop(true);
-        } else if (driver != null) {
+        } else if (driver != null) { // this is null if there was a problem initializing the driver
             driver.quit();
         }
     }
