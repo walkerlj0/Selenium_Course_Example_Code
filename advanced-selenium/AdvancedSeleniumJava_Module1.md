@@ -437,7 +437,21 @@ Notice it checks for two things. The first, is if there is no session (this happ
 
 All you need to do to modify this code for your own test is to modify what is in the @Test annotation to apply to your code. You can see all the[ available assertions here.](https://junit.org/junit5/docs/current/api/org.junit.jupiter.api/org/junit/jupiter/api/Assertions.html)
 
-
+#### Example Modification
+```
+# ...
+@Test
+    public void exampleTest() {
+        driver.get("https://training.saucelabs.com/");
+        By locator = By.className("card__inner");
+        WebDriverWait wait = new WebDriverWait(driver, 30);
+        wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(locator));
+        WebElement element = driver.findElement(locator);
+        element.click();
+        Assertions.assertEquals("About Sauce Training", driver.findElement(By.className("banner-title")));
+    }
+#...
+```
 
 
 
