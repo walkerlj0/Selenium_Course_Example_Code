@@ -132,12 +132,311 @@ You can see the code that you should have run passing with one passed test.
 ## Section 2 – Run Local & Remote Tests
 Duration: 0:10:00
 
-One important basic thing that you need to be able to learn how to do is to create a test that can run using WebDriver Manager locally, or run on Sauce Labs. First you will need to create a new Java class (right click on the package **test.java.com.saucelabs.advancedselenium** and choose **New > Java Class)** called SauceLabsTest.java.
-
-<img src="assets/ADV1.04A.png" alt="Create a new class Run your tests and see results in IntelliJ" width="450"/>
+One important basic thing that you need to be able to learn how to do is to create a test that can run using WebDriver Manager locally, or run on Sauce Labs. First you will need to create a new Java class (right click on the package **test.java.com.saucelabs.advancedselenium** and choose **New > Java Class)** called `SauceLabsTest.java`.
 
 
-We are going to create a test that will allow you to switch between running locally and running on Sauce Labs
+
+<img src="assets/ADV1.04A.png" alt="Run your tests and see results in IntelliJ" width="850"/>
+
+We are going to create a test that will allow you to switch between running locally and running on Sauce Labs, as well as use some features of the Sauce Bindings that will make it easy to set up and configure your tests.
+
+
+### Create a Test with Sauce Bindings
+
+First, import all the packages we will use with this test, including the JUnit5 classes, and create null `driver` and `session` variables using [RemoteWebDriver](https://www.selenium.dev/documentation/en/remote_webdriver/remote_webdriver_client/) and [SauceSession](https://github.com/saucelabs/sauce_bindings/blob/master/java/src/main/java/com/saucelabs/saucebindings/SauceSession.java):
+
+
+```
+package test.java.com.saucelabs.advancedselenium;
+
+import com.saucelabs.saucebindings.JobVisibility;
+import com.saucelabs.saucebindings.SauceOptions;
+import com.saucelabs.saucebindings.SauceSession;
+import io.github.bonigarcia.wdm.WebDriverManager;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Assertions; //added with test
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.remote.RemoteWebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.util.Collections;
+
+public class SauceLabsTest {
+    RemoteWebDriver driver = null;
+    SauceSession session = null;
+}
+```
+
+
+The SauceSession class is a part of [Sauce Bindings](https://github.com/saucelabs/sauce_bindings) which allow you to start a session easily on Sauce Labs. In other words, it sends your request with default capabilities (or capabilities you provide) to the Sauce server, Sauce parses the capabilities to see what VM to start.
+
+It then starts the VM, sends the capabilities to the Selenium server or driver directly (in the case of Chrome) and then returns the driver's reply to the user's code.
+
+Next, within the SauceLabsTest class, add in three annotations, the `@BeforeEach,` the `@Tes`t, and the `@AfterEach`. Each one has a method inside of it:
+
+
+```
+//filename test.java/SauceLabsTest.java
+//...
+public class SauceLabsTest {
+    RemoteWebDriver driver = null;
+    SauceSession session = null;
+
+    @BeforeEach
+    public void togglePlatform() {
+
+    }
+   @Test
+        public void exampleTest() {
+    }
+    @AfterEach
+    public void endSession() {
+   }
+
+
+}
+```
+
+
+You can add as many `@Test` annotations as you would like, and for every test that is run, whatever is inside of `@BeforeEach` will run before, and whatever you declare in `@AfterEach` will run after that test.
+
+
+#### Update the Before Annotation
+
+Now, if the `@Before` annotation, you will add in a method that will be used to set up each test you create, that allows you to switch between running your test locally, or on Sauce Labs. Create new `ChromeOptions`, then add an `if, elseif, else` statement:
+
+
+```
+//filename test.java/SauceLabsTest.java
+//...
+public class SauceLabsTest {
+# ...
+
+    @BeforeEach
+    public void togglePlatform() {
+        ChromeOptions chromeOptions = new ChromeOptions();
+        if () {
+        } else if () {
+
+        }
+        else {
+
+        }
+    }
+#...
+
+}
+```
+
+
+First, lets add the conditions for if This will check first to see if your `SELENIUM_PLATFORM `variable is `null`, and create a new driver instance using a local ChromeDriver:
+
+
+```
+//filename test.java/SauceLabsTest.java
+//...
+public class SauceLabsTest {
+# ...
+
+    @BeforeEach
+    public void togglePlatform() {
+        ChromeOptions chromeOptions = new ChromeOptions();
+        if ((System.getenv("SELENIUM_PLATFORM") == null)) {
+            WebDriverManager.chromedriver().setup();
+            driver = new ChromeDriver(chromeOptions);
+
+        } else if () {
+
+        }
+        else {
+
+        }
+    }
+#...
+
+}
+```
+
+
+Next, if your variable `SELENIUM_PLATFORM` is set to `SAUCE`, then it will use SauceOptions to set up a test on Sauce Labs.
+
+
+```
+//filename test.java/SauceLabsTest.java
+//...
+public class SauceLabsTest {
+# ...
+
+    @BeforeEach
+    public void togglePlatform() {
+        ChromeOptions chromeOptions = new ChromeOptions();
+        if ((System.getenv("SELENIUM_PLATFORM") == null)) {
+            WebDriverManager.chromedriver().setup();
+            driver = new ChromeDriver(chromeOptions);
+
+        } else if (System.getenv("SELENIUM_PLATFORM").equals("SAUCE")) {
+            SauceOptions sauceOptions = new SauceOptions(chromeOptions);
+            SauceSession sauceSession = new SauceSession(sauceOptions);
+            driver = sauceSession.start();
+
+        }
+        else {
+
+        }
+    }
+#...
+
+}
+```
+
+
+The nice thing about Sauce Options is it will guide you in what your options are for configuring your test for Sauce Labs. In this example, it sets the `JobVisibility`, in other words, who can see the test on the Sauce Labs dashboard, to public.
+
+
+```
+//filename test.java/SauceLabsTest.java
+//...
+public class SauceLabsTest {
+# ...
+
+    @BeforeEach
+    public void togglePlatform() {
+        ChromeOptions chromeOptions = new ChromeOptions();
+        if ((System.getenv("SELENIUM_PLATFORM") == null)) {
+            WebDriverManager.chromedriver().setup();
+            driver = new ChromeDriver(chromeOptions);
+
+        } else if (System.getenv("SELENIUM_PLATFORM").equals("SAUCE")) {
+            SauceOptions sauceOptions = new SauceOptions(chromeOptions);
+            sauceOptions.setJobVisibility(JobVisibility.PUBLIC);// added
+            SauceSession sauceSession = new SauceSession(sauceOptions);
+            driver = sauceSession.start();
+
+        }
+        else {
+
+        }
+    }
+#...
+
+}
+```
+
+
+The last thing to do in the `else` part of the `@BeforeEach` annotation is to throw an exception if the program cannot find a variable `SELENIUM_PLATFORM`, or it is set to something it cannot recognize:
+
+
+```
+//filename test.java/SauceLabsTest.java
+//...
+public class SauceLabsTest {
+# ...
+
+    @BeforeEach
+    public void togglePlatform() {
+        ChromeOptions chromeOptions = new ChromeOptions();
+        if ((System.getenv("SELENIUM_PLATFORM") == null)) {
+            WebDriverManager.chromedriver().setup();
+            driver = new ChromeDriver(chromeOptions);
+
+        } else if (System.getenv("SELENIUM_PLATFORM").equals("SAUCE")) {
+            SauceOptions sauceOptions = new SauceOptions(chromeOptions);
+            sauceOptions.setJobVisibility(JobVisibility.PUBLIC);// added
+            SauceSession sauceSession = new SauceSession(sauceOptions);
+            driver = sauceSession.start();
+
+        }
+        else {
+           throw new RuntimeException("You have no environment variable set that specifies the local or remote host");
+        }
+    }
+#...
+
+}
+```
+
+
+
+#### Update the Test Annotation
+
+Now you will put a simple test inside the method in the test annotation
+
+
+```
+//filename test.java/SauceLabsTest.java
+//...
+public class SauceLabsTest {
+# ...
+         @Test
+            public void exampleTest() {
+            driver.get("https://www.saucedemo.com");
+            By locator = By.className("btn_action");
+            WebDriverWait wait = new WebDriverWait(driver, 30);
+   }
+
+#...
+
+}
+```
+
+
+You have used the driver to get the website you are testing against, defined the element you are going to locate, and used the implicit [WebDriverWait](https://www.selenium.dev/documentation/en/webdriver/waits/) command to wait up to 30 seconds for the driver to instantiate before running the test.
+
+Next add in the logic to make sure your locator is present, find the locator (`"btn-action"`) that you defined, click on it, and check to see what you expected to be there (the title `"Swag Labs"`)  is there.
+
+
+```
+//filename test.java/SauceLabsTest.java
+//...
+public class SauceLabsTest {
+# ...
+         @Test
+            public void exampleTest() {
+            driver.get("https://www.saucedemo.com");
+            By locator = By.className("btn_action");
+            WebDriverWait wait = new WebDriverWait(driver, 30);
+   }
+
+#...
+
+}
+```
+
+
+
+#### Update the After Annotation
+
+Now that you have set up and defined a test, you will need to update the @AfterEach annotation to end the driver session that was created for the test. If
+
+
+```
+//filename test.java/SauceLabsTest.java
+//...
+public class SauceLabsTest {
+# ...
+        @AfterEach
+        public void endSession() {
+            if (session != null) { // null if local
+                session.stop(true);
+            } else if (driver != null) { // null if driver not initialized
+                driver.quit();
+            }
+        }
+
+}
+```
+
+
+Notice it checks for two things. The first, is if there is no session (this happens when the test is run locally. If it is not run locally, then it will stop the session. If the driver is null, in other words the driver was successfully initialized, it will quit.
+
+All you need to do to modify this code for your own test is to modify what is in the @Test annotation to apply to your code. You can see all the[ available assertions here.](https://junit.org/junit5/docs/current/api/org.junit.jupiter.api/org/junit/jupiter/api/Assertions.html)
+
 
 
 

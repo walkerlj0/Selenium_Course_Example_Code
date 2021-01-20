@@ -32,7 +32,7 @@ public class SauceLabsTest {
             driver = new ChromeDriver(chromeOptions);
         } else if (System.getenv("SELENIUM_PLATFORM").equals("SAUCE")) {
             SauceOptions sauceOptions = new SauceOptions(chromeOptions);
-            sauceOptions.setJobVisibility(JobVisibility.PUBLIC)// Sets the job on SL to publicly viewable
+            sauceOptions.setJobVisibility(JobVisibility.PUBLIC);// Sets the job on SL to publicly viewable
             SauceSession sauceSession = new SauceSession(sauceOptions);
             driver = sauceSession.start();
         }
@@ -43,15 +43,13 @@ public class SauceLabsTest {
 
     @Test
         public void exampleTest() {
-
-        /driver.get("https://www.saucedemo.com");
+        driver.get("https://www.saucedemo.com");
         By locator = By.className("btn_action");
         WebDriverWait wait = new WebDriverWait(driver, 30);
         wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(locator));
         WebElement element = driver.findElement(locator);
         element.click();
         Assertions.assertEquals("Swag Labs", driver.getTitle());
-
     }
 
     @AfterEach
