@@ -5,7 +5,7 @@ import com.saucelabs.saucebindings.SauceOptions;
 import com.saucelabs.saucebindings.SauceSession;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.Assertions; //added with test
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
@@ -17,6 +17,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.Collections;
+import java.util.List;
 
 public class SauceLabsTest {
     RemoteWebDriver driver = null;
@@ -50,6 +51,23 @@ public class SauceLabsTest {
         WebElement element = driver.findElement(locator);
         element.click();
         Assertions.assertEquals("Swag Labs", driver.getTitle());
+    }
+
+    @Test
+    public void exampleTest2() {
+        driver.get("https://training.saucelabs.com/");
+        By locator = By.cssSelector(".card__inner h1 a");
+        WebDriverWait wait = new WebDriverWait(driver, 30);
+//        wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(locator));
+//        WebElement element = driver.findElements(locator);
+        List<WebElement> elements = driver.findElements(locator);
+        for(WebElement el:elements) {
+            { if (el.getText().contains("About")) {
+                    el.click();
+                }
+            }
+        }
+        Assertions.assertEquals("About Sauce Training", driver.findElement(By.className("banner-title")).getText());;
     }
 
     @AfterEach

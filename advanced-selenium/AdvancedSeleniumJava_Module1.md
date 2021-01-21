@@ -415,7 +415,7 @@ public class SauceLabsTest {
 
 #### Update the After Annotation
 
-Now that you have set up and defined a test, you will need to update the` @AfterEach` annotation to end the driver session that was created for the test. If
+Now that you have set up and defined a test, you will need to update the `@AfterEach` annotation to end the driver session that was created for the test. If
 
 
 ```
