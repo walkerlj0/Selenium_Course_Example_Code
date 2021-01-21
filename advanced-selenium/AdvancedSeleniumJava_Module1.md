@@ -178,7 +178,7 @@ The SauceSession class is a part of [Sauce Bindings](https://github.com/saucelab
 
 It then starts the VM, sends the capabilities to the Selenium server or driver directly (in the case of Chrome) and then returns the driver's reply to the user's code.
 
-Next, within the SauceLabsTest class, add in three annotations, the `@BeforeEach,` the `@Tes`t, and the `@AfterEach`. Each one has a method inside of it:
+Next, within the SauceLabsTest class, add in three annotations, the `@BeforeEach,` the `@Test`, and the `@AfterEach`. Each one has a method inside of it:
 
 
 ```
@@ -397,10 +397,13 @@ Next add in the logic to make sure your locator is present, find the locator (`"
 public class SauceLabsTest {
 # ...
          @Test
-            public void exampleTest() {
-            driver.get("https://www.saucedemo.com");
-            By locator = By.className("btn_action");
-            WebDriverWait wait = new WebDriverWait(driver, 30);
+         driver.get("https://www.saucedemo.com");
+         By locator = By.className("btn_action");
+         WebDriverWait wait = new WebDriverWait(driver, 30);
+         wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(locator));
+         WebElement element = driver.findElement(locator);
+         element.click();
+         Assertions.assertEquals("Swag Labs", driver.getTitle());
    }
 
 #...
@@ -435,7 +438,7 @@ public class SauceLabsTest {
 
 Notice it checks for two things. The first, is if there is no session (this happens when the test is run locally. If it is not run locally, then it will stop the session. If the driver is null, in other words the driver was successfully initialized, it will quit.
 
-All you need to do to modify this code for your own test is to modify what is in the @Test annotation to apply to your code. You can see all the[ available assertions here.](https://junit.org/junit5/docs/current/api/org.junit.jupiter.api/org/junit/jupiter/api/Assertions.html)
+All you need to do to modify this code for your own test is to modify what is in the `@Test` annotation to apply to your code. You can see all the[ available assertions here.](https://junit.org/junit5/docs/current/api/org.junit.jupiter.api/org/junit/jupiter/api/Assertions.html)
 
 #### Example Modification
 ```
