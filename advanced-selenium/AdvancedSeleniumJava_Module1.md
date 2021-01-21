@@ -415,7 +415,7 @@ public class SauceLabsTest {
 
 #### Update the After Annotation
 
-Now that you have set up and defined a test, you will need to update the @AfterEach annotation to end the driver session that was created for the test. If
+Now that you have set up and defined a test, you will need to update the` @AfterEach` annotation to end the driver session that was created for the test. If
 
 
 ```
@@ -436,7 +436,7 @@ public class SauceLabsTest {
 ```
 
 
-Notice it checks for two things. The first, is if there is no session (this happens when the test is run locally. If it is not run locally, then it will stop the session. If the driver is null, in other words the driver was successfully initialized, it will quit.
+Notice it checks for two things. The first, is if there is no session (this happens when the test is run locally). If it was run on Sauce Labs, then it will stop the session. If the driver is null, in other words the driver was successfully initialized locally, it will quit.
 
 All you need to do to modify this code for your own test is to modify what is in the `@Test` annotation to apply to your code. You can see all the[ available assertions here.](https://junit.org/junit5/docs/current/api/org.junit.jupiter.api/org/junit/jupiter/api/Assertions.html)
 
