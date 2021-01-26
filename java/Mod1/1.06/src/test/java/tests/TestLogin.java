@@ -1,14 +1,14 @@
 //filename: tests/TestLogin.java
-package companyname;
+package tests;
 
-import org.junit.After;
-import org.junit.Before;
+import static org.junit.Assert.assertTrue;
 import org.junit.Test;
+import org.junit.Before;
+import org.junit.After;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import static org.junit.Assert.assertTrue;
 
 public class TestLogin {
 
@@ -16,7 +16,7 @@ public class TestLogin {
 
     @Before
     public void setUp() {
-        System.setProperty("webdriver.chrome.driver", "/Users/lindsaywalker/Documents/chromedriver");
+      System.setProperty("webdriver.chrome.driver", "/Users/lindsaywalker/Documents/chromedriver");
         ChromeOptions browserOptions = new ChromeOptions();
         browserOptions.setCapability("browserVersion", "86.0");
         driver = new ChromeDriver(browserOptions);
