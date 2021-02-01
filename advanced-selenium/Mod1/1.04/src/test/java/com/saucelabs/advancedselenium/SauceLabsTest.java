@@ -24,15 +24,17 @@ public class SauceLabsTest {
 
     @BeforeEach
     public void togglePlatform() {
+        System.setProperty("SELENIUM_PLATFORM"="SAUCE")
         ChromeOptions chromeOptions = new ChromeOptions();
-        chromeOptions.setExperimentalOption("excludeSwitches", //added, allows popups
-                Collections.singletonList("disable-popup-blocking")); //added allows popups
-        if (System.getenv("SELENIUM_PLATFORM") == null) { // this will run a local chromedriver by default
+        chromeOptions.setExperimentalOption("excludeSwitches",
+                Collections.singletonList("disable-popup-blocking"));
+        if (System.getProperty("SELENIUM_PLATFORM") == null) { // this will run a local chromedriver by default
             WebDriverManager.chromedriver().setup();
             driver = new ChromeDriver(chromeOptions);
-        } else if (System.getenv("SELENIUM_PLATFORM").equals("SAUCE")) {
+
+        } else if (System.getProperty("SELENIUM_PLATFORM").equals("SAUCE")) {
             SauceOptions sauceOptions = new SauceOptions(chromeOptions);
-            sauceOptions.setJobVisibility(JobVisibility.PUBLIC);// Sets the job on SL to publicly viewable
+            sauceOptions.setJobVisibility(JobVisibility.PUBLIC);
             SauceSession sauceSession = new SauceSession(sauceOptions);
             driver = sauceSession.start();
         }

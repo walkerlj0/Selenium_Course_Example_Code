@@ -19,14 +19,15 @@ public class SauceTestBase {
     SauceSession session = null;
 
     @BeforeEach
-    public void setUp() {  // change method name, added testinfo parameters
+    public void setUp() {  // change method name
+        System.setProperty("SELENIUM_PLATFORM"="SAUCE")
         ChromeOptions chromeOptions = new ChromeOptions();
         chromeOptions.setExperimentalOption("excludeSwitches",
                 Collections.singletonList("disable-popup-blocking"));
-        if (System.getenv("SELENIUM_PLATFORM") == null) {
+        if (System.getProperty("SELENIUM_PLATFORM") == null) {
             WebDriverManager.chromedriver().setup();
             driver = new ChromeDriver(chromeOptions);
-        } else if (System.getenv("SELENIUM_PLATFORM").equals("SAUCE")) {
+        } else if (System.getProperty("SELENIUM_PLATFORM").equals("SAUCE")) {
             SauceOptions sauceOptions = new SauceOptions(chromeOptions);
             sauceOptions.setJobVisibility(JobVisibility.PUBLIC);
             SauceSession sauceSession = new SauceSession(sauceOptions);
