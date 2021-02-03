@@ -16,7 +16,11 @@ public class TestLogin {
 
     @Before
     public void setUp() {
-        System.setProperty("webdriver.chrome.driver", "<Inser file path to chromedriver here>");
+        if (System.getProperty("os.name").startsWith("Windows")) {
+            System.setProperty("webdriver.chrome.driver", "lib/chromedriver.exe");
+        } else {
+            System.setProperty("webdriver.chrome.driver", "lib/chromedriver");
+        }
         ChromeOptions browserOptions = new ChromeOptions();
         browserOptions.setCapability("browserVersion", "86.0");
         driver = new ChromeDriver(browserOptions);

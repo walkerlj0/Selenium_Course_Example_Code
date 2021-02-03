@@ -1,8 +1,7 @@
-// filename: pageobjects/Login.java
 package pageobjects;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import static org.junit.Assert.assertTrue;
 
 public class Login {
 
@@ -11,14 +10,11 @@ public class Login {
     By passwordLocator  = By.id("password");
     By submitButton     = By.cssSelector("button");
     By successMessageLocator = By.cssSelector(".flash.success");
-    By failureMessageLocator = By.cssSelector(".flash.error");
-    By loginFormLocator = By.id("login");
+    By failureMessageLocator = By.cssSelector(".flash.error"); //added
 
     public Login(WebDriver driver) {
         this.driver = driver;
         driver.get("http://the-internet.herokuapp.com/login");
-        assertTrue("The login form is not present",
-                driver.findElement(loginFormLocator).isDisplayed());
     }
 
     public void with(String username, String password) {
@@ -28,11 +24,11 @@ public class Login {
     }
 
     public Boolean successMessagePresent() {
-
         return driver.findElement(successMessageLocator).isDisplayed();
     }
-    public Boolean failureMessagePresent() {
 
+    public Boolean failureMessagePresent() { //added
         return driver.findElement(failureMessageLocator).isDisplayed();
     }
+
 }

@@ -1,20 +1,21 @@
 package test.java.com.saucelabs.advancedselenium;
 
-import com.saucelabs.saucebindings.JobVisibility;
+import com.saucelabs.saucebindings.PageLoadStrategy;
 import com.saucelabs.saucebindings.SauceOptions;
 import com.saucelabs.saucebindings.SauceSession;
+import com.saucelabs.saucebindings.TimeoutStore;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.TestInfo; //a
-import org.junit.jupiter.api.extension.ExtendWith; //a
-import org.junit.jupiter.api.extension.ExtensionContext; //a
-import org.junit.jupiter.api.extension.TestWatcher; //a
+import org.junit.jupiter.api.TestInfo;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.jupiter.api.extension.ExtensionContext;
+import org.junit.jupiter.api.extension.TestWatcher;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.RemoteWebDriver;
-
-import java.util.Collections;
+import java.util.Collections
+import com.saucelabs.saucebindings.JobVisibility;
 
 @ExtendWith(SauceTestBase.SauceTestWatcher.class) // added
 
@@ -25,18 +26,26 @@ public class SauceTestBase {
 
     @BeforeEach
     public void setUp(TestInfo testinfo) {  // change method name, added testinfo parameters
-        System.setProperty("SELENIUM_PLATFORM"="SAUCE")
+        System.setProperty("SELENIUM_PLATFORM"="SAUCE");
         ChromeOptions chromeOptions = new ChromeOptions();
-        chromeOptions.setExperimentalOption("excludeSwitches",
-                Collections.singletonList("disable-popup-blocking"));
+        chromeOptions.setExperimentalOption("excludeSwitches", // added 1.06
+                Collections.singletonList("disable-popup-blocking")); // add in 1.06
         if (System.getProperty("SELENIUM_PLATFORM") == null) {
             WebDriverManager.chromedriver().setup();
             driver = new ChromeDriver(chromeOptions);
         } else if (System.getProperty("SELENIUM_PLATFORM").equals("SAUCE")) {
             SauceOptions sauceOptions = new SauceOptions(chromeOptions);
-            sauceOptions.setJobVisibility(JobVisibility.PUBLIC);
+            sauceOptions.setJobVisibility(JobVisibility.PUBLIC); // add in 1.06
+            sauceOptions.setPageLoadStrategy(PageLoadStrategy.EAGER) // add in 1.07
+            TimeoutStore timeoutStore = new TimeoutStore(); // below added in 1.07
+            timeoutStore.setImplicitWait(0);
+            timeoutStore.setPageLoad(300000);
+            timeoutStore.setScript(30000);
+            sauceOptions.setTimeout(timeoutStore);
+
             sauceOptions.setName(testinfo.getDisplayName()); // added
             SauceSession sauceSession = new SauceSession(sauceOptions);
+//            SauceTestWatcher.setsession // get from titus or Diego
             driver = sauceSession.start();
         }
         else {
