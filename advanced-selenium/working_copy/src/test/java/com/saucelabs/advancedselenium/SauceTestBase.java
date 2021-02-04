@@ -28,16 +28,16 @@ public class SauceTestBase {
     public void setUp(TestInfo testinfo) {  // change method name, added testinfo parameters
         System.setProperty("SELENIUM_PLATFORM"="SAUCE");
         ChromeOptions chromeOptions = new ChromeOptions();
-        chromeOptions.setExperimentalOption("excludeSwitches", // added 1.06
-                Collections.singletonList("disable-popup-blocking")); // add in 1.06
+        chromeOptions.setExperimentalOption("excludeSwitches", // added 1.07
+                Collections.singletonList("disable-popup-blocking")); // add in 1.07
         if (System.getProperty("SELENIUM_PLATFORM") == null) {
             WebDriverManager.chromedriver().setup();
             driver = new ChromeDriver(chromeOptions);
         } else if (System.getProperty("SELENIUM_PLATFORM").equals("SAUCE")) {
             SauceOptions sauceOptions = new SauceOptions(chromeOptions);
-            sauceOptions.setJobVisibility(JobVisibility.PUBLIC); // add in 1.06
-            sauceOptions.setPageLoadStrategy(PageLoadStrategy.EAGER) // add in 1.07
-            TimeoutStore timeoutStore = new TimeoutStore(); // below added in 1.07
+            sauceOptions.setJobVisibility(JobVisibility.PUBLIC); // add in 1.07
+            sauceOptions.setPageLoadStrategy(PageLoadStrategy.EAGER) // add in 1.08
+            TimeoutStore timeoutStore = new TimeoutStore(); // below added in 1.08
             timeoutStore.setImplicitWait(0);
             timeoutStore.setPageLoad(300000);
             timeoutStore.setScript(30000);
