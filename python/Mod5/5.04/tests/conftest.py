@@ -55,6 +55,22 @@ def driver(request):
         # else:
         #     raise WebDriverException("Never created!")
 
+    elif config.host == "saucelabs-tunnel":
+        test_name = request.node.name  # added
+        tunnel_name = os.environ["SAUCE_TUNNEL"]  # added
+        capabilities = {
+            'browserName': config.browser,
+            'browserVersion': config.browserversion,
+            'platformName': config.platform,
+            'sauce:options': {
+                "name": test_name,
+                "tunnel-identifier": tunnel_name, #added
+            }
+        }
+        _credentials = os.environ["SAUCE_USERNAME"] + ":" + os.environ["SAUCE_ACCESS_KEY"]
+        _url = "https://" + _credentials + "@ondemand.saucelabs.com/wd/hub"
+        driver_ = webdriver.Remote(_url, capabilities)
+
     else:
         if config.browser == "chrome":
             _chromedriver = os.path.join(os.getcwd(), 'vendor', 'chromedriver')

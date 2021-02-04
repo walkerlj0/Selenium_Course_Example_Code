@@ -37,23 +37,35 @@ def driver(request):
     config.platform = request.config.getoption("--platform").lower()
 
     if config.host == "saucelabs":
-        test_name = request.node.name #added
+        test_name = request.node.name
+        tunnel_name = os.environ["SAUCE_TUNNEL"]  # added
         capabilities = {
             'browserName': config.browser,
             'browserVersion': config.browserversion,
             'platformName': config.platform,
             'sauce:options': {
-                "name":test_name, #added
+                "name": test_name,
             }
         }
         _credentials = os.environ["SAUCE_USERNAME"] + ":" + os.environ["SAUCE_ACCESS_KEY"]
         _url = "https://" + _credentials + "@ondemand.saucelabs.com/wd/hub"
         driver_ = webdriver.Remote(_url, capabilities)
 
-        # if driver_ is not None: #addded 4 lines for Jenkins plugin
-        #     print("SauceOnDemandSessionID={} job-name={}".format(driver_.session_id, test_name))
-        # else:
-        #     raise WebDriverException("Never created!")
+    elif config.host == "saucelabs-tunnel":
+        test_name = request.node.name  # added
+        tunnel_name = os.environ["SAUCE_TUNNEL"]  # added
+        capabilities = {
+            'browserName': config.browser,
+            'browserVersion': config.browserversion,
+            'platformName': config.platform,
+            'sauce:options': {
+                "name": test_name,
+                "tunnel-identifier": tunnel_name, #added
+            }
+        }
+        _credentials = os.environ["SAUCE_USERNAME"] + ":" + os.environ["SAUCE_ACCESS_KEY"]
+        _url = "https://" + _credentials + "@ondemand.saucelabs.com/wd/hub"
+        driver_ = webdriver.Remote(_url, capabilities)
 
     else:
         if config.browser == "chrome":
@@ -71,16 +83,15 @@ def driver(request):
                 driver_ = webdriver.Firefox()
 
     def quit():
-        sauce_result = "failed" if request.node.rep_call.failed else "passed" #added
-        driver_.execute_script("sauce:job-result={}".format(sauce_result)) #added
+        sauce_result = "failed" if request.node.rep_call.failed else "passed"  # added
+        driver_.execute_script("sauce:job-result={}".format(sauce_result))  # added
         driver_.quit()
 
     request.addfinalizer(quit)
     return driver_
 
 
-
-@pytest.hookimpl(hookwrapper=True, tryfirst=True) #added all below
+@pytest.hookimpl(hookwrapper=True, tryfirst=True)  # added all below
 def pytest_runtest_makereport(item, call):
     # this sets the result as a test attribute for Sauce Labs reporting.
     outcome = yield
