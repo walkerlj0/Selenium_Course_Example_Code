@@ -1,6 +1,9 @@
 package test.java.com.saucelabs.advancedselenium;
 
-import com.saucelabs.saucebindings.*;
+import com.saucelabs.saucebindings.Browser;
+import com.saucelabs.saucebindings.SauceOptions;
+import com.saucelabs.saucebindings.SauceSession;
+import com.saucelabs.saucebindings.JobVisibility;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -12,9 +15,9 @@ import org.openqa.selenium.Platform;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.RemoteWebDriver;
-import java.util.Collections
+import java.util.Collections;
 
-@ExtendWith(SauceTestBase.SauceTestWatcher.class) // added
+@ExtendWith(SauceTestBase.SauceTestWatcher.class)
 
 public class SauceTestBase {
 
@@ -22,7 +25,7 @@ public class SauceTestBase {
     SauceSession session = null;
 
     @BeforeEach
-    public void setUp(TestInfo testinfo) {  // change method name, added testinfo parameters
+    public void setUp(TestInfo testinfo) {
         System.setProperty("SELENIUM_PLATFORM"="SAUCE");
         ChromeOptions chromeOptions = new ChromeOptions();
         chromeOptions.setExperimentalOption("excludeSwitches", // added 1.07
@@ -32,20 +35,11 @@ public class SauceTestBase {
             driver = new ChromeDriver(chromeOptions);
         } else if (System.getProperty("SELENIUM_PLATFORM").equals("SAUCE")) {
             SauceOptions sauceOptions = new SauceOptions(chromeOptions);
-            sauceOptions.setBrowserName(Browser.CHROME);
-            sauceOptions.setPlatformName(Platform.MAC);
-
-
-
-
-
-
-
-
-            sauceOptions.setJobVisibility(JobVisibility.PUBLIC); // add in 1.07
-            sauceOptions.setName(testinfo.getDisplayName()); // added
+            sauceOptions.setBrowserName(Browser.CHROME); //added in 1.07
+            sauceOptions.setPlatformName(Platform.MAC); //added in 1.07
+            sauceOptions.setJobVisibility(JobVisibility.PUBLIC); // added in 1.07
+            sauceOptions.setName(testinfo.getDisplayName());
             SauceSession sauceSession = new SauceSession(sauceOptions);
-//            SauceTestWatcher.setsession // get from titus or Diego
             driver = sauceSession.start();
         }
         else {
@@ -56,9 +50,9 @@ public class SauceTestBase {
 
     @AfterEach
     public void endSession() {
-        if (session != null) { // this will be null if you run locally
+        if (session != null) {
             session.stop(true);
-        } else if (driver != null) { // this is null if there was a problem initializing the driver
+        } else if (driver != null) {
             driver.quit();
         }
     }

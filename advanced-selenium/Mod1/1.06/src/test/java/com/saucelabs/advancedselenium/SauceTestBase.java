@@ -1,9 +1,7 @@
 package test.java.com.saucelabs.advancedselenium;
 
-import com.saucelabs.saucebindings.PageLoadStrategy;
 import com.saucelabs.saucebindings.SauceOptions;
 import com.saucelabs.saucebindings.SauceSession;
-import com.saucelabs.saucebindings.TimeoutStore;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -15,9 +13,8 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import java.util.Collections
-import com.saucelabs.saucebindings.JobVisibility;
 
-@ExtendWith(SauceTestBase.SauceTestWatcher.class) // added
+@ExtendWith(SauceTestBase.SauceTestWatcher.class) // added in 1.06
 
 public class SauceTestBase {
 
@@ -25,7 +22,7 @@ public class SauceTestBase {
     SauceSession session = null;
 
     @BeforeEach
-    public void setUp(TestInfo testinfo) {  // change method name, added testinfo parameters
+    public void setUp(TestInfo testinfo) {  // added testinfo parameters in 1.06
         System.setProperty("SELENIUM_PLATFORM"="SAUCE");
         ChromeOptions chromeOptions = new ChromeOptions();
         if (System.getProperty("SELENIUM_PLATFORM") == null) {
@@ -33,9 +30,8 @@ public class SauceTestBase {
             driver = new ChromeDriver(chromeOptions);
         } else if (System.getProperty("SELENIUM_PLATFORM").equals("SAUCE")) {
             SauceOptions sauceOptions = new SauceOptions(chromeOptions);
-            sauceOptions.setName(testinfo.getDisplayName()); // added
+            sauceOptions.setName(testinfo.getDisplayName()); // added in 1.06
             SauceSession sauceSession = new SauceSession(sauceOptions);
-//            SauceTestWatcher.setsession // get from titus or Diego
             driver = sauceSession.start();
         }
         else {
@@ -46,14 +42,14 @@ public class SauceTestBase {
 
     @AfterEach
     public void endSession() {
-        if (session != null) { // this will be null if you run locally
+        if (session != null) {
             session.stop(true);
-        } else if (driver != null) { // this is null if there was a problem initializing the driver
+        } else if (driver != null) {
             driver.quit();
         }
     }
 
-    public class SauceTestWatcher implements TestWatcher { // entire class added
+    public class SauceTestWatcher implements TestWatcher { // entire class added in 1.06
         private SauceSession session;
 
         public void setSession(SauceSession session) {

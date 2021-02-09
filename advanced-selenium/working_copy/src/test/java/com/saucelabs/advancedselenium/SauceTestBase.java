@@ -4,6 +4,7 @@ import com.saucelabs.saucebindings.PageLoadStrategy;
 import com.saucelabs.saucebindings.SauceOptions;
 import com.saucelabs.saucebindings.SauceSession;
 import com.saucelabs.saucebindings.TimeoutStore;
+import com.saucelabs.saucebindings.JobVisibility;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -15,9 +16,8 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import java.util.Collections
-import com.saucelabs.saucebindings.JobVisibility;
 
-@ExtendWith(SauceTestBase.SauceTestWatcher.class) // added
+@ExtendWith(SauceTestBase.SauceTestWatcher.class) // added 1.06
 
 public class SauceTestBase {
 
@@ -45,7 +45,6 @@ public class SauceTestBase {
 
             sauceOptions.setName(testinfo.getDisplayName()); // added
             SauceSession sauceSession = new SauceSession(sauceOptions);
-//            SauceTestWatcher.setsession // get from titus or Diego
             driver = sauceSession.start();
         }
         else {
