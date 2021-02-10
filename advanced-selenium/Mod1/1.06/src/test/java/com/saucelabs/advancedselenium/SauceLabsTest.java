@@ -1,4 +1,4 @@
-package test.java.com.saucelabs.advancedselenium;
+package com.saucelabs.advancedselenium;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
