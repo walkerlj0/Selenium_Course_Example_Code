@@ -1,9 +1,9 @@
 package test.java.com.saucelabs.advancedselenium;
 
-import com.saucelabs.saucebindings.Browser;
+import com.saucelabs.saucebindings.Browser; //added
 import com.saucelabs.saucebindings.SauceOptions;
 import com.saucelabs.saucebindings.SauceSession;
-import com.saucelabs.saucebindings.JobVisibility;
+import com.saucelabs.saucebindings.JobVisibility; //added
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -11,11 +11,11 @@ import org.junit.jupiter.api.TestInfo;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.api.extension.ExtensionContext;
 import org.junit.jupiter.api.extension.TestWatcher;
-import org.openqa.selenium.Platform;
+import org.openqa.selenium.Platform; //added
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.RemoteWebDriver;
-import java.util.Collections;
+import java.util.Collections; //added
 
 @ExtendWith(SauceTestBase.SauceTestWatcher.class)
 
@@ -26,7 +26,7 @@ public class SauceTestBase {
 
     @BeforeEach
     public void setUp(TestInfo testinfo) {
-        System.setProperty("SELENIUM_PLATFORM"="SAUCE");
+        System.setProperty("SELENIUM_PLATFORM", "SAUCE");
         ChromeOptions chromeOptions = new ChromeOptions();
         chromeOptions.setExperimentalOption("excludeSwitches", // added 1.07
                 Collections.singletonList("disable-popup-blocking")); // add in 1.07
@@ -57,7 +57,7 @@ public class SauceTestBase {
         }
     }
 
-    public class SauceTestWatcher implements TestWatcher { // entire class added
+    public class SauceTestWatcher implements TestWatcher {
         private SauceSession session;
 
         public void setSession(SauceSession session) {

@@ -16,7 +16,7 @@ public class SauceTestBase {
 
     @BeforeEach
     public void setUp() {  // change method name
-        System.setProperty("SELENIUM_PLATFORM"="SAUCE")
+        System.setProperty("SELENIUM_PLATFORM", "SAUCE");
         ChromeOptions chromeOptions = new ChromeOptions();
         if (System.getProperty("SELENIUM_PLATFORM") == null) {
             WebDriverManager.chromedriver().setup();

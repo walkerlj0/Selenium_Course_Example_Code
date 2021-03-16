@@ -21,7 +21,7 @@ public class SauceLabsTest {
 
     @BeforeEach
     public void togglePlatform() {
-        System.setProperty("SELENIUM_PLATFORM"="SAUCE")
+        System.setProperty("SELENIUM_PLATFORM", "SAUCE");
         ChromeOptions chromeOptions = new ChromeOptions();
         if (System.getProperty("SELENIUM_PLATFORM") == null) { // this will run a local chromedriver by default
             WebDriverManager.chromedriver().setup();

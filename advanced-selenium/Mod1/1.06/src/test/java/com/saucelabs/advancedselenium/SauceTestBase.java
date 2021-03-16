@@ -12,7 +12,7 @@ import org.junit.jupiter.api.extension.TestWatcher;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.RemoteWebDriver;
-import java.util.Collections
+
 
 @ExtendWith(SauceTestBase.SauceTestWatcher.class) // added in 1.06
 
@@ -23,7 +23,7 @@ public class SauceTestBase {
 
     @BeforeEach
     public void setUp(TestInfo testinfo) {  // added testinfo parameters in 1.06
-        System.setProperty("SELENIUM_PLATFORM"="SAUCE");
+        System.setProperty("SELENIUM_PLATFORM", "SAUCE");
         ChromeOptions chromeOptions = new ChromeOptions();
         if (System.getProperty("SELENIUM_PLATFORM") == null) {
             WebDriverManager.chromedriver().setup();
