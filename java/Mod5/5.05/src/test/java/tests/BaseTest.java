@@ -63,6 +63,7 @@ public class BaseTest {
                 sauceOptions.setCapability("accessKey", sauceKey);
                 sauceOptions.setCapability("name", testName);
                 sauceOptions.setCapability("tunnelIdentifier", sauceTunnel);
+//                sauceOptions.setCapability("parentTunnel", parentTunnel);
                 MutableCapabilities capabilities = new MutableCapabilities();
                 capabilities.setCapability("browserName", browserName);
                 capabilities.setCapability("browserVersion", browserVersion);

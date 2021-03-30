@@ -22,7 +22,6 @@ public class TestLogin {
             System.setProperty("webdriver.chrome.driver", "lib/chromedriver");
         }
         ChromeOptions browserOptions = new ChromeOptions();
-        browserOptions.setCapability("browserVersion", "86.0");
         driver = new ChromeDriver(browserOptions);
         login = new Login(driver);
     }

@@ -18,7 +18,6 @@ public class BaseTest {
         protected void before() throws Exception {
             System.setProperty("webdriver.chrome.driver", "<insert path to chromedriver here>");
             ChromeOptions browserOptions = new ChromeOptions();
-            browserOptions.setCapability("browserVersion", "86.0");
             driver = new ChromeDriver(browserOptions);
         }
 
