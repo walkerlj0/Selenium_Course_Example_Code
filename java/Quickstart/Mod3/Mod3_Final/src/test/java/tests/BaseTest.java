@@ -23,7 +23,6 @@ import org.openqa.selenium.safari.SafariOptions;
 import java.net.URL;
 import java.util.Date;
 
-import static tests.Config.*;
 
 public class BaseTest {
 
@@ -39,7 +38,7 @@ public class BaseTest {
         protected void before() throws Exception {
             String sauceUrl = "https://ondemand.us-west-1.saucelabs.com/wd/hub";
             MutableCapabilities capabilities;
-            switch (browserName) {
+            switch (Config.browserName) {
                 case BrowserType.SAFARI: {
                     capabilities = new SafariOptions();
                     break;
@@ -61,15 +60,15 @@ public class BaseTest {
                     break;
                 }
             }
-            capabilities.setCapability("browserVersion", browserVersion);
-            capabilities.setCapability("platformName", platformName);
+            capabilities.setCapability("browserVersion", Config.browserVersion);
+            capabilities.setCapability("platformName", Config.platformName);
 
             MutableCapabilities sauceOptions = new MutableCapabilities();
-            sauceOptions.setCapability("username", sauceUser);
-            sauceOptions.setCapability("accessKey", sauceKey);
+            sauceOptions.setCapability("username", Config.sauceUser);
+            sauceOptions.setCapability("accessKey", Config.sauceKey);
             sauceOptions.setCapability("name", testName);
 
-            switch (host) {
+            switch (Config.host) {
                 case "saucelabs": {
                     sauceOptions.setCapability("extendedDebugging", "true");
                     sauceOptions.setCapability("capturePerformance", "true");
@@ -79,33 +78,33 @@ public class BaseTest {
                     sessionId = ((RemoteWebDriver) driver).getSessionId().toString();
                     System.out.printf("Started %s", new Date().toString());
                     System.out.printf("SauceOnDemandSessionID=%s job-name=%s", sessionId, testName);
-                    sauceClient = new SauceREST(sauceUser, sauceKey, DataCenter.US);
+                    sauceClient = new SauceREST(Config.sauceUser, Config.sauceKey, DataCenter.US);
 
                     break;
                 }
                 case "localhost":
-                    if ("firefox".equals(browserName)) {
+                    if ("firefox".equals(Config.browserName)) {
                         System.getProperty("webdriver.gecko.driver",
                                 "src/test/java/drivers/geckodriver");
                         System.setProperty("webdriver.gecko.driver",
                                 System.getProperty("webdriver.gecko.driver",
                                         "src/test/java/drivers/geckodriver"));
                         driver = new FirefoxDriver();
-                    } else if ("chrome".equals(browserName)) {
+                    } else if ("chrome".equals(Config.browserName)) {
                         System.setProperty("webdriver.chrome.driver",
                                 "src/test/java/drivers/chromedriver");
                         driver = new ChromeDriver();
                     }
                     break;
                 case "saucelabs-tunnel": {
-                    sauceOptions.setCapability("tunnelIdentifier", sauceTunnel);
+                    sauceOptions.setCapability("tunnelIdentifier", Config.sauceTunnel);
                     capabilities.setCapability("sauce:options", sauceOptions);
 
                     driver = new RemoteWebDriver(new URL(sauceUrl), capabilities);
                     sessionId = ((RemoteWebDriver) driver).getSessionId().toString();
                     System.out.printf("Started %s", new Date().toString());
                     System.out.printf("SauceOnDemandSessionID=%s job-name=%s", sessionId, testName);
-                    sauceClient = new SauceREST(sauceUser, sauceKey, DataCenter.US);
+                    sauceClient = new SauceREST(Config.sauceUser, Config.sauceKey, DataCenter.US);
                     break;
                 }
             }
@@ -129,14 +128,14 @@ public class BaseTest {
 
                 @Override
                 protected void failed(Throwable throwable, Description description) {
-                    if ("saucelabs".equals(host)) {
+                    if ("saucelabs".equals(Config.host)) {
                         sauceClient.jobFailed(sessionId);
                         System.out.println(String.format("https://saucelabs.com/tests/%s", sessionId));
                     }
                 }
                 @Override
                 protected void succeeded(Description description) {
-                    if ("saucelabs".equals(host)) {
+                    if ("saucelabs".equals(Config.host)) {
                         sauceClient.jobPassed(sessionId);
                     }
                 }
