@@ -35,6 +35,5 @@ public class BaseTest {
         protected void after() {
             driver.quit();
         }
-
     };
 }

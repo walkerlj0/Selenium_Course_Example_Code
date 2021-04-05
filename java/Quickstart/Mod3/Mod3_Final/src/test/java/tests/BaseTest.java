@@ -3,6 +3,8 @@ package tests;
 
 import com.saucelabs.saucerest.DataCenter;
 import com.saucelabs.saucerest.SauceREST;
+import io.github.bonigarcia.wdm.WebDriverManager;
+import org.junit.BeforeClass;
 import org.junit.Rule;
 import org.junit.rules.ExternalResource;
 import org.junit.rules.TestRule;
@@ -26,15 +28,23 @@ import java.util.Date;
 import static tests.Config.*;
 
 
-public class BaseTest {
+public class
+BaseTest {
 
     protected WebDriver driver;
     private String testName;
     private String sessionId;
     private SauceREST sauceClient;
 
+
+
+    @BeforeClass
+    public static void setupClass() {
+        WebDriverManager.chromedriver().setup();
+    }
     @Rule
     public ExternalResource resource = new ExternalResource() {
+
 
         @Override
         protected void before() throws Exception {
@@ -86,15 +96,10 @@ public class BaseTest {
                 }
                 case "localhost":
                     if ("firefox".equals(browserName)) {
-                        System.getProperty("webdriver.gecko.driver",
-                                "src/test/java/drivers/geckodriver");
-                        System.setProperty("webdriver.gecko.driver",
-                                System.getProperty("webdriver.gecko.driver",
-                                        "src/test/java/drivers/geckodriver"));
+                        WebDriverManager.FirefoxDriver().setup();
                         driver = new FirefoxDriver();
                     } else if ("chrome".equals(browserName)) {
-                        System.setProperty("webdriver.chrome.driver",
-                                "src/test/java/drivers/chromedriver");
+                        WebDriverManager.chromedriver().setup();
                         driver = new ChromeDriver();
                     }
                     break;
