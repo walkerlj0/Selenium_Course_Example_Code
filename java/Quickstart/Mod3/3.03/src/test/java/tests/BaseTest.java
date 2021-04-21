@@ -1,39 +1,71 @@
 // filename: tests/BaseTest.java
 package tests;
 
+import com.saucelabs.saucerest.DataCenter;
+import com.saucelabs.saucerest.SauceREST;
+import io.github.bonigarcia.wdm.WebDriverManager;
+import org.junit.BeforeClass;
 import org.junit.Rule;
 import org.junit.rules.ExternalResource;
+import org.junit.rules.TestRule;
+import org.junit.rules.TestWatcher;
+import org.junit.runner.Description;
+import org.openqa.selenium.MutableCapabilities;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.ie.InternetExplorerOptions;
+import org.openqa.selenium.remote.BrowserType;
+import org.openqa.selenium.remote.RemoteWebDriver;
+import org.openqa.selenium.safari.SafariOptions;
 
-import static tests.Config.browserName;
+import java.net.URL;
+import java.util.Date;
 
-public class BaseTest {
+import static tests.Config.*;
+
+
+public class
+BaseTest {
 
     protected WebDriver driver;
+    private String testName;
+    private String sessionId;
+    private SauceREST sauceClient;
 
+
+    @BeforeClass
+    public static void setupClass() {
+        WebDriverManager.chromedriver().setup();
+    }
     @Rule
     public ExternalResource resource = new ExternalResource() {
 
+
         @Override
         protected void before() throws Exception {
-            if (browserName.equals("chrome")) {
-                System.setProperty("webdriver.chrome.driver", "src/test/drivers/chromedriver");
-                ChromeOptions browserOptions = new ChromeOptions();
-                browserOptions.setCapability("browserVersion", "86.0");
-                driver = new ChromeDriver(browserOptions);
-            } else if (browserName.equals("firefox")) {
-                System.setProperty("webdriver.gecko.driver",
-                        System.getProperty("webdriver.gecko.driver", "src/test/java/drivers/geckodriver"));
-                driver = new FirefoxDriver();
-            }
-        }
+            String sauceUrl = "https://ondemand.us-west-1.saucelabs.com/wd/hub";
+//            MutableCapabilities capabilities;
+//            capabilities.setCapability("browserVersion", browserVersion);
+//            capabilities.setCapability("platformName", platformName);
 
+            if ("firefox".equals(browserName)) {
+                WebDriverManager.firefoxdriver().setup();
+                driver = new FirefoxDriver();
+            } else if ("chrome".equals(browserName)) {
+                WebDriverManager.chromedriver().setup();
+                driver = new ChromeDriver();
+            }
+
+            }
         @Override
         protected void after() {
             driver.quit();
         }
+        };
+
     };
-}
+

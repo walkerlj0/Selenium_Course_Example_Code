@@ -37,7 +37,6 @@ BaseTest {
     private SauceREST sauceClient;
 
 
-
     @BeforeClass
     public static void setupClass() {
         WebDriverManager.chromedriver().setup();
@@ -96,7 +95,7 @@ BaseTest {
                 }
                 case "localhost":
                     if ("firefox".equals(browserName)) {
-                        WebDriverManager.FirefoxDriver().setup();
+                        WebDriverManager.firefoxdriver().setup();
                         driver = new FirefoxDriver();
                     } else if ("chrome".equals(browserName)) {
                         WebDriverManager.chromedriver().setup();
