@@ -1,29 +1,29 @@
 // filename: tests/BaseTest.java
 package tests;
 
-import com.saucelabs.saucerest.DataCenter;
-import com.saucelabs.saucerest.SauceREST;
+//import com.saucelabs.saucerest.DataCenter;
+//import com.saucelabs.saucerest.SauceREST;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.BeforeClass;
 import org.junit.Rule;
 import org.junit.rules.ExternalResource;
-import org.junit.rules.TestRule;
-import org.junit.rules.TestWatcher;
-import org.junit.runner.Description;
+//import org.junit.rules.TestRule;
+//import org.junit.rules.TestWatcher;
+//import org.junit.runner.Description;
 import org.openqa.selenium.MutableCapabilities;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.edge.EdgeOptions;
+//import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
-import org.openqa.selenium.ie.InternetExplorerOptions;
-import org.openqa.selenium.remote.BrowserType;
+//import org.openqa.selenium.ie.InternetExplorerOptions;
+//import org.openqa.selenium.remote.BrowserType;
 import org.openqa.selenium.remote.RemoteWebDriver;
-import org.openqa.selenium.safari.SafariOptions;
+//import org.openqa.selenium.safari.SafariOptions;
 
-import java.net.URL;
-import java.util.Date;
+//import java.net.URL;
+//import java.util.Date;
 
 import static tests.Config.*;
 
@@ -32,9 +32,6 @@ public class
 BaseTest {
 
     protected WebDriver driver;
-    private String testName;
-    private String sessionId;
-    private SauceREST sauceClient;
 
 
     @BeforeClass
