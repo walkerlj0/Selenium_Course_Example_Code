@@ -20,8 +20,6 @@ BaseTest {
 
     @Rule
     public ExternalResource resource = new ExternalResource() {
-
-
         @Override
         protected void before() throws Exception {
             switch (host) {
@@ -49,6 +47,5 @@ BaseTest {
             driver.quit();
         }
         };
-
     };
 
