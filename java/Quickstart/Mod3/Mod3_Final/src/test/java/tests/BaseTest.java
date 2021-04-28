@@ -4,7 +4,6 @@ package tests;
 import com.saucelabs.saucerest.DataCenter;
 import com.saucelabs.saucerest.SauceREST;
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.junit.BeforeClass;
 import org.junit.Rule;
 import org.junit.rules.ExternalResource;
 import org.junit.rules.TestRule;
@@ -35,15 +34,6 @@ BaseTest {
     private String testName;
     private String sessionId;
     private SauceREST sauceClient;
-
-
-    @BeforeClass
-    public static void setupClass() {
-        if ("localhost".equals(host)) {
-            WebDriverManager.chromedriver().setup();
-            WebDriverManager.firefoxdriver().setup();
-        }
-    }
 
     @Rule
     public ExternalResource resource = new ExternalResource() {
@@ -99,8 +89,10 @@ BaseTest {
                 }
                 case "localhost":
                     if ("firefox".equals(browserName)) {
+                        WebDriverManager.firefoxdriver().setup();
                         driver = new FirefoxDriver();
                     } else if ("chrome".equals(browserName)) {
+                        WebDriverManager.chromedriver().setup();
                         driver = new ChromeDriver();
                     }
                     break;

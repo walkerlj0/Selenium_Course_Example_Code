@@ -20,13 +20,6 @@ BaseTest {
 
     protected WebDriver driver;
 
-    @BeforeClass
-    public static void setupClass() {
-        if ("localhost".equals(host)) {
-            WebDriverManager.chromedriver().setup();
-            WebDriverManager.firefoxdriver().setup();
-        }
-    }
     @Rule
     public ExternalResource resource = new ExternalResource() {
 
@@ -38,8 +31,10 @@ BaseTest {
 //            capabilities.setCapability("browserVersion", browserVersion);
 //            capabilities.setCapability("platformName", platformName);
             if ("firefox".equals(browserName)) {
+                WebDriverManager.firefoxdriver().setup();
                 driver = new FirefoxDriver();
             } else if ("chrome".equals(browserName)) {
+                WebDriverManager.chromedriver().setup();
                 driver = new ChromeDriver();
             }
 
