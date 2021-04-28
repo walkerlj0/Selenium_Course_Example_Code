@@ -2,15 +2,12 @@
 package tests;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.junit.BeforeClass;
 import org.junit.Rule;
 import org.junit.rules.ExternalResource;
-import org.openqa.selenium.MutableCapabilities;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
-import org.openqa.selenium.remote.RemoteWebDriver;
 
 import static tests.Config.*;
 
@@ -26,7 +23,7 @@ BaseTest {
 
         @Override
         protected void before() throws Exception {
-            String sauceUrl = "https://ondemand.us-west-1.saucelabs.com/wd/hub";
+//            String sauceUrl = "https://ondemand.us-west-1.saucelabs.com/wd/hub";
 //            MutableCapabilities capabilities;
 //            capabilities.setCapability("browserVersion", browserVersion);
 //            capabilities.setCapability("platformName", platformName);
