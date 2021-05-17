@@ -24,11 +24,11 @@ BaseTest {
         protected void before() throws Exception {
             switch (host) {
                 case "saucelabs": {
-                    String sauceUrl = "https://ondemand.us-west-1.saucelabs.com/wd/hub";
-                    MutableCapabilities capabilities;
-//                  capabilities.setCapability("browserVersion", browserVersion);
-//                  capabilities.setCapability("platformName", platformName);
-                    break;
+                  String sauceUrl = "https://ondemand.us-west-1.saucelabs.com/wd/hub";
+                  MutableCapabilities capabilities;
+                  capabilities.setCapability("browserVersion", browserVersion);
+                  capabilities.setCapability("platformName", platformName);
+                  break;
                 }
                 case "localhost": {
                     if ("firefox".equals(browserName)) {
@@ -42,10 +42,11 @@ BaseTest {
                 }
             }
         }
+
         @Override
         protected void after() {
             driver.quit();
         }
-        };
     };
+};
 

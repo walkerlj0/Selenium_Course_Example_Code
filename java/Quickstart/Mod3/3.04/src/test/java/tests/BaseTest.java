@@ -8,7 +8,10 @@ import org.openqa.selenium.MutableCapabilities;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.remote.RemoteWebDriver;
 
+
+import java.net.URL;
 
 import static tests.Config.*;
 
@@ -25,9 +28,15 @@ BaseTest {
             switch (host) {
                 case "saucelabs": {
                     String sauceUrl = "https://ondemand.us-west-1.saucelabs.com/wd/hub";
-                    MutableCapabilities capabilities;
-//                  capabilities.setCapability("browserVersion", browserVersion);
-//                  capabilities.setCapability("platformName", platformName);
+                    MutableCapabilities sauceOptions = new MutableCapabilities();
+                    sauceOptions.setCapability("username", sauceUser);
+                    sauceOptions.setCapability("accesskey", sauceKey);
+                    MutableCapabilities capabilities = new MutableCapabilities();
+                    capabilities.setCapability("browserName", browserName);
+                    capabilities.setCapability("browserVersion", browserVersion);
+                    capabilities.setCapability("platformName", platformName);
+                    capabilities.setCapability("sauce:options", sauceOptions);
+                    driver = new RemoteWebDriver(new URL(sauceUrl), capabilities);
                     break;
                 }
                 case "localhost": {
