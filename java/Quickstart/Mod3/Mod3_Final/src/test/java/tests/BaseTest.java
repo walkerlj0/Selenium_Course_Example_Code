@@ -80,10 +80,10 @@ BaseTest {
                     capabilities.setCapability("sauce:options", sauceOptions);
 
                     driver = new RemoteWebDriver(new URL(sauceUrl), capabilities);
-                    sessionId = ((RemoteWebDriver) driver).getSessionId().toString();
-                    System.out.printf("Started %s", new Date().toString());
-                    System.out.printf("SauceOnDemandSessionID=%s job-name=%s", sessionId, testName);
-                    sauceClient = new SauceREST(sauceUser, sauceKey, DataCenter.US);
+//                    sessionId = ((RemoteWebDriver) driver).getSessionId().toString();
+//                    System.out.printf("Started %s", new Date().toString());
+//                    System.out.printf("SauceOnDemandSessionID=%s job-name=%s", /*sessionId,*/ testName);
+//                    sauceClient = new SauceREST(sauceUser, sauceKey, DataCenter.US);
 
                     break;
                 }
@@ -110,36 +110,34 @@ BaseTest {
             }
         }
 
-            @Override
-            protected void after() {
-                driver.quit();
-            }
+        @Override
+        protected void after() {
+            driver.quit();
+
+        }
 
     };
-        @Rule
-        public TestRule watcher;
+    @Rule
+    public TestRule watcher;{
+        watcher = new TestWatcher() {
+            @Override
+            protected void starting(Description description) {
+                testName = description.getDisplayName();
+            }
 
-        {
-            watcher = new TestWatcher() {
-                @Override
-
-                protected void starting(Description description) {
-                    testName = description.getDisplayName();
-                }
-
-                @Override
-                protected void failed(Throwable throwable, Description description) {
-                    if ("saucelabs".equals(host)) {
-                        sauceClient.jobFailed(sessionId);
-                        System.out.println(String.format("https://saucelabs.com/tests/%s", sessionId));
-                    }
-                }
-                @Override
-                protected void succeeded(Description description) {
-                    if ("saucelabs".equals(host)) {
-                        sauceClient.jobPassed(sessionId);
-                    }
-                }
-            };
-        }
+//            @Override
+//            protected void failed(Throwable throwable, Description description) {
+//                if ("saucelabs".equals(host)) {
+//                    sauceClient.jobFailed(sessionId);
+//                    System.out.println(String.format("https://saucelabs.com/tests/%s", sessionId));
+//                }
+//            }
+//            @Override
+//            protected void succeeded(Description description) {
+//                if ("saucelabs".equals(host)) {
+//                    sauceClient.jobPassed(sessionId);
+//                }
+//            }
+        };
+    }
 }
