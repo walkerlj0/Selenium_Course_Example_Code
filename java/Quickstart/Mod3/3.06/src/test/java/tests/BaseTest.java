@@ -1,6 +1,8 @@
 // filename: tests/BaseTest.java
 package tests;
 
+import com.saucelabs.saucerest.SauceREST;
+import com.saucelabs.saucerest.DataCenter;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.Rule;
 import org.junit.rules.ExternalResource;
@@ -15,6 +17,7 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 
 
 import java.net.URL;
+//import java.util.Date;
 
 import static tests.Config.*;
 
@@ -24,6 +27,8 @@ BaseTest {
 
     protected WebDriver driver;
     private String testName;
+    private String sessionId;
+    private SauceREST sauceClient;
 
     @Rule
     public ExternalResource resource = new ExternalResource() {
@@ -42,6 +47,8 @@ BaseTest {
                     capabilities.setCapability("platformName", platformName);
                     capabilities.setCapability("sauce:options", sauceOptions);
                     driver = new RemoteWebDriver(new URL(sauceUrl), capabilities);
+                    sessionId = ((RemoteWebDriver) driver).getSessionId().toString(); //added
+                    sauceClient = new SauceREST(sauceUser, sauceKey, DataCenter.US); //added
                     break;
                 }
                 case "localhost": {
@@ -61,12 +68,27 @@ BaseTest {
             driver.quit();
         }
     };
+
     @Rule
     public TestRule watcher; {
-        watcher = new TestWatcher() {
+        watcher = new TestWatcher(){
             @Override
             protected void starting (Description description) {
                 testName = description.getDisplayName();
+            }
+            //2 overrides below added
+            @Override
+            protected void failed(Throwable throwable, Description description) {
+                if ("saucelabs".equals(host)) {
+                    sauceClient.jobFailed(sessionId);
+                    System.out.println(String.format("https://saucelabs.com/tests/%s", sessionId));
+                }
+            }
+            @Override
+            protected void succeeded(Description description) {
+                if ("saucelabs".equals(host)) {
+                    sauceClient.jobPassed(sessionId);
+                }
             }
         };
     }
