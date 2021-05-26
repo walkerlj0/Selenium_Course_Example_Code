@@ -37,7 +37,7 @@ class DriverFactory {
   }
 
   async quit(testPassed) {
-    if (this.config.host === 'saucelabs') {
+    if (this.config.host === 'saucelabs' || 'sauce-W3C') {
       this.driver.executeScript('sauce:job-name=' + this.testName)
       this.driver.executeScript('sauce:job-result=' + testPassed)
       if (!testPassed)

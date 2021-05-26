@@ -1,8 +1,8 @@
 // filename: tests/BaseTest.java
 package tests;
 
-import com.saucelabs.saucerest.DataCenter;
-import com.saucelabs.saucerest.SauceREST;
+import com.saucelabs.saucerest.SauceREST; //added
+import com.saucelabs.saucerest.DataCenter; //added
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.Rule;
 import org.junit.rules.ExternalResource;
@@ -17,6 +17,8 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 
 
 import java.net.URL;
+//import java.util.Date;
+
 import static tests.Config.*;
 
 
@@ -25,8 +27,8 @@ BaseTest {
 
     protected WebDriver driver;
     private String testName;
-    private String sessionId;
-    private SauceREST sauceClient;
+    private String sessionId; //added
+    private SauceREST sauceClient; //added
 
     @Rule
     public ExternalResource resource = new ExternalResource() {
@@ -45,8 +47,8 @@ BaseTest {
                     capabilities.setCapability("platformName", platformName);
                     capabilities.setCapability("sauce:options", sauceOptions);
                     driver = new RemoteWebDriver(new URL(sauceUrl), capabilities);
-                    sessionId = ((RemoteWebDriver) driver).getSessionId().toString();
-                    sauceClient = new SauceREST(sauceUser, sauceKey, DataCenter.US);
+                    sessionId = ((RemoteWebDriver) driver).getSessionId().toString(); //added
+                    sauceClient = new SauceREST(sauceUser, sauceKey, DataCenter.US); //added
                     break;
                 }
                 case "localhost": {
@@ -74,6 +76,7 @@ BaseTest {
             protected void starting (Description description) {
                 testName = description.getDisplayName();
             }
+            //2 overrides below added
             @Override
             protected void failed(Throwable throwable, Description description) {
                 if ("saucelabs".equals(host)) {
@@ -83,7 +86,7 @@ BaseTest {
             }
             @Override
             protected void succeeded(Description description) {
-                if ("saucelabs".equals(host)){
+                if ("saucelabs".equals(host)) {
                     sauceClient.jobPassed(sessionId);
                 }
             }
