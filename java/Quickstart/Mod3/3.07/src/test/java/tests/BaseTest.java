@@ -1,8 +1,8 @@
 // filename: tests/BaseTest.java
 package tests;
 
-import com.saucelabs.saucerest.SauceREST; //added
-import com.saucelabs.saucerest.DataCenter; //added
+import com.saucelabs.saucerest.SauceREST;
+import com.saucelabs.saucerest.DataCenter;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.Rule;
 import org.junit.rules.ExternalResource;
@@ -12,8 +12,14 @@ import org.junit.runner.Description;
 import org.openqa.selenium.MutableCapabilities;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.ie.InternetExplorerOptions;
+import org.openqa.selenium.remote.BrowserType;
 import org.openqa.selenium.remote.RemoteWebDriver;
+import org.openqa.selenium.safari.SafariOptions;
 
 
 import java.net.URL;
@@ -27,8 +33,8 @@ BaseTest {
 
     protected WebDriver driver;
     private String testName;
-    private String sessionId; //added
-    private SauceREST sauceClient; //added
+    private String sessionId;
+    private SauceREST sauceClient;
 
     @Rule
     public ExternalResource resource = new ExternalResource() {
@@ -41,7 +47,29 @@ BaseTest {
                     sauceOptions.setCapability("username", sauceUser);
                     sauceOptions.setCapability("accesskey", sauceKey);
                     sauceOptions.setCapability("name", testName);
-                    MutableCapabilities capabilities = new MutableCapabilities();
+                    MutableCapabilities capabilities;
+                    switch(browserName) {
+                        case BrowserType.SAFARI: {
+                            capabilities = new SafariOptions();
+                            break;
+                        }
+                        case BrowserType.FIREFOX: {
+                            capabilities = new FirefoxOptions();
+                            break;
+                        }
+                        case BrowserType.IE: {
+                            capabilities = new InternetExplorerOptions();
+                            break;
+                        }
+                        case BrowserType.EDGE: {
+                            capabilities = new EdgeOptions();
+                            break;
+                        }
+                        default: {
+                            capabilities = new ChromeOptions();
+                            break;
+                        }
+                    }
                     capabilities.setCapability("browserName", browserName);
                     capabilities.setCapability("browserVersion", browserVersion);
                     capabilities.setCapability("platformName", platformName);

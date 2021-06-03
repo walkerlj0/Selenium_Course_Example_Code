@@ -42,7 +42,6 @@ public class SauceTestBase {
             timeoutStore.setPageLoad(300000);
             timeoutStore.setScript(30000);
             sauceOptions.setTimeout(timeoutStore);
-
             sauceOptions.setName(testinfo.getDisplayName()); // added
             SauceSession sauceSession = new SauceSession(sauceOptions);
             driver = sauceSession.start();
