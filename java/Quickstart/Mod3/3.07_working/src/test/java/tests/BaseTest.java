@@ -1,8 +1,8 @@
 // filename: tests/BaseTest.java
 package tests;
 
-import com.saucelabs.saucerest.SauceREST; //added
-import com.saucelabs.saucerest.DataCenter; //added
+import com.saucelabs.saucerest.SauceREST;
+import com.saucelabs.saucerest.DataCenter;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.Rule;
 import org.junit.rules.ExternalResource;
@@ -23,7 +23,7 @@ import org.openqa.selenium.safari.SafariOptions;
 
 
 import java.net.URL;
-//import java.util.Date;
+
 
 import static tests.Config.*;
 

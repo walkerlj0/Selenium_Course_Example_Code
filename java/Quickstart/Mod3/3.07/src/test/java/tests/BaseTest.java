@@ -75,8 +75,8 @@ BaseTest {
                     capabilities.setCapability("platformName", platformName);
                     capabilities.setCapability("sauce:options", sauceOptions);
                     driver = new RemoteWebDriver(new URL(sauceUrl), capabilities);
-                    sessionId = ((RemoteWebDriver) driver).getSessionId().toString(); //added
-                    sauceClient = new SauceREST(sauceUser, sauceKey, DataCenter.US); //added
+                    sessionId = ((RemoteWebDriver) driver).getSessionId().toString();
+                    sauceClient = new SauceREST(sauceUser, sauceKey, DataCenter.US); 
                     break;
                 }
                 case "localhost": {
