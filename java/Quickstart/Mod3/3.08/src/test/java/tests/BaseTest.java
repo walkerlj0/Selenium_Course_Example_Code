@@ -33,7 +33,7 @@ BaseTest {
 
     protected WebDriver driver;
     private String testName;
-    private String sessionId; 
+    private String sessionId;
     private SauceREST sauceClient;
 
     @Rule
@@ -75,7 +75,7 @@ BaseTest {
                     capabilities.setCapability("sauce:options", sauceOptions);
                     driver = new RemoteWebDriver(new URL(sauceUrl), capabilities);
                     sessionId = ((RemoteWebDriver) driver).getSessionId().toString();
-                    sauceClient = new SauceREST(sauceUser, sauceKey, DataCenter.US); cd ..
+                    sauceClient = new SauceREST(sauceUser, sauceKey, DataCenter.US);
                     break;
                 }
                 case "localhost": {
