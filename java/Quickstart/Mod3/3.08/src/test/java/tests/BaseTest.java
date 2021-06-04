@@ -33,8 +33,8 @@ BaseTest {
 
     protected WebDriver driver;
     private String testName;
-    private String sessionId; //added
-    private SauceREST sauceClient; //added
+    private String sessionId; 
+    private SauceREST sauceClient;
 
     @Rule
     public ExternalResource resource = new ExternalResource() {
@@ -74,8 +74,8 @@ BaseTest {
                     capabilities.setCapability("platformName", platformName);
                     capabilities.setCapability("sauce:options", sauceOptions);
                     driver = new RemoteWebDriver(new URL(sauceUrl), capabilities);
-                    sessionId = ((RemoteWebDriver) driver).getSessionId().toString(); //added
-                    sauceClient = new SauceREST(sauceUser, sauceKey, DataCenter.US); //added
+                    sessionId = ((RemoteWebDriver) driver).getSessionId().toString();
+                    sauceClient = new SauceREST(sauceUser, sauceKey, DataCenter.US); cd ..
                     break;
                 }
                 case "localhost": {

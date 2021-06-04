@@ -23,7 +23,6 @@ import org.openqa.selenium.safari.SafariOptions;
 
 
 import java.net.URL;
-//import java.util.Date;
 
 import static tests.Config.*;
 
@@ -76,7 +75,7 @@ BaseTest {
                     capabilities.setCapability("sauce:options", sauceOptions);
                     driver = new RemoteWebDriver(new URL(sauceUrl), capabilities);
                     sessionId = ((RemoteWebDriver) driver).getSessionId().toString();
-                    sauceClient = new SauceREST(sauceUser, sauceKey, DataCenter.US); 
+                    sauceClient = new SauceREST(sauceUser, sauceKey, DataCenter.US);
                     break;
                 }
                 case "localhost": {
