@@ -19,6 +19,7 @@ def driver(request):
     request.addfinalizer(quit)
     return driver_
 
+
 def test_valid_credentials(driver):
     driver.get("http://the-internet.herokuapp.com/login")
     driver.find_element(By.ID, "username").send_keys("tomsmith")
