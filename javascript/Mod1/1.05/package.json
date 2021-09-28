@@ -12,10 +12,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "geckodriver": "^1.19.1",
+    "chromedriver": "^94.0.0",
+    "geckodriver": "^2.0.4",
     "mocha": "^8.0.1",
-    "chromedriver": "83.0.0",
-    "selenium-webdriver": "4.0.0-alpha.7",
-    "mocha-parallel-tests": "2.3.0"
+    "mocha-parallel-tests": "2.3.0",
+    "selenium-webdriver": "4.0.0-alpha.7"
   }
 }
